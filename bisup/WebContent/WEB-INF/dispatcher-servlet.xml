@@ -1,55 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-	
-	<context:annotation-config/>
-	<bean class="controller.MyStoreController"/>
-	
-	<bean class="controller.MemoController" p:template-ref="memoService" p:command-ref="memoCommand"/>
-	<bean class="dao.MemoAction" id="memoAction"/>
-	<bean class="service.MemoService" id="memoService"/>
-	<bean class="org.springframework.beans.factory.support.SimpleInstantiationStrategy" name="ses"/>
-	<bean class="command.MemoCommand" id="memoCommand"/>
-	<!-- <context:component-scan base-package="controller"/> -->
-	
-	
-	<!-- <mvc:annotation-driven>
-		<mvc:message-converters>
-			@ResponseBody로 String 처리할 때 한글처리
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>text/html;charset=utf-8</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven> -->
 
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<context:annotation-config />
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>messages.validation</value>
 				<value>messages.label</value>
-				
 			</list>
 		</property>
-	</bean>	
-	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<property name="alwaysUseFullPath" value="true"/>
-		
-	</bean> -->
+	</bean>
 
-	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
 				<prop key="java.lang.ArithmeticException">
@@ -64,25 +36,12 @@
 			</props>
 		</property>
 	</bean>
-	<!-- <context:property-placeholder location="classpath:db.properties"/>
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driver}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="user" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:sql/*.xml"/>
-	</bean> -->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
-	<!-- <bean class="spring.controller.ReportSubmissionController" p:reportDAO-ref="reportDAO"/> -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"><!-- 6.ViewResolver -->
-		<property name="prefix" value="/WEB-INF/"/><!-- 컨트롤러에서 리턴한 String중 앞에 붙임 -->
-		<property name="suffix" value=".jsp"/><!-- 컨트롤러에서 리턴한 String중 뒤에 붙임 -->
-	</bean>
-	
-	
-	<bean class="org.springframework.core.task.TaskExecutor" id="taskExecutor"/>
-	
+
+
 </beans>

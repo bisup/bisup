@@ -34,6 +34,5 @@ dependencies {
    compile group: 'org.springframework', name: 'spring-messaging', version: '4.2.7.RELEASE'
    compile group: 'org.springframework', name: 'spring-web', version: '4.2.7.RELEASE'
    compile group: 'org.springframework', name: 'spring-websocket', version: '4.2.7.RELEASE'
-   compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
    
 }

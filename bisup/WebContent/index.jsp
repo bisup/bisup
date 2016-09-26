@@ -1,16 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
-<!-- <script>
-	location.replace("main.do");
-</script> -->
 <title>Insert title here</title>
 </head>
 <body>
-<a href="main/main.do">¸ŞÀÎ¸Ş´º·Î</a><br/><!-- ¸ŞÀÎÀ¸·Î -->
-<a href="main/mystore/menuinserting.do">¸Ş´ºµî·ÏÀ¸·Î</a><br/><!-- ¸Ş´ºµî·ÏÀ¸·Î -->
-<a href="mystore/salesinserting">¸ÅÃâµî·ÏÀ¸·Î</a><br/><!-- ¸ÅÃâµî·ÏÀ¸·Î -->
-<a href="mystore/salesprogressing">¸ÅÃâÃßÀÌÇöÈ²À¸·Î</a><br/><!-- ¸ÅÃâÃßÀÌÁ¶È¸·Î -->
-<a href="mystore/subprice">ºÎ¼öºñ¿ë°ü¸®·Î</a><!-- ºÎ¼öºñ¿ë°ü¸®·Î -->
+<a href="tiles/test/test.do">ìƒë‹¨ í…ŒìŠ¤íŠ¸</a><br/>
+
 </body>
 </html>
