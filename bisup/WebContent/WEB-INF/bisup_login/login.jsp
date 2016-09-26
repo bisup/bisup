@@ -2,44 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    body {
-        background: #f8f8f8;
-        padding: 60px 0;
-    }
-    
-    #login-form > div {
-        margin: 15px 0;
+<title>로그인 페이지 입니다</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bisup/css/login.css" />
+    <script>
+    function check_values() {
+        if ($("#username").val().length != 0 && $("#password").val().length != 0) {
+            $("#button1").removeClass("hidden").animate({ left: '250px' });;
+            $("#lock1").addClass("hidden").animate({ left: '250px' });;
+        }
     }
 
-</style>
+    
+    </script>
 </head>
-<body>
+
 <div class="container">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <div class="panel-title">환영합니다!</div>
+    <div class="row colored">
+        <div id="contentdiv" class="contcustom">
+          <span><img alt="" src="/bisup/resources/img/logo.png" width="200px"></span>
+            <h2>Login</h2>
+            <div>
+                <input id="username" type="text" placeholder="username" onkeypress="check_values();">
+                <input id="password" type="password" placeholder="password" onkeypress="check_values();">
+                <button id="button1" class="btn btn-default wide hidden"><span class="fa fa-check med"></span></button>
+                <span id="lock1" class="fa fa-lock medhidden redborder"></span>
             </div>
-            <div class="panel-body">
-                <form id="login-form">
-                    <div>
-                        <input type="text" class="form-control" name="username" placeholder="Username" autofocus>
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <div>
-                        <button type="submit" class="form-control btn btn-primary">로그인</button>
-                    </div>
-                </form>
+            <div>
+                <br>
+                <p>
+                    <a class="btn btn-link" class="text-muted" href="">비번찾기</a>
+                </p>
             </div>
         </div>
     </div>
 </div>
-</body>
-</html>

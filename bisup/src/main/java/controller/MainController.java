@@ -10,11 +10,15 @@ public class MainController {
 	// TODO Auto-generated constructor stub
 }
 	@RequestMapping("/main.do")
-	public String loginmain(){
+	public String main(){
 		System.out.println("main요청");
-		return "loginmain";//
+		return "bisup_login/loginmain";//
 	}
-	
+	@RequestMapping("/bisup_login/login.do")
+	public String login(){
+		System.out.println("login요청");
+		return "bisup_login/login";//
+	}
 	/*public ModelAndView modelandviewCreateView(){
 		ModelAndView modelandview = 
 	}*/
