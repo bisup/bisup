@@ -66,7 +66,7 @@
         </li>
         
         <li><a href="#">공지사항</a></li>
-        <li><a href="#">건의사항</a></li>
+        <li><a href="#">문의사항</a></li>
         <li><a href="#">마이페이지</a></li>
       </ul>
       
