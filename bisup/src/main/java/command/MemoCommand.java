@@ -1,14 +1,14 @@
 package command;
 
 import java.util.Set;
-
+//쪽지함
 public class MemoCommand {
 
-	private String send;
-	private String sub;
-	private String mtitle;
-	private String mcontent;
-	private String mreg;
+	private String send; //보낸사람
+	private String sub;//받는사람
+	private String mtitle;//제목
+	private String mcontent;//내용
+	private String mreg;//작성일
 	
 	private Set<MemoCommand> connections=null;
 	
