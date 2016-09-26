@@ -1,38 +1,42 @@
 package command;
-
+//유동인구
 public class FloatCommand {
 
-	private String var1;
-	private boolean var2;
-	private int var3;
-	
-	public FloatCommand() {
-		// TODO Auto-generated constructor stub
+	private int pop; //유동인구수
+	private String gu;//행정구
+	private String dong;//동
+	private String yo;//조사요일
+	private String tim;//시간대
+	public int getPop() {
+		return pop;
+	}
+	public void setPop(int pop) {
+		this.pop = pop;
+	}
+	public String getGu() {
+		return gu;
+	}
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
+	public String getDong() {
+		return dong;
+	}
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+	public String getYo() {
+		return yo;
+	}
+	public void setYo(String yo) {
+		this.yo = yo;
+	}
+	public String getTim() {
+		return tim;
+	}
+	public void setTim(String tim) {
+		this.tim = tim;
 	}
 	
-	public FloatCommand(String var1, int var3) {
-		// TODO Auto-generated constructor stub
-		this.var1 = var1;
-		this.var3 = var3;
-	}
-	
-	public String getVar1() {
-		return var1;
-	}
-	public void setVar1(String var1) {
-		this.var1 = var1;
-	}
-	public boolean isVar2() {
-		return var2;
-	}
-	public void setVar2(boolean var2) {
-		this.var2 = var2;
-	}
-	public int getVar3() {
-		return var3;
-	}
-	public void setVar3(int var3) {
-		this.var3 = var3;
-	}
 	
 }

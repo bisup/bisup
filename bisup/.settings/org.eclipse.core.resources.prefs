@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+<<<<<<< HEAD
+encoding//WebContent/WEB-INF/bisup_login/loginmain.jsp=UTF-8
+=======
+encoding//WebContent/resources/bootstrap/css/layout.css=UTF-8
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
