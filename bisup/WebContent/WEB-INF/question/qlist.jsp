@@ -56,7 +56,10 @@ $(document).ready(function() {
         }
     });
 });
+
+
 </script>
+<!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
 </head>
 <body>
 <div class="container">
@@ -68,9 +71,9 @@ $(document).ready(function() {
                 <div>
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                   <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요." required>
+                   <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요.">
                    <br>
-                   <input type="button" class="btn btn-primary" value="글쓰기" onclick="javascript:location='/bisup/bisup/question/qwrite.do'" style="float: right;">
+                   <input type="button" class="btn btn-primary" value="글쓰기"  onclick="javascript:location='/bisup/bisup/question/qwrite.do'" style="float: right;">
                 </div>
             </form>
         </div>

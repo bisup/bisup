@@ -11,9 +11,9 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 
-<!--  프로퍼티스 파일 읽어오기 
+<!--  프로퍼티스 파일 읽어오기 -->
 	<context:property-placeholder location="classpath:db.properties" />
-	커넥션풀연결
+<!--	커넥션풀연결 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 
@@ -31,7 +31,7 @@
 
 	<bean id="dao" class="dao.LoginDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean> -->
+	</bean> 
 <context:annotation-config/>
 <!-- 		<bean id="viewResolver1" class="org.springframwork.web.servlet.view.BeanNameResolver" />
  -->
