@@ -1,38 +1,49 @@
 package command;
-
+//건의사항게시판
 public class Prop_boardCommand {
 
-	private String var1;
-	private boolean var2;
-	private int var3;
-	
-	public Prop_boardCommand() {
-		// TODO Auto-generated constructor stub
+	private int pnum; //글번호
+	private String pnick;//작성자
+	private String ptitle;//제목
+	private String pcontent;//내용
+	private int pcnt;//조회수
+	private String preg;//작성일
+	public int getPnum() {
+		return pnum;
+	}
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
+	}
+	public String getPnick() {
+		return pnick;
+	}
+	public void setPnick(String pnick) {
+		this.pnick = pnick;
+	}
+	public String getPtitle() {
+		return ptitle;
+	}
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
+	}
+	public String getPcontent() {
+		return pcontent;
+	}
+	public void setPcontent(String pcontent) {
+		this.pcontent = pcontent;
+	}
+	public int getPcnt() {
+		return pcnt;
+	}
+	public void setPcnt(int pcnt) {
+		this.pcnt = pcnt;
+	}
+	public String getPreg() {
+		return preg;
+	}
+	public void setPreg(String preg) {
+		this.preg = preg;
 	}
 	
-	public Prop_boardCommand(String var1, int var3) {
-		// TODO Auto-generated constructor stub
-		this.var1 = var1;
-		this.var3 = var3;
-	}
 	
-	public String getVar1() {
-		return var1;
-	}
-	public void setVar1(String var1) {
-		this.var1 = var1;
-	}
-	public boolean isVar2() {
-		return var2;
-	}
-	public void setVar2(boolean var2) {
-		this.var2 = var2;
-	}
-	public int getVar3() {
-		return var3;
-	}
-	public void setVar3(int var3) {
-		this.var3 = var3;
-	}
-
 }

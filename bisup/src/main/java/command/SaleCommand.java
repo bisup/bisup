@@ -1,38 +1,43 @@
 package command;
-
+//매출관리
 public class SaleCommand {
 
-	private String var1;
-	private boolean var2;
-	private int var3;
-	
-	public SaleCommand() {
-		// TODO Auto-generated constructor stub
+	private String id; //아이디
+	private String sdate; //등록일
+	private String item; //메뉴이름
+	private int ea; //수량
+	private String total; //총매출
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+	public String getItem() {
+		return item;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
+	public int getEa() {
+		return ea;
+	}
+	public void setEa(int ea) {
+		this.ea = ea;
+	}
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
 	}
 	
-	public SaleCommand(String var1, int var3) {
-		// TODO Auto-generated constructor stub
-		this.var1 = var1;
-		this.var3 = var3;
-	}
 	
-	public String getVar1() {
-		return var1;
-	}
-	public void setVar1(String var1) {
-		this.var1 = var1;
-	}
-	public boolean isVar2() {
-		return var2;
-	}
-	public void setVar2(boolean var2) {
-		this.var2 = var2;
-	}
-	public int getVar3() {
-		return var3;
-	}
-	public void setVar3(int var3) {
-		this.var3 = var3;
-	}
 
 }

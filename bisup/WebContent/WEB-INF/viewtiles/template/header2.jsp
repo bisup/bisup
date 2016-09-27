@@ -42,11 +42,15 @@
         </li>
         
          <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출트렌드<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내 점포 매출관리<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">매출 트렌트 보고서</a></li>
+            <li><a href="#">메뉴등록</a></li>
             <li class="divider"></li>
-            <li><a href="#">업종 트렌드 보고서</a></li>
+            <li><a href="#">매출등록</a></li>
+            <li class="divider"></li>
+            <li><a href="#">매출 추이 조회</a></li>
+            <li class="divider"></li>
+            <li><a href="#">부수 비용 관리</a></li>
           </ul>
         </li>
         

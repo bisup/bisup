@@ -1,38 +1,49 @@
 package command;
-
+//상권정보
 public class StoreCommand {
 
-	private String var1;
-	private boolean var2;
-	private int var3;
-	
-	public StoreCommand() {
-		// TODO Auto-generated constructor stub
+	private int snum; //사업자 번호
+	private String sname; //업체명
+	private String gu; //행정구
+	private String dong; //행정동
+	private int x; //위도
+	private int y; //경도
+	public int getSnum() {
+		return snum;
+	}
+	public void setSnum(int snum) {
+		this.snum = snum;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getGu() {
+		return gu;
+	}
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
+	public String getDong() {
+		return dong;
+	}
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	
-	public StoreCommand(String var1, int var3) {
-		// TODO Auto-generated constructor stub
-		this.var1 = var1;
-		this.var3 = var3;
-	}
 	
-	public String getVar1() {
-		return var1;
-	}
-	public void setVar1(String var1) {
-		this.var1 = var1;
-	}
-	public boolean isVar2() {
-		return var2;
-	}
-	public void setVar2(boolean var2) {
-		this.var2 = var2;
-	}
-	public int getVar3() {
-		return var3;
-	}
-	public void setVar3(int var3) {
-		this.var3 = var3;
-	}
-
 }
