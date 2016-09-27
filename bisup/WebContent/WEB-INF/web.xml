@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
+
 	<!-- 한글화 등 위한 기본설정 -->
 	<context-param>
 		<param-name>defaultHtmlEscape</param-name>
@@ -37,5 +39,33 @@
   <servlet-name>dispatcherlogin</servlet-name>
   <url-pattern>/bisup_login/*</url-pattern>
 </servlet-mapping>
+	<!-- dispatcher-Servlet 설정 -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/main/*</url-pattern>
+	</servlet-mapping>
 
+<servlet>
+  <servlet-name>dispatchertrend</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>dispatchertrend</servlet-name>
+  <url-pattern>*.do</url-pattern>
+</servlet-mapping>
+
+
+	<!-- tiles -->
+	<servlet>
+		<servlet-name>dispatcherTiles</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherTiles</servlet-name>
+		<url-pattern>/tiles/*</url-pattern>
+	</servlet-mapping>
 </web-app>
