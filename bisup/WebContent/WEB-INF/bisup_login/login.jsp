@@ -25,7 +25,7 @@
             <div>
                 <input id="username" type="text" placeholder="username" onkeypress="check_values();">
                 <input id="password" type="password" placeholder="password" onkeypress="check_values();">
-                <button id="button1" class="btn btn-default wide hidden"><span class="fa fa-check med"></span></button>
+                <input type="submit" id="button1" class="btn btn-default wide hidden"/><span class="fa fa-check med"></span>
                 <span id="lock1" class="fa fa-lock medhidden redborder"></span>
             </div>
             <div>
