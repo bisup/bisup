@@ -34,7 +34,7 @@
                                 <td>글쓴이
                                 </td>
                                 <td>
-                                husk <span style='float:right'>조회 : 0</span>
+                                mirae <span style='float:right'>조회 : 0</span>
                                 </td>
                             </tr>
                             <tr>

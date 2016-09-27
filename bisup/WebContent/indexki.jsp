@@ -2,9 +2,9 @@
 <html>
 <head>
 <title>Insert title here</title>
+<META http-equiv=refresh content="0;url=bisup_login/main.do"/>
 </head>
 <body>
-<META http-equiv=refresh content="0;url=bisup_login/main.do"/>
 <!-- <a href="bisup_login/main.do">���θ޴���</a><br/>��������
 <a href="main/mystore/menuinserting.do">�޴��������</a><br/>�޴��������
 <a href="mystore/salesinserting">����������</a><br/>����������
