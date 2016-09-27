@@ -4,6 +4,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<META http-equiv=refresh content="0;url=bisup_login/main.do"/>
+
+<a href="mystore/menuMain.do?id=1234123412341234">메뉴등록</a><br/>
+
+  
 </body>
-</html>
+</html>  
