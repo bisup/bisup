@@ -6,16 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-	public MainController() {
-	// TODO Auto-generated constructor stub
-}
-	@RequestMapping("/main.do")
-	public String loginmain(){
-		System.out.println("main요청");
-		return "loginmain";//
+	@RequestMapping("/main/main.do")
+	public String nlist(){
+		System.out.println("메인 페이지");
+		return "main"; 
 	}
-	
-	/*public ModelAndView modelandviewCreateView(){
-		ModelAndView modelandview = 
-	}*/
 }

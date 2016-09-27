@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
 </head>
@@ -13,28 +16,28 @@
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" placeholder="제목을 입력하세요.">
+	    <input type="text" class="form-control" placeholder="제목을 입력하세요." required autofocus>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">작성자</label>
-	    <input type="text" class="form-control"  placeholder="닉네임을 입력하세요.">
+	    <input type="text" class="form-control"  placeholder="닉네임을 입력하세요." required>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" placeholder="작성할 내용을 입력하세요."></textarea>
+	    <textarea class="form-control" rows="5" id="comment" placeholder="작성할 내용을 입력하세요." required></textarea>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">파일</label>
-	    <input type="file" class="form-control" placeholder="제목을 입력하세요.">
+	    <input type="file" class="form-control">
 	  </div>
 	  <br>
 	  
 	  <div align="right">
 	  <button type="submit" class="btn btn-primary">글쓰기</button>
-	  <button type="button" class="btn btn-default">취소</button>
+	  <button type="button" class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qlist.do'">취소</button>
 	  </div>
 	  </div>
 	</form>

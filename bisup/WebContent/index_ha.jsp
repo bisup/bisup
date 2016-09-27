@@ -3,10 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-</head>
-<body>
 
-<a href="<c:url value='bisup_login/login/logincheck.do'/>">loginCheck</a>
+<a href="<c:url value='/bisup_join/join/joinAgree.do'/>">joinAgree</a>
+
 </body>
 </html>
