@@ -44,7 +44,7 @@ public class MyStoreController {
 		modelAndView.setViewName("/bisup_mystore/menuInserting");
 		return modelAndView;//
 	}
-	
+	  
 	@RequestMapping("/menuMain/menuInserting.do")
 	public ModelAndView menuInserting(@ModelAttribute MenuCommand command){
 		System.out.println("컨트롤러-메뉴등록");

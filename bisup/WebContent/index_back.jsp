@@ -7,6 +7,6 @@
 
 <a href="mystore/menuMain.do?id=1234123412341234">메뉴등록</a><br/>
 
-  
+   
 </body>
 </html>  
