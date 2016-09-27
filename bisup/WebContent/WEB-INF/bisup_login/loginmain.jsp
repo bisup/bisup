@@ -11,6 +11,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link rel="stylesheet" href="/bisup/css/styles.css" />
+
   
   
   </head>
@@ -32,7 +33,7 @@
                         <a class="page-scroll" href="#one">Intro</a>
                     </li>
                     <li>
-                        <a class="page-scroll" data-toggle="modal" title="Login페이지입니다" href="bisup_login/login.do">Login</a>
+                        <a class="page-scroll" data-toggle="modal" title="Login페이지입니다" href="#LoginModal">Login</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#four">Sing up</a>
@@ -129,26 +130,25 @@
         </div>
         </div>
     </div>
-<div id="LoginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
+<div id="LoginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"><!-- loginmodal  -->
+        <div class="modal-dialog" >
         <div class="modal-content">
         	<div class="modal-body">
-        		<h2 class="text-center">Landing Zero Theme</h2>
-        		<h5 class="text-center">
-        		    A free, responsive landing page theme built by BootstrapZero.
-        		</h5>
-        		<p class="text-justify">
-        		    This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
-        		    There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
-        		    that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
-        		</p>
-        		<p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
-        		<br/>
-        		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
-        	</div>
-        </div>
-        </div>
-    </div>
+        		<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div class="container">
+<form class="form-signin">
+		<h1 class="form-signin-heading text-muted">Login</h1>
+		<input type="text" class="form-control" name="id" placeholder="id를 입력하세요" required="" autofocus="">
+		<input type="password" class="form-control" name="pw" placeholder="Password를 입력하세요" required="">
+		<button class="btn btn-lg btn-primary2 btn-block" type="submit">
+			Sign In
+		</button>
+	</form>
+</div>
+ </div>
+ </div>
+ </div>
+ </div>
     <!--scripts loaded here from cdn for performance -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
