@@ -12,33 +12,33 @@ public class BoardController {
 		return "nlist"; 
 	}
 	
-	@RequestMapping("/notice/nlist.do")
+	@RequestMapping("/notice/nlist_m.do")
 	public String nlist_m(){
 		System.out.println("관리자 공지사항 내용");
 		return "nlist_m"; 
 	}
 	
-	@RequestMapping("/notice/nlist.do")
+	@RequestMapping("/notice/nwrite.do")
 	public String nwrite(){
 		System.out.println("공지사항 글쓰기(관리자만 가능)");
 		return "nwrite";
 	}
 	
-	@RequestMapping("/notice/nlist.do")
+	@RequestMapping("/question/qlist.do")
 	public String plist(){
 		System.out.println("문의사항 내용");
-		return "plist";
+		return "qlist";
 	}
 	
-	@RequestMapping("/notice/nlist.do")
+	@RequestMapping("/question/qwrite.do")
 	public String pwrite(){
 		System.out.println("문의사항 글쓰기");
-		return "pwrite";
+		return "qwrite";
 	}
 	
-	@RequestMapping("/notice/nlist.do")
+	@RequestMapping("/question/qpw.do")
 	public String ppw(){
 		System.out.println("문의사항 본인확인");
-		return "ppw";
+		return "qpw";
 	}
 }

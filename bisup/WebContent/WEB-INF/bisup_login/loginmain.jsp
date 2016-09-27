@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link rel="stylesheet" href="/bisup/css/styles.css" />
 
-  
-  
   </head>
   <body>
     <nav id="topNav" class="navbar navbar-default navbar-fixed-top">

@@ -66,6 +66,10 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcherTiles</servlet-name>
-		<url-pattern>/tiles/*</url-pattern>
+		<url-pattern>/bisup/*</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	
 </web-app>

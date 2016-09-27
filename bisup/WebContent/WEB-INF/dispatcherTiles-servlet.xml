@@ -30,7 +30,8 @@
 		</property>
 	</bean>
 
-	<bean id="test" class="controller.ConnectController" />
-
+	<bean id="board" class="controller.BoardController" />
+	<bean id="main" class="controller.MainController"/>
+	
 </beans>
 

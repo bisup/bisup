@@ -11,13 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%=cp%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>네비게이션바 테스트</title>
+<title>비즈업(BisUp)</title>
 </head>
 <body>
    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="<%=cp%>/resources/bootstrap/js/bootstrap.min.js"></script>
 
-<img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/>
+
+<a href="/bisup/bisup/main/main.do">
+<img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/></a>
+
 <div class="pull-right">
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
@@ -61,8 +64,8 @@
           </ul>
         </li>
         
-        <li><a href="#">공지사항</a></li>
-        <li><a href="#">문의사항</a></li>
+        <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
+        <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
         <li><a href="#">마이페이지</a></li>
       </ul>
       

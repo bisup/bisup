@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <% String cp = request.getContextPath(); %>
-
-<!-- 창업자 헤더부분 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -13,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%=cp%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>비즈업(BisUp)</title>
+<title>비즈업(BisUp) 관리자 페이지</title>
 </head>
 <body>
    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
@@ -52,43 +50,20 @@
           </ul>
         </li>
         
-         <li class="dropdown"><!-- 매출관리 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내 점포 매출관리<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">메뉴등록</a></li>
-            <li class="divider"></li>
-            <li><a href="#">매출등록</a></li>
-            <li class="divider"></li>
-            <li><a href="#">매출 추이 조회</a></li>
-            <li class="divider"></li>
-            <li><a href="#">부수 비용 관리</a></li>
-          </ul>
-        </li>
-        
          <li class="dropdown"><!-- 창업컨설팅 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">사업 컨설팅<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업컨설팅<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">거래처 정보</a></li>
             <li class="divider"></li>
-            <li><a href="#">창업 컨설팅</a></li>
+            <li><a href="#">창업 메뉴얼</a></li>
             <li class="divider"></li>
             <li><a href="#">연관 사이트</a></li>
           </ul>
         </li>
         
-        
-        
-        <li class="dropdown"><!-- 공지사항 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Q&A<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">공지사항</a></li>
-            <li class="divider"></li>
-            <li><a href="#">문의사항</a></li>
-           
-          </ul>
-        </li>
-        
-        <li><a href="#">마이페이지</a></li>
+        <li><a href="/bisup/">공지사항</a></li>
+        <li><a href="#">문의사항</a></li>
+        <li><a href="#">관리자페이지</a></li>
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

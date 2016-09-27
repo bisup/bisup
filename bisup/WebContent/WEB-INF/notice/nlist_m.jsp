@@ -1,12 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<!-- 
+이미래
+공지사항 리스트 (관리자)-->
 <html>
 <head>
 <title>title</title>
 <style type="text/css">
-body {
-    margin-top: 2%
-    
-}
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
 </style>
 <script type="text/javascript">
@@ -67,21 +66,17 @@ $(document).ready(function() {
 <br><br>
  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">공지사항</h2>
   	<p style="display: block;">고객의 성공을 돕는 비즈업(BisUp)이 되겠습니다.</p>
-	<br><br>
-
-        <div style="width: 300px;">
+	<div style="width: 300px; float: right;">
             <form action="#" method="get">
-                <div class="input-group">
+                <div>
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+                   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                   <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요." required>
+                    <br>
+                    <button type="button" class="btn btn-primary" onclick="/bisup/bisup/question/qwrite.do" style="float: right;" >글쓰기</button>
                 </div>
             </form>
         </div>
-   		<button type="button" class="btn btn-primary" style="float: right;">글쓰기</button>
-        
     	 <table class="table table-list-search">
                     <thead>
                         <tr>

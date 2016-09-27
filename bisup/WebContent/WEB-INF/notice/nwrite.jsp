@@ -5,8 +5,8 @@
 <body>
 <br><br>
 	<div class="container">
-	  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
-  	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">공지사항</h2>
+  	<p style="display: block;">고객의 성공을 돕는 비즈업(BisUp)이 되겠습니다.</p>
 	<br>
 	<div class="panel panel-default">
 	<form>
@@ -34,7 +34,7 @@
 	  
 	  <div align="right">
 	  <button type="submit" class="btn btn-primary">글쓰기</button>
-	  <button type="button" class="btn btn-default">취소</button>
+	  <button type="button" class="btn btn-default" onclick="bisup/bisup/notice/nlist_m.do">취소</button>
 	  </div>
 	  </div>
 	</form>

@@ -8,9 +8,40 @@
 		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp"/>
 	</definition>
 	
-	<definition name="test" extends="base_layout">
-		<put-attribute name="title" value="접속확인"/>
-		<put-attribute name="body" value="/WEB-INF/viewtiles/test.jsp"/>
+	<definition name="main" extends="base_layout">
+		<put-attribute name="title" value="BisUp Main"/>
+		<put-attribute name="body" value="/WEB-INF/main/main.jsp"/>
+	</definition>
+
+	<definition name="nlist" extends="base_layout">
+		<put-attribute name="title" value="공지사항 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/notice/nlist.jsp"/>
+	</definition>
+	
+	<definition name="nlist_m" extends="base_layout">
+		<put-attribute name="title" value="공지사항 관리자 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/notice/nlist_m.jsp"/>
+	</definition>
+	
+	<definition name="nwrite" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 작성 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/notice/nwrite.jsp"/>
+	</definition>
+	
+	
+	<definition name="qlist" extends="base_layout">
+		<put-attribute name="title" value="문의사항 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/question/qlist.jsp"/>
+	</definition>
+	
+	<definition name="qwrite" extends="base_layout">
+		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/question/qwrite.jsp"/>
+	</definition>
+	
+	<definition name="qpw" extends="base_layout">
+		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/question/qpw.jsp"/>
 	</definition>
 	
 </tiles-definitions>
