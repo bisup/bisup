@@ -134,7 +134,6 @@
         <div class="modal-dialog" >
         <div class="modal-content">
         	<div class="modal-body">
-        		<div id="fullscreen_bg" class="fullscreen_bg"/>
 <div class="container">
 <form class="form-signin">
 		<h1 class="form-signin-heading text-muted">Login</h1>
