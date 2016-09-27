@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
+<mapper namespace="mystore">
+	<select id="selectMenu" parameterType="String" resultType="command.MenuCommand">
+		select * from menu where id=#{id}
+	</select>
+	<select id="selectOneMenu" parameterType="Map" resultType="command.MenuCommand">
+		select * from menu where id=#{menu.id} and item=#{menu.item}
+	</select>
+	<insert id="insertMenu" parameterType="command.MenuCommand">
+		insert into menu values(#{id},#{item},#{price})
+	</insert>
+	<update id="updateMenu" parameterType="command.MenuCommand">
+		update menu set id=#{id},item=#{item},price=#{price}
+	</update>
+</mapper>
