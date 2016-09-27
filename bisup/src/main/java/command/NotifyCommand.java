@@ -1,38 +1,50 @@
 package command;
-
+//공지사항
 public class NotifyCommand {
 
-	private String var1;
-	private boolean var2;
-	private int var3;
-	
-	public NotifyCommand() {
-		// TODO Auto-generated constructor stub
+	private int nnum; //글번호
+	private String nnick;//작성자
+	private String ntitle;//제목
+	private String ncontent;//내용
+	private int ncnt;//조회수
+	private String nreg;//작성일
+	public int getNnum() {
+		return nnum;
+	}
+	public void setNnum(int nnum) {
+		this.nnum = nnum;
+	}
+	public String getNnick() {
+		return nnick;
+	}
+	public void setNnick(String nnick) {
+		this.nnick = nnick;
+	}
+	public String getNtitle() {
+		return ntitle;
+	}
+	public void setNtitle(String ntitle) {
+		this.ntitle = ntitle;
+	}
+	public String getNcontent() {
+		return ncontent;
+	}
+	public void setNcontent(String ncontent) {
+		this.ncontent = ncontent;
+	}
+	public int getNcnt() {
+		return ncnt;
+	}
+	public void setNcnt(int ncnt) {
+		this.ncnt = ncnt;
+	}
+	public String getNreg() {
+		return nreg;
+	}
+	public void setNreg(String nreg) {
+		this.nreg = nreg;
 	}
 	
-	public NotifyCommand(String var1, int var3) {
-		// TODO Auto-generated constructor stub
-		this.var1 = var1;
-		this.var3 = var3;
-	}
 	
-	public String getVar1() {
-		return var1;
-	}
-	public void setVar1(String var1) {
-		this.var1 = var1;
-	}
-	public boolean isVar2() {
-		return var2;
-	}
-	public void setVar2(boolean var2) {
-		this.var2 = var2;
-	}
-	public int getVar3() {
-		return var3;
-	}
-	public void setVar3(int var3) {
-		this.var3 = var3;
-	}
 
 }

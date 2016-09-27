@@ -1,22 +1,24 @@
 package controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 
 @Controller
-@RequestMapping("/main.do")
 public class MainController {
 
-
-	@RequestMapping(method=RequestMethod.GET)
-	public String stringCreateView(){
+	public MainController() {
+	// TODO Auto-generated constructor stub
+}
+	@RequestMapping("/main.do")
+	public String main(){
 		System.out.println("main요청");
-		return "main";//
+		return "bisup_login/loginmain";//
 	}
-	
+	@RequestMapping("/bisup_login/login.do")
+	public String login(){
+		System.out.println("login요청");
+		return "bisup_login/login";//
+	}
 	/*public ModelAndView modelandviewCreateView(){
 		ModelAndView modelandview = 
 	}*/

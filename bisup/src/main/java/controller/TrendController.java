@@ -5,19 +5,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
-@RequestMapping("/main.do")
 public class TrendController {
 
-
-	@RequestMapping(method=RequestMethod.GET)
-	public String stringCreateView(){
-		System.out.println("main요청");
-		return "main";//
+	@RequestMapping("/trend.do")
+	public String sales_trend(){
+		System.out.println("trend요청");
+		return "bisup_trend/sales_trend";//
 	}
 	
-	/*public ModelAndView modelandviewCreateView(){
-		ModelAndView modelandview = 
-	}*/
+	@RequestMapping("/business_trend.do")
+	public String business_trend(){
+		System.out.println("trend요청");
+		return "bisup_trend/business_trend";//
+	}
 }

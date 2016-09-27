@@ -7,16 +7,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/main.do")
 public class ConcertingController {
 
-	@RequestMapping(method=RequestMethod.GET)
-	public String stringCreateView(){
-		System.out.println("main夸没");
-		return "main";//
+	@RequestMapping("info_customer.do")
+	public String info_customerView(){
+		System.out.println("info_customer夸没");
+		return "bisup_concerting/info_customer";//
 	}
 	
-	/*public ModelAndView modelandviewCreateView(){
-		ModelAndView modelandview = 
-	}*/
+	@RequestMapping("manual.do")
+	public String manualView(){
+		System.out.println("manual夸没");
+		return "bisup_concerting/manual";//
+	}
+	
+	@RequestMapping("relation.do")
+	public String relationView(){
+		System.out.println("relation夸没");
+		return "bisup_concerting/relation";//
+	}
+	
+	
 }
