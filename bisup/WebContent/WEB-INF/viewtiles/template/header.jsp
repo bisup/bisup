@@ -60,7 +60,7 @@
             <li class="divider"></li>
             <li><a href="#">창업 메뉴얼</a></li>
             <li class="divider"></li>
-            <li><a href="#">연관 사이트</a></li>
+            <li><a href="/bisup/bisup/bisup_concerting/relation.do">연관 사이트</a></li>
           </ul>
         </li>
         
