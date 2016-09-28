@@ -32,6 +32,6 @@
 
 	<bean id="board" class="controller.BoardController" />
 	<bean id="main" class="controller.MainController"/>
-	
+	<bean id="join" class="controller.JoinController"/>
 </beans>
 

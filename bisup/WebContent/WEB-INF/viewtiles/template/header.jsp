@@ -66,7 +66,7 @@
         
         <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
         <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
-        <li><a href="#">마이페이지</a></li>
+        <li><a href="/bisup/bisup/join/joinAgree.do">마이페이지</a></li>
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

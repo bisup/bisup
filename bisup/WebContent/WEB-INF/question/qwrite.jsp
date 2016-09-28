@@ -16,7 +16,7 @@
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" placeholder="제목을 입력하세요." required autofocus>
+	    <input type="text" class="form-control" name="" placeholder="제목을 입력하세요." required autofocus>
 	  </div>
 	  
 	  <div class="form-group">
