@@ -27,7 +27,7 @@ public class MyStoreMenuController {
 	public ModelAndView main(@RequestParam("id") String id){
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList menuList = myStoreAction.selectMenu(id);
-		
+		  
 		modelAndView.addObject("menuList", menuList);
 		modelAndView.setViewName("menuInserting");
 		System.out.println("컨트롤러-메뉴등록 메인 폼 이동"+", "+menuList.size());
