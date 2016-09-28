@@ -17,7 +17,7 @@ public class LoginController{
 	public LoginController() {
 	// TODO Auto-generated constructor stub
 }
-	
+	  
 	@RequestMapping(method = RequestMethod.GET)
 	public String main(){
 		System.out.println("mainø‰√ª");
