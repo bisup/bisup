@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -133,14 +135,14 @@
         <div class="modal-content">
         	<div class="modal-body">
 <div class="container">
-<form class="form-signin">
+<form:form class="form-signin">
 		<h1 class="form-signin-heading text-muted">Login</h1>
 		<input type="text" class="form-control" name="id" placeholder="id를 입력하세요" required="" autofocus="">
 		<input type="password" class="form-control" name="pw" placeholder="Password를 입력하세요" required="">
 		<button class="btn btn-lg btn-primary2 btn-block" type="submit">
 			Sign In
 		</button>
-	</form>
+	</form:form>
 </div>
  </div>
  </div>
