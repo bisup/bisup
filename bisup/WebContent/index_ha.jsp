@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  
 <a href="<c:url value='info/areaInfo/testInfo.do'/>">infotest</a>
 
 </body>
