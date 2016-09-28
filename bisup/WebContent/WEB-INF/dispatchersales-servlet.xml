@@ -29,10 +29,15 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  <property name="dataSource" ref="dataSource" /> 
+  <property name="mapperLocations" value="classpath:sql/*.xml" /> 
+	</bean>
+	
+<bean class="dao.SalesDAO" id="sale">
+<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+</bean>
 
-	<bean id="board" class="controller.BoardController" />
-	<bean id="main" class="controller.MainController"/>
-	<bean id="join" class="controller.JoinController"/>
-	<bean id="Concerting" class="controller.ConcertingController"/>
 </beans>
 

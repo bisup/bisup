@@ -10,8 +10,8 @@ public class MemberCommand {
 	private int snum;//사업자번호
 	private String phone;//전화번호
 	private String tel;//가게번호
-	private String reg;//가입일
-	public String getId() {
+	private String reg;//가입일       
+	public String getId() {   
 		return id;
 	}
 	public void setId(String id) {
