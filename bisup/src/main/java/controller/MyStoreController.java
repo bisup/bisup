@@ -65,8 +65,6 @@ public class MyStoreController {
 		String result = "";
 		if(check==0){result="메뉴수정성공";}else{result="메뉴수정실패";}
 		modelAndView.addObject("result", result);
-		
-		modelAndView.addObject("result", result);
 		modelAndView.setViewName("/bisup_mystore/menuInserting");
 		return modelAndView;//
 	}
