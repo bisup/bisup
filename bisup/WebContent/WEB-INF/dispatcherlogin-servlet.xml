@@ -40,6 +40,7 @@
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
 	
 	<bean class="controller.LoginController"/>
 </beans>

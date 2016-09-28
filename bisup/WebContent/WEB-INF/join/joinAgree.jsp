@@ -9,16 +9,107 @@
 <title>Insert title here</title>
 </head>
 <style>
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+
+.input-group-addon.beautiful input[type="radio"] {
+    display: none;
+}
 .agree{
 	align:middle;
 }
 .textarea{
 	resize:none;
 }
+ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.mStep1 .a, .mStep1 .b, .mStep1 .c, .mStep1 .d {
+    display: block;
+    background: url(/img/k_step.png) 0 0 no-repeat;
+    height: 71px;
+}
 </style>
+<script>
+/* 동의 체크 */
+$(function () {
+    $('.input-group-addon.beautiful').each(function () {
+        
+        var $widget = $(this),
+            $input = $widget.find('input'),
+            type = $input.attr('type');
+            settings = {
+                /* checkbox: {
+                    on: { icon: 'fa fa-check-circle-o' },
+                    off: { icon: 'fa fa-circle-o' }
+                }, */
+                radio: {
+                    on: { icon: 'fa fa-dot-circle-o' },
+                    off: { icon: 'fa fa-circle-o' }
+                }
+            };
+            
+        $widget.prepend('<span class="' + settings[type].off.icon + '"></span>');
+            
+        $widget.on('click', function () {
+            $input.prop('checked', !$input.is(':checked'));
+            updateDisplay();
+        });
+            
+        function updateDisplay() {
+            var isChecked = $input.is(':checked') ? 'on' : 'off';
+                
+            $widget.find('.fa').attr('class', settings[type][isChecked].icon);
+                
+            //Just for desplay
+            isChecked = $input.is(':checked') ? '동의합니다' : '동의하지 않습니다';
+            $widget.closest('.input-group').find('input[type="text"]').val('이용약관 및 개인정보취급방침에 ' + isChecked)
+        }
+        
+        updateDisplay();
+    });
+});
+</script>
+<script>
+//다음단계로 넘어갈때 불러오는 함수
+ function chk(){
+	if($("#agree").is(':checked') == false )
+	{
+		alert("이용약관 및 개인정보취급방침에 동의하여 주세요.");
+		$("#agree").focus();
+		return;
+	}
+	else{
+		$("#agree").val("Y");
+		
+	}
+} 
+</script>
 <body>
 <div class="agree">
 <div class="containerTop">
+<div class="mStep1">
+					<div class="a">
+
+<ol>
+						<li>현재 약관동의</li>
+						<li>실명확인</li>
+						<li>기본정보입력</li>
+						<li>가입완료</li>
+						</ol>
+						</div>
+						</div>
+
 <h2>홈페이지 이용 약관</h2>
 <textarea readonly="readonly" class="textarea" cols="250" rows="10">
 제1조(목적)
@@ -196,8 +287,10 @@
 
 이 약관은 OOOO년 OO월 OO일부터 시행합니다.
 </textarea>
-</div>	
 
+</div>
+<br>	
+<hr>
  <div class="containerBottom">
   <h2>개인정보 수집 및 이용안내</h2>
   <ul class="nav nav-pills nav-justified">
@@ -311,6 +404,22 @@
     </div>
   </div>
 </div>
+<hr>
+ <div id="agree">
+        <div class="row">
+            
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon beautiful">
+                        <input type="radio">
+                    </span>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>  
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary btn-lg" onclick="javascript:chk();">다음단계로 </button>
 </div>
 </body>
 </html>
