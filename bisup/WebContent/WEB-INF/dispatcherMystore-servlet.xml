@@ -61,7 +61,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	
-	<bean class="controller.MyStoreController" p:myStoreAction-ref="myStoreAction"/>
+	<bean class="controller.MyStoreMenuController" p:myStoreAction-ref="myStoreAction"/>
 	<bean class="controller.MyStoreSaleController" p:saleProgressAction-ref="saleProgressAction"/>
 
 </beans>

@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import command.MenuCommand;
 import dao.MyStoreAction;
+import net.sf.json.JSONObject;
   
 @Controller
 public class MyStoreMenuController {
@@ -29,43 +33,38 @@ public class MyStoreMenuController {
 		ArrayList menuList = myStoreAction.selectMenu(id);
 		  
 		modelAndView.addObject("menuList", menuList);
+		modelAndView.addObject("id", id);
 		modelAndView.setViewName("menuInserting");
 		System.out.println("컨트롤러-메뉴등록 메인 폼 이동"+", "+menuList.size());
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menuMain/selectOneMenu.do")
-	public ModelAndView selectOneMenu(@RequestParam("id") String id, @RequestParam("item") String item){
-		System.out.println("컨트롤러-메뉴등록/수정정보 생성");
-		ModelAndView modelAndView = new ModelAndView();
+	@RequestMapping(value="/selectOneMenu.do",method=RequestMethod.POST)
+	public void selectOneMenu(@RequestParam("id") String id, @RequestParam("item") String item, 
+			HttpServletResponse response) throws Exception{
+		System.out.println("컨트롤러-메뉴등록/수정정보 생성, id는 "+id+", item은 "+item);
 		Map menu = new HashMap(); menu.put("id", id); menu.put("item", item);
-		
-		modelAndView.addObject("oneMenu", menu);
-		modelAndView.setViewName("/bisup_mystore/menuInserting");
-		return modelAndView;//
-	}
-	  
-	@RequestMapping("/menuMain/menuInserting.do")
-	public ModelAndView menuInserting(@ModelAttribute MenuCommand command){
-		System.out.println("컨트롤러-메뉴등록");
-		ModelAndView modelAndView = new ModelAndView();
-		int check = 0; check = myStoreAction.insertMenu(command);
-		String result = "";
-		if(check==0){result="메뉴등록성공";}else{result="메뉴등록실패";}
-		modelAndView.addObject("result", result);
-		modelAndView.setViewName("/bisup_mystore/menuInserting");
-		return modelAndView;//
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("oneMenu", myStoreAction.selectOneMenu(menu));
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
 	}
 	
-	@RequestMapping("/menuMain/menuUpdate.do")
-	public ModelAndView menuUpdate(@ModelAttribute MenuCommand command){
-		System.out.println("컨트롤러-메뉴수정");
-		ModelAndView modelAndView = new ModelAndView();
-		int check = 0; check = myStoreAction.updateMenu(command);
-		String result = "";
-		if(check==0){result="메뉴수정성공";}else{result="메뉴수정실패";}
-		modelAndView.addObject("result", result);
-		modelAndView.setViewName("/bisup_mystore/menuInserting");
-		return modelAndView;//
+	
+	@RequestMapping(value="/menuInsertOrUpdate.do",method=RequestMethod.POST)
+	public void menuInsertOrUpdate(@RequestParam("id") String id, @ModelAttribute MenuCommand command, 
+			HttpServletResponse response) throws Exception{
+		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", is command null?:::"+command);
+		Map info = new HashMap(); info.put("id", id); info.put("item", command.getItem());
+		JSONObject jsonObject = new JSONObject();
+		String result="";
+		result = myStoreAction.isInsertOrUpdate(info);
+		if(result.equals("")){
+			jsonObject.put("oneMenu", myStoreAction.insertMenu(command));
+		}else{
+			jsonObject.put("oneMenu", myStoreAction.updateMenu(command));
+		}
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
 	}
 }
