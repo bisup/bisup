@@ -80,12 +80,4 @@
 		<url-pattern>/bisup/*</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-  <servlet-name>dispatcherjoin</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>dispatcherjoin</servlet-name>
-  <url-pattern>/bisup_join/*</url-pattern>
-</servlet-mapping>
 </web-app>

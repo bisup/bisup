@@ -43,16 +43,15 @@
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/question/qpw.jsp"/>
 	</definition>
-	
-<!-- 
-	<definition name="relation" extends="base_layout">
-		<put-attribute name="title" value="연관 사이트 입니다. "/>
-		<put-attribute name="body" value="/WEB-INF/bisup_concerting/relation.jsp"/>
- -->
+
 	<definition name="joinAgree" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/join/joinAgree.jsp"/>
-
+	</definition>
+	
+	<definition name="relation" extends="base_layout">
+		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF//bisup_concerting/relation.jsp"/>
 	</definition>
 	
 </tiles-definitions>

@@ -31,8 +31,16 @@
 	</bean>
 
 	<bean id="board" class="controller.BoardController" />
+<<<<<<< HEAD
 	<bean id="main" class="controller.MainController"/>
+=======
+	<bean id="main" class="controller.MainController"/>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 	<bean id="join" class="controller.JoinController"/>
+<<<<<<< HEAD
 	
+=======
+	<bean id="Concerting" class="controller.ConcertingController"/>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 </beans>
 
