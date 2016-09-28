@@ -19,7 +19,8 @@
    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="<%=cp%>/resources/bootstrap/js/bootstrap.min.js"></script>
 
-<img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/>
+<a href="/bisup/bisup/main/main.do">
+<img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/></a>
 <div class="pull-right">
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
