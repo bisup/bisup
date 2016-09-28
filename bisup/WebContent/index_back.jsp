@@ -5,8 +5,8 @@
 </head>
 <body>
 
-<a href="mystore/menuMain.do?id=java">메뉴등록</a><br/>
-<a href="mystore/saleProgress.do?id=java">메뉴등록</a><br/>
+<a href="bisup/menuMain.do?id=java">메느등록</a><br/>
+<a href="bisup/saleProgress.do?id=java">매출추이조회</a><br/>
    
 </body>
 </html>  

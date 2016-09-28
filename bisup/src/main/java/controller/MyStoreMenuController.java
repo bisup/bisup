@@ -15,7 +15,7 @@ import command.MenuCommand;
 import dao.MyStoreAction;
   
 @Controller
-public class MyStoreController {
+public class MyStoreMenuController {
 
 	private MyStoreAction myStoreAction;
 	
@@ -29,7 +29,7 @@ public class MyStoreController {
 		ArrayList menuList = myStoreAction.selectMenu(id);
 		
 		modelAndView.addObject("menuList", menuList);
-		modelAndView.setViewName("bisup_mystore/menuInserting");
+		modelAndView.setViewName("menuInserting");
 		System.out.println("컨트롤러-메뉴등록 메인 폼 이동"+", "+menuList.size());
 		return modelAndView;
 	}

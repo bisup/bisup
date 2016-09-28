@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js">
 $(document).ready(function(){
-	location.href="/mystore/menuMain.do";
+	location.href="/bisup/menuMain.do";
 });
 </script>
 <script>
