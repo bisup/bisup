@@ -5,6 +5,7 @@
 <head>
 
 <a href="<c:url value='/bisup_join/join/joinAgree.do'/>">joinAgree</a>
+<a href="<c:url value='/bisup_join/join/test.do'/>">test</a>
 
 </body>
 </html>
