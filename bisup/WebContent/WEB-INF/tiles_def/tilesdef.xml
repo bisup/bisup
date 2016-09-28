@@ -33,7 +33,7 @@
 		<put-attribute name="title" value="문의사항 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/question/qlist.jsp"/>
 	</definition>
-	
+	  
 	<definition name="qwrite" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/question/qwrite.jsp"/>
