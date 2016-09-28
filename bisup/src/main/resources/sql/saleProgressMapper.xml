@@ -3,5 +3,5 @@
 <mapper namespace="sale">
 	<select id="salePerDay" parameterType="String" resultType="command.SaleCommand">
 		select to_date(sdate) sdate,item,ea,total from sale where sysdate>=sysdate-2 and sysdate<=sysdate+2 and id=#{id}
-	</select>
+	</select> 
 </mapper>
