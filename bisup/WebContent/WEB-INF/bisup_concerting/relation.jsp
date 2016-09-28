@@ -87,8 +87,7 @@ a .btn{
 </head>
 <body>
    <div id="content">
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">연관 사이트</h2>
-  	<p style="display: block;">고객의 성공을 돕는 비즈업(BisUp)이 되겠습니다.</p>
+   <p><h1 align="center">연관 사이트</h1></p>
    <h3 class="tit1" align="left">
    <img src="/bisup/resources/img/네모.JPG">서울시 창업스쿨</h3>
    <center>
