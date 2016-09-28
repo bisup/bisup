@@ -56,7 +56,7 @@
 	<bean id="main" class="controller.MainController"/>
 	<bean id="join" class="controller.JoinController"/>
 	<bean id="Concerting" class="controller.ConcertingController"/>
-	<bean id="mystoreMenu" class="controller.MyStoreMenuController" p:myStoreAction-ref="myStoreAction"/>
-	<bean id="mystoreSale" class="controller.MyStoreSaleController" p:saleProgressAction-ref="saleProgressAction"/>
+	<bean id="mystoreMenu" class="controller.MyStoreController" 
+		p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
 </beans>
 
