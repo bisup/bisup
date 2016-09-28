@@ -60,14 +60,7 @@
 		<url-pattern>/main/*</url-pattern>
 	</servlet-mapping>
 
-<servlet>
-  <servlet-name>dispatchertrend</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>dispatchertrend</servlet-name>
-  <url-pattern>*.do</url-pattern>
-</servlet-mapping>
+
 
 
 	<!-- tiles -->
@@ -79,5 +72,14 @@
 		<servlet-name>dispatcherTiles</servlet-name>
 		<url-pattern>/bisup/*</url-pattern>
 	</servlet-mapping>
+	
+	<!-- <servlet>
+  <servlet-name>dispatchertrend</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>dispatchertrend</servlet-name>
+  <url-pattern>*.do</url-pattern>
+</servlet-mapping> -->
 	
 </web-app>

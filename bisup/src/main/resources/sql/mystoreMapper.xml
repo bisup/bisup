@@ -5,7 +5,10 @@
 		select * from menu where id=#{id}
 	</select>
 	<select id="selectOneMenu" parameterType="Map" resultType="command.MenuCommand">
-		select * from menu where id=#{menu.id} and item=#{menu.item}
+		select * from menu where id=#{id} and item=#{item}
+	</select>
+	<select id="isInsertOrUpdate" parameterType="Map" resultType="command.MenuCommand">
+		select item from menu where id=#{info.id} and item=#{info.id}
 	</select>
 	<insert id="insertMenu" parameterType="command.MenuCommand">
 		insert into menu values(#{id},#{item},#{price})
