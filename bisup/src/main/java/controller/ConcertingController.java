@@ -21,10 +21,10 @@ public class ConcertingController {
 		return "bisup_concerting/manual";//
 	}
 	
-	@RequestMapping("/bisup_concerting/relation.do")
+	@RequestMapping("relation.do")
 	public String relationView(){
 		System.out.println("relationø‰√ª");
-		return "relation";//
+		return "bisup_concerting/relation";//
 	}
 	
 	

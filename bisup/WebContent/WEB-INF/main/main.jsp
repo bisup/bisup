@@ -12,7 +12,6 @@
 </div>
 <br><br>
 <div class="container">
-    <div class="row">
         <div class="col-md-4">
             <!-- begin panel group -->
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -83,16 +82,16 @@
                         <div class="tab-featured-image">
                             <div class="tab-content">
                                 <div class="tab-pane  in active" id="tab1">
-                                        <img src="https://ununsplash.imgix.net/photo-1417024321782-1375735f8987?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive" width="650px">
+                                        <img src="https://ununsplash.imgix.net/photo-1417024321782-1375735f8987?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive" width="500px">
                                 </div>
                                 <div class="tab-pane " id="tab2">
                                     
-                                        <img src="https://unsplash.imgix.net/uploads/1411724908903377d4696/2e9b0cb2?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" width="650px">
+                                        <img src="https://unsplash.imgix.net/uploads/1411724908903377d4696/2e9b0cb2?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" width="500px">
                                     
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
                                     
-                                        <img src="https://ununsplash.imgix.net/photo-1422479516648-9b1f0b6e8da8?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive" width="650px">
+                                        <img src="https://ununsplash.imgix.net/photo-1422479516648-9b1f0b6e8da8?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive" width="500px">
                                 </div>
                             </div>
                         </div>
@@ -105,7 +104,6 @@
 
         </div> <!-- / .col-md-8 -->
     </div> <!--/ .row -->
-</div> <!-- end sidetab container -->
 
 </body>
 </html>
