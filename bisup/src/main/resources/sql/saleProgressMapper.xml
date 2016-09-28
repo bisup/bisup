@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
+<mapper namespace="sale">
+	<select id="salePerDay" parameterType="String" resultType="command.SaleCommand">
+		select to_date(sdate) sdate,item,ea,total from sale where sysdate>=sysdate-2 and sysdate<=sysdate+2 and id=#{id}
+	</select>
+</mapper>
