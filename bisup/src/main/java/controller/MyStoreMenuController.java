@@ -22,7 +22,7 @@ public class MyStoreMenuController {
 	public void setMyStoreAction(MyStoreAction myStoreAction) {
 		this.myStoreAction = myStoreAction;
 	}
-
+  
 	@RequestMapping("/menuMain.do")
 	public ModelAndView main(@RequestParam("id") String id){
 		ModelAndView modelAndView = new ModelAndView();
