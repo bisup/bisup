@@ -32,6 +32,7 @@
 
 	<bean id="board" class="controller.BoardController" />
 	<bean id="main" class="controller.MainController"/>
-	
+	<bean  class="controller.TrendController" /> <!-- 매출트렌드 -->
+	<bean  class="controller.ConcertingController" /> <!-- 창업컨설팅 -->
 </beans>
 
