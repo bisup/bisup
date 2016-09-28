@@ -2,7 +2,7 @@
 <html>
 <head>
 <title></title>
-<META http-equiv=refresh content="0;url=bisup/bisup_concerting/relation.do"/>
+<META http-equiv=refresh content="0;url=bisup/main/main.do"/>
 </head>
 <body>
 </body>
