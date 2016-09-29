@@ -16,23 +16,29 @@
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" name="" placeholder="제목을 입력하세요." required autofocus>
+	    <input type="text" class="form-control" name="ptitle" placeholder="제목을 입력하세요." required autofocus>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">작성자</label>
-	    <input type="text" class="form-control"  placeholder="닉네임을 입력하세요." required>
+	    <input type="text" class="form-control"  name="pnick" placeholder="닉네임을 입력하세요." required>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" placeholder="작성할 내용을 입력하세요." required></textarea>
+	    <textarea class="form-control" rows="5" id="comment" name="pcontents" placeholder="작성할 내용을 입력하세요." required></textarea>
 	  </div>
 	  
+	  
+	  <!-- @RequestParam 사용 -->
 	  <div class="form-group">
-	    <label for="exampleInputPassword1">파일</label>
-	    <input type="file" class="form-control">
+	  <form action="경로.do" method="post" enctype="multipart/form-data">
+	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
+		<input type="file" name="filename" /> <br> 
+	    <input type="submit" class="form-control">
+		</form>
 	  </div>
+	  
 	  <br>
 	  
 	  <div align="right">
