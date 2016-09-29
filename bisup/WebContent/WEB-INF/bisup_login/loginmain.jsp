@@ -138,10 +138,11 @@
 <form:form class="form-signin" commandName="login" onsubmit="return logincheck(this)"><!--커멘드 객체로 보냄  -->
 		<h1 class="form-signin-heading text-muted">Login</h1>
 		<form:input path="id" class="form-control" placeholder="id를 입력하세요" required="" autofocus=""/>
-		<form:input path="pw" class="form-control" id="pw"  placeholder="Password를 입력하세요" required=""/>	
+		<form:input path="pw" class="form-control" id="pw"  placeholder="Password를 입력하세요" required=""/><br>	
 		<button class="btn btn-lg btn-primary2 btn-block" type="submit">
 			Sign In
-		</button>
+		</button><br>
+		<div align="center"><a href="#dd">아이디/비번 찾기</a></div>
 	</form:form>
 </div>
  </div>

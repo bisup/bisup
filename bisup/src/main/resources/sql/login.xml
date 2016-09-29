@@ -7,7 +7,9 @@ select pw from member where id = #{id}
 <select id="loginID" parameterType="String" resultType="String">
 select id from member where id = #{id}
 </select>
-
+<select id="loginType" parameterType="String" resultType="int">
+select sort from member where id = #{id}
+</select>
 
 
 

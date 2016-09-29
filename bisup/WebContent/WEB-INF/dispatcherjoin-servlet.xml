@@ -41,5 +41,6 @@
 	</bean>
 	
 	<bean class="controller.JoinController"/> 
-
+	
+	<!-- <bean class="command.MemberCommand"/> -->
 </beans>
