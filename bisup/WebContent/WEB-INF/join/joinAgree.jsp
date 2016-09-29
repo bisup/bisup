@@ -83,7 +83,7 @@ $(document).ready(function () {
 			$('.alert-normal-info').show();
 			}
 			else{
-				alert("다음단계로")
+				document.location.href="/bisup/bisupjoin/join/form.do";
 			}
 			});
 		

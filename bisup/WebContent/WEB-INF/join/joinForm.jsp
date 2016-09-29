@@ -10,9 +10,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-.login-signup {
+/* .login-signup {
   padding: 0 0 25px;
-}
+} */
 
 .btn-success {
   background: #23bab5;
@@ -22,13 +22,13 @@
   transition: all 400ms cubic-bezier(.4,0,.2,1);
 }
 
-.btn-success:hover,.btn-success:focus {
+ .btn-success:hover,.btn-success:focus {
   background: rgba(26, 161, 157, 0);
   border: 2px solid #1aa19d;
   webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
   transition: all 400ms cubic-bezier(.4,0,.2,1);
   color: #23BAB5;
-}
+} 
 
 a {
   color: #23bab5;
@@ -53,12 +53,12 @@ article[role="login"] input[type="submit"] {
   font-size: 16px;
 }
 
-article[role="login"]:hover {
+/* article[role="login"]:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(0, 0, 0, 0.23);
   webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
 article[role="login"] h3 {
   font-size: 26px;
@@ -112,15 +112,12 @@ article[role="login"] p {
 .mobile-pull {
   float: right;
 }
-
-
-
-
-.login-signup {
-  padding: 0 0 25px;
+#tab-content{
+	align:middle;
 }
 
-@media only screen and (max-width: 767px) {
+
+/* @media only screen and (max-width: 767px) {
   .mobile-pull {
     float: none;
   }
@@ -141,13 +138,17 @@ article[role="login"] p {
   .nav-tabs > li {
     width: 50%;
   }
-}
+} */
 </style>
 <title>Insert title here</title>
 </head>
 <body>
 
 	<div class="container">
+	<div class="mStep1">
+					<img src="../../resources/img/step2.PNG">
+						</div>
+						<br>
     <div class="login-signup">
       <div class="row">
         <div class="col-sm-6 nav-tab-holder">
@@ -167,27 +168,34 @@ article[role="login"] p {
             <div class="col-sm-6 mobile-pull">
               <article role="login">
                 <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가입</h3>
-                <form class="signup" action="index.html" >
-                 
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="아이디를 입력해주세요">
-                  </div>
-                  
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="이름을 입력해주세요">
+                
+                <form:form commandName="member" class="signup">
+           	  <%--  <form:errors element="div"/> --%>
+           	  <div class="form-group">
+           	 <form:input path="id" class="form-control" placeholder="아이디를 입력해주세요"/>
+				<%--  <form:errors path="id"/> --%>
+			</div> 	            
+              <div class="form-group">
+                    <form:input path="name" class="form-control" placeholder="이름을 입력해주세요"/>
+                  <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                    <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
+                   <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
+            	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요">
+                    <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                  <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="닉네임을 입력해주세요">
+                    <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
+                  <%--  <form:errors path="nick"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="연락처를 입력해주세요">
+                    <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
+                  <%--  <form:errors path="phone"/> --%>
                   </div>
+                
                  
                   <div class="form-group">
                     <div class="checkbox">
@@ -197,9 +205,9 @@ article[role="login"] p {
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="submit" class="btn btn-success btn-block"  value="SUBMIT">
+                    <input type="submit" class="btn btn-success btn-block"  value="회원 등록">
                   </div>
-                </form>
+              </form:form>
 
                 <footer role="signup" class="text-center">
                   <ul>
@@ -221,6 +229,7 @@ article[role="login"] p {
         </div>
         <!-- end of home -->
 
+
       <div role="tabpanel" class="tab-pane" id="profile">
         <div class="row">
 
@@ -240,11 +249,11 @@ article[role="login"] p {
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                   <form:password path="password" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
+                   <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:password path="password" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                    <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
@@ -271,7 +280,7 @@ article[role="login"] p {
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-success btn-block"  value="SUBMIT">
+                  <input type="submit" class="btn btn-success btn-block"  value="회원등록">
                 </div>
               </form:form>
               
