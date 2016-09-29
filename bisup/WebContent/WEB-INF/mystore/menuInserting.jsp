@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+request.setCharacterEncoding("utf-8"); 
+%>
 <html>
 <head>
 <title>Insert title here</title>
@@ -11,18 +14,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function menuClick(param){
+	deleteTarget();
 	var obj = {id:'${id}',item:param};
-	var url="/bisup/bisup/selectOneMenu.do";
+	var url="/bisup/mystore/selectOneMenu.do";
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:obj
 		,dataType:"json"
 		,success:function(args){
-			$("#oneMenuPrint").append("<table id='target'><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
-				args.item+"</td><td>변경후</td>	</tr><tr><td>가격</td><td>"+
-				args.price+"</td><td>변경후</td></tr></table>"
-				+"<input type='button' onclick='insertOrUpdate()' value='수정/삭제'>");
+			$("#oneMenuPrint").append("<table id='table'><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
+				args.data.item+"</td><td><input type='text' name='item'></td></tr><tr><td>가격</td><td>"+
+				args.data.price+"</td><td><input type='text' name='price'></td></tr></table>");
+			$("#table").append("<input type='button' id='button' onclick='insertOrUpdate()' value='수정/삭제'>");
 		}
 		,errors:function(e){
 			alert(e.responseText);
@@ -32,7 +36,7 @@ function menuClick(param){
 function insertOrUpdate(){
 	var item=$("#item").val();
 	var price=$("#price").val();
-	var url="/bisup/bisup/menuInsertOrUpdate.do";
+	var url="/bisup/mystore/menuInsertOrUpdate.do";
 	var params={id:'${id}',item:'${item}',price:'${price}'};
 	$.ajax({
 		type:"post"
@@ -43,6 +47,13 @@ function insertOrUpdate(){
 			alert(args.data);
 		}
 	});
+}
+function deleteTarget(){
+	var target = $("#target").val();
+	if(target!=null){
+		$("#table").remove();
+		$("#button").remove();
+	}
 }
 </script>
 </head>  
@@ -77,7 +88,7 @@ function insertOrUpdate(){
 </form:form>
 
 <hr style="border: dashed">
-<div id="forDelete"><label id="oneMenuPrint" class="oneMenuPrint">선택하신 메뉴</label></div>
+<div id="target"><div id="oneMenuPrint"/>선택하신 메뉴</div>
 </div>
 </body>
 </html>

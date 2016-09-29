@@ -85,5 +85,9 @@
 		<put-attribute name="title" value="메뉴등록"/>
 		<put-attribute name="body" value="/WEB-INF/mystore/salesInserting.jsp"/>
 	</definition>
+	<definition name="salesManaging" extends="base_layout">
+		<put-attribute name="title" value="메뉴등록"/>
+		<put-attribute name="body" value="/WEB-INF/mystore/salesManaging.jsp"/>
+	</definition>
 	
 </tiles-definitions>

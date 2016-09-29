@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
-	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
-		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<context:annotation-config />
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- @ResponseBody로 String 처리할 때 한글처리 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+<!-- 타일즈사용 -->
+	<bean id="tilesviewResolver"  
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles_def/tilesdef.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+	</bean>
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
@@ -19,49 +42,35 @@
 			</list>
 		</property>
 	</bean>
-
-	<!-- <bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-				<prop key="java.lang.ArithmeticException">
-					error/mathException
-				</prop>
-				<prop key="java.lang.NullPointerException">
-					error/nullException
-				</prop>
-				<prop key="java.lang.Exception">
-					error/exception
-				</prop>
-			</props>
-		</property>
-	</bean> -->
-
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" />
-		<property name="suffix" value=".jsp" />
-	</bean>  
-
-	<context:property-placeholder location="classpath:db.properties"/>
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driver}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="user" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:sql/*.xml"/>
-	</bean>
-	<bean class="dao.MyStoreAction" id="myStoreAction">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
-	<bean class="dao.SaleProgressAction" id="saleProgressAction">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
 	
-	<bean class="controller.MyStoreMenuController" p:myStoreAction-ref="myStoreAction"/>
-	<bean class="controller.MyStoreSaleController" p:saleProgressAction-ref="saleProgressAction"/>
+	
+<!--  프로퍼티스 파일 읽어오기 -->
+	<context:property-placeholder location="classpath:db.properties" />
+<!--	커넥션풀연결 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sql/*.xml" />
+	</bean>
 
+	<bean class="dao.SaleProgressAction" id="saleProgressAction">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean> 
+	<bean class="dao.MyStoreAction" id="myStoreAction">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	<context:annotation-config/>
+	
+	<!-- 컨트롤러 빈 등록 -->
+	<bean id="board" class="controller.BoardController" />
+	<bean id="main" class="controller.MainController"/>
+	<bean id="join" class="controller.JoinController"/>
+	<bean id="Concerting" class="controller.ConcertingController"/>
+	<bean id="mystore" class="controller.MyStoreController" p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
 </beans>
+

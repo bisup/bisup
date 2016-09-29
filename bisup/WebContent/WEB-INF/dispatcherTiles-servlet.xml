@@ -8,6 +8,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
+<!-- 타일즈사용 -->
 	<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
 	<bean id="tilesConfigurer"
@@ -30,19 +31,8 @@
 		</property>
 	</bean>
 	
-	<!-- 마이바티스 설정 -->
-	<context:property-placeholder location="classpath:db.properties"/>
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driver}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="user" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:sql/*.xml"/>
-	</bean>
 	
+<<<<<<< HEAD
 	<!-- 액션파일 빈 등록 -->
 	<bean class="dao.MyStoreAction" id="myStoreAction">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
@@ -51,10 +41,35 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 
+=======
+<!--  프로퍼티스 파일 읽어오기 -->
+	<context:property-placeholder location="classpath:db.properties" />
+<!--	커넥션풀연결 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sql/*.xml" />
+	</bean>
+
+	<bean id="dao" class="dao.BoardDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
+<context:annotation-config/>
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="board" class="controller.BoardController" />
 	<bean id="main" class="controller.MainController"/>
 	<bean id="join" class="controller.JoinController"/>
+<<<<<<< HEAD
 
 	<bean id="Concerting" class="controller.ConcertingController"/>
 	<bean id="trend" class="controller.TrendController"/>
@@ -63,5 +78,8 @@
 	<bean id="mystoreMenu" class="controller.MyStoreController" 
 		p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
 
+=======
+	<bean id="Concerting" class="controller.ConcertingController"/>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 </beans>
 

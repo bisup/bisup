@@ -18,6 +18,7 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 	
 	public MenuCommand selectOneMenu(Map menu){
 		MenuCommand oneMenu = getSqlSession().selectOne("mystore.selectOneMenu", menu);
+		System.out.println("DB로 값 가져옴. item은 "+oneMenu.getItem()+", price는 "+oneMenu.getPrice());
 		return oneMenu;	
 	}
 	
