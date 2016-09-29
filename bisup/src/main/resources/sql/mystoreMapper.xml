@@ -7,13 +7,19 @@
 	<select id="selectOneMenu" parameterType="Map" resultType="command.MenuCommand">
 		select * from menu where id=#{id} and item=#{item}
 	</select>
+	<select id="searchMenuByItem" parameterType="String" resultType="command.MenuCommand">
+		select * from menu where item=#{item}
+	</select>
+	<select id="searchMenuByPrice" parameterType="int" resultType="command.MenuCommand">
+		select * from menu where #{price}>=price
+	</select>
 	<select id="isInsertOrUpdate" parameterType="Map" resultType="command.MenuCommand">
-		select item from menu where id=#{info.id} and item=#{info.id}
+		select item from menu where id=#{id} and item=#{item}
 	</select>
 	<insert id="insertMenu" parameterType="command.MenuCommand">
 		insert into menu values(#{id},#{item},#{price})
 	</insert>
 	<update id="updateMenu" parameterType="command.MenuCommand">
-		update menu set id=#{id},item=#{item},price=#{price}
+		update menu set price=#{price},item=#{item} where id=#{id} and item=#{item}
 	</update>
 </mapper>

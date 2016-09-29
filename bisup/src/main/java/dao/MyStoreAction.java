@@ -22,8 +22,18 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 		return oneMenu;	
 	}
 	
-	public String isInsertOrUpdate(Map info){
-		String result = getSqlSession().selectOne("mystore.isInsertOrUpdate", info);
+	public List searchMenuByItem(String item){
+		List menuByItem = getSqlSession().selectList("mystore.searchMenuByItem", item);
+		return menuByItem;
+	}
+	
+	public List searchMenuByPrice(int price){
+		List menuByPrice = getSqlSession().selectList("mystore.searchMenuByItem", price);
+		return menuByPrice;
+	}
+	
+	public MenuCommand isInsertOrUpdate(Map info){
+		MenuCommand result = getSqlSession().selectOne("mystore.isInsertOrUpdate", info);
 		return result;
 	}
 	

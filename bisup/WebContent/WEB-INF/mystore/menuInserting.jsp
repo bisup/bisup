@@ -24,9 +24,9 @@ function menuClick(param){
 		,dataType:"json"
 		,success:function(args){
 			$("#oneMenuPrint").append("<table id='table'><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
-				args.data.item+"</td><td><input type='text' name='item'></td></tr><tr><td>가격</td><td>"+
-				args.data.price+"</td><td><input type='text' name='price'></td></tr></table>");
-			$("#table").append("<input type='button' id='button' onclick='insertOrUpdate()' value='수정/삭제'>");
+				args.data.item+"</td><td><input type='text' id='selecteditem'></td></tr><tr><td>가격</td><td>"+
+				args.data.price+"</td><td><input type='text' id='selectedprice'></td></tr></table>");
+			$("#table").append("<div align='center'><input type='button' id='button' onclick='insertOrUpdate()' value='수정/삭제'></div>");
 		}
 		,errors:function(e){
 			alert(e.responseText);
@@ -34,17 +34,31 @@ function menuClick(param){
 	});
 }
 function insertOrUpdate(){
-	var item=$("#item").val();
-	var price=$("#price").val();
 	var url="/bisup/mystore/menuInsertOrUpdate.do";
-	var params={id:'${id}',item:'${item}',price:'${price}'};
+	var params={id:'${id}',item:$("#selecteditem").val(),price:$("#selectedprice").val()};
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:params
 		,dataType:"json"
 		,success:function(args){
-			alert(args.data);
+			alert(args.result);
+		}
+		,errors:function(args,request,status,error){
+			 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+function search(searchtype,searchkeyword){
+	var url="/bisup/mystore/menuSearch.do";
+	var params={id:'${id}',searchtype:searchtype,price:searchkeyword};
+	$.ajax({
+		type:"post"
+		,url:url
+		,data:params
+		,dataType:"json"
+		,success:function(args){
+			$("menuList").append
 		}
 	});
 }
@@ -61,7 +75,7 @@ function deleteTarget(){
 <div id="container">
  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">메뉴등록</h2>
   	<p style="display: block;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
-<h2>메뉴등록</h2>
+<div id="menuList">
 <table class="table table-list-search">
 	<thead><tr>
 		<td>No.</td><td>메뉴이름</td><td>가격</td>
@@ -79,16 +93,17 @@ function deleteTarget(){
 	</c:forEach>
 	</tbody>
 </table>
+</div>
 
 <form:form commandName="searchMenu" action="menuMain/selectOneMenu.do" method="post">
 	<input type="radio" value="item" name="searchtype" id="item">메뉴이름
 	<input type="radio" value="price" name="searchtype" id="price">가격 :
 	 <input type="text" name="searchkeyword"> :
-	  <input type="submit" onclick="search()" value="검색">
+	  <input type="button" onclick="search()" value="검색">
 </form:form>
 
 <hr style="border: dashed">
-<div id="target"><div id="oneMenuPrint"/>선택하신 메뉴</div>
+<div id="target" align='center'><div id="oneMenuPrint" align="center"/>선택하신 메뉴</div>
 </div>
 </body>
 </html>
