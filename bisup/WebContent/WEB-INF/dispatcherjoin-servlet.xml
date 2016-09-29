@@ -10,7 +10,7 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
+  
 <context:annotation-config/>
 
 	<!-- <bean id="tilesviewResolver"  
@@ -39,6 +39,26 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!--  프로퍼티스 파일 읽어오기 -->
+	<context:property-placeholder location="classpath:db2.properties" />
+<!--	커넥션풀연결 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sql/*.xml" />
+	</bean>
+
+	<bean id="dao" class="dao.JoinDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
 	
 	<bean class="controller.JoinController"/> 
 	
