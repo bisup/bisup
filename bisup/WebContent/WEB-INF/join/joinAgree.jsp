@@ -23,28 +23,13 @@
 	width: 1250px;
 height: 200px;
 }
-ol {
-    display: block;
-    list-style-type: decimal;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
-}
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-.mStep1 .a, .mStep1 .b, .mStep1 .c, .mStep1 .d {
-    display: block;
-    background: url(/img/k_step.png) 0 0 no-repeat;
-    height: 71px;
-    
-}
+
 .ta1{
 width: 1250px;
 height: 200px;
+}
+.btn btn-primary btn-lg{
+align:center;
 }
 </style>
 <script>
@@ -89,34 +74,34 @@ $(function () {
 </script>
 <script>
 //다음단계로 넘어갈때 불러오는 함수
- function chk(){
-	if($("#agree").is(':checked') == false )
-	{
-		alert("이용약관 및 개인정보취급방침에 동의하여 주세요.");
-		$("#agree").focus();
-		return;
-	}
-	else{
-		$("#agree").val("Y");
+
+$(document).ready(function () {
+	
+
+		$('#normal-btn-info').click(function() {
+			if($("#agreeRadio").is(':checked') == false ){
+			$('.alert-normal-info').show();
+			}
+			else{
+				alert("다음단계로")
+			}
+			});
 		
-	}
-} 
+		$(document).on('click', '.close', function () {
+			$(this).parent().hide();
+    	});	
+		
+
+});
 </script>
 <body>
+
 <div class="agree">
 <div class="containerTop">
 <div class="mStep1">
-					<div class="a">
-
-<ol>
-						<li>현재 약관동의</li>
-						<li>실명확인</li>
-						<li>기본정보입력</li>
-						<li>가입완료</li>
-						</ol>
+					<img src="../../resources/img/step1.PNG">
 						</div>
-						</div>
-
+<hr>
 <h2>홈페이지 이용 약관</h2>
 <textarea class="ta1" readonly="readonly" class="textarea" cols="250" rows="10">
 제1조(목적)
@@ -412,21 +397,33 @@ $(function () {
   </div>
 </div>
 <hr>
- <div id="agree">
+ <div id="agreeCheck">
         <div class="row">
             
             <div class="col-lg-6">
                 <div class="input-group">
                     <span class="input-group-addon beautiful">
-                        <input type="radio">
+                        <input type="radio" id="agreeRadio"checked="checked">
                     </span>
                     <input type="text" class="form-control">
                 </div>
             </div>
         </div>  
-    </div>
+  
     <br>
-    <button type="button" class="btn btn-primary btn-lg" onclick="javascript:chk();">다음단계로 </button>
+    <div class="col-md-9">
+		<div class="alert alert-info alert-normal-info" hidden="hidden">
+  				    <button type="button" class="close">×</button>
+  					이용약관 및 개인정보취급방침에 동의하여 주세요.
+			<br>
+		</div>   	
+	</div>
+    </div>
+   <div id="buttonDiv" align="center">
+    		<button id="normal-btn-info" class="btn btn-primary btn-lg">
+  				다음단계로
+		   	</button>
+	</div>	
 </div>
 </body>
 </html>

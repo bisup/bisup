@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -15,9 +16,14 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 		return menuList;
 	}
 	
-	public MenuCommand selectOneMenu(HashMap menu){
+	public MenuCommand selectOneMenu(Map menu){
 		MenuCommand oneMenu = getSqlSession().selectOne("mystore.selectOneMenu", menu);
 		return oneMenu;	
+	}
+	
+	public String isInsertOrUpdate(Map info){
+		String result = getSqlSession().selectOne("mystore.isInsertOrUpdate", info);
+		return result;
 	}
 	
 	public int insertMenu(MenuCommand command){

@@ -45,13 +45,28 @@
 	</definition>
 
 	<definition name="joinAgree" extends="base_layout">
-		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
+		<put-attribute name="title" value="이용약관 동의 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/join/joinAgree.jsp"/>
 	</definition>
+	
+	<!-- <definition name="joinform" extends="base_layout">
+		<put-attribute name="title" value="회원가입 폼 작성 페이지 입니다."/>
+		<put-attribute name="body" value="/WEB-INF/join/joinForm.jsp"/>
+	</definition> -->
 	
 	<definition name="relation" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF//bisup_concerting/relation.jsp"/>
+	</definition>
+	
+	<!-- 백상휘 작업 -->
+	<definition name="menuInserting" extends="base_layout">
+		<put-attribute name="title" value="메뉴등록"/>
+		<put-attribute name="body" value="/WEB-INF/mystore/menuInserting.jsp"/>
+	</definition>
+	<definition name="salesInserting" extends="base_layout">
+		<put-attribute name="title" value="메뉴등록"/>
+		<put-attribute name="body" value="/WEB-INF/mystore/salesInserting.jsp"/>
 	</definition>
 	
 </tiles-definitions>
