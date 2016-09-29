@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ConcertingController {
 
-	@RequestMapping("info_customer.do")
+	@RequestMapping("/bisup_concerting/info_customer.do")
 	public String info_customerView(){
 		System.out.println("info_customer요청");
-		return "bisup_concerting/info_customer";//
+		return "info_customer";
 	}
 	
-	@RequestMapping("manual.do")
+	@RequestMapping("/bisup_concerting/manual.do")
 	public String manualView(){
 		System.out.println("manual요청");
-		return "bisup_concerting/manual";//
+		return "manual";
 	}
 	
 	@RequestMapping("/bisup_concerting/relation.do")
 	public String relationView(){
 		System.out.println("relation요청");
-		return "relation";//
+		return "relation";
 	}
 	
 	
