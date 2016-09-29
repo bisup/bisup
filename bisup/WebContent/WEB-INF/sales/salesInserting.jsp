@@ -37,8 +37,9 @@ tr{padding:15px;}
 <table style="width:80%">  
   <tr>
     <th>메뉴이름</th>
-    <th></th>
+    <th>가격</th>
     <th>판매수량</th>
+    <th>합계</th>
   </tr>
   
   <tr>
@@ -46,9 +47,10 @@ tr{padding:15px;}
   </tr>
   <c:forEach begin="0" end="9" step="1">
   <tr>
-    <td><input type="text" name="item"></td>
-    <td></td>
+    <td><input type="text" name="item" readonly value="${s.item}"></td>
+    <td><input type="text" name="price" readonly value="${s.price}"></td>
     <td><input type="text" name="ea"></td>
+    <td><input type="text" name="total"></td>
   </tr>
   </c:forEach>
   <tr>
@@ -60,7 +62,7 @@ tr{padding:15px;}
   </tr>
   <tr>
 <td colspan="2"></td>
-<td style="text-align:right;"><input type="submit" value="등록"></td>
+<td style="text-align:right;"><input type="submit" value="등록" ></td>
   </tr>
 </table>
 </fieldset>

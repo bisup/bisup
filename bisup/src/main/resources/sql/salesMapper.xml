@@ -3,10 +3,15 @@
 
 <mapper namespace="sale">
 <insert id="insertSales" parameterType="command.SaleCommand">
-insert into sale values (#{id},#{sdate},#{item},#{ea},#{total})
+insert into sale(id,item,ea,total) values (#{id},#{item},#{ea},#{total})
 </insert>
 
 <select id="listsales" parameterType="String" resultType="String">
 select month,sum(total) from sale_m group by month;
 </select>
+
+<select id="menulist" parameterType="command.MenuCommand" resultType="String">
+select item,price from menu where id=#{id};
+</select>
+
 </mapper>
