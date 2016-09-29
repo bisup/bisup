@@ -9,6 +9,9 @@ public class LoginDAO extends SqlSessionDaoSupport {
 	
 	public int selLog(String id, String pw){//login pW come
 		int x=0;
+		String loginID ="";
+		loginID = getSqlSession().selectOne("logmain.loginID",id);
+	if(loginID != null){
 		String passw=getSqlSession().selectOne("logmain.login", id);
 		System.out.println(passw);
 		if(passw.equals(pw))
@@ -20,6 +23,9 @@ public class LoginDAO extends SqlSessionDaoSupport {
 		System.out.println(x);
 		return x;
 		
+	}else{
+			x=-2;
+			return x;
+		}
 	}
-
 }

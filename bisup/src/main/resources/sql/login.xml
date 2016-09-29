@@ -4,6 +4,9 @@
 <select id="login" parameterType="String" resultType="String">
 select pw from member where id = #{id}
 </select>
+<select id="loginID" parameterType="String" resultType="String">
+select id from member where id = #{id}
+</select>
 
 
 
