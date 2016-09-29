@@ -8,6 +8,7 @@
 		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp"/>
 	</definition>
 	
+	<!-- 미래 -->
 	<definition name="main" extends="base_layout">
 		<put-attribute name="title" value="BisUp Main"/>
 		<put-attribute name="body" value="/WEB-INF/main/main.jsp"/>
@@ -37,6 +38,11 @@
 	<definition name="qwrite" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다."/>
 		<put-attribute name="body" value="/WEB-INF/question/qwrite.jsp"/>
+	</definition>
+	
+	<definition name="qcontents" extends="base_layout">
+		<put-attribute name="title" value="문의사항 글 보기."/>
+		<put-attribute name="body" value="/WEB-INF/question/qcontents.jsp"/>
 	</definition>
 	
 	<definition name="qpw" extends="base_layout">

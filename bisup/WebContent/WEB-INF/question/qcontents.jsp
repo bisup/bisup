@@ -1,18 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
-        <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
     </head>
     <body>
-        <!-- 좌우측의 공간 확보 -->
         <div class="container">
-            <hr/>
+        <br><br>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
+  	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>  <br><br>
             <div class="row">
                 <div class="col-md-10">
                     <table class="table table-condensed">
@@ -24,24 +22,15 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>작성일
-                                </td>
-                                <td>
-                                2014-12-15 04:45:23
-                                </td>
+                                <td>작성자</td>
+                                <td>mirae <span style='float:right'>조회 : 0</span></td>
                             </tr>
                             <tr>
-                                <td>글쓴이
-                                </td>
-                                <td>
-                                mirae <span style='float:right'>조회 : 0</span>
-                                </td>
+                                <td>작성일</td>
+                                <td>2014-12-15 04:45:23</td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    <p>이름, 패스워드 내용을 적으시고 확인버튼을 누르세요.</p>
-                        
-                                </td>
+                                <td colspan="2"><p>이름, 패스워드 내용을 적으시고 확인버튼을 누르세요.</p></td>
                             </tr>
                         </tbody>
                     </table>

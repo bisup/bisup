@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
 </head>
@@ -10,9 +9,9 @@
 	<div class="container">
 	  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
   	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
-	<br>
+	<br><br>
 	<div class="panel panel-default">
-	<form>
+	<form action="qcontents.do" method="get" enctype="multipart/form-data">
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
@@ -32,11 +31,8 @@
 	  
 	  <!-- @RequestParam 사용 -->
 	  <div class="form-group">
-	  <form action="경로.do" method="post" enctype="multipart/form-data">
 	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
 		<input type="file" name="filename" /> <br> 
-	    <input type="submit" class="form-control">
-		</form>
 	  </div>
 	  
 	  <br>

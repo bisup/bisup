@@ -16,10 +16,10 @@ import mybatis.QuestionDAO;
 public class QuestionController {
 
 	@Autowired
-	private QuestionDAO nodao;
+	private QuestionDAO dao;
 	
 	public void setNodao(QuestionDAO nodao) {
-		this.nodao = nodao;
+		this.dao = nodao;
 	}
 	
 	@RequestMapping("/question/qlist.do")
@@ -34,6 +34,13 @@ public class QuestionController {
 		return "qwrite";
 	}
 	
+	@RequestMapping(value = "/question/qcontents.do", method = RequestMethod.GET)
+	public String pcontents(){
+		//System.out.println("문의사항 글 내용보기");
+		return "qcontents";
+	}
+	
+	
 	@RequestMapping("/question/qpw.do")
 	public String ppw(){
 		//System.out.println("문의사항 본인확인");
@@ -43,7 +50,7 @@ public class QuestionController {
 	
 	//파일 업로드
 	@RequestMapping(value = "/question/qwrite.do", method = RequestMethod.POST)
-	public String submitReport1(@RequestParam("studentNumber") String studentNumber,
+	public String submitReport1(@RequestParam("nnick") String studentNumber,
 			@RequestParam("filename") MultipartFile filename) {
 		upload(filename);
 		return "qlist";
@@ -58,7 +65,7 @@ public class QuestionController {
 		try{
 			report.transferTo(new_file);
 			FileDB fileDB = new FileDB(name,new_file.getPath(),report.getSize());
-			nodao.insert(fileDB);
+			dao.insert(fileDB);
 			//같은 이름의 파일이 존재하면 삭제한뒤 저장
 		} catch(Exception e){
 			e.printStackTrace();
