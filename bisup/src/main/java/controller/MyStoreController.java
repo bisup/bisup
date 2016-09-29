@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.MenuCommand;
+import command.SaleCommand;
 import dao.MyStoreAction;
 import dao.SaleProgressAction;
 import net.sf.json.JSONObject;
@@ -110,19 +111,21 @@ public class MyStoreController {
 		return "menuInserting";
 	}
 	
+	//==================================================================
+	
 	//매출추이 컨트롤러메소드
-	@RequestMapping("/saleProgressChart.do")
+	@RequestMapping(value="/drawDayChart.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public void drawDayChart(HttpServletResponse response, 
 			@RequestParam("id") String id) throws Exception{
 		System.out.println("drawDayChart메소드 도착, id는 "+id);
 		ArrayList fiveSales = saleProgressAction.salePerDay(id);
-		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("fiveSales", fiveSales);
+		jsonObject.put("data", fiveSales);
+		SaleCommand command = (SaleCommand) fiveSales.get(0);
+		System.out.println("매출 데이터 갯수 ::: "+fiveSales.size()+", 데이터 테스트 총매출액:::"+command.getTotal()+" 품목명:::"+command.getItem());
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
-		
 	}
 	
 	@RequestMapping("/saleProgressMain.do")

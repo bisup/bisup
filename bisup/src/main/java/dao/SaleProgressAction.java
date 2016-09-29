@@ -12,7 +12,7 @@ import command.MenuCommand;
 public class SaleProgressAction extends SqlSessionDaoSupport {
 
 	public ArrayList salePerDay(String id){
-		ArrayList salePerDay = (ArrayList) getSqlSession().selectList("sale.salePerDay", id);
+		ArrayList salePerDay = (ArrayList) getSqlSession().selectList("mystore.salePerDay", id);
 		return salePerDay;
 	}
 	
