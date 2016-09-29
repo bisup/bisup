@@ -32,7 +32,6 @@
 	</bean>
 	
 	
-<<<<<<< HEAD
 	<!-- 액션파일 빈 등록 -->
 	<bean class="dao.MyStoreAction" id="myStoreAction">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
@@ -41,7 +40,6 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 
-=======
 <!--  프로퍼티스 파일 읽어오기 -->
 	<context:property-placeholder location="classpath:db.properties" />
 <!--	커넥션풀연결 -->
@@ -64,22 +62,14 @@
 	
 	
 	
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="board" class="controller.BoardController" />
 	<bean id="main" class="controller.MainController"/>
 	<bean id="join" class="controller.JoinController"/>
-<<<<<<< HEAD
 
 	<bean id="Concerting" class="controller.ConcertingController"/>
 	<bean id="trend" class="controller.TrendController"/>
 	
 
-	<bean id="mystoreMenu" class="controller.MyStoreController" 
-		p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
-
-=======
-	<bean id="Concerting" class="controller.ConcertingController"/>
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 </beans>
 
