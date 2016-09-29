@@ -5,67 +5,68 @@
 <html>
 <head>
 <title>Insert title here</title>
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js">
-$(document).ready(function(){
-	location.href="/mystore/menuMain.do";
-});
-</script>
-<script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
 function menuClick(param){
-	var param=param;
 	var obj = {id:'${id}',item:param};
-	var url="selectOneMenu.do";
+	var url="/bisup/bisup/selectOneMenu.do";
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:obj
 		,dataType:"json"
 		,success:function(args){
-			$("#oneMenuPrint").append("<table><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
-				args.data[0]+"</td><td>변경후</td>	</tr><tr><td>가격</td><td>"+
-				args.data[1]+"</td><td>변경후</td><td><input type='button' value='변경/수정'></td></tr></table>");
+			$("#oneMenuPrint").append("<table id='target'><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
+				args.item+"</td><td>변경후</td>	</tr><tr><td>가격</td><td>"+
+				args.price+"</td><td>변경후</td></tr></table>"
+				+"<input type='button' onclick='insertOrUpdate()' value='수정/삭제'>");
 		}
 		,errors:function(e){
 			alert(e.responseText);
 		}
 	});
 }
-function insertOrUpdate(param){
+function insertOrUpdate(){
 	var item=$("#item").val();
 	var price=$("#price").val();
-	var url="/mystore/menuMain.do";
-	var params="item="+item+"&price=";
+	var url="/bisup/bisup/menuInsertOrUpdate.do";
+	var params={id:'${id}',item:'${item}',price:'${price}'};
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:params
 		,dataType:"json"
 		,success:function(args){
-			$("#oneMenuPrint").append("<table><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
-				args.data[0]+"</td><td>변경후</td>	</tr><tr><td>가격</td><td>"+
-				args.data[1]+"</td><td>변경후</td><td><input type='button' value='변경/수정'></td></tr></table>")
+			alert(args.data);
 		}
 	});
 }
 </script>
 </head>  
 <body>
+<div id="container">
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">메뉴등록</h2>
+  	<p style="display: block;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
 <h2>메뉴등록</h2>
-<table border="1">
-	<tr>
+<table class="table table-list-search">
+	<thead><tr>
 		<td>No.</td><td>메뉴이름</td><td>가격</td>
-	</tr>
+	</tr></thead>
+	<tbody>
 	<c:forEach items="${menuList }" varStatus="status" var="menuList">
 		<tr>
 			<td>${status.count }</td>
 			<td>
-				<a href="#" onclick="javascript:menuClick(${menuList.item})">
+				<a href="javascript:void(0);" onclick="javascript:menuClick('${menuList.item}')">
 				<input type="hidden" value="${menuList.item }" name="item" id="item">${menuList.item }</a>
 			</td>
 			<td>${menuList.price }</td>
 		</tr>
 	</c:forEach>
-	
+	</tbody>
 </table>
 
 <form:form commandName="searchMenu" action="menuMain/selectOneMenu.do" method="post">
@@ -76,8 +77,7 @@ function insertOrUpdate(param){
 </form:form>
 
 <hr style="border: dashed">
-<div id="oneMenuPrint">
+<div id="forDelete"><label id="oneMenuPrint" class="oneMenuPrint">선택하신 메뉴</label></div>
 </div>
-
 </body>
 </html>

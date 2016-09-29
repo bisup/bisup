@@ -18,7 +18,7 @@
       function drawChart() {
 		var chartData;
     	var id='java';
-    	var url='mystore/drawDayChart.do';
+    	var url='bisup/drawDayChart.do';
     	$.ajax({
     		type:"post"
     		,url:url

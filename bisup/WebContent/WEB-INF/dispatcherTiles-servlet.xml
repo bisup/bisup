@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<bean id="tilesviewResolver"
+	<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -29,11 +29,44 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 마이바티스 설정 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:sql/*.xml"/>
+	</bean>
+	
+	<!-- 액션파일 빈 등록 -->
+	<bean class="dao.MyStoreAction" id="myStoreAction">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean class="dao.SaleProgressAction" id="saleProgressAction">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 
+<<<<<<< HEAD
 	<bean id="board" class="controller.BoardController" />
 	<bean id="main" class="controller.MainController"/>
 	<bean id="join" class="controller.JoinController"/>
+=======
+	<!-- 컨트롤러 빈 등록 -->
+	<bean id="board" class="controller.BoardController" />
+	<bean id="main" class="controller.MainController"/>
+	<bean id="join" class="controller.JoinController"/>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 	<bean id="Concerting" class="controller.ConcertingController"/>
+<<<<<<< HEAD
 
+=======
+	<bean id="mystoreMenu" class="controller.MyStoreController" 
+		p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 </beans>
 
