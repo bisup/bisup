@@ -22,14 +22,7 @@
 		<filter-name>encodingFilter</filter-name>  
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-<!-- dispatcher-Servlet 설정 -->
-<!-- <servlet>
-  <servlet-name>dispatcher</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-<servlet-mapping>
-  <servlet-name>dispatcher</servlet-name>
-  <url-pattern>/main/*</url-pattern>
-</servlet-mapping> -->  
+
 <servlet>
   <servlet-name>dispatcherlogin</servlet-name>
   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -89,17 +82,7 @@
 		<servlet-name>dispatcherTiles</servlet-name>
 		<url-pattern>/bisup/*</url-pattern>
 	</servlet-mapping>
-	
-<<<<<<< HEAD
 
-	<servlet>
-  <servlet-name>dispatcherjoin</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>dispatcherjoin</servlet-name>
-  <url-pattern>/bisup_join/*</url-pattern>
-</servlet-mapping>
 
 <servlet>
 <servlet-name>dispatcherInfo</servlet-name>
@@ -111,15 +94,4 @@
 </servlet-mapping>
 
 
-=======
-	<!-- <servlet>
-  <servlet-name>dispatchertrend</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>dispatchertrend</servlet-name>
-  <url-pattern>*.do</url-pattern>
-</servlet-mapping> -->
-	
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 </web-app>
