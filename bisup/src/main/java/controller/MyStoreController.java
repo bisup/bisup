@@ -3,11 +3,13 @@ package controller;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,19 +49,22 @@ public class MyStoreController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/selectOneMenu.do",method=RequestMethod.POST)
+	@RequestMapping(value="/selectOneMenu.do",method=RequestMethod.POST,produces = "text/plain;charset=UTF-8")
 	public void selectOneMenu(@RequestParam("id") String id, @RequestParam("item") String item, 
 			HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("UTF-8");
 		System.out.println("컨트롤러-메뉴등록/수정정보 생성, id는 "+id+", item은 "+item);
 		Map menu = new HashMap(); menu.put("id", id); menu.put("item", item);
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("oneMenu", myStoreAction.selectOneMenu(menu));
+		MenuCommand oneMenu = myStoreAction.selectOneMenu(menu);
+		System.out.println("메뉴클릭 후 반환하는 oneMenu의 item은 "+oneMenu.getItem()+", price는 "+oneMenu.getPrice());
+		jsonObject.put("data", oneMenu);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
 	
 	
-	@RequestMapping(value="/menuInsertOrUpdate.do",method=RequestMethod.POST)
+	@RequestMapping(value="/menuInsertOrUpdate.do",method=RequestMethod.POST,produces = "text/plain;charset=UTF-8")
 	public void menuInsertOrUpdate(@RequestParam("id") String id, @ModelAttribute MenuCommand command, 
 			HttpServletResponse response) throws Exception{
 		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", is command null?:::"+command);
@@ -76,7 +81,7 @@ public class MyStoreController {
 		printWriter.print(jsonObject.toString());
 	}
 	
-	@RequestMapping(value="/saleProgress.do", method=RequestMethod.POST)
+	@RequestMapping("/saleProgressChart.do")
 	@ResponseBody
 	public void drawDayChart(HttpServletResponse response, 
 			@RequestParam("id") String id) throws Exception{
@@ -88,5 +93,11 @@ public class MyStoreController {
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 		
+	}
+	
+	@RequestMapping("/saleProgressMain.do")
+	public String saleMain(@RequestParam("id") String id, Model model){
+		model.addAttribute("id",id);
+		return "salesManaging";
 	}
 }
