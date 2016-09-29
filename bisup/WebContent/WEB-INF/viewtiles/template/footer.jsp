@@ -2,7 +2,7 @@
 <div class="panel panel-default">
   <div class="panel-heading"></div>
   <div class="panel-body">
-  <div style="font-size: x-small;" align="center">
+  <div style="font-size: small;" align="center">
 비즈업에서 제공하는 상권정보는 참고 사항이며, 사실과 차이가 있을 수 있고 지연될 수 있습니다.<br>
 비즈업은 제공된 정보에 의한 투자결과에 대한 법적인 책임을 지지 않습니다.<br>
 <br>
