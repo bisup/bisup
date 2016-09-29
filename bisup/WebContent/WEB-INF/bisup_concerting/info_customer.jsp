@@ -5,7 +5,7 @@
 <title>거래처 정보</title>
 <style type="text/css">
 #fieldset1 {
-position: absolute;
+position: relative;
    top: 15%;
    left:28%;
    width: 20%;
@@ -14,9 +14,9 @@ position: absolute;
 }
 
 #map{
-   position: absolute;
-   top: 15%;
-   left:50%;
+   position: relative;
+   bottom: 20%;
+   left:55%;
    width: 30%;
    height: 55%;
    text-align: right;
@@ -27,8 +27,8 @@ position: absolute;
 </head>
 <body>
    <br>
-      <h3 align="center">매출 트렌드 보고서 2016</h3>
-      
+      <h3 align="center">거래처 정보</h3>
+      <br>
       <form method="post">
       <div id="fieldset1">
       <fieldset>

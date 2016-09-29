@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TrendController {
 
-	@RequestMapping("/trend.do")
+	@RequestMapping("/bisup_trend/sales_trend.do")
 	public String sales_trend(){
 		System.out.println("trend요청");
-		return "bisup_trend/sales_trend";//
+		return "sales_trend";//
 	}
 	
-	@RequestMapping("/business_trend.do")
+	@RequestMapping("/bisup_trend/business_trend.do")
 	public String business_trend(){
 		System.out.println("trend요청");
-		return "bisup_trend/business_trend";//
+		return "business_trend";//
 	}
 }
