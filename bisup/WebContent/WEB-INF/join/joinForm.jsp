@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -143,43 +146,49 @@ article[role="login"] p {
 <title>Insert title here</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<div class="container">
+
+	<div class="container">
     <div class="login-signup">
       <div class="row">
         <div class="col-sm-6 nav-tab-holder">
         <ul class="nav nav-tabs row" role="tablist">
-          <li role="presentation" class="active col-sm-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Admin</a></li>
-          <li role="presentation" class="col-sm-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">User</a></li>
+          <li role="presentation" class="active col-sm-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">창업 예정자</a></li>
+          <li role="presentation" class="col-sm-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">자영업자</a></li>
         </ul>
       </div>
-
       </div>
 
 
       <div class="tab-content">
+      
         <div role="tabpanel" class="tab-pane active" id="home">
           <div class="row">
 
             <div class="col-sm-6 mobile-pull">
               <article role="login">
-                <h3 class="text-center"><i class="fa fa-lock"></i>자영업자</h3>
-                <form class="signup" action="index.html" method="post">
+                <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가입</h3>
+                <form class="signup" action="index.html" >
+                 
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="UserName">
+                    <input type="text" class="form-control" placeholder="아이디를 입력해주세요">
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="이름을 입력해주세요">
+                  </div>
+                   <div class="form-group">
+                    <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email Address">
+                    <input type="password" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Phone Number">
+                    <input type="text" class="form-control" placeholder="닉네임을 입력해주세요">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="연락처를 입력해주세요">
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password">
-                  </div>
+                 
                   <div class="form-group">
                     <div class="checkbox">
                       <label>
@@ -217,21 +226,43 @@ article[role="login"] p {
 
           <div class="col-sm-6 mobile-pull">
             <article role="login">
-              <h3 class="text-center"><i class="fa fa-lock"></i> Create User Account</h3>
-              <form class="signup" action="index.html" method="post">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="UserName">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email Address">
-                </div>
-         
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Confirm Password">
-                </div>
+              <h3 class="text-center"><i class="fa fa-lock"></i> 자영업자 회원가입</h3>
+           <!-- class="signup" class="form-control"-->
+             
+              <form:form commandName="member" class="signup">
+           	  <%--  <form:errors element="div"/> --%>
+           	  <div class="form-group">
+           	 <form:input path="id" class="form-control" placeholder="아이디를 입력해주세요"/>
+				<%--  <form:errors path="id"/> --%>
+			</div> 	            
+              <div class="form-group">
+                    <form:input path="name" class="form-control" placeholder="이름을 입력해주세요"/>
+                  <%--  <form:errors path="name"/> --%>
+                  </div>
+                   <div class="form-group">
+                   <form:password path="password" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
+            	 <%--  <form:errors path="password"/> --%>
+                  </div>
+                  <div class="form-group">
+                    <form:password path="password" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                  <%--  <form:errors path="password"/> --%>
+                  </div>
+                  <div class="form-group">
+                    <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
+                  <%--  <form:errors path="nick"/> --%>
+                  </div>
+                  <div class="form-group">
+                    <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
+                  <%--  <form:errors path="phone"/> --%>
+                  </div>
+                  <div class="form-group">
+                    <form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요"/>
+                  <%--  <form:errors path="snum"/> --%>
+                  </div>
+                  <div class="form-group">
+                    <form:input path="tel" class="form-control" placeholder="카페 연락처를 입력해주세요"/>
+                    <%--  <form:errors path="tel"/> --%>
+                  </div>
                 <div class="form-group">
                   <div class="checkbox">
                     <label>
@@ -242,7 +273,8 @@ article[role="login"] p {
                 <div class="form-group">
                   <input type="submit" class="btn btn-success btn-block"  value="SUBMIT">
                 </div>
-              </form>
+              </form:form>
+              
               <footer role="signup" class="text-center">
                 <ul>
                   <li>
