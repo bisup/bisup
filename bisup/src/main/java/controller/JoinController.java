@@ -5,11 +5,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/join/joinAgree.do")
+
 public class JoinController {
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/join/joinAgree.do",method=RequestMethod.GET)
 	public String form(){
 		return "joinAgree";//
+	}
+	
+	@RequestMapping(value="/join/test.do",method=RequestMethod.GET)
+	public String test(){
+		return "test";
 	}
 }

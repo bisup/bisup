@@ -20,6 +20,8 @@
 }
 .textarea{
 	resize:none;
+	width: 1250px;
+height: 200px;
 }
 ol {
     display: block;
@@ -38,6 +40,11 @@ li {
     display: block;
     background: url(/img/k_step.png) 0 0 no-repeat;
     height: 71px;
+    
+}
+.ta1{
+width: 1250px;
+height: 200px;
 }
 </style>
 <script>
@@ -111,7 +118,7 @@ $(function () {
 						</div>
 
 <h2>홈페이지 이용 약관</h2>
-<textarea readonly="readonly" class="textarea" cols="250" rows="10">
+<textarea class="ta1" readonly="readonly" class="textarea" cols="250" rows="10">
 제1조(목적)
 
 이 이용약관(이하 '약관')은 주식회사 OOO(이하 회사라 합니다)와 이용 고객(이하 '회원')간에 회사가 제공하는 서비스의 가입조건 및 이용에 관한 제반 사항과 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다. 
@@ -293,7 +300,7 @@ $(function () {
 <hr>
  <div class="containerBottom">
   <h2>개인정보 수집 및 이용안내</h2>
-  <ul class="nav nav-pills nav-justified">
+  <ul class="nav nav-pills">
     <li class="active"><a href="#first" data-toggle="tab">개인정보수집 및 이용목적</a></li>
     <li><a href="#second" data-toggle="tab">수집하는 개인정보의 항목</a></li>
     <li><a href="#third" data-toggle="tab">개인정보보유 및 이용기간</a></li>
@@ -303,7 +310,7 @@ $(function () {
   <div class="tab-content">
     <div id="first" class="tab-pane fade in active">
      
-     <textarea readonly="readonly" class="textarea" cols="250" rows="10">
+     <textarea  readonly="readonly" class="textarea" cols="250" rows="10">
       	개인 정보 제공
 	
 회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다. 
@@ -361,7 +368,7 @@ $(function () {
 
     </div>
     <div id="second" class="tab-pane fade">
-    <textarea readonly="readonly" class="textarea" cols="250" rows="10">
+    <textarea  readonly="readonly" class="textarea" cols="250" rows="10">
      수집하는 개인정보의 항목
      회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
 ο 수집항목 : 이름, 생년월일, 성별, 로그인ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 회사명, 부서, 직책, 회사전화번호, 결혼여부, 기념일, 접속 로그, 쿠키, 접속IP 정보 
@@ -369,7 +376,7 @@ $(function () {
    </textarea>
     </div>
     <div id="third" class="tab-pane fade">
-      <textarea readonly="readonly" class="textarea" cols="250" rows="10">
+      <textarea  readonly="readonly" class="textarea" cols="250" rows="10">
       개인정보의 보유 및 이용기간
       원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 
 보존 항목 : 이름, 성별, 로그인ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 이메일

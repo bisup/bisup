@@ -8,14 +8,39 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 		
-		<!-- @어노테이션 적용 필수 -->
-		<context:annotation-config/>
-		<bean  class="controller.TrendController" /> <!-- 매출트렌드 -->
-		<bean  class="controller.ConcertingController" /> <!-- 창업컨설팅 -->
+	<!-- @어노테이션 적용 필수 -->
+	<context:annotation-config/>
+	<bean  class="controller.TrendController" /> <!-- 매출트렌드 -->
+	<bean  class="controller.ConcertingController" /> <!-- 창업컨설팅 -->
+
+	<context:property-placeholder location="classpath:db1.properties" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql/*.xml" />
+	</bean>
+
+	<!-- <bean id="dao" class="Ajax.Controller.CityDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
 		
-			<bean id="viewResolver"
-				class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-			<property name="prefix" value="/WEB-INF/" />
-			<property name="suffix" value=".jsp" />
-		</bean>
+	dao서포트 넘겨주고 , dao를 컨트롤러에게 넘겨줌
+	<bean class="spring.controller.ReportSubmissionController">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>  -->
+		
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>  
+	
+	
 </beans>

@@ -33,9 +33,42 @@
 
 })(jQuery);
 
-function check_values() {
-    if ($("#username").val().length != 0 && $("#password").val().length != 0) {
-        $("#button1").removeClass("hidden").animate({ left: '250px' });;
-        $("#lock1").addClass("hidden").animate({ left: '250px' });;
-    }
+
+function loginsuccess(){
+	alert("로그인중기다려주십시오.");
+	location.href='indexki.do';
+//		frm.submit();
 }
+function loginCheck(){
+	var param = "id" + "=" + $("#id").val() + "&" +"pw" + "="+ $("#pw").val();
+	$.ajax({
+		url : "bisup_login/main.do",
+		type : "POST",
+		data : param,
+		cache : false,
+		async : false,
+		dataType : "text",
+
+		success : function(response) {								
+			if(response=='1')
+			{
+				loginsuccess();
+			}
+			else
+			{
+				alert("아이디 또는 비번이 틀렸습니다. 다시 입력하세요.")
+				return false;
+			}	
+			
+			alert(check);
+		},
+		error : function(request, status, error) {
+			if (request.status != '0') {
+				alert("code : " + request.status + "\r\nmessage : "
+						+ request.reponseText + "\r\nerror : " + error);
+			}
+		}
+
+	});
+}
+
