@@ -184,13 +184,19 @@ article[role="login"] p {
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
                     <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
+                    <div class="form-group">
+                    <form:input path="email" class="form-control" placeholder="이메일을 입력해주세요"/>
+                    	<!-- 정규식추가 -->
+                  <%--  <form:errors path="email"/> --%>
+                  </div>
+                
                   <div class="form-group">
                     <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
                   <%--  <form:errors path="phone"/> --%>
@@ -259,6 +265,11 @@ article[role="login"] p {
                   <div class="form-group">
                     <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
                   <%--  <form:errors path="nick"/> --%>
+                  </div>
+                   <div class="form-group">
+                    <form:input path="email" class="form-control" placeholder="이메일을 입력해주세요"/>
+                    	<!-- 정규식추가 -->
+                  <%--  <form:errors path="email"/> --%>
                   </div>
                   <div class="form-group">
                     <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
