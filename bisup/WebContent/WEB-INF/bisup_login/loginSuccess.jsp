@@ -4,6 +4,6 @@
 		<title>로그인 성공</title>
 	</head>
 	<body>
-	로그인에 성공했습니다.
+<META http-equiv=refresh content="0;url=bisup/main/main.do"/>
 	</body>
 	</html>

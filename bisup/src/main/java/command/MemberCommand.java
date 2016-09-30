@@ -11,6 +11,14 @@ public class MemberCommand {
 	private String phone;//전화번호
 	private String tel;//가게번호
 	private String reg;//가입일       
+	private String email;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getId() {   
 		return id;
 	}

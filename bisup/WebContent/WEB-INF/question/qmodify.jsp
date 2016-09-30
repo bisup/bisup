@@ -13,31 +13,24 @@
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" name="qtitle" placeholder="글 제목을 입력하세요." required autofocus>
+	    <input type="text" class="form-control" name="qtitle" required autofocus value="${qlist.qtitle}">
 	  </div>
 	  
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">작성자</label>
-		    <input type="text" class="form-control" name="qnick" placeholder="닉네임을 입력하세요." required>
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">비밀번호</label>
-		    <input type="text" class="form-control"  name="qpw" placeholder="비밀번호를 입력하세요." required>
-		  </div>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">작성자</label>
+	    <input type="text" class="form-control"  name="qnick" value="${qlist.qnick}" disabled>
+	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" name="pcontents" placeholder="작성할 내용을 입력하세요." required></textarea>
+	    <textarea class="form-control" rows="5" id="comment" name="qcontents" required>${qlist.qcontents }</textarea>
 	  </div>
-	  
 	  
 	  <!-- @RequestParam 사용 -->
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
 		<input type="file" name="filename" /> <br> 
 	  </div>
-	  
 	  <br>
 	  
 	  <div align="right">

@@ -1,7 +1,7 @@
 package command;
 
 //건의사항 댓글
-public class Prop_replyCommand {
+public class ReCommand {
 
 	private int pnum;//글번호
 	private String id;//아이디

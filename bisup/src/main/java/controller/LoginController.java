@@ -53,38 +53,26 @@ public class LoginController{
 		}
 		try{
 			int selLog = loginDAO.selLog(memberCommand.getId(), memberCommand.getPw());
-			if(selLog==1){
-				System.out.println("로그인");
-				return "bisup_login/loginSuccess";
-			}else
-			{
+			if(selLog==0){
+				System.out.println("관리자 로그인");
+				return "bisup_login/main/main.do";
+			}else if(selLog == 1){
+				System.out.println("자영업자 로그인");
+				return "bisup_login/main/main.do";
+			}else if(selLog == 2){
+				System.out.println("창업예정자 로그인");
+				return "bisup_login/main/main.do";
+			}else{
 				System.out.println("꺼져");
-				return "bisup_login/loginmain";
+				return "bisup_login/loginfail";
 			}
 			
 		}catch (AuthenticationException ex) {
 			result.reject("invalidIdOrPassword", new Object[] { memberCommand
    					.getId() }, null);
-			return "bisup_login/loginmain";
+			return "bisup_login/loginfail";
 		}
-		/*new LoginCommandValidator().validate(memberCommand, result);
-		if (result.hasErrors()) {
-			return "loginmain";
-		}
-		try{
-			authenticator.authenticate(memberCommand.getId(), memberCommand.getPw());
-			System.out.println("로그인");
-			LoginDAO ld=new LoginDAO();
-			String pass=ld.selLog(memberCommand);
-			if(pass.equals(memberCommand.getPw())){
-				return "loginSuccess";
-			}else
-			return "loginmain";
-		}catch (AuthenticationException ex) {
-			result.reject("invalidIdOrPassword", new Object[] { memberCommand
-   					.getId() }, null);
-			return "loginmain";
-		}*/
+		
 	}
 
 }

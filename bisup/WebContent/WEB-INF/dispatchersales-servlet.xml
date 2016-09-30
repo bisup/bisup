@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<bean id="tilesviewResolver"
+<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -30,14 +30,26 @@
 		</property>
 	</bean>
 	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-  <property name="dataSource" ref="dataSource" /> 
-  <property name="mapperLocations" value="classpath:sql/*.xml" /> 
-	</bean>
 	
-<bean class="dao.SalesDAO" id="sale">
+<!--  프로퍼티스 파일 읽어오기 -->
+	<context:property-placeholder location="classpath:db.properties" />
+<!--	커넥션풀연결 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sql/*.xml" />
+	</bean>
+
+<bean id="SalesDAO" class="dao.SalesDAO">
 <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 </bean>
+
+<bean class="controller.SalesController" />
 
 </beans>
 

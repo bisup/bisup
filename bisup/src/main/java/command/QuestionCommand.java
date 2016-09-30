@@ -1,6 +1,6 @@
 package command;
 //건의사항게시판
-public class Prop_boardCommand {
+public class QuestionCommand {
 
 	private int pnum; //글번호
 	private String pnick;//작성자

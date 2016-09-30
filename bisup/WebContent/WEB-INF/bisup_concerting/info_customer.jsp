@@ -27,7 +27,8 @@ position: relative;
 </head>
 <body>
    <br>
-      <h3 align="center">거래처 정보</h3>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">거래처 정보</h2>
+  	<p style="display: block;">거래처 정보를 지도로 제공하여 성공 창업을 도와드립니다.</p>
       <br>
       <form method="post">
       <div id="fieldset1">
