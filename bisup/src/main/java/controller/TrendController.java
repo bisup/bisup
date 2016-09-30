@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TrendDAO;
- 
+  
 @Controller
 public class TrendController {
 	
