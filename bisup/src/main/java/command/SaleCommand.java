@@ -8,6 +8,7 @@ public class SaleCommand {
 	private int ea; //수량
 	private String total; //총매출
 	public String getId() {
+		
 		return id;
 	}
 	public void setId(String id) {
