@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
+	
+
 
 	<!-- 한글화 등 위한 기본설정 -->
 	<context-param>
@@ -95,8 +97,5 @@
 		<servlet-name>dispatchersales</servlet-name>
 		<url-pattern>/sales/*</url-pattern>
 	</servlet-mapping>
-
-
-
 
 </web-app>

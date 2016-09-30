@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.JoinDAO">
-    <insert id="insertMember" parameterType="java.util.HashMap">
-       insert into member values(#{id},#{name},#{pw},#{nick},#{sort},#{snum},#{phone},#{tel},#{reg},#{email})
+<mapper namespace="JoinDAO">
+    <insert id="insertMember" parameterType="command.MemberCommand">
+       insert into member(id,name,pw,nick,sort,snum,phone,tel,reg,email) values(#{id},#{name},#{pw},#{nick},#{sort},#{snum},#{phone},#{tel},sysdate,#{email})
     </insert>
-    <update id="updateMember" parameterType="java.util.HashMap">
+    <update id="updateMember" parameterType="command.MemberCommand">
         update member set
         name = #{name}, pwd = #{pwd},
         email = #{email}, phone = #{phone}, admin = #{admin}
@@ -13,10 +13,10 @@
     <delete id="deleteMember" parameterType="String">
         delete from member where userid = #{userid}
     </delete>
-    <select id="selectOne" parameterType="String" resultType="java.util.HashMap">
+    <select id="selectOne" parameterType="String" resultType="command.MemberCommand">
         select * from member where userid = #{userid}
     </select>
-    <select id="selectAll" resultType="java.util.HashMap">
+    <select id="selectAll" resultType="command.MemberCommand">
         select * from member
     </select>
 </mapper>

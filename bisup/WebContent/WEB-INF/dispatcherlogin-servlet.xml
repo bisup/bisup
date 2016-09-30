@@ -47,11 +47,13 @@
 				</list>
 			</property>
 		</bean>
-	  <bean id="joinDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="dao.JoinDAO"></property>
+		
+		<!--회원가입 DAO 등록  -->
+     <bean id="joinDAO" class="dao.JoinDAO">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> 
     </bean>
 	
 	<bean class="controller.LoginController"/>
+	<bean class="controller.MemberController" />
 	
 </beans>

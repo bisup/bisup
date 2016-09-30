@@ -36,7 +36,7 @@
                         <a class="page-scroll" data-toggle="modal" title="Login페이지입니다" href="#LoginModal">Login</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#four">Sing up</a>
+                        <a class="page-scroll" href="bisup_login/agree.do">Sing up</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#last">ID/PW찾기</a>
