@@ -1,6 +1,6 @@
 <%@ page  contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html >
-<html>
+<html> 
 <head>
 <title>매출 트렌드 보고서</title>
 
@@ -14,7 +14,7 @@
 		function drawVisualization() { 
 			var data = google.visualization.arrayToDataTable([
 					['Month',    '월매출',   '아메리카노(총판매수)'],
-					['2016/06',   800,       650],
+					['2016/06',    800,       650],
 					['2016/07',    1200,        850],
 					['2016/08',    1700,       1400],
 					['2016/09',    1400,       1100],
@@ -42,7 +42,11 @@
 <div align="center">
 	<br>
 	<h2>2016년 월 매출 차트</h2>
-	<div id="chart_div" style="width:750px; height: 500px;"></div></div>
+	<div id="chart_div" style="width:750px; height: 500px;"></div>
+	
+	${al}
+	
+	</div>
 </body>
 </html>
 		

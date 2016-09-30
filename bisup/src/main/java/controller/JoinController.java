@@ -48,6 +48,7 @@ public class JoinController {
 		return "joinForm";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("memberList.do")
     public ModelAndView dummy2(){
         ModelAndView mav = new ModelAndView();
@@ -77,4 +78,12 @@ public class JoinController {
 	        service.memberUpdate(params);
 	        return "redirect:main.do";
 	    }	
+
+	@RequestMapping(value="/join/form.do",method=RequestMethod.POST)
+	public String joinForm(@ModelAttribute("member") MemberCommand MemberCommand){
+		//JoinDAO.insertMember();
+		
+		return "joinForm";
+	}
+
 }
