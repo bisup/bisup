@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-public class QuestionDAO extends SqlSessionDaoSupport{
+public class QuestionFileDAO extends SqlSessionDaoSupport{
 	
 	public List<FileDB> selectAllMem() {
 		return getSqlSession().selectList("fileDB.selectFile");
