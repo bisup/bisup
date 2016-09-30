@@ -40,9 +40,9 @@
 		</property>
 	</bean>
 	
-	<!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db2.properties" />
-<!--	커넥션풀연결 -->
+	 <!--  프로퍼티스 파일 읽어오기 -->
+	<!-- <context:property-placeholder location="classpath:db2.properties" />
+	커넥션풀연결
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
 		<property name="driverClass" value="${jdbc.driver}" />
@@ -61,7 +61,7 @@
         <property name="mapperInterface" value="dao.JoinDAO"></property>
     </bean>
 	
-	<bean class="controller.JoinController"/> 
+	<bean class="controller.JoinController"/>  -->
 	
 	<!-- <bean class="command.MemberCommand"/> -->
 </beans>

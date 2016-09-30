@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import mybatis.FileDB;
-import mybatis.QuestionFileDAO;
+import mybatis.QuestionDAO;
 
 @Controller
 public class QuestionController {
 
 	@Autowired
-	private QuestionFileDAO dao;
+	private QuestionDAO dao;
 	
-	public void setNodao(QuestionFileDAO nodao) {
+	public void setNodao(QuestionDAO nodao) {
 		this.dao = nodao;
 	}
 	

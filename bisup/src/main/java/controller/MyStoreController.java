@@ -123,7 +123,7 @@ public class MyStoreController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", fiveSales);
 		SaleCommand command = (SaleCommand) fiveSales.get(0);
-		System.out.println("매출 데이터 갯수 ::: "+fiveSales.size()+", 데이터 테스트 총매출액:::"+command.getTotal()+" 품목명:::"+command.getItem());
+		System.out.println("매출 데이터 갯수 ::: "+fiveSales.size()+", 데이터 테스트 :::"+jsonObject.toString());
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
