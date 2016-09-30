@@ -15,3 +15,4 @@ public class TrendDAO extends SqlSessionDaoSupport{
 }
 
 }
+ 

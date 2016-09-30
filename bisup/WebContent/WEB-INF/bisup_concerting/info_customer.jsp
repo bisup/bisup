@@ -1,6 +1,6 @@
 <%@ page  contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html >
-<html>
+<html> 
 <head>
 <title>거래처 정보</title>
 <style type="text/css">
