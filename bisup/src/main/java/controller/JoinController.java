@@ -48,42 +48,4 @@ public class JoinController {
 		return "joinForm";
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping("memberList.do")
-    public ModelAndView dummy2(){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("memberList",service.selectAll());
-        mav.setViewName("selectAll");
-        return mav;
-    }
-	
-	@RequestMapping("logout.do")
-    public String logout(HttpSession session){
-//        session.invalidate();
-        session.removeAttribute("id");
-        return "redirect:loginForm.do";
-    }
-	
-	 @RequestMapping("memberUpdateForm.do")
-	    public String memberUpdateForm(Model model,HttpSession session){
-	        String id = (String) session.getAttribute("id");
-	        if(id == null)
-	            return "redirect:loginForm.do";
-	        model.addAllAttributes(service.getMemberInfo(id));
-	        return "memberUpdateForm"; //¾÷µ¥ÀÌÆ® Æû
-	    }
-	 
-	 @RequestMapping("memberUpdate.do")
-	    public String memberUpdate(@RequestParam HashMap<String, Object> params){
-	        service.memberUpdate(params);
-	        return "redirect:main.do";
-	    }	
-
-	@RequestMapping(value="/join/form.do",method=RequestMethod.POST)
-	public String joinForm(@ModelAttribute("member") MemberCommand MemberCommand){
-		//JoinDAO.insertMember();
-		
-		return "joinForm";
-	}
-
 }
