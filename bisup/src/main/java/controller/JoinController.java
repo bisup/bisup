@@ -43,7 +43,7 @@ public class JoinController {
 	
 	@RequestMapping(value="/join/form.do",method=RequestMethod.POST)
 	public String joinForm(@ModelAttribute("member") MemberCommand MemberCommand){
-		JoinDAO.insertMem();
+		//JoinDAO.insertMem();
 		
 		return "joinForm";
 	}
