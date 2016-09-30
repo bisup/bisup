@@ -58,10 +58,6 @@
 	</definition>
 
 
-
-
-
-
 	<definition name="joinAgree" extends="base_layout">
 		<put-attribute name="title" value="이용약관 동의 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/join/joinAgree.jsp" />
