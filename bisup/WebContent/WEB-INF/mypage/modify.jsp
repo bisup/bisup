@@ -167,7 +167,7 @@ article[role="login"] p {
 
             <div class="col-sm-6 mobile-pull">
               <article role="login">
-                <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가입</h3>
+                <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가</h3>
                 
                 <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>

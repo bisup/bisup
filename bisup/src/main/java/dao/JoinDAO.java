@@ -1,18 +1,13 @@
 package dao;
 
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import java.util.HashMap;
+import java.util.List;
 
-import command.MemberCommand;
-
-public class JoinDAO extends SqlSessionDaoSupport {
+public interface JoinDAO {
 	
-	private MemberCommand membercommand;
-	
-	public void insertMem(){
-	int x=getSqlSession().insert("join.joinsert", membercommand);
-	if(x==1){
-		System.out.println("insert¼º°ø");
-	}
-	
-	}
+	 public int insertMember(HashMap<String, Object> params);
+	    public int updateMember(HashMap<String, Object> params);
+	    public int deleteMember(String id);
+	    public HashMap<String, Object> selectOne(String id);
+	    public List<HashMap<String, Object>> selectAll();
 }
