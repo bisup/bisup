@@ -1,13 +1,27 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import dao.consultingDAO;
   
 
 @Controller
 public class ConcertingController {
+	
+
+
+	public void setDao2(consultingDAO dao2) {
+		this.dao2 = dao2;
+	}
+	@Autowired
+	private consultingDAO dao2;
 	
 	/*//타일즈 적용
 	@RequestMapping("/bisup_concerting/info_customer.do")
@@ -30,10 +44,11 @@ public class ConcertingController {
 	
 	//개인 인덱스 적용
 	@RequestMapping("info_customer.do")
-	public String info_customerView(){
-		System.out.println("info_customer요청");
+	public String info_customerView(@RequestParam("division")String division, Model model){
+		ArrayList concerting = (ArrayList) dao2.list1(division);
+		model.addAttribute("concerting", concerting);
 		return "bisup_concerting/info_customer";
-	}
+	} 
 	
 	@RequestMapping("manual.do")
 	public String manualView(){

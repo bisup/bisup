@@ -1,52 +1,97 @@
 <%@ page  contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
 <html> 
 <head>
 <title>거래처 정보</title>
 <style type="text/css">
 #fieldset1 {
-position: relative;
-   top: 15%;
-   left:28%;
-   width: 20%;
-   height: 20%;
+	position: relative;
+    min-height: 400px;
+    min-width:600px;
+    margin: auto;
+    padding: 55px 0 100px;
+    overflow: hidden;
+    left:15%;
    
+}
+#f1{
+width: 350px;
+
 }
 
 #map{
-   position: relative;
+   position: absolute;
    bottom: 20%;
    left:55%;
    width: 30%;
-   height: 55%;
+   height: 60%;
    text-align: right;
    padding-left: 50;
    
 }
+
+.tb_date{
+    table-layout: fixed;
+    border: 0;
+    border-spacing: 0;
+    border-top: 3px solid #444;
+    background: #fff;
+    overflow: hidden;
+}
+
+#th{
+    
+    height: 5px;
+    border: 0;
+    border-left:  solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+    text-align: center;
+}
 </style>
 </head>
 <body>
-   <br>
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">거래처 정보</h2>
-  	<p style="display: block;">거래처 정보를 지도로 제공하여 성공 창업을 도와드립니다.</p>
       <br>
-      <form method="post">
-      <div id="fieldset1">
-      <fieldset>
-         <legend>검색 조건 설정</legend>
-         <p>
-            <label>항목 검색</label> <select name="division">
-               <option value="">선택</option>
-               <option value="인테리어">인테리어</option>
-               <option value="장비대여">장비대여</option>
-               <option value="인력(아르바이트)">인력(아르바이트)</option>
-               <option value="홍보업체">홍보업체</option>
-               </select>
-               
-               <input  type="submit" value="검색하기">
-      </fieldset>
-      </div>
-      </form>
+      <form:form method="post" >
+		<div id="fieldset1">
+			<p>
+			<h4>★거래처 정보를 지도로 제공하여 성공 창업을 도와드립니다.★</h4>
+			</p>
+
+			<fieldset id="f1">
+				<legend>검색 조건 설정</legend>
+
+				<label>항목 검색</label> 
+				<select name="division">
+					<option value="">선택</option>
+					<option value="인테리어">인테리어</option>
+					<option value="장비대여">장비대여</option>
+					<option value="인력(아르바이트)">인력(아르바이트)</option>
+					<option value="홍보업체">홍보업체</option>
+				</select> <input type="submit" value="검색하기">
+			</fieldset>
+				<br>
+			<table width="500" border="1" class="tb_date">
+				<tr>
+					<th id="th" width="100" style="border-left: 0">구분</th>
+					<th id="th" width="150">업체명</th>
+					<th id="th" width="300">주소</th>
+				</tr>
+				
+				<c:forEach var="bis" items="#{concerting}">
+					<tr>
+						<td id="th" style="border-left: 0"></td>
+						<td id="th"></td>
+						<td id="th"></td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+		</div>
+	
+	</form:form>
       
       <div id="map"></div>      
       <div id="clickLatlng"></div>
@@ -84,12 +129,9 @@ position: relative;
             message += '경도는 ' + latlng.getLng() + ' 입니다';  */
 
             var resultDiv = document.getElementById('clickLatlng');
-            /* resultDiv.innerHTML = message;
- */
+            /* resultDiv.innerHTML = message; */
          });
       </script>
-   
-      
-      
+
 </body>
 </html>

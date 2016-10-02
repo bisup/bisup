@@ -14,6 +14,9 @@ import dao.TrendDAO;
 @Controller
 public class TrendController {
 	
+	private TrendDAO dao;
+	
+	
 	/*//타일즈 적용
 	@RequestMapping("/bisup_trend/sales_trend.do")
 	public String sales_trend(){
@@ -27,15 +30,21 @@ public class TrendController {
 		return "business_trend";//
 	}*/
 	
+	
+
+	public TrendDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(TrendDAO dao) {
+		this.dao = dao;
+	}
+
 	//개인 인데스 적용
 	@RequestMapping("sales_trend.do")
 	public String sales_trend(@RequestParam("item")String item, Model model){
-		TrendDAO td = new TrendDAO();
 		int a = 0;
-		a = td.list(item);
-		/*ArrayList al = new ArrayList();
-		td.list(item);
-		al = (ArrayList) td.list(item);*/
+		a = dao.list(item);
 		model.addAttribute("am", a);
 		return "bisup_trend/sales_trend";//
 	}
