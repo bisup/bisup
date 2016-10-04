@@ -141,6 +141,11 @@ article[role="login"] p {
 } */
 </style>
 <title>Insert title here</title>
+<script type="text/javascript">
+function serch(){
+	window.open('checkId.do?id=','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550');
+}
+</script>
 </head>
 <body>
 
@@ -172,7 +177,7 @@ article[role="login"] p {
                 <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-           	 <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onblur="javascript:window.open('checkId.do?id=','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
+           	 <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onblur="javascript:window.open('checkId.do?id=this','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">

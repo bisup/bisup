@@ -7,7 +7,7 @@
 <head>
 <title>아이디 체크</title>
 <script type="text/javascript">
-if(${mav.x == 1}){
+if(${x == 1}){
 	alert("아이디중복");
 }else
 	alert("아이디사용가능");

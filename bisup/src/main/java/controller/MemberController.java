@@ -166,9 +166,11 @@ public class MemberController {
 		int x=0;
 		if(id.equals(mc)) {
 			 x=1;
+		}else{
+			x=0;
 		}
-		mav.setViewName("checkId");
-		mav.addObject(x);
+		mav.setViewName("join/checkId");
+		mav.addObject("x",x);
 		return mav;
 }
 }
