@@ -13,17 +13,17 @@
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" name="qtitle" required autofocus value="${qlist.qtitle}">
+	    <input type="text" class="form-control" name="title" required autofocus value="${boardCommand.title}">
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">작성자</label>
-	    <input type="text" class="form-control"  name="qnick" value="${qlist.qnick}" disabled>
+	    <input type="text" class="form-control"  name="writer" value="${boardCommand.writer}" disabled>
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" name="qcontents" required>${qlist.qcontents }</textarea>
+	    <textarea class="form-control" rows="5" id="comment" name="contents" required>${boardCommand.contents }</textarea>
 	  </div>
 	  
 	  <!-- @RequestParam 사용 -->

@@ -19,8 +19,8 @@ public class QuestionDAO extends SqlSessionDaoSupport {
 		}
 	
 	//글 내용 보기
-    public BoardCommand selectBoardContents(Map<String, Object> map){
-    	return getSqlSession().selectOne("board.selectBoardContents", map);
+    public BoardCommand selectBoardContents(int num){
+    	return getSqlSession().selectOne("board.selectBoardContents", num);
     }
     
     //글쓰기
@@ -38,13 +38,21 @@ public class QuestionDAO extends SqlSessionDaoSupport {
     	getSqlSession().delete("board.deleteBoard", num);
     }
 
-    //글 조회수
-    public int selectCnt(int cnt){
-    	return getSqlSession().update("board.selectCnt",cnt);
+    //글 조회수 증가
+    public int updateCnt(int num){
+    	return getSqlSession().update("board.updateCnt",num);
     }
     
-    // 게시글 수
- 	public int allCnt(Map<String, Object> map)throws DataAccessException{
- 		return getSqlSession().selectOne("board.allCnt", map);
+    // 전체 글 개수
+ 	public int allCnt(){
+ 		int read =getSqlSession().selectOne("board.allCnt");
+ 		System.out.println("DAO :: " + read);
+ 		return read;
+ 		
  		} 
+ 	
+ 	//글조회시 비밀번호 확인
+ 	public String selectPW(int num){
+ 		return getSqlSession().selectOne("board.selectPW",num);
+ 	}
 }

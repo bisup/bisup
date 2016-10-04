@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class BoardCommand {
 
 	private int num; //글번호
-	private String write;//작성자
+	private String writer;//작성자
 	private String title;//제목
 	private String contents;//내용
 	private int cnt;//조회수
@@ -15,10 +15,10 @@ public class BoardCommand {
 	
 	public BoardCommand(){}
 	
-	public BoardCommand(int num, String write, String title, String contents, int cnt, Timestamp reg, String pw) {
+	public BoardCommand(int num, String writer, String title, String contents, int cnt, Timestamp reg, String pw) {
 		super();
 		this.num = num;
-		this.write = write;
+		this.writer = writer;
 		this.title = title;
 		this.contents = contents;
 		this.cnt = cnt;
@@ -45,11 +45,11 @@ public class BoardCommand {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getWrite() {
-		return write;
+	public String getWriter() {
+		return writer;
 	}
-	public void setWrite(String write) {
-		this.write = write;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getTitle() {
 		return title;
