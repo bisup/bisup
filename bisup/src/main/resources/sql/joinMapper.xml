@@ -5,12 +5,7 @@
     <insert id="insertMember" parameterType="command.MemberCommand">
        insert into member(id,name,pw,nick,sort,snum,phone,tel,reg,email,cer) values(#{id},#{name},#{pw},#{nick},#{sort},#{snum},#{phone},#{tel},sysdate,#{email},0)
     </insert>
-    <update id="updateMember" parameterType="command.MemberCommand">
-        update member set
-        name = #{name}, pwd = #{pwd},
-        email = #{email}, phone = #{phone}, admin = #{admin}
-        where userid = #{userid}
-    </update>
+    
     <delete id="deleteMember" parameterType="String">
         delete from member where userid = #{userid}
     </delete>
@@ -18,9 +13,9 @@
         select * from member <where> id = #{id}</where>
     </select>
     <select id="selectAll" resultType="command.MemberCommand">
-        select * from member
+        select id from member
     </select>
-    <update id="upcer" parameterType="java.util.HashMap" ><!--인증처리  -->
+    <update id="upcer" parameterType="String" ><!--인증처리  -->
         update member <set> cer=1</set>
          <where> id = #{id} </where>
     </update>
@@ -28,4 +23,6 @@
     <select id="find" parameterType="command.MemberCommand" resultType="command.MemberCommand">
     select id,pw from member <where>name=#{name} and email=#{email}</where> 
     </select>
+    
+    
 </mapper>

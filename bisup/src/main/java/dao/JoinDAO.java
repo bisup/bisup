@@ -1,7 +1,7 @@
 package dao;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -28,4 +28,12 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		 MemberCommand result =(MemberCommand) getSqlSession().selectOne("JoinDAO.find", membercommand);   
 		 return result;
 	 }
+	 
+	 public List selectall(){ //아이디를 다가져오는것
+		 
+		 List mc = getSqlSession().selectList("JoinDAO.selectAll"); 
+		 return mc;
+	 }
+	 
+	 
 }

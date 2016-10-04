@@ -172,7 +172,7 @@ article[role="login"] p {
                 <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-           	 <input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required=""/>
+           	 <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onblur="javascript:window.open('checkId.do?id=','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
@@ -250,7 +250,7 @@ article[role="login"] p {
               <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-            <input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required=""/>
+            <input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onclick="javascript:window.open('checkId.do','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
