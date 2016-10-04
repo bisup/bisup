@@ -1,21 +1,25 @@
 package controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.MemberCommand;
 import dao.JoinDAO;
+import mail.CreateCode;
+import mail.SendEmail;
 import validator.LoginCommandValidator;
 
 
@@ -24,6 +28,29 @@ import validator.LoginCommandValidator;
 public class MemberController {
     @Autowired
     private JoinDAO joinDao;
+    
+    @Autowired
+    private SendEmail sendEmail;
+    @Autowired
+    private CreateCode code;
+    
+    
+
+	public SendEmail getSendEmail() {
+		return sendEmail;
+	}
+
+	public void setSendEmail(SendEmail sendEmail) {
+		this.sendEmail = sendEmail;
+	}
+
+	public CreateCode getCode() {
+		return code;
+	}
+
+	public void setCode(CreateCode code) {
+		this.code = code;
+	}
 
 	public JoinDAO getJoinDao() {
 		return joinDao;
@@ -51,14 +78,18 @@ public class MemberController {
 	
 	@RequestMapping(value= "/join.do" ,method = RequestMethod.POST)
 	public String insertmem(@ModelAttribute("member") MemberCommand memberCommand,
-			BindingResult result){
+			BindingResult result, HttpSession session) throws MessagingException{
 		new LoginCommandValidator().validate(memberCommand, result);
+	    String getKey = code.randomCode();
 		if (result.hasErrors()) {
 			return "bisup_login/loginfail";
 		}
 		try{
 			int x=joinDao.insertMember(memberCommand);
 			if(x==1){
+				session.setAttribute("getKey", getKey);
+				session.setAttribute("cerId", memberCommand.getId());
+				sendEmail.sendCode(memberCommand.getEmail(), getKey, x);
 				return "join/joinok";
 			}else{
 				return "bisup_login/loginmain";
@@ -71,8 +102,51 @@ public class MemberController {
 		
 	}
 	
- 
-   
+	@RequestMapping("/certifyKey.do")
+	public ModelAndView certifyKey (HttpServletRequest request,HttpServletResponse response)throws Throwable{
+			ModelAndView mvc =new ModelAndView();
+			MemberCommand mc=new MemberCommand();
+			HttpSession session =request.getSession();
+			String id = (String) session.getAttribute("cerId"); 
+			
+			String key = request.getParameter("key"); /*이메일에서 전송된 파라메타 파라메터로 키값을 받아옴*/
+			String sessionKey = (String) session.getAttribute("getKey"); /*세션에 저장되 있던 키값*/
+			System.out.println("::"+id+"::"+key+"::"+sessionKey+":::::"+"전에 -> 후");
+			int check = 0 ; //인증성공여부를 전달하기 위한 변수
+			if (key.equals(sessionKey)){
+				JoinDAO jd=new JoinDAO();
+				check=jd.upcerti(id);
+			/*세션에 저장된 키값과 파라메터로 받은 키값을 비교하여 인증값을 바꾸는 메서드 실행*/
+			}
+			System.out.println("::"+id+"::"+key+"::"+sessionKey+":::::"+check);
+			HashMap hp=new HashMap();
+			hp.put("check", check);
+			
+			mvc.setViewName("join/certifyKey");
+			mvc.addObject(hp);
+			return mvc;
+			}
+    @RequestMapping(value="/searchpw.do", method=RequestMethod.GET)
+    public String searchpw(){
+    	return "bisup_login/findid";
+    }
+    @RequestMapping(value="/searchpw.do", method=RequestMethod.POST)
+    public String searchidpw(@ModelAttribute("member") MemberCommand membercommand,
+    		HttpSession session) throws Exception{
+    	String content="";
+    	MemberCommand find=joinDao.selectId(membercommand);    
+    	content= " 회원님의 아이디는: "+find.getId()+" 비밀번호는: "+find.getPw();
+    	sendEmail.sendId(membercommand.getEmail(),content);
+    	return "bisup_login/secid";
+    }
+    
+    @RequestMapping("/logout.do")
+    public String logout(HttpSession session) throws Exception{
+    	session.invalidate();
+    	return "bisup_login/logout";
+    }
+    
+    
     
  
 }

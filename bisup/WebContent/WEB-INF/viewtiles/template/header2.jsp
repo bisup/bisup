@@ -24,7 +24,7 @@
 <div class="pull-right">
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
-<li><a href="#">로그아웃</a></li>
+<li><a href="logout.do">로그아웃</a></li>
 <li><a href="#">사이트소개</a></li>
 </ol>
 </div>

@@ -3,8 +3,11 @@
 <html>
 <head>
 <script type="text/javascript">
-alert("등록되었습니다. 발송된 이메일로 인증 후 이용해주세요");
+alert("발송된 이메일로 아이디와 비밀번호를 보냈습니다");
+self.close();
 </script>  
-<META http-equiv=refresh content="0;url=main.do"/>
 </head>
+<body>
 
+</body>
+</html>
