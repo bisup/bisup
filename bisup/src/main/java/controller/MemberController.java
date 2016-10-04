@@ -122,7 +122,7 @@ public class MemberController {
 			HashMap hp=new HashMap();
 			hp.put("check", check);
 			
-			mvc.setViewName("join/certifyKey");
+			mvc.setViewName("certifyKey");
 			mvc.addObject(hp);
 			return mvc;
 			}

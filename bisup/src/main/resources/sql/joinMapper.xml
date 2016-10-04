@@ -20,9 +20,8 @@
     <select id="selectAll" resultType="command.MemberCommand">
         select * from member
     </select>
-    <update id="upcer" parameterType="java.util.HashMap" ><!--인증처리  -->
-        update member <set> cer=1</set>
-         <where> id = #{id} </where>
+    <update id="upcer" parameterType="String" ><!--인증처리  -->
+        update member set cer=1 where id=#{id}
     </update>
     
     <select id="find" parameterType="command.MemberCommand" resultType="command.MemberCommand">

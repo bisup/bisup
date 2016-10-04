@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -18,9 +16,7 @@ public class JoinDAO extends SqlSessionDaoSupport{
 	 public int upcerti(String id){  //인증다오
 			int x= 0;
 			System.out.println("디에이오 아이디::"+id);
-			HashMap hp=new HashMap();
-			hp.put("id", id);
-			x=getSqlSession().update("JoinDAO.upcer", hp);
+			x=getSqlSession().update("JoinDAO.upcer", id);
 			return x; 
 		 }
 	 
