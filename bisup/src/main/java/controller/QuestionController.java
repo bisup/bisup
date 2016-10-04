@@ -29,25 +29,15 @@ public class QuestionController {
 	//@Resource(name = "boardService")
 	@Autowired
 	private QuestionServiceImple boardService;
-
-
 	public void setBoardService(QuestionServiceImple boardService) {
 		this.boardService = boardService;
 	}
 	public QuestionServiceImple getBoardService() {
 		return boardService;
 	}
-	@Autowired
-	private PageHandler pageHandler;
-	public PageHandler getPageHandler() {
-		return pageHandler;
-	}
-	public void setPageHandler(PageHandler pageHandler) {
-		this.pageHandler = pageHandler;
-	}
+	
 	@Autowired
 	private QuestionDAO dao;
-
 	public QuestionDAO getDao() {
 		return dao;
 	}
