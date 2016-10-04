@@ -6,10 +6,12 @@
 
 
 	<select id="selectBoardList" parameterType="map" resultType="java.util.HashMap">
-		select num, writer, title, contents, cnt,reg, pw, r
-		from(select num, writer, title, contents, cnt,reg, pw, rownum r
-		from(select num, writer, title, contents, cnt,reg, pw,
-		from question order by num ) where r <![CDATA[ >= ]]> #{startRow} and r <![CDATA[ <= ]]> #{endRow}
+		<![CDATA[
+		select num, writer, title, contents, cnt, reg, pw, r
+from (select num, writer, title, contents, cnt,reg, pw, rownum r from
+(select num, writer, title, contents, cnt,reg, pw from question order by num ) 
+)where r >= #{startRow} and r <= #{endRow}
+		]]>
 	</select>
 
 	<select id="selectboardContents" parameterType="int" resultType="command.BoardCommand">

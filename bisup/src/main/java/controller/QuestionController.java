@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import command.BoardCommand;
 import dao.QuestionDAO;
-import service.PageHandler;
 import service.QuestionServiceImple;
 
 @Controller
@@ -52,6 +50,7 @@ public class QuestionController {
 	@RequestMapping("/question/qlist.do")
 	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<BoardCommand> list = null;
+		
 		mav = new ModelAndView();
 		int pageNum = 1;
 		int pagesize = 10;
@@ -62,15 +61,15 @@ public class QuestionController {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
+		System.out.println("map사이즈" + map.size());
 		int cnt = boardService.allCnt(); //전체 글 갯수
 		//cnt가  0이면 저장된 글 없음
-		System.out.println(cnt);
-		
-		
 		if(cnt > 0) {
-			list = boardService.selectBoardList(map);
+			list=boardService.selectBoardList(map);
 		}
 		int number = cnt - (pageNum -1) * pagesize; //수
+		
+		System.out.println(list.toString());
 		
 		/****페이지 수 연산****/
 		int pageCount = cnt/ pagesize + (cnt % pagesize == 0 ? 0 : 1);
@@ -95,6 +94,7 @@ public class QuestionController {
 		rowNumberList = pageHandler.boardSetPageNumber(pageNum);
 		list = boardService.selectBoardList(map); //페이지 갯수만큼 가져온 값을 list에 저장
 */
+        
 		mav.addObject("pageNumber", pageNum); //페이지 번호
 		mav.addObject("totalcnt", cnt); //전체 글 수
 		mav.addObject("pageCount", pageCount); //페이지 수
