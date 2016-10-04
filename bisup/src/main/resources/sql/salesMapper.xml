@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="sale">
-<insert id="insertSales" parameterType="command.SaleCommand">
-insert into sale(id,item,ea,total) values (#{id},#{item},#{ea},#{total})
-</insert>
-
-<select id="listsales" parameterType="String" resultType="String">
-select month,sum(total) from sale_m group by month;
-</select>
-
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
+<mapper namespace="sales">
 <select id="menulist" parameterType="command.MenuCommand" resultType="String">
-select item,price from menu where id=#{id};
+select item,price from menu where id=#{id}
 </select>
 
+	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
+<!-- select substr(sdate,1,5),sum(total) from sale where id=#[id] group by substr(sdate,1,5) -->
+<!-- 		select to_char(sdate,'yyyy.mm'),sum(total) from sale where id=#[id] group by to_char(sdate,'yyyy.mm') -->
+<!-- select sdate,sum(total) total from sale where id=#{id} group by sdate -->
+<!-- select ea,sum(total) total from sale group by ea -->
+<!-- select to_char(sdate,'mm'),sum(total) from sale where id='java' group by to_char(sdate,'mm') -->
+<!-- select substr(sale.sdate,4,2),sum(total) from sale group by substr(sale.sdate,4,2) -->
+ select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale group by to_char(sdate,'mm'))
+	</select>
 </mapper>
