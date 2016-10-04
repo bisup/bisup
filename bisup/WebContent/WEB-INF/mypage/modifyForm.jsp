@@ -68,8 +68,8 @@
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                   
-                   <!-- <c:if test="${member.sort==2}"> -->
-                 <%--  <div class="business" id=bisness>
+                   <c:if test="${member.sort==2}"> 
+                  <div class="business" id=bisness>
                   <div class="form-group">
                   <form:label path="snum">사업자번호</form:label>
                     <form:input path="snum" class="form-control" value="${member.snum}"/>
@@ -79,31 +79,31 @@
                   <form:label path="tel">상호 전화번호</form:label>
                     <form:input path="tel" class="form-control" value="${member.tel}"/>
                      <form:errors path="tel"/>
-                  </div> --%>
+                  </div> 
                   </div>
-                 <!--  </c:if> -->
+                   </c:if> 
                  
                  <c:if test="${member.sort==1}">
                 <div class="form-group" id="readyBis">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" id="changeChk" class="changeChk" onchange="change()">BISUP을 통해 창업에 성공하여 상호 정보를 추가하고 싶습니다. 
+                      <input type="checkbox" id="sort" name="sort" class="changeChk" value="1" onchange="change()">BISUP을 통해 창업에 성공하여 상호 정보를 추가하고 싶습니다. 
                     </label>
                   </div>
                 </div>
                 </c:if>  
                  <div id="changeBis" style="display:none">
-                 <div class="form-group"><form:label path="snum">사업자번호</form:label><form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요"/></div>
+                 <div class="form-group"><form:label path="snum">사업자번호</form:label><form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/></div>
       			<div class="form-group"><form:label path="tel">상호 전화번호</form:label><form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/></div>
                 </div>
                
                 <script>
                function change(){
-                	if($('.changeChk').is(":checked")){
+                	if($('#sort').is(":checked")){
                 		
                 		document.getElementById('changeBis').style.display = '';
                 		//document.getElementById("changeBis").display = false;
-                		
+                		 $('#sort').val('2');
                 	} 
                 	else{
                 		document.getElementById('changeBis').style.display = 'none';
@@ -113,7 +113,7 @@
                
               
                 <div class="form-group">
-                  <input type="submit" class="btn btn-success btn-block"  value="정보 수정">
+                  <input type="submit" class="btn btn-success btn-block"  value="정보 수정" onclick="submit()">
                 </div>
         
               </form:form>

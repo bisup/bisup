@@ -16,49 +16,46 @@
 <title>Insert title here</title>
 </head>
 <script>
+/* 비밀번호 일치여부 확인 */
 $(document).ready(function() {
 	
 	if(${x != 0}){
-	  
-		if(${x == 1}){
-			//정보 수정 눌렀을 때 비밀번호 일치
-		  document.location.href="/bisup/my/mypage/modifyForm.do";
-		 }
-		else if(${x==-1}){
-			//탈퇴 툴렀을때 비밀번호 일치
-			document.location.href="/bisup/my/mypage/delMem.do";
-		}
-		 else{
-			 //비밀번호 일치 안함
-		 alert("비밀번호가 일치하지 않습니다.");
-	 	}
-  	} 
-	
+	  //post방식으로 돌아왔을때 
+		if(${x == 1}){// 비밀번호 일치
+				if(${bt==1}){//정보수정버튼
+		 		 document.location.href="/bisup/my/mypage/modifyForm.do";
+					}
+				else if(${bt==2}){	//탈퇴버튼
+					if(confirm("정말 삭제하시겠습니까?")===true){
+						document.location.href="/bisup/my/mypage/delMem.do";
+						} else{
+						document.location.href="/bisup/my/mypage/modifyCheck.do";
+						}
+				}
+		}else if(${x ==-1}){//비밀번호 불일치
+			alert("비밀번호가 일치하지 않습니다.");
+				}
+			}
 });
 </script>
 <script>
 
 /* 비밀번호 일치여부 확인 함수 수정 필요*/
   
-  function submit(action){
+  function sub(action){
 	//submit버튼 2개 
-	var input = document.getElementById("buttonValue");
-	if(action==1){
+	if(action===1){
 		//회원정보수정
 		 $('#buttonValue').val('update');
 		//input.value="update";
 	}
-	else if(action ==2){
+	else if(action===2){
 		//탈퇴
-		if(confirm("정말 삭제하시겠습니까?")==true){
-			$('#buttonValue').val('delete');
-		}else{
-			document.location.href="/bisup/my/mypage/modifyCheck.do";
-		//modifycheck
+				$('#buttonValue').val('delete');	
 		}
 		
-	}
-	document.login-recordar.submit();
+	/* document.login-recordar.submit(); */
+	$("#login-recordar").submit();
 } 
  
  
@@ -136,10 +133,10 @@ $(document).ready(function() {
      </div> 
        <div id="buttonDiv" align="center">
        		
-    		<button type="button" id="modButton" class="btn btn-primary" onclick="submit(1)">회원 정보 수정</button>
+    		<button type="button" id="modButton" class="btn btn-primary" onclick="sub(1)">회원 정보 수정</button>
     		<!-- onclick 비밀번호 확인하고 정보수정폼으로  -->
     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    		<button type="button" id="delButton" class="btn btn-primary" onclick="submit(2)">탈퇴하기</button>
+    		<button type="button" id="delButton" class="btn btn-primary" onclick="sub(2)">탈퇴하기</button>
     	   <!-- onclick 비밀번호 확인하고 탈퇴되었습니다 알러창띄우고 맨 앞 메인으로 -->
 	</div>	
 	<div class="col-md-9">
