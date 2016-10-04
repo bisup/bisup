@@ -46,7 +46,7 @@ public class QuestionController {
 	}
 	
 	ModelAndView mav = null;
-
+//됨?
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
