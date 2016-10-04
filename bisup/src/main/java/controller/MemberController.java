@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.MemberCommand;
@@ -86,6 +87,10 @@ public class MemberController {
 		}
 		try{
 			int x=joinDao.insertMember(memberCommand);
+			checkDuplicateId(memberCommand.getId(),result);
+			if(result.hasErrors()){
+				return "joinfail";
+			}				
 			if(x==1){
 				session.setAttribute("getKey", getKey);
 				session.setAttribute("cerId", memberCommand.getId());
@@ -146,8 +151,25 @@ public class MemberController {
     	return "bisup_login/logout";
     }
     
-    
-    
- 
+	public void checkDuplicateId(String id,BindingResult errors){
+		List mc=joinDao.selectall();
+		if(id.equals(mc)) {
+			errors.rejectValue("id", "duplicate");
+		}
+}
+	
+	 
+	  @RequestMapping(value="/checkId.do")
+	public ModelAndView checkId(@RequestParam("id")String id){
+		ModelAndView mav=new ModelAndView();
+		List mc=joinDao.selectall();
+		int x=0;
+		if(id.equals(mc)) {
+			 x=1;
+		}
+		mav.setViewName("checkId");
+		mav.addObject(x);
+		return mav;
+}
 }
  
