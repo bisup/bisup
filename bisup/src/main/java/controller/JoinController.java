@@ -15,7 +15,7 @@ public class JoinController {
 	public MemberCommand formBacking(){
 		return new MemberCommand();
 	}
-
+	
 	public JoinController() {
 	// TODO Auto-generated constructor stub
 }
