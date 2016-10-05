@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,16 +16,25 @@
 <title>Insert title here</title>
 </head>
 <script>
-  if('${x}'!=null){
+$(document).ready(function() {
+	
+	if(${x != 0}){
 	  
-	 if('${x}'==1){
-		 document.location.href="/bisup/my/mypage/modifyForm.do";
-	 }
-	 else{
-		 alert("x는 '${x}'이고 비밀번호가 일치하지 않습니다.");
-	 }
-  } 
-
+		if(${x == 1}){
+			//정보 수정 눌렀을 때 비밀번호 일치
+		  document.location.href="/bisup/my/mypage/modifyForm.do";
+		 }
+		else if(${x==-1}){
+			//탈퇴 툴렀을때 비밀번호 일치
+			document.location.href="/bisup/my/mypage/delMem.do";
+		}
+		 else{
+			 //비밀번호 일치 안함
+		 alert("비밀번호가 일치하지 않습니다.");
+	 	}
+  	} 
+	
+});
 </script>
 <script>
 
@@ -35,16 +45,18 @@
 	var input = document.getElementById("buttonValue");
 	if(action==1){
 		//회원정보수정
-		input.value="update";
+		 $('#buttonValue').val('update');
+		//input.value="update";
 	}
-	esle if(action ==2){
+	else if(action ==2){
 		//탈퇴
-		if(confirm("정말 삭제하시겠습니까?")==true{
-			document.location.href="/bisup/my/mypage/delMem.do";
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			$('#buttonValue').val('delete');
 		}else{
+			document.location.href="/bisup/my/mypage/modifyCheck.do";
 		//modifycheck
 		}
-		input.value="delete";
+		
 	}
 	document.login-recordar.submit();
 } 
@@ -119,7 +131,9 @@
                   </div>
                   <h4 style="border-bottom: 1px solid #c5c5c5;">
   </h4>
-       <input type="hidden" name="buttonValue" id="buttonValue" />
+  <div id="buttonV" style="display:none">
+       <input type="text" name="buttonValue" id="buttonValue" />
+     </div> 
        <div id="buttonDiv" align="center">
        		
     		<button type="button" id="modButton" class="btn btn-primary" onclick="submit(1)">회원 정보 수정</button>

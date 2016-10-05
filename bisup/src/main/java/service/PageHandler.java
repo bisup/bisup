@@ -5,56 +5,42 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import dao.NoticeDAO;
 import dao.QuestionDAO;
 
 //페이지 갯수
+@Component
 public class PageHandler {
 
 	@Autowired
 	private QuestionDAO questionDAO;
-	
-	@Autowired
-	private NoticeDAO noticeDAO;
 
 	public void setQuestionDAO(QuestionDAO questionDAO) {
 		this.questionDAO = questionDAO; 
 	}
 
-	public void setNoticeDAO(NoticeDAO noticeDAO) {
-		this.noticeDAO = noticeDAO;
-	}
 
 	// 페이지 사이즈, 페이지 그룹
 	private final int PAGESIZE = 10;
 	private final int PAGEGROUP = 5;
 
 	// 문의 전체 게시글 수
-	public int QboardAllNumber(Map<String, Object> map) throws Exception {
-		int count = questionDAO.allCnt(map);
+	public int QboardAllNumber() { //전체 개수 지금1
+		int count = questionDAO.allCnt();
 		return count;
 	}
 
-	// 공지사항 전체 게시글 수
-	public int NboardAllNumber(Map<String, Object> map) throws Exception {
-		int count = questionDAO.allCnt(map);
-		return count;
-	}
 
 	// 문의 페이지 갯수
-	public int QboardPageCount(Map<String, Object> map) throws Exception {
-		int pageCount = QboardAllNumber(map) / PAGESIZE;
-		if (QboardAllNumber(map) % PAGESIZE != 0) {
-			pageCount++;
+	public int QboardPageCount() throws Exception {
+		int x =questionDAO.allCnt();
+		if(x <= 10 && x>= 0 ){
+			x=10;
 		}
-		return pageCount;
-	}
-
-	// 공지사항 페이지 갯수
-	public int NboardPageCount(Map<String, Object> map) throws Exception {
-		int pageCount = NboardAllNumber(map) / PAGESIZE;
-		if (NboardAllNumber(map) % PAGESIZE != 0) {
+		int pageCount =x/ PAGESIZE; //0
+		if (x % PAGESIZE != 0) { 
 			pageCount++;
 		}
 		return pageCount;
@@ -67,23 +53,13 @@ public class PageHandler {
 	}
 
 	//문의 endPage
-	public int QboardEndPage(int pageNum, Map<String, Object> map) throws Exception {
+	public int QboardEndPage(int pageNum) throws Exception {
 		int endPage = boardStartPage(pageNum) + (PAGEGROUP - 1);
-		if (endPage > QboardPageCount(map)) {
-			endPage = QboardPageCount(map);
+		if (endPage > QboardPageCount()) {
+			endPage = QboardPageCount();
 		}
 		return endPage;
 	}
-	
-	
-	//공지 endPage
-		public int NboardEndPage(int pageNum, Map<String, Object> map) throws Exception {
-			int endPage = boardStartPage(pageNum) + (PAGEGROUP - 1);
-			if (endPage > NboardPageCount(map)) {
-				endPage = NboardPageCount(map);
-			}
-			return endPage;
-		}
 
 	// 처음, 마지막 rowNumber
 	public List<Object> boardSetPageNumber(int pageNum) throws Exception {

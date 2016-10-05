@@ -88,18 +88,15 @@ $(document).ready(function() {
                         </tr>
                     </thead>
                     <tbody>
-                    
-                        <!-- ---------사용할 주석------------ -->
-                    <%-- <c:choose>
-                    <!-- item이 배열이나 컬렉션이면 요소의 갯수를 문자열이면 문자의 갯수를 반환  -->
+                    <c:choose>
                     	<c:when test="${fn:length(list) > 0}">
-                    		<c:forEach items="${qlist } " var="list">
+                    		<c:forEach items="${list}" var="list">
                     			<tr>
-                    				<td>${list.qnum }</td>
-                    				<td>${list.qnick }</td>
-                    				<td><a href="경로를씁시다" name="qtitle">${list.qtitle }</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
-                    				<td>${list.qcnt }</td>
-                    				<td>${list.qreg }</td>
+                    				<td><c:out value="${list.num }"/></td>
+                    				<td><c:out value="${list.writer}"/></td>
+                    				<td><a href="/question/qcontents.do?num=<c:out value='${list.num}'/>"><c:out value="${list.title}"/></a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td><c:out value="${list.cnt}"/></td>
+                    				<td><c:out value="${list.reg}"/></td>
                     			</tr>
                     		</c:forEach>
                     	</c:when>
@@ -108,20 +105,12 @@ $(document).ready(function() {
                     		<td colspan="5">조회된 결과가 없습니다.</td>
                     	</tr>
                     	</c:otherwise>
-                    </c:choose> --%>
-                    
-                        <tr>
-                            <td>1</td>
-                            <td>미래</td>
-                            <td>제목TEST</td>
-                            <td>123</td>
-                            <td>2016-09-27</td>
-                        </tr>
+                    </c:choose>
                     </tbody>
                 </table>   
 		</div>
 	
-<div class="container">
+<!-- <div class="container">
 	<ul class="pagination">
               <li class="disabled"><a href="#">«</a></li>
               <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
@@ -131,6 +120,6 @@ $(document).ready(function() {
               <li><a href="#">5</a></li>
               <li><a href="#">»</a></li>
             </ul>
-</div>
+</div> -->
 </body>
 </html>

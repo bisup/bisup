@@ -37,41 +37,49 @@
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
+              <form:label path="name">이름</form:label>
                     <form:input path="name" class="form-control" value="${member.name}"/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
+                   <form:label path="pw">비밀번호</form:label>
                    <form:password path="pw" showPassword="false" class="form-control" value="${member.pw}"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                  <form:label path="pw">비밀번호 확인</form:label>
+                   <input type="password" value="${member.pw}" class="form-control">
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
+                  <form:label path="nick">닉네임</form:label>
                     <form:input path="nick" class="form-control" value="${member.nick}"/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
                    <div class="form-group">
+                   <form:label path="email">이메일</form:label>
                     <form:input path="email" class="form-control" value="${member.email}"/>
                     	<!-- 정규식추가 -->
                   <%--  <form:errors path="email"/> --%>
                   </div>
                   <div class="form-group">
+                  <form:label path="pw">연락처</form:label>
                     <form:input path="phone" class="form-control" value="${member.phone}"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                   
                    <!-- <c:if test="${member.sort==2}"> -->
-                  <div class="business" id=bisness>
+                 <%--  <div class="business" id=bisness>
                   <div class="form-group">
+                  <form:label path="snum">사업자번호</form:label>
                     <form:input path="snum" class="form-control" value="${member.snum}"/>
-                  <%--  <form:errors path="snum"/> --%>
+                   <form:errors path="snum"/>
                   </div>
                   <div class="form-group">
+                  <form:label path="tel">상호 전화번호</form:label>
                     <form:input path="tel" class="form-control" value="${member.tel}"/>
-                    <%--  <form:errors path="tel"/> --%>
-                  </div>
+                     <form:errors path="tel"/>
+                  </div> --%>
                   </div>
                  <!--  </c:if> -->
                  
@@ -79,43 +87,35 @@
                 <div class="form-group" id="readyBis">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" onchange="bisn()"> bisup을 통하여 창업하여 가게정보를 추가하고싶습니다.
+                      <input type="checkbox" id="changeChk" class="changeChk" onchange="change()">BISUP을 통해 창업에 성공하여 상호 정보를 추가하고 싶습니다. 
                     </label>
                   </div>
                 </div>
-                </c:if>
-                
+                </c:if>  
+                 <div id="changeBis" style="display:none">
+                 <div class="form-group"><form:label path="snum">사업자번호</form:label><form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요"/></div>
+      			<div class="form-group"><form:label path="tel">상호 전화번호</form:label><form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/></div>
+                </div>
+               
                 <script>
-                function bsin(){
- 
-                				$("#readyBis").append(
-                						  "<div class="form-group">"+
-                		                    "<form:input path="snum" class="form-control" placehoder="사업자번호를 입력해주세요"/>"
-                		                  +"</div>"
-                		                  +"<div class="form-group">"
-                		                  +"<form:input path="tel" class="form-control" placehoder="가게전화번호를 입력해주세요"/>"
-                		                  +"</div>"
-                				);
-                				/*   $('#foo').append($('<div/>', {
-                				        id: 'myid',
-                				        title: 'Hello world?',
-                				        text: 'hello world'
-                				    }));
-                				    $('#foo').append($('<a/>', {
-                				        href: 'https://www.google.co.kr',
-                				        title: '나를 클릭하면 구글로 간다.',
-                				        text: '클릭!'
-                				    })); */
-                			
-                				
-                			}
-        
-                </script>
+               function change(){
+                	if($('.changeChk').is(":checked")){
+                		
+                		document.getElementById('changeBis').style.display = '';
+                		//document.getElementById("changeBis").display = false;
+                		
+                	} 
+                	else{
+                		document.getElementById('changeBis').style.display = 'none';
+                	}
+               }
+                </script>     		
+               
               
                 <div class="form-group">
                   <input type="submit" class="btn btn-success btn-block"  value="정보 수정">
                 </div>
-                 
+        
               </form:form>
             
               </div>

@@ -13,7 +13,8 @@
   
 <context:annotation-config/>
 
-<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/mypage/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -30,8 +31,8 @@
 	
 	<bean class="controller.ModifyController"/>
 	
-	<!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db2.properties" />
+	 프로퍼티스 파일 읽어오기
+	<context:property-placeholder location="classpath:db.properties" />
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
@@ -50,6 +51,6 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
 	
-	
+	 -->
 
 </beans>

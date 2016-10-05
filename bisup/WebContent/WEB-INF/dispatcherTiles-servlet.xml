@@ -37,8 +37,12 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean> -->
+	<!-- <bean id="fileDB" class="mybatis.FileDB"/>
+	<bean id="questionFileDAO" class="mybatis.QuestionFileDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+	 -->
 	
 	<!-- db연결 -->
+	<context:property-placeholder location="classpath:db.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -50,14 +54,18 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:sql/*.xml"/>
 	</bean>
+    
+    <bean id="questionDAO" class="dao.QuestionDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+	<bean id="boardService" class="service.QuestionServiceImple">
+		<property name="questionDAO" ref="questionDAO"/>
+	</bean>
 	
-	<!-- <bean id="fileDB" class="mybatis.FileDB"/>
-	<bean id="dao" class="mybatis.QuestionFileDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
-	 -->
+	<bean class="controller.QuestionController">
+		 <property name="boardService" ref="boardService"/>
+	</bean>
+	 
 	<!-- 컨트롤러 빈 등록 -->
-	<bean id="test" class="controller.TestController"/>
 	<bean id="main" class="controller.MainController"/>
-	<bean id="Concerting" class="controller.ConcertingController"/>
-	<bean id="trend" class="controller.TrendController"/>
 </beans>
 
