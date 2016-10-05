@@ -80,6 +80,7 @@
                     <form:input path="tel" class="form-control" value="${member.tel}"/>
                      <form:errors path="tel"/>
                   </div> 
+                  
                   </div>
                    </c:if> 
                  
