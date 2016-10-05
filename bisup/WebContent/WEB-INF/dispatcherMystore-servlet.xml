@@ -71,9 +71,6 @@
 	
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="mystore" class="controller.MyStoreController" p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
-	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo-ws"/>
-		<websocket:sockjs/>
-	</websocket:handlers>
+	
 </beans>
 
