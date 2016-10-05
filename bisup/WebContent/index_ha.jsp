@@ -6,9 +6,16 @@
 <head>
 </head>
 <body>
-
 <br>
 <a href="<c:url value='/bisupjoin/join/form.do'/>">joinForm</a>
+  
 <br>
+
+<a href="<c:url value='/my/mypage/modifyCheck.do'/>">modifyCheck</a>
+
+<br>
+
+<a href="<c:url value='/my/mypage/modifyForm.do'/>">modifyForm</a>
+
 </body>
 </html>

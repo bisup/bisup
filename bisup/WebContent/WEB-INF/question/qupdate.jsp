@@ -9,28 +9,22 @@
   	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
 	<br><br>
 	<div class="panel panel-default">
-	<form action="qcontents.do" method="post" enctype="multipart/form-data">
+	<form action="qcontents.do" method="get" enctype="multipart/form-data">
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" name="title" placeholder="글 제목을 입력하세요." required autofocus>
+	    <input type="text" class="form-control" name="title" required autofocus value="${boardCommand.title}">
 	  </div>
 	  
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">작성자</label>
-		    <input type="text" class="form-control" name="writer" placeholder="닉네임을 입력하세요." required>
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">비밀번호</label>
-		    <input type="text" class="form-control"  name="pw" placeholder="비밀번호를 입력하세요." required>
-		  </div>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">작성자</label>
+	    <input type="text" class="form-control"  name="writer" value="${boardCommand.writer}" disabled>
+	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" name="contents" placeholder="작성할 내용을 입력하세요." required></textarea>
+	    <textarea class="form-control" rows="5" id="comment" name="contents" required>${boardCommand.contents }</textarea>
 	  </div>
-	  
 	  
 	  <!-- @RequestParam 사용 -->
 	  <div class="form-group">

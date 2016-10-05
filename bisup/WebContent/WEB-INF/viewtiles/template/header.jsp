@@ -24,7 +24,7 @@
 <div class="pull-right">
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
-<li><a href="#">로그아웃</a></li>
+<li><a href="logout.do">로그아웃</a></li>
 <li><a href="#">사이트소개</a></li>
 </ol>
 </div>
@@ -66,7 +66,7 @@
         
         <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
         <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
-        <li><a href="/bisup/bisup/join/joinAgree.do">마이페이지</a></li>
+        <li><a href="/bisup/bisup/question/qpw.do">마이페이지</a></li>
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

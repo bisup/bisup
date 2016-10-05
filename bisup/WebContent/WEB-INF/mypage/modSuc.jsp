@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
 
-<META http-equiv=refresh content="0;url=bisup_login/main.do"/>
+<title>Insert title here</title>
 </head>
 <body>
-
+정보 수정 완료
 </body>
-</html>   
+</html>

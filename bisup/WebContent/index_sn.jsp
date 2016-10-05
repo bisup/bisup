@@ -5,6 +5,7 @@
 </head>
 <body>
 <a href="sales/salesInserting.do?id=java">salesInserting</a><br/>
-<a href="sales/suna/M_Chart.jsp">salesInserting</a><br/>
+<a href="sales/drawMonChart.do?id=java">salesInserting</a><br/>
 </body>
 </html>
+ 
