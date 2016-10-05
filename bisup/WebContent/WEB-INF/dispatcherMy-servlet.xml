@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
   
 <context:annotation-config/>
-
+<!-- 
 
 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/mypage/" />
@@ -31,8 +31,8 @@
 	
 	<bean class="controller.ModifyController"/>
 	
-	<!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db2.properties" />
+	 프로퍼티스 파일 읽어오기
+	<context:property-placeholder location="classpath:db.properties" />
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
@@ -50,7 +50,7 @@
 	  <bean id="mypagedao" class="dao.MypageDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
-	
+	 -->
 	
 
 </beans>

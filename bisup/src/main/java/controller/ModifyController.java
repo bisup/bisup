@@ -44,7 +44,7 @@ import dao.MypageDAO;
 	
 	@RequestMapping(value="/mypage/modifyCheck.do",method=RequestMethod.POST)
 	public ModelAndView check(@ModelAttribute("member") MemberCommand membercommand, @RequestParam("buttonValue") String state,@RequestParam("inputpw") String ipw){
-		String id="abc"; //session에 저장되어있는 id값
+		String id="ss"; //session에 저장되어있는 id값
 		int x=-1;
 		membercommand.setId(id);
 		ModelAndView mav =new ModelAndView();
@@ -74,7 +74,7 @@ import dao.MypageDAO;
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.GET)
 	public ModelAndView formGet(@ModelAttribute("member")MemberCommand membercommand){
-		String id="abc"; //session에 저장되어있는 id값
+		String id="ss"; //session에 저장되어있는 id값
 		membercommand.setId(id);
 		System.out.println(membercommand.getId());
 		ModelAndView mav =new ModelAndView();
@@ -105,7 +105,7 @@ import dao.MypageDAO;
 	@RequestMapping(value="/mypage/delMem.do")
 	public String deleteM(){
 		MemberCommand membercommand = new MemberCommand();
-		String id="abc"; //session에 저장되어있는 id값
+		String id="ss"; //session에 저장되어있는 id값
 		membercommand.setId(id);
 		int x = mypageDAO.deleteMem(id);
 		if(x==1){

@@ -92,11 +92,11 @@ $(document).ready(function() {
                     	<c:when test="${fn:length(list) > 0}">
                     		<c:forEach items="${list}" var="list">
                     			<tr>
-                    				<td><c:out value="${list.num }"/></td>
-                    				<td><c:out value="${list.writer}"/></td>
-                    				<td><a href="/question/qcontents.do?num=<c:out value='${list.num}'/>"><c:out value="${list.title}"/></a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
-                    				<td><c:out value="${list.cnt}"/></td>
-                    				<td><c:out value="${list.reg}"/></td>
+                    				<td>${list[index].NUM}</td>
+                    				<td>${list.writer}</td>
+                    				<td><a href="/question/qcontents.do?num=${list.num}">${list.title}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td>${list.cnt}</td>
+                    				<td>${list.reg}</td>
                     			</tr>
                     		</c:forEach>
                     	</c:when>
