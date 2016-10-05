@@ -4,23 +4,11 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<!-- @ResponseBody로 String 처리할 때 한글처리 -->
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>text/html;charset=utf-8</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
 <!-- 타일즈사용 -->
 	<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -44,30 +32,40 @@
 		</property>
 	</bean>
 	
+	<!-- 파일업로드 -->
+<!-- 	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean> -->
+	<!-- <bean id="fileDB" class="mybatis.FileDB"/>
+	<bean id="questionFileDAO" class="mybatis.QuestionFileDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+	 -->
 	
-<!--  프로퍼티스 파일 읽어오기 -->
+	<!-- db연결 -->
 	<context:property-placeholder location="classpath:db.properties" />
-<!--	커넥션풀연결 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:/sql/*.xml" />
-	</bean>
-
-	<bean class="dao.SaleChartAction" id="saleChartAction">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> 
-	<bean class="dao.SalesDAO" id="salesDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	<context:annotation-config/>
 	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:sql/*.xml"/>
+	</bean>
+    
+    <bean id="questionDAO" class="dao.QuestionDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+	<bean id="boardService" class="service.QuestionServiceImple">
+		<property name="questionDAO" ref="questionDAO"/>
+	</bean>
+	
+	<bean class="controller.QuestionController">
+		 <property name="boardService" ref="boardService"/>
+	</bean>
+	 
 	<!-- 컨트롤러 빈 등록 -->
-<!-- 	<bean id="sales" class="controller.SalesController" p:salesDao-ref="salesDao" p:saleChartAction-ref="saleChartAction"/> -->
-	<bean id="sales" class="controller.SalesController" p:saleChartAction-ref="saleChartAction"/>
+	<bean id="main" class="controller.MainController"/>
 </beans>
+  
