@@ -7,8 +7,8 @@ public class SaleCommand {
 	private String item; //메뉴이름
 	private int ea; //수량
 	private String total; //총매출
-	private int mon;//sdate 차트 월별 별칭
-	private int tot;//total 차트 총매출 별칭
+	private int mon;//sdate 차트 월별 별칭임
+	private int tot;//total 차트 총매출 별칭임
 	public String getId() {		
 		return id;
 	}

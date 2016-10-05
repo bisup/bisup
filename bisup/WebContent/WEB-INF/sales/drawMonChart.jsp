@@ -10,6 +10,7 @@ request.setCharacterEncoding("utf-8");
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
+    
 	google.charts.load('current', {packages: ['corechart', 'line']});
 	google.charts.setOnLoadCallback(drawChart);
     

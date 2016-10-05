@@ -155,7 +155,7 @@
 	</definition>
 	
 		
-	<!--   이수나 매출 등록   --> 
+	<!--   이수나 매출 등록     --> 
  <definition name="salesInserting" extends="base_layout">
   <put-attribute name="title" value="매출등록" /> 
   <put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" /> 
