@@ -47,8 +47,8 @@ tr{padding:15px;}
   </tr>
   <c:forEach begin="0" end="9" step="1">
   <tr>
-    <td><input type="text" name="item" readonly value="${s.item}"></td>
-    <td><input type="text" name="price" readonly value="${s.price}"></td>
+    <td><input type="text" name="item" readonly value="${menu.item}"></td>
+    <td><input type="text" name="price" readonly value="${menu.price}"></td>
     <td><input type="text" name="ea"></td>
     <td><input type="text" name="total"></td>
   </tr>

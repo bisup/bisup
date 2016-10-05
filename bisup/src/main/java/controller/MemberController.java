@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import command.MemberCommand;
@@ -86,11 +88,9 @@ public class MemberController {
 		new LoginCommandValidator().validate(memberCommand, result);
 		checkDuplicateId(memberCommand.getId(), result);
 	    String getKey = code.randomCode();
-		if (result.hasErrors()) {
-			return "bisup_login/loginfail";
-		}
 		try{
 			int x=joinDao.insertMember(memberCommand);
+			checkDuplicateId(memberCommand.getId(),result);
 			if(result.hasErrors()){
 				return "joinfail";
 			}				
@@ -154,11 +154,16 @@ public class MemberController {
     }
     
 	public void checkDuplicateId(String id,BindingResult errors){
+
 		List mc=joinDao.select();
 		if(id.equals(mc)) {
 			errors.rejectValue("id", "duplicate");
 		}
+
 }
+	
+	 
+
 	 
 	  @RequestMapping(value="/checkId.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody

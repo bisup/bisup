@@ -26,21 +26,17 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		 return result;
 	 }
 	 
+
 	 public int selectall(String id){ //아이디를 다가져오는것
 		 
 		 int mc = getSqlSession().selectOne("JoinDAO.selectid", id); 
 		 System.out.println("mc="+mc);
 		 return mc;
 		 
-	 }
-	 
-	 
+	 } 
 	 public List select(){ //아이디를 다가져오는것
 		 
 		 List mc = getSqlSession().selectList("JoinDAO.selectAll"); 
 		 return mc;
-	 }
-
-	 
-	 
+	 }	 
 }

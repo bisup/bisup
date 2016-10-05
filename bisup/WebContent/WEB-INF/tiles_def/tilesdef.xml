@@ -116,5 +116,28 @@
 		<put-attribute name="title" value="메뉴등록" />
 		<put-attribute name="body" value="/WEB-INF/mystore/salesManaging.jsp" />
 	</definition>
+	
+	
+	<!-- 현아언니 마이페이지 -->
+	<definition name="modifyCheck" extends="base_layout">
+		<put-attribute name="title" value="마이페이지 본인확인" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modifyCheck.jsp" />
+	</definition>
+	
+	<definition name="modifyForm" extends="base_layout">
+		<put-attribute name="title" value="회원정보 수정" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modifyForm.jsp" />
+	</definition>
+	
+	<definition name="delSuc" extends="base_layout">
+		<put-attribute name="title" value="회원 삭제" />
+		<put-attribute name="body" value="/WEB-INF/mypage/delSuc.jsp" />
+	</definition>
+	
+	
+	<definition name="modSuc" extends="base_layout">
+		<put-attribute name="title" value="확인" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modSuc.jsp" />
+	</definition>
 
 </tiles-definitions>

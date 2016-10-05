@@ -6,4 +6,6 @@
 <html>
 <head>
 <title>아이디 체크</title>
+
 <META http-equiv=refresh content="0;url=main.do"/>
+

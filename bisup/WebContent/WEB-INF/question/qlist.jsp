@@ -13,7 +13,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
-
     //something is entered in search form
     $('#system-search').keyup( function() {
        var that = this;
@@ -37,7 +36,6 @@ $(document).ready(function() {
             {
                 $('.search-query-sf').remove();
             }
-
             if( rowText.indexOf( inputText ) == -1 )
             {
                 //hide rows
@@ -57,8 +55,6 @@ $(document).ready(function() {
         }
     });
 });
-
-
 </script>
 <!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
 </head>
@@ -92,11 +88,19 @@ $(document).ready(function() {
                     	<c:when test="${fn:length(list) > 0}">
                     		<c:forEach items="${list}" var="list">
                     			<tr>
+<<<<<<< HEAD
                     				<td><c:out value="${list.num }"/></td>
                     				<td><c:out value="${list.writer}"/></td>
                     				<td><a href="/question/qcontents.do?num=<c:out value='${list.num}'/>"><c:out value="${list.title}"/></a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
                     				<td><c:out value="${list.cnt}"/></td>
                     				<td><c:out value="${list.reg}"/></td>
+=======
+                    				<td>${list[index].NUM}</td>
+                    				<td>${list.writer}</td>
+                    				<td><a href="/question/qcontents.do?num=${list.num}">${list.title}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td>${list.cnt}</td>
+                    				<td>${list.reg}</td>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup
                     			</tr>
                     		</c:forEach>
                     	</c:when>

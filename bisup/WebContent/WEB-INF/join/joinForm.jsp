@@ -143,6 +143,7 @@ article[role="login"] p {
 </style>
 <title>Insert title here</title>
 <script type="text/javascript">
+
 $(function(){
 	$('#id').blur(function(){
 		$.ajax({
@@ -166,13 +167,9 @@ $(function(){
 		});
 	});
 });
-/* function serch(){
-	var eid=document.id.value;
-	alert(eid);
-	submit();
-	uri ="checkId.do?id="+eid;
-	window.open(uri,'아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550');
-} */
+
+
+
 </script>
 </head>
 <body>
@@ -205,7 +202,9 @@ $(function(){
                 <form:form commandName="member" class="signup" name="myform">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
+
            	 <input type="text" name="id" id="id" class="form-control" value="" placeholder="아이디를 입력해주세요" required="필수입력창입니다"/>
+
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
