@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!-- 
-이미래
-공지사항 리스트-->
+<!-- 이미래 공지사항 리스트-->
 <html>
 <head>
 <title>title</title>
@@ -88,19 +86,11 @@ $(document).ready(function() {
                     	<c:when test="${fn:length(list) > 0}">
                     		<c:forEach items="${list}" var="list">
                     			<tr>
-<<<<<<< HEAD
-                    				<td><c:out value="${list.num }"/></td>
-                    				<td><c:out value="${list.writer}"/></td>
-                    				<td><a href="/question/qcontents.do?num=<c:out value='${list.num}'/>"><c:out value="${list.title}"/></a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
-                    				<td><c:out value="${list.cnt}"/></td>
-                    				<td><c:out value="${list.reg}"/></td>
-=======
-                    				<td>${list[index].NUM}</td>
-                    				<td>${list.writer}</td>
-                    				<td><a href="/question/qcontents.do?num=${list.num}">${list.title}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
-                    				<td>${list.cnt}</td>
-                    				<td>${list.reg}</td>
->>>>>>> branch 'master' of https://github.com/bisup/bisup
+                    				<td>${list.NUM}</td>
+                    				<td>${list.WRITER}</td>
+                    				<td><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}">${list.TITLE}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td>${list.CNT}</td>
+                    				<td>${list.REG}</td>
                     			</tr>
                     		</c:forEach>
                     	</c:when>

@@ -9,7 +9,7 @@
   	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
 	<br><br>
 	<div class="panel panel-default">
-	<form action="qcontents.do" method="post" enctype="multipart/form-data">
+	<form action="good.do" method="post">
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
@@ -32,12 +32,12 @@
 	  </div>
 	  
 	  
-	  <!-- @RequestParam 사용 -->
-	  <div class="form-group">
+	   <!-- @RequestParam 사용 -->
+	  <!-- <div class="form-group">
 	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
 		<input type="file" name="filename" /> <br> 
 	  </div>
-	  <br>
+	  <br> -->
 	  
 	  <div align="right">
 	  <button type="submit" class="btn btn-primary">글쓰기</button>
