@@ -141,12 +141,17 @@ article[role="login"] p {
 } */
 </style>
 <title>Insert title here</title>
+<script type="text/javascript">
+function serch(){
+	window.open('checkId.do?id=','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550');
+}
+</script>
 </head>
 <body>
 
 	<div class="container">
 	<div class="mStep1">
-					<img src="../../resources/img/step2.PNG">
+					<img src="/bisup/resources/img/step2.PNG">
 						</div>
 						<br>
     <div class="login-signup">
@@ -172,30 +177,31 @@ article[role="login"] p {
                 <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-           	 <form:input path="id" class="form-control" placeholder="아이디를 입력해주세요"/>
+           	 <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onblur="javascript:window.open('checkId.do?id=this','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
-                    <form:input path="name" class="form-control" placeholder="이름을 입력해주세요"/>
+                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required=""/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                   <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
+                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required=""/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required=""/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
+                    <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요"required=""/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
-                    <div class="form-group">
-                    <form:input path="email" class="form-control" placeholder="이메일을 입력해주세요"/>
-                    	<!-- 정규식추가 -->
-                  <%--  <form:errors path="email"/> --%>
-                  </div>
+                    <div class="form-group input-group">
+          <span class="input-group-addon">
+            @
+          </span>
+          <input class="form-control" placeholder="Email" name="email" type="email" required=""/>
+        </div>
                 
                   <div class="form-group">
                     <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
@@ -211,6 +217,8 @@ article[role="login"] p {
                     </div>
                   </div>
                   <div class="form-group">
+                  <input type="hidden" name="sort" value="1"/>
+                   <input type="hidden" name="tel" value="0"/>
                     <input type="submit" class="btn btn-success btn-block"  value="회원 등록">
                   </div>
               </form:form>
@@ -247,36 +255,37 @@ article[role="login"] p {
               <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-           	 <form:input path="id" class="form-control" placeholder="아이디를 입력해주세요"/>
+            <input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onclick="javascript:window.open('checkId.do','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
-                    <form:input path="name" class="form-control" placeholder="이름을 입력해주세요"/>
+                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required=""/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                   <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"/>
+                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required=""/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:password path="pw" showPassword="false" class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required=""/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:input path="nick" class="form-control" placeholder="닉네임을 입력해주세요"/>
+                   <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요" required=""/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
-                   <div class="form-group">
-                    <form:input path="email" class="form-control" placeholder="이메일을 입력해주세요"/>
-                    	<!-- 정규식추가 -->
-                  <%--  <form:errors path="email"/> --%>
-                  </div>
+                    <div class="form-group input-group">
+          <span class="input-group-addon">
+            @
+          </span>
+          <input class="form-control" placeholder="Email" name="email" type="email" required=""/>
+        </div>
                   <div class="form-group">
                     <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요"/>
+                    <input type="text" name="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/>
                   <%--  <form:errors path="snum"/> --%>
                   </div>
                   <div class="form-group">
@@ -291,6 +300,7 @@ article[role="login"] p {
                   </div>
                 </div>
                 <div class="form-group">
+                  <input type="hidden" name="sort" value="2"/>
                   <input type="submit" class="btn btn-success btn-block"  value="회원등록">
                 </div>
               </form:form>

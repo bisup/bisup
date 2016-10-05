@@ -83,7 +83,7 @@ $(document).ready(function () {
 			$('.alert-normal-info').show();
 			}
 			else{
-				document.location.href="/bisup/bisupjoin/join/form.do";
+				document.location.href="/bisup/bisup_login/join.do";
 			}
 			});
 		
@@ -420,7 +420,7 @@ $(document).ready(function () {
 	</div>
     </div>
    <div id="buttonDiv" align="center">
-    		<button id="normal-btn-info" class="btn btn-primary btn-lg">
+    		<button id="normal-btn-info"  class="btn btn-primary btn-lg">
   				다음단계로
 		   	</button>
 	</div>	

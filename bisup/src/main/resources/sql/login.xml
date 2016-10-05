@@ -10,7 +10,9 @@ select id from member where id = #{id}
 <select id="loginType" parameterType="String" resultType="int">
 select sort from member where id = #{id}
 </select>
-
+<select id="logincer" parameterType="String" resultType="int">
+select cer from member <where>id = #{id}</where> 
+</select>
 
 
 

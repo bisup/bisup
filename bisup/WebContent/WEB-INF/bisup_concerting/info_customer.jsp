@@ -6,6 +6,11 @@
 <html> 
 <head>
 <title>거래처 정보</title>
+ <script>
+      var x = new Array(); //x 위도 배열생성
+      var y = new Array(); //y 경도 배열생성
+     /*  var title = new Array(); // title 제목 배열 생성 */
+      </script>
 <style type="text/css">
 #fieldset1 {
 	position: relative;
@@ -73,6 +78,7 @@ width: 350px;
 				</select> <input type="submit" value="검색하기">
 			</fieldset>
 				<br>
+				
 			<table width="500" border="1" class="tb_date">
 				<tr>
 					<th id="th" width="100" style="border-left: 0">구분</th>
@@ -80,13 +86,22 @@ width: 350px;
 					<th id="th" width="300">주소</th>
 				</tr>
 				
-				<c:forEach var="bis" items="#{concerting}">
-					<tr>
-						<td id="th" style="border-left: 0"></td>
-						<td id="th"></td>
-						<td id="th"></td>
+				<%-- <c:if test="${concerting.division.equals('null')"> --%>
+				<c:forEach var="bis" items="${concerting}">
+					<tr height="40">
+						<td id="th" style="border-left: 0">${bis.division}</td>
+						<td id="th">${bis.company }</td>
+						<td id="th">
+						<a href="${bis.address}" target="_blank">${bis.address}</a></td>
 					</tr>
+					<script>
+         x.push('${bis.x}') 
+         
+         y.push('${bis.y}')
+        /*  title.push('${map.division}') */
+         </script>
 				</c:forEach>
+				
 			</table>
 			
 		</div>
@@ -97,40 +112,87 @@ width: 350px;
       <div id="clickLatlng"></div>
       <script type="text/javascript"
          src="//apis.daum.net/maps/maps3.js?apikey=15e23e5cf8b80901b98ad7e74cba97d2"></script>
+     <!--  <script>
+      var x = new Array(); //x 위도 배열생성
+      var y = new Array(); //y 경도 배열생성
+     /*  var title = new Array(); // title 제목 배열 생성 */
+      </script> -->
+     <%--  alert("${concerting }")   --%> 
+       <%--   <c:forEach var="map" items="${concerting}">
+         <script>
+         x.push('${map.x}') 
+         
+         y.push('${map.y}')
+        /*  title.push('${map.division}') */
+         </script>
+         </c:forEach> --%>
       <script>
          var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
          mapOption = {
             center : new daum.maps.LatLng(37.498240, 127.027610), // 지도의 중심좌표
-            level : 3
+            level : 10
          // 지도의 확대 레벨
          };
 
          var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		 
+      // 지도에 마커를 생성하고 표시한다
+         for(i=0; i<x.length; i++ ){
+            
+            var   mposition = new daum.maps.LatLng(parseFloat(x[i]), parseFloat(y[i]));
+            
+            var marker = new daum.maps.Marker({
+                  position: mposition, // 마커의 좌표
+                   image : markerImage, // 마커의 이미지
+                   map: map, // 마커를 표시할 지도 객체
+               });
+            
+            // 마커 이미지의 주소
+            var markerImageUrl = '/bisup/resources/img/daum.JPG'
+             ,markerImageSize = new daum.maps.Size(40, 42), // 마커 이미지의 크기
+             markerImageOptions = { 
+                 offset : new daum.maps.Point(20, 42)// 마커 좌표에 일치시킬 이미지 안의 좌표
+             };
+            var markerImage = new daum.maps.MarkerImage(markerImageUrl, markerImageSize, markerImageOptions);
+         
+            /*  var iwContent = title[i]; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다 */
+         
+           /*  // 인포윈도우를 생성합니다
+            var infowindow = new daum.maps.InfoWindow({
+                content : iwContent,
+                position : mposition
+                  });  */
+         
+       /*   daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+          daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        */
+         }
+			/* 
+				
+			
+			
+        	// 지도를 클릭한 위치에 표출할 마커입니다
+             var marker = new daum.maps.Marker({ 
+                position : map.getCenter() // 지도 중심좌표에 마커를 생성합니다
+               
+             });
+             // 지도에 마커를 표시합니다
+             marker.setMap(map);
 
-         // 지도를 클릭한 위치에 표출할 마커입니다
-         var marker = new daum.maps.Marker({
-            // 지도 중심좌표에 마커를 생성합니다 
-            position : map.getCenter()
-         });
-         // 지도에 마커를 표시합니다
-         marker.setMap(map);
+             // 지도에 클릭 이벤트를 등록합니다
+             // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+             daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 
-         // 지도에 클릭 이벤트를 등록합니다
-         // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-         daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+                // 클릭한 위도, 경도 정보를 가져옵니다 
+                var latlng = mouseEvent.latLng;
 
-            // 클릭한 위도, 경도 정보를 가져옵니다 
-            var latlng = mouseEvent.latLng;
+                // 마커 위치를 클릭한 위치로 옮깁니다
+                marker.setPosition(latlng);
 
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            marker.setPosition(latlng);
-
-            /* var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-            message += '경도는 ' + latlng.getLng() + ' 입니다';  */
-
-            var resultDiv = document.getElementById('clickLatlng');
-            /* resultDiv.innerHTML = message; */
-         });
+                var resultDiv = document.getElementById('clickLatlng'); */
+             
+        
+         
       </script>
 
 </body>

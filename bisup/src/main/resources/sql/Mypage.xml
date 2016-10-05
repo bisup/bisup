@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+
+<update id="updatePro" parameterType="command.MemberCommand">
+update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},snum=#{snum},phone=#{phone},tel=#{tel},reg=sysdate,email=#{email} where id=#{id}
+</update>
+
+ <delete id="deleteMember" parameterType="String">
+        delete from member where id = #{id}
+    </delete>
+    
+    <select id="updateForm" parameterType="String" resultType="command.MemberCommand">
+        select * from member where id = #{id}
+    </select>
+    
+<select id="checkpw" parameterType="String" resultType="String">
+select pw from member where id = #{id}
+</select>
+
+
+
+</mapper>

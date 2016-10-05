@@ -122,14 +122,14 @@
                         <tbody>
                             <tr>
                                 <td>작성자</td>
-                                <td>${qlist.qnick } <span style='float:right'>조회 : ${qlist.qcnt }</span></td>
+                                <td>${boardCommand.writer } <span style='float:right'>조회 : ${boardCommand.cnt }</span></td>
                             </tr>
                             <tr>
                                 <td>작성일</td>
-                                <td>${qlist.qreg}</td>
+                                <td>${boardCommand.reg}</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><p>${qlist.qcontents }</p></td>
+                                <td colspan="2"><p>${boardCommand.contents }</p></td>
                             </tr>
                         </tbody>
                     </table>
@@ -140,7 +140,7 @@
                                 <span class="form-inline" role="form">
                                     <p>
                                         <div class="form-group">
-                                            <input type="text" id="commentParentName" name="qnick" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
+                                            <input type="text" id="commentParentName" name="qwriter" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" id="commentParentPassword" name="rpw" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">
@@ -160,7 +160,7 @@
                                 <td>
                                     <span style='float:right'>
                                         <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qlist.do'">목록</button>
-                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qmodify.do'">수정</button>
+                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qupdate.do'">수정</button>
                                         <button type="button"  class="btn btn-default" data-toggle="modal" data-target="#login-modal">삭제</button>
                                         <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qwrite.do'">글쓰기</button>
                                     </span>
@@ -357,7 +357,7 @@
 				<div class="loginmodal-container">
 					<h2>삭제 하시겠습니까?</h2><br>
 				  <form>
-					<input type="password" name="qpw" placeholder="비밀번호를 입력하세요." >
+					<input type="password" name="pw" placeholder="비밀번호를 입력하세요." >
 					<input type="submit" name="delete" class="login loginmodal-submit" value="삭제" >
 				  </form>
 				</div>

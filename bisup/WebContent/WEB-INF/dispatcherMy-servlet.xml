@@ -13,20 +13,9 @@
   
 <context:annotation-config/>
 
-	<!-- <bean id="tilesviewResolver"  
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
-	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles_def/tilesdef.xml</value>
-			</list>
-		</property>
-		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
-	</bean> -->
-	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/join/" />
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/mypage/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
@@ -40,9 +29,11 @@
 		</property>
 	</bean>
 	
+	<bean class="controller.ModifyController"/>
+	
 	<!--  프로퍼티스 파일 읽어오기 -->
 	<context:property-placeholder location="classpath:db2.properties" />
-<!--	커넥션풀연결 -->
+	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
 		<property name="driverClass" value="${jdbc.driver}" />
@@ -56,11 +47,10 @@
 		<property name="mapperLocations" value="classpath:/sql/*.xml" />
 	</bean>
 
-	<bean id="dao" class="dao.JoinDAO">
+	  <bean id="mypagedao" class="dao.MypageDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
 	
-	<bean class="controller.JoinController"/> 
 	
-	<!-- <bean class="command.MemberCommand"/> -->
+
 </beans>

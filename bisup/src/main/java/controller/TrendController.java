@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,14 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.TrendDAO;
-  
+
 @Controller
 public class TrendController {
+
 	
 	private TrendDAO dao;
-	
+	  
 	
 	/*//타일즈 적용
+=======
+
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 	@RequestMapping("/bisup_trend/sales_trend.do")
 	public String sales_trend(){
 		System.out.println("trend요청");
@@ -28,6 +30,7 @@ public class TrendController {
 	public String business_trend(){
 		System.out.println("trend요청");
 		return "business_trend";//
+<<<<<<< HEAD
 	}*/
 	
 	
@@ -53,5 +56,6 @@ public class TrendController {
 	public String business_trend(){
 		System.out.println("trend요청");
 		return "bisup_trend/business_trend";//
+
 	}
 }

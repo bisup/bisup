@@ -36,10 +36,10 @@
                         <a class="page-scroll" data-toggle="modal" title="Login페이지입니다" href="#LoginModal">Login</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#four">Sing up</a>
+                        <a class="page-scroll" href="bisup_login/agree.do">Sing up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#last">ID/PW찾기</a>
+                        <a class="page-scroll" href="javascript:window.open('searchpw.do','아이디비번찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')">ID/PW찾기</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
                 <h1 class="cursive">Bisup,  Business Consultant</h1>
                 <h4>클릭하세요</h4>
                 <hr>
-                <a href="sign.do" id="sign" data-toggle="collapse" class="btn btn-primary btn-xl">Sign up</a> &nbsp; <a href="#one" class="btn btn-primary btn-xl page-scroll">Introduce Business</a>
+                <a href="#LoginModal" id="sign" data-toggle="collapse" class="btn btn-primary btn-xl">Sign in</a> &nbsp; <a href="#one" class="btn btn-primary btn-xl page-scroll">Introduce Business</a>
             </div>
         </div>
         <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
@@ -142,10 +142,10 @@
 		<button class="btn btn-lg btn-primary2 btn-block" type="submit">
 			Sign In
 		</button><br>
-		<div align="center"><a href="#dd">아이디/비번 찾기</a></div>
+		<div align="center"><a href="javascript:window.open('searchpw.do','아이디비번찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>아이디/비번 찾기</a></div>
 	</form:form>
 </div>
- </div>
+ </div>  
  </div>
  </div>
  </div>

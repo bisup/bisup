@@ -12,7 +12,14 @@ public class MemberCommand {
 	private String tel;//가게번호
 	private String reg;//가입일       
 	private String email;
+	private int cer; //인증여부
 	
+	public int getCer() {
+		return cer;
+	}
+	public void setCer(int cer) {
+		this.cer = cer;
+	}
 	public String getEmail() {
 		return email;
 	}

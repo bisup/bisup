@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +24,6 @@ import command.SaleCommand;
 import dao.MyStoreAction;
 import dao.SaleProgressAction;
 import net.sf.json.JSONObject;
-  
 @Controller
 public class MyStoreController {
 
@@ -70,31 +71,25 @@ public class MyStoreController {
 	@RequestMapping(value="/menuInsertOrUpdate.do",method=RequestMethod.POST,produces = "text/plain;charset=UTF-8")
 	public void menuInsertOrUpdate(@RequestParam("id") String id,@RequestParam("item") String item,
 			@RequestParam("price") String price,HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("UTF-8");
 		MenuCommand command = new MenuCommand();
-		//ajax의 값들을 command객체로 받는 방법을 몰라서 우선 각자 받아와서 따로 생성해줌. 선생님께 질문할 예정
 		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", item은 "+item+", price는 "+price);
-		command.setId(id); command.setItem(item); command.setPrice(Integer.parseInt(price));
-		Map info = new HashMap(); info.put("id", id); info.put("item", command.getItem());
+		int check=0;
 		JSONObject jsonObject = new JSONObject();
-		try{
-			command = myStoreAction.isInsertOrUpdate(info);
+		command.setId(id); command.setItem(item); command.setPrice(Integer.parseInt(price));
+		Map info = new HashMap(); info.put("id", id); info.put("item", item);
+		check=myStoreAction.isInsertOrUpdate(info);
+		if(check>0){			
+			System.out.println("메뉴 수정 시작");
 			jsonObject.put("oneMenu", myStoreAction.updateMenu(command));
 			jsonObject.put("result", "메뉴 수정 완료");
-		}catch(Exception npe){
+		}else if(check==0){
+			System.out.println("메뉴 입력 시작");
 			jsonObject.put("oneMenu", myStoreAction.insertMenu(command));
 			jsonObject.put("result", "메뉴 입력 완료");
-		}finally{
-		/*MenuCommand result = myStoreAction.isInsertOrUpdate(info);*/
-		/*if((result.getItem()).equals(null)){
-			jsonObject.put("oneMenu", myStoreAction.insertMenu(command));
-			jsonObject.put("result", "메뉴 입력 완료");
-		}else{
-			jsonObject.put("oneMenu", myStoreAction.updateMenu(command));
-			jsonObject.put("result", "메뉴 수정 완료");
-		}*/
+		}
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
-		}
 	}
 	
 	@RequestMapping(value="/menuSearch.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
@@ -110,20 +105,37 @@ public class MyStoreController {
 		model.addAttribute("menuList", result);
 		return "menuInserting";
 	}
+	@RequestMapping(value="/deleteMenu.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public void deleteMenu(@RequestParam("id") String id,@RequestParam("item") String item,
+			HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("UTF-8");
+		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", item은 "+item);
+		int check = 0;
+		JSONObject jsonObject = new JSONObject();
+		Map info = new HashMap(); info.put("id", id); info.put("item", item);
+		check=myStoreAction.deleteMenu(info);
+		if(check>0){			
+			jsonObject.put("result", "메뉴 삭제 완료");
+		}else{
+			jsonObject.put("result", "메뉴 삭제 실패");
+		}
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
+	}
 	
 	//==================================================================
 	
 	//매출추이 컨트롤러메소드
 	@RequestMapping(value="/drawDayChart.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
-	@ResponseBody
 	public void drawDayChart(HttpServletResponse response, 
-			@RequestParam("id") String id) throws Exception{
+			@RequestParam("id") String id,Locale locale) throws Exception{
 		System.out.println("drawDayChart메소드 도착, id는 "+id);
+		response.setCharacterEncoding("UTF-8");
 		ArrayList fiveSales = saleProgressAction.salePerDay(id);
-		JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = new JSONObject();  
 		jsonObject.put("data", fiveSales);
 		SaleCommand command = (SaleCommand) fiveSales.get(0);
-		System.out.println("매출 데이터 갯수 ::: "+fiveSales.size()+", 데이터 테스트 총매출액:::"+command.getTotal()+" 품목명:::"+command.getItem());
+		System.out.println("매출 데이터 갯수 ::: "+fiveSales.size()+", 데이터 테스트 :::"+jsonObject.toString());
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
@@ -132,5 +144,11 @@ public class MyStoreController {
 	public String saleMain(@RequestParam("id") String id, Model model){
 		model.addAttribute("id",id);
 		return "salesManaging";
+	}
+	
+	//chat
+	@RequestMapping("/chat.do")
+	public String viewChattingPage(){
+		return "chat";
 	}
 }
