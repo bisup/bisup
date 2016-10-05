@@ -150,5 +150,4 @@ public class MyStoreController {
 	@RequestMapping("/chat.do")
 	public String viewChattingPage(){
 		return "chat";
-	}
-}
+}}
