@@ -52,12 +52,20 @@
 		<put-attribute name="body" value="/WEB-INF/question/qpw.jsp" />
 	</definition>
 
-	<definition name="qmodify" extends="base_layout">
+	<definition name="qupdate" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
-		<put-attribute name="body" value="/WEB-INF/question/qmodify.jsp" />
+		<put-attribute name="body" value="/WEB-INF/question/qupdate.jsp" />
 	</definition>
 
-
+	<definition name="good" extends="base_layout">
+		<put-attribute name="title" value="글 작성 완료." />
+		<put-attribute name="body" value="/WEB-INF/question/good.jsp" />
+	</definition>
+	
+	
+	
+	
+	
 	<definition name="joinAgree" extends="base_layout">
 		<put-attribute name="title" value="이용약관 동의 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/join/joinAgree.jsp" />
@@ -116,5 +124,50 @@
 		<put-attribute name="title" value="메뉴등록" />
 		<put-attribute name="body" value="/WEB-INF/mystore/salesManaging.jsp" />
 	</definition>
+	
+	
+	<!-- 현아언니 마이페이지 -->
+	<definition name="modifyCheck" extends="base_layout">
+		<put-attribute name="title" value="마이페이지 본인확인" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modifyCheck.jsp" />
+	</definition>
+	
+	<definition name="modifyForm" extends="base_layout">
+		<put-attribute name="title" value="회원정보 수정" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modifyForm.jsp" />
+	</definition>
+	
+	<definition name="delSuc" extends="base_layout">
+		<put-attribute name="title" value="회원 삭제" />
+		<put-attribute name="body" value="/WEB-INF/mypage/delSuc.jsp" />
+	</definition>
+	
+	
+	<definition name="modSuc" extends="base_layout">
+		<put-attribute name="title" value="확인" />
+		<put-attribute name="body" value="/WEB-INF/mypage/modSuc.jsp" />
+	</definition>
+	
+	<!-- 상권분석  -->
+	<definition name="areainfo" extends="base_layout">
+		<put-attribute name="title" value="test" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/testInfo.jsp" />
+	</definition>
+	
+		
+	<!--   이수나 매출 등록     --> 
+ <definition name="salesInserting" extends="base_layout">
+  <put-attribute name="title" value="매출등록" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" /> 
+  </definition>
+ <definition name="salesInsertingPro" extends="base_layout">
+  <put-attribute name="title" value="매출등록완료" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/salesInsertingPro.jsp" /> 
+  </definition>
+ <definition name="drawMonChart" extends="base_layout">
+  <put-attribute name="title" value="매출등록완료" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/drawMonChart.jsp" /> 
+  </definition>
+	
 
 </tiles-definitions>

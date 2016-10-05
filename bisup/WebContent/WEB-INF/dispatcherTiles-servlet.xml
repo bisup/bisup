@@ -9,6 +9,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
+
+<context:annotation-config/>
 <!-- 타일즈사용 -->
 	<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -57,6 +59,10 @@
     
     <bean id="questionDAO" class="dao.QuestionDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
     
+    <bean id="mypagedao" class="dao.MypageDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
+    
 	<bean id="boardService" class="service.QuestionServiceImple">
 		<property name="questionDAO" ref="questionDAO"/>
 	</bean>
@@ -64,8 +70,7 @@
 	<bean class="controller.QuestionController">
 		 <property name="boardService" ref="boardService"/>
 	</bean>
-	 
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="main" class="controller.MainController"/>
+	<bean class="controller.ModifyController"/>
 </beans>
-  

@@ -7,7 +7,7 @@
     </insert>
     
     <delete id="deleteMember" parameterType="String">
-        delete from member where userid = #{userid}
+        delete from member where userid = #{id}
     </delete>
     <select id="selectOne" parameterType="String" resultType="command.MemberCommand">
         select * from member <where> id = #{id}</where>
@@ -16,13 +16,14 @@
         select id from member
     </select>
     <update id="upcer" parameterType="String" ><!--인증처리  -->
-        update member <set> cer=1</set>
-         <where> id = #{id} </where>
+        update member set cer = 1 where id=#{id}
     </update>
     
     <select id="find" parameterType="command.MemberCommand" resultType="command.MemberCommand">
     select id,pw from member <where>name=#{name} and email=#{email}</where> 
     </select>
     
-    
+     <select id="selectid" parameterType="String" resultType="int">
+        select count(*) from member where id=#{id}
+    </select>
 </mapper>

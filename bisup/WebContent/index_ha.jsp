@@ -18,5 +18,9 @@
 <a href="<c:url value='/my/mypage/modifyForm.do'/>">modifyForm</a>
 
 <br>
+
+<a href="<c:url value='/my/areaInfo/testInfo.do'/>">testInfo</a>
+
+
 </body>
 </html>

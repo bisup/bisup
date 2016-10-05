@@ -1,14 +1,8 @@
 package controller;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import command.BoardCommand;
 import dao.QuestionDAO;
 import service.QuestionServiceImple;
@@ -24,7 +17,6 @@ import service.QuestionServiceImple;
 @Controller
 public class QuestionController {
 	
-	//@Resource(name = "boardService")
 	@Autowired
 	private QuestionServiceImple boardService;
 	public void setBoardService(QuestionServiceImple boardService) {
@@ -42,16 +34,15 @@ public class QuestionController {
 	public void setDao(QuestionDAO dao) {
 		this.dao = dao;
 	}
-	
 	ModelAndView mav = null;
-//됨?
+	
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
-	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView list() throws Exception {
 		List<BoardCommand> list = null;
-		
-		mav = new ModelAndView();
+
+		mav = new ModelAndView("qlist");
 		int pageNum = 1;
 		int pagesize = 10;
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -61,15 +52,17 @@ public class QuestionController {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
-		System.out.println("map사이즈" + map.size());
 		int cnt = boardService.allCnt(); //전체 글 갯수
-		//cnt가  0이면 저장된 글 없음
+		//cnt(전체 글 갯수가)가  0이면 저장된 글 없음
 		if(cnt > 0) {
 			list=boardService.selectBoardList(map);
 		}
 		int number = cnt - (pageNum -1) * pagesize; //수
 		
-		System.out.println(list.toString());
+		if(cnt > 0) {
+			list=boardService.selectBoardList(map);
+		}
+		//int number = cnt - (pageNum -1) * pagesize; 
 		
 		/****페이지 수 연산****/
 		int pageCount = cnt/ pagesize + (cnt % pagesize == 0 ? 0 : 1);
@@ -78,23 +71,6 @@ public class QuestionController {
         int endPage = startPage + pageBlock-1;
         if (endPage > pageCount) endPage = pageCount;
 		
-		/*
-		// 전체 페이지 갯수
-		int totalPageCnt = pageHandler.QboardPageCount();  //0
-
-		// 전체 게시글수
-		int totalCnt = pageHandler.QboardAllNumber();
-		
-		// startPage, endPage
-		int startPage = pageHandler.boardStartPage(pageNum);
-		int endPage = pageHandler.QboardEndPage(pageNum);
-	
-		// 처음, 마지막 rowNumber
-		List<Object> rowNumberList = new ArrayList<Object>();
-		rowNumberList = pageHandler.boardSetPageNumber(pageNum);
-		list = boardService.selectBoardList(map); //페이지 갯수만큼 가져온 값을 list에 저장
-*/
-        
 		mav.addObject("pageNumber", pageNum); //페이지 번호
 		mav.addObject("totalcnt", cnt); //전체 글 수
 		mav.addObject("pageCount", pageCount); //페이지 수
@@ -102,24 +78,9 @@ public class QuestionController {
 		mav.addObject("endPage", endPage); //끝 페이지
 		mav.addObject("list", list);
 
-		mav.setViewName("qlist");
 		return mav;
 	}
 
-	// 글 내용 보기
-	@RequestMapping(value = "/question/qcontents.do", method = RequestMethod.POST)
-	public ModelAndView contents(@RequestParam("num") int num) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		//Map<String, Object> map = new HashMap<String, Object>();
-
-		BoardCommand boardCommand = new BoardCommand();
-		boardCommand = boardService.selectboardContents(num);
-
-		mav.addObject("boardCommand", boardCommand);
-
-		mav.setViewName("qcontents");
-		return mav;
-	}
 
 	// 글쓰기 첫번째 폼
 	@RequestMapping(value = "/question/qwrite.do", method = RequestMethod.GET)
@@ -128,31 +89,30 @@ public class QuestionController {
 	}
 
 	// 커맨드 객체 생성
-	@ModelAttribute
+	@ModelAttribute("board")
 	public BoardCommand formBacking() {
 		return new BoardCommand();
 	}
 
 	// 글쓰기
-	@RequestMapping(value = "/question/qwrite.do", method = RequestMethod.POST)
-	public ModelAndView write(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String title = request.getParameter("title");
-		String contents = request.getParameter("contents");
-		String pw = request.getParameter("pw");
-		String writer = request.getParameter("writer");
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "/question/good.do", method = RequestMethod.POST)
+	public ModelAndView write(
+			@RequestParam(value="title") String title, 
+			@RequestParam(value="contents") String contents,
+			@RequestParam(value="pw") String pw,
+			@RequestParam(value="writer") String writer) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("good");
 		BoardCommand boardCommand = new BoardCommand();
+		boardCommand.setCnt(0);
 		boardCommand.setContents(contents);
 		boardCommand.setPw(pw);
 		boardCommand.setTitle(title);
 		boardCommand.setWriter(writer);
-		boardCommand.setReg(new Timestamp(System.currentTimeMillis()));
 		boardService.insertBoard(boardCommand);
-
-		mav.setViewName("qwrite");
 		return mav;
 	}
-
+//글수정
 	// 글 수정 폼
 	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam("num") int num) throws Exception {
@@ -167,44 +127,76 @@ public class QuestionController {
 
 	// 글 수정 내용 변경 후 저장
 	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.POST)
-	public ModelAndView update(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView update(
+			@RequestParam(value="num") int num,
+			@RequestParam(value="title") String title, 
+			@RequestParam(value="contents") String contents,
+			@RequestParam(value="pw") String pw,
+			@RequestParam(value="writer") String writer) throws Exception {
+		ModelAndView mav = new ModelAndView("qupdate");
 		BoardCommand boardCommand = new BoardCommand();
-		int num = Integer.parseInt(request.getParameter("num"));
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String pw = request.getParameter("pw");
-		String contents = request.getParameter("contents");
 		boardCommand.setNum(num);
 		boardCommand.setContents(contents);
 		boardCommand.setPw(pw);
 		boardCommand.setTitle(title);
 		boardCommand.setWriter(writer);
-		boardCommand.setReg(new Timestamp(System.currentTimeMillis()));
-
-		boardService.updateBoard(boardCommand);
-		mav.setViewName("qupdate");
 		return mav;
 	}
 
 	// 글삭제
 	@RequestMapping("/question/qdelete.do")
-	public ModelAndView delete(@RequestParam(value = "num", required = true) int num) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView delete(@RequestParam(value = "num") int num) throws Exception {
+		ModelAndView mav = new ModelAndView("qdelete");
 		boardService.deleteBoard(num);
-		mav.setViewName("qdelete");
 		return mav;
 	}
 
-	// 본인확인
-	@RequestMapping("/question/qpw.do")
-	public ModelAndView pw(@RequestParam("num") int num) {
-		ModelAndView mav = new ModelAndView();
-		boardService.selectPW(num);
-		mav.setViewName("qpw");
-		
+	// 글 내용 보기
+		@RequestMapping("/question/qcontents.do")
+		public ModelAndView contents(@RequestParam("num") int num) throws Exception {
+			ModelAndView mav = new ModelAndView("qcontents");
+			BoardCommand boardCommand = new BoardCommand();
+			boardCommand = boardService.selectboardContents(num);
+			mav.addObject("boardCommand", boardCommand);
+			return mav;
+		}
+	
+	// 본인확인 GET
+	@RequestMapping(value="/question/qpw.do", method=RequestMethod.GET)
+	public ModelAndView pw() {
+		ModelAndView mav = new ModelAndView("qpw");
 		return mav;
 	}
+	
+	// 본인확인 POST
+		@RequestMapping(value="/question/qpw.do", method=RequestMethod.POST)
+		public ModelAndView pw(@RequestParam("num") int num, @RequestParam("pw") String pw, @RequestParam("buttonValue") String state) {
+			ModelAndView mav = new ModelAndView("qpw");
+			System.out.println("Contnum::"+num);
+			
+			String dbpw = boardService.selectPW(num); //게시판 번호에 맞는 비밀번호
+			System.out.println("dbpw ::" + dbpw);
+			int x = -1;
+			String bt="";
+			
+			if(dbpw.equals(pw)){
+				System.out.println("비밀번호 같음");
+				x = 1;
+				if(state.equals("content")){
+					bt="1";
+				}
+			} else{
+				System.out.println("비밀번호 틀림");
+			}
+			
+			mav.addObject("num", num);
+			mav.addObject("pw", pw);
+			mav.addObject("bt", bt);
+			mav.addObject("x", new Integer(x));
+			
+			return mav;
+		}
+	
 
 	// 글 조회시 카운트 증가
 	public void updateCnt(int num) {
@@ -218,7 +210,6 @@ public class QuestionController {
 		upload(filename);
 		return "qlist";
 	}
-
 	// 파일 업로드
 	public void upload(MultipartFile report) {
 		String name = report.getOriginalFilename();
@@ -234,4 +225,5 @@ public class QuestionController {
 			e.printStackTrace();
 		}
 	}*/
+
 }

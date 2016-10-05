@@ -20,7 +20,22 @@ public class PageHandler {
 	public void setQuestionDAO(QuestionDAO questionDAO) {
 		this.questionDAO = questionDAO; 
 	}
-
+	/*
+	 * 		/*
+		// 전체 페이지 갯수
+		int totalPageCnt = pageHandler.QboardPageCount();  //0
+		// 전체 게시글수
+		int totalCnt = pageHandler.QboardAllNumber();
+		
+		// startPage, endPage
+		int startPage = pageHandler.boardStartPage(pageNum);
+		int endPage = pageHandler.QboardEndPage(pageNum);
+	
+		// 처음, 마지막 rowNumber
+		List<Object> rowNumberList = new ArrayList<Object>();
+		rowNumberList = pageHandler.boardSetPageNumber(pageNum);
+		list = boardService.selectBoardList(map); //페이지 갯수만큼 가져온 값을 list에 저장
+*/
 
 	// 페이지 사이즈, 페이지 그룹
 	private final int PAGESIZE = 10;

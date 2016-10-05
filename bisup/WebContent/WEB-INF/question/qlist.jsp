@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!-- 
-이미래
-공지사항 리스트-->
+<!-- 이미래 공지사항 리스트-->
 <html>
 <head>
 <title>title</title>
@@ -13,7 +11,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
-
     //something is entered in search form
     $('#system-search').keyup( function() {
        var that = this;
@@ -37,7 +34,6 @@ $(document).ready(function() {
             {
                 $('.search-query-sf').remove();
             }
-
             if( rowText.indexOf( inputText ) == -1 )
             {
                 //hide rows
@@ -57,8 +53,6 @@ $(document).ready(function() {
         }
     });
 });
-
-
 </script>
 <!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
 </head>
@@ -92,11 +86,11 @@ $(document).ready(function() {
                     	<c:when test="${fn:length(list) > 0}">
                     		<c:forEach items="${list}" var="list">
                     			<tr>
-                    				<td><c:out value="${list.num }"/></td>
-                    				<td><c:out value="${list.writer}"/></td>
-                    				<td><a href="/question/qcontents.do?num=<c:out value='${list.num}'/>"><c:out value="${list.title}"/></a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
-                    				<td><c:out value="${list.cnt}"/></td>
-                    				<td><c:out value="${list.reg}"/></td>
+                    				<td>${list.NUM}</td>
+                    				<td>${list.WRITER}</td>
+                    				<td><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}">${list.TITLE}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td>${list.CNT}</td>
+                    				<td>${list.REG}</td>
                     			</tr>
                     		</c:forEach>
                     	</c:when>
