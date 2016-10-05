@@ -20,7 +20,7 @@ public class QuestionDAO extends SqlSessionDaoSupport {
 	
 	//글 내용 보기
     public BoardCommand selectBoardContents(int num){
-    	return getSqlSession().selectOne("board.selectBoardContents", num);
+    	return getSqlSession().selectOne("board.selectboardContents", num);
     }
     
     //글쓰기
@@ -45,10 +45,7 @@ public class QuestionDAO extends SqlSessionDaoSupport {
     
     // 전체 글 개수
  	public int allCnt(){
- 		int read =getSqlSession().selectOne("board.allCnt");
- 		System.out.println("DAO :: " + read);
- 		return read;
- 		
+ 		return getSqlSession().selectOne("board.allCnt");
  		} 
  	
  	//글조회시 비밀번호 확인
