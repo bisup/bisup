@@ -151,3 +151,4 @@ public class MyStoreController {
 	public String viewChattingPage(){
 		return "chat";
 }}
+

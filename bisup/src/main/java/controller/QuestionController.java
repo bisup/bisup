@@ -3,6 +3,7 @@ package controller;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -44,14 +45,14 @@ public class QuestionController {
 	}
 	
 	ModelAndView mav = null;
-//됨?
+
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
 	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<BoardCommand> list = null;
+		List<BoardCommand> list = getList();
 		
-		mav = new ModelAndView();
+		mav = new ModelAndView("qlist");
 		int pageNum = 1;
 		int pagesize = 10;
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -63,13 +64,14 @@ public class QuestionController {
 		
 		System.out.println("map사이즈" + map.size());
 		int cnt = boardService.allCnt(); //전체 글 갯수
-		//cnt가  0이면 저장된 글 없음
+		/*//cnt(전체 글 갯수가)가  0이면 저장된 글 없음
 		if(cnt > 0) {
 			list=boardService.selectBoardList(map);
-		}
-		int number = cnt - (pageNum -1) * pagesize; //수
+		}*/
+		//int number = cnt - (pageNum -1) * pagesize; 
 		
 		System.out.println(list.toString());
+		System.out.println(list.get(0));
 		
 		/****페이지 수 연산****/
 		int pageCount = cnt/ pagesize + (cnt % pagesize == 0 ? 0 : 1);
@@ -78,23 +80,6 @@ public class QuestionController {
         int endPage = startPage + pageBlock-1;
         if (endPage > pageCount) endPage = pageCount;
 		
-		/*
-		// 전체 페이지 갯수
-		int totalPageCnt = pageHandler.QboardPageCount();  //0
-
-		// 전체 게시글수
-		int totalCnt = pageHandler.QboardAllNumber();
-		
-		// startPage, endPage
-		int startPage = pageHandler.boardStartPage(pageNum);
-		int endPage = pageHandler.QboardEndPage(pageNum);
-	
-		// 처음, 마지막 rowNumber
-		List<Object> rowNumberList = new ArrayList<Object>();
-		rowNumberList = pageHandler.boardSetPageNumber(pageNum);
-		list = boardService.selectBoardList(map); //페이지 갯수만큼 가져온 값을 list에 저장
-*/
-        
 		mav.addObject("pageNumber", pageNum); //페이지 번호
 		mav.addObject("totalcnt", cnt); //전체 글 수
 		mav.addObject("pageCount", pageCount); //페이지 수
@@ -102,9 +87,29 @@ public class QuestionController {
 		mav.addObject("endPage", endPage); //끝 페이지
 		mav.addObject("list", list);
 
-		mav.setViewName("qlist");
 		return mav;
 	}
+	
+	
+	private List<BoardCommand> getList() throws Exception{
+		List<BoardCommand> list = new ArrayList<>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int pageNum = 1;
+		int pagesize = 10;
+		int startRow=(pageNum * 10) - 9;
+		int endRow =(pageNum * pagesize) ;
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		int cnt = boardService.allCnt(); //전체 글 갯수
+		//cnt(전체 글 갯수가)가  0이면 저장된 글 없음
+		if(cnt > 0) {
+			list=boardService.selectBoardList(map);
+		}
+		
+		return list;
+	}
+	
+	
 
 	// 글 내용 보기
 	@RequestMapping(value = "/question/qcontents.do", method = RequestMethod.POST)
@@ -218,7 +223,6 @@ public class QuestionController {
 		upload(filename);
 		return "qlist";
 	}
-
 	// 파일 업로드
 	public void upload(MultipartFile report) {
 		String name = report.getOriginalFilename();

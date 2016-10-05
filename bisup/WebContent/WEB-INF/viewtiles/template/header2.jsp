@@ -89,7 +89,7 @@
           </ul>
         </li>
         
-        <li><a href="#">마이페이지</a></li>
+        <li><a href="/bisup/bisup/mypage/modifyCheck.do">마이페이지</a></li>
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

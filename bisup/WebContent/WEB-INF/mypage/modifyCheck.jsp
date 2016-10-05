@@ -11,7 +11,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-
 </style>
 <title>Insert title here</title>
 </head>
@@ -23,7 +22,7 @@ $(document).ready(function() {
 	  //post방식으로 돌아왔을때 
 		if(${x == 1}){// 비밀번호 일치
 				if(${bt==1}){//정보수정버튼
-		 		 document.location.href="/bisup/my/mypage/modifyForm.do";
+		 		 document.location.href="/bisup/bisup/mypage/modifyForm.do";
 					}
 				else if(${bt==2}){	//탈퇴버튼
 					if(confirm("정말 삭제하시겠습니까?")===true){
@@ -39,7 +38,6 @@ $(document).ready(function() {
 });
 </script>
 <script>
-
 /* 비밀번호 일치여부 확인 함수 수정 필요*/
   
   function sub(action){
@@ -80,7 +78,6 @@ $(document).ready(function() {
 	
  /* $(document).ready(function () {
 		
-
 		$('#normal-btn-info').click(function() {
 			if($("#agreeRadio").is(':checked') == false ){
 			$('.alert-normal-info').show();
@@ -94,7 +91,6 @@ $(document).ready(function() {
 			$(this).parent().hide();
  	});	
 		
-
 }); */
 </script>
 <body>
