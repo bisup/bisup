@@ -23,7 +23,7 @@ $(document).ready(function() {
 	  //post방식으로 돌아왔을때 
 		if(${x == 1}){// 비밀번호 일치
 				if(${bt==1}){//정보수정버튼
-		 		 document.location.href="/bisup/my/mypage/modifyForm.do";
+		 		 document.location.href="/bisup/bisup/mypage/modifyForm.do";
 					}
 				else if(${bt==2}){	//탈퇴버튼
 					if(confirm("정말 삭제하시겠습니까?")===true){

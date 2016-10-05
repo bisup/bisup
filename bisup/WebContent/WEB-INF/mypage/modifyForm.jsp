@@ -113,7 +113,7 @@
                
               
                 <div class="form-group">
-                  <input type="submit" class="btn btn-success btn-block"  value="정보 수정" onclick="submit()">
+                  <input type="submit" class="btn btn-success btn-block"  value="정보 수정">
                 </div>
         
               </form:form>
