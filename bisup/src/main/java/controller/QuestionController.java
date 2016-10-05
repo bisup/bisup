@@ -112,7 +112,7 @@ public class QuestionController {
 		boardService.insertBoard(boardCommand);
 		return mav;
 	}
-
+//글수정
 	// 글 수정 폼
 	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam("num") int num) throws Exception {
