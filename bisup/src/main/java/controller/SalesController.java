@@ -52,7 +52,7 @@ public class SalesController {
 	}
 
   
-//	---------------------매출 차트----------------------------------
+//	---------------------월별 매출 차트----------------------------------
 	
 	@RequestMapping(value="/drawChart.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	public void drawDayChart(HttpServletResponse response, 

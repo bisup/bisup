@@ -67,6 +67,7 @@
 	</bean>
 	<context:annotation-config/>
 	
+	
 	<!-- 컨트롤러 빈 등록 -->
 <!-- 	<bean id="sales" class="controller.SalesController" p:salesDao-ref="salesDao" p:saleChartAction-ref="saleChartAction"/> -->
 	<bean id="sales" class="controller.SalesController" p:saleChartAction-ref="saleChartAction"/>

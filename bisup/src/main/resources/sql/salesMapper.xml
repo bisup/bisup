@@ -6,12 +6,6 @@ select item,price from menu where id=#{id}
 </select>
 
 	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
-<!-- select substr(sdate,1,5),sum(total) from sale where id=#[id] group by substr(sdate,1,5) -->
-<!-- 		select to_char(sdate,'yyyy.mm'),sum(total) from sale where id=#[id] group by to_char(sdate,'yyyy.mm') -->
-<!-- select sdate,sum(total) total from sale where id=#{id} group by sdate -->
-<!-- select ea,sum(total) total from sale group by ea -->
-<!-- select to_char(sdate,'mm'),sum(total) from sale where id='java' group by to_char(sdate,'mm') -->
-<!-- select substr(sale.sdate,4,2),sum(total) from sale group by substr(sale.sdate,4,2) -->
- select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale group by to_char(sdate,'mm'))
+ select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id='java' group by to_char(sdate,'mm') order by mon)
 	</select>
 </mapper>
