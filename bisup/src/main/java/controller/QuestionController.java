@@ -1,16 +1,8 @@
 package controller;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import command.BoardCommand;
 import dao.QuestionDAO;
 import service.QuestionServiceImple;
@@ -26,7 +17,6 @@ import service.QuestionServiceImple;
 @Controller
 public class QuestionController {
 	
-	//@Resource(name = "boardService")
 	@Autowired
 	private QuestionServiceImple boardService;
 	public void setBoardService(QuestionServiceImple boardService) {
@@ -45,7 +35,7 @@ public class QuestionController {
 		this.dao = dao;
 	}
 	ModelAndView mav = null;
-//됨?
+	
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
@@ -180,23 +170,28 @@ public class QuestionController {
 	
 	// 본인확인 POST
 		@RequestMapping(value="/question/qpw.do", method=RequestMethod.POST)
-		public ModelAndView pw(@RequestParam("num") int num, @RequestParam("pw") String pw) {
+		public ModelAndView pw(@RequestParam("num") int num, @RequestParam("pw") String pw, @RequestParam("buttonValue") String state) {
 			ModelAndView mav = new ModelAndView("qpw");
-			BoardCommand boardCommand = new BoardCommand();
-			System.out.println("pw::"+pw);
+			System.out.println("Contnum::"+num);
+			
 			String dbpw = boardService.selectPW(num); //게시판 번호에 맞는 비밀번호
+			System.out.println("dbpw ::" + dbpw);
 			int x = -1;
-			boardCommand.setNum(num);
+			String bt="";
 			
 			if(dbpw.equals(pw)){
 				System.out.println("비밀번호 같음");
 				x = 1;
+				if(state.equals("content")){
+					bt="1";
+				}
 			} else{
 				System.out.println("비밀번호 틀림");
 			}
 			
 			mav.addObject("num", num);
 			mav.addObject("pw", pw);
+			mav.addObject("bt", bt);
 			mav.addObject("x", new Integer(x));
 			
 			return mav;

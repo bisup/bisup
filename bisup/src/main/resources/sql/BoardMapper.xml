@@ -48,7 +48,7 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 	<select id="selectPW" parameterType="int" resultType="String">
 		select pw 
 		from question 
-		where num = ${num}
+		num = ${num}
 	</select>
 
 </mapper>
