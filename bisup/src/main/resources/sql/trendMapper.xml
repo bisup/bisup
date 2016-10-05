@@ -4,7 +4,11 @@
 <mapper namespace="trend">
  
 <select id="list" parameterType="String" resultType="int">
-select sum(ea) from sale where item=#{item}
+	select sum(ea) from sale where item = #{item} 
+</select>
+
+<select id="concerting" parameterType="string" resultType="command.consultingCommand">
+	select * from retail where division = #{division}
 </select>
 
 </mapper>

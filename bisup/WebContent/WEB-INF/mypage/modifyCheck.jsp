@@ -11,11 +11,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-
 </style>
 <title>Insert title here</title>
 </head>
 <script>
+
+
 /* 비밀번호 일치여부 확인 */
 $(document).ready(function() {
 	
@@ -36,10 +37,10 @@ $(document).ready(function() {
 			alert("비밀번호가 일치하지 않습니다.");
 				}
 			}
+
 });
 </script>
 <script>
-
 /* 비밀번호 일치여부 확인 함수 수정 필요*/
   
   function sub(action){
@@ -49,13 +50,14 @@ $(document).ready(function() {
 		 $('#buttonValue').val('update');
 		//input.value="update";
 	}
+
 	else if(action===2){
-		//탈퇴
 				$('#buttonValue').val('delete');	
 		}
 		
 	/* document.login-recordar.submit(); */
 	$("#login-recordar").submit();
+
 } 
  
  
@@ -80,7 +82,6 @@ $(document).ready(function() {
 	
  /* $(document).ready(function () {
 		
-
 		$('#normal-btn-info').click(function() {
 			if($("#agreeRadio").is(':checked') == false ){
 			$('.alert-normal-info').show();
@@ -94,7 +95,6 @@ $(document).ready(function() {
 			$(this).parent().hide();
  	});	
 		
-
 }); */
 </script>
 <body>

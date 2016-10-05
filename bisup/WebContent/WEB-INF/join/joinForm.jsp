@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,9 +143,33 @@ article[role="login"] p {
 </style>
 <title>Insert title here</title>
 <script type="text/javascript">
-function serch(){
-	window.open('checkId.do?id=','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550');
-}
+
+$(function(){
+	$('#id').blur(function(){
+		$.ajax({
+			type:"POST",
+			url:"checkId.do",
+			data:{
+				"id":$('#id').val()
+			},
+			dataType:"json",
+			success:function(data){
+				//var b=Number(1);
+				//var i=parseInt(args.x);
+			/* 	args.x.typeofValue */
+				if(data.x == 1){
+					alert("아이디 중복입니다.");
+					$('#id').val('');	
+				}else{
+					alert("아이디사용가능합니다.");			
+					}
+			}
+		});
+	});
+});
+
+
+
 </script>
 </head>
 <body>
@@ -174,33 +199,35 @@ function serch(){
               <article role="login">
                 <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가입</h3>
                 
-                <form:form commandName="member" class="signup">
+                <form:form commandName="member" class="signup" name="myform">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-           	 <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onblur="javascript:window.open('checkId.do?id=this','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
+
+           	 <input type="text" name="id" id="id" class="form-control" value="" placeholder="아이디를 입력해주세요" required="필수입력창입니다"/>
+
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required=""/>
+                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required="필수입력창입니다"/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required=""/>
+                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required="필수입력창입니다"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required=""/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required="필수입력창입니다"/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요"required=""/>
+                    <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요"required="필수입력창입니다"/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
                     <div class="form-group input-group">
           <span class="input-group-addon">
             @
           </span>
-          <input class="form-control" placeholder="Email" name="email" type="email" required=""/>
+          <input class="form-control" placeholder="Email" name="email" type="email" required="필수입력창입니다"/>
         </div>
                 
                   <div class="form-group">

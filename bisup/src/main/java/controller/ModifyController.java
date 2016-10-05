@@ -49,7 +49,9 @@ import dao.MypageDAO;
 		membercommand.setId(id);
 		ModelAndView mav =new ModelAndView();
 		System.out.println("버튼값은 "+state + "이고, input 비밀번호값은 " + ipw);
+
 		String bt="";
+
 		String cpw = mypageDAO.Checkpw(id);
 		System.out.println("controller cpw="+cpw);  
 		
@@ -60,15 +62,17 @@ import dao.MypageDAO;
 				bt="1";
 			}
 			else if(state.equals("delete")){
+
 				bt="2";
 			}	
+
 		}
 		
 		mav.setViewName("modifyCheck");
 		mav.addObject("x",new Integer(x));
 		mav.addObject("bt", bt);
 		System.out.println("x="+x+"bt="+bt);
-		//mav.addObject("x",new Integer(x));
+
 				return mav;
 	}
 	

@@ -45,13 +45,13 @@ public class QuestionController {
 		this.dao = dao;
 	}
 	ModelAndView mav = null;
-
+//됨?
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
 	public ModelAndView list() throws Exception {
 		List<BoardCommand> list = null;
-		
+
 		mav = new ModelAndView("qlist");
 		int pageNum = 1;
 		int pagesize = 10;
@@ -64,6 +64,11 @@ public class QuestionController {
 		
 		int cnt = boardService.allCnt(); //전체 글 갯수
 		//cnt(전체 글 갯수가)가  0이면 저장된 글 없음
+		if(cnt > 0) {
+			list=boardService.selectBoardList(map);
+		}
+		int number = cnt - (pageNum -1) * pagesize; //수
+		
 		if(cnt > 0) {
 			list=boardService.selectBoardList(map);
 		}
@@ -210,7 +215,6 @@ public class QuestionController {
 		upload(filename);
 		return "qlist";
 	}
-
 	// 파일 업로드
 	public void upload(MultipartFile report) {
 		String name = report.getOriginalFilename();
@@ -226,4 +230,5 @@ public class QuestionController {
 			e.printStackTrace();
 		}
 	}*/
+
 }

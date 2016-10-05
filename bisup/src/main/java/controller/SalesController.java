@@ -75,4 +75,3 @@ public class SalesController {
 		return "drawMonChart";
 	}
 }
-

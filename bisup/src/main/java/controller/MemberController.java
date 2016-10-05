@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import command.MemberCommand;
 import dao.JoinDAO;
 import mail.CreateCode;
 import mail.SendEmail;
+import net.sf.json.JSONObject;
 import validator.LoginCommandValidator;
 
 
@@ -81,10 +86,8 @@ public class MemberController {
 	public String insertmem(@ModelAttribute("member") MemberCommand memberCommand,
 			BindingResult result, HttpSession session) throws MessagingException{
 		new LoginCommandValidator().validate(memberCommand, result);
+		checkDuplicateId(memberCommand.getId(), result);
 	    String getKey = code.randomCode();
-		if (result.hasErrors()) {
-			return "bisup_login/loginfail";
-		}
 		try{
 			int x=joinDao.insertMember(memberCommand);
 			checkDuplicateId(memberCommand.getId(),result);
@@ -119,13 +122,12 @@ public class MemberController {
 			System.out.println("::"+id+"::"+key+"::"+sessionKey+":::::"+"전에 -> 후");
 			int check = 0 ; //인증성공여부를 전달하기 위한 변수
 			if (key.equals(sessionKey)){
-				JoinDAO jd=new JoinDAO();
-				check=jd.upcerti(id);
+				joinDao.upcerti(id);
 			/*세션에 저장된 키값과 파라메터로 받은 키값을 비교하여 인증값을 바꾸는 메서드 실행*/
 			}
 			System.out.println("::"+id+"::"+key+"::"+sessionKey+":::::"+check);
 			HashMap hp=new HashMap();
-			hp.put("check", check);
+			//hp.put("check", check);
 			
 			mvc.setViewName("join/certifyKey");
 			mvc.addObject(hp);
@@ -152,26 +154,33 @@ public class MemberController {
     }
     
 	public void checkDuplicateId(String id,BindingResult errors){
-		List mc=joinDao.selectall();
+
+		List mc=joinDao.select();
 		if(id.equals(mc)) {
 			errors.rejectValue("id", "duplicate");
 		}
+
 }
 	
 	 
-	  @RequestMapping(value="/checkId.do")
-	public ModelAndView checkId(@RequestParam("id")String id){
-		ModelAndView mav=new ModelAndView();
-		List mc=joinDao.selectall();
+
+	 
+	  @RequestMapping(value="/checkId.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String checkId(@RequestParam("id")String id,HttpServletResponse resp) throws Exception{
+		resp.setContentType("text/html; charset=UTF-8");
 		int x=0;
-		if(id.equals(mc)) {
-			 x=1;
+		JSONObject jso = new JSONObject();
+		int mc=joinDao.selectall(id);
+		if(mc>0){
+			x=1;
+			jso.put("x",x);
+			return jso.toString();
 		}else{
-			x=0;
-		}
-		mav.setViewName("join/checkId");
-		mav.addObject("x",x);
-		return mav;
+			jso.put("x",x);
+			return jso.toString();
+		}         
+		}	
 }
-}
+
  

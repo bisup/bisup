@@ -24,7 +24,6 @@ public class PageHandler {
 	 * 		/*
 		// 전체 페이지 갯수
 		int totalPageCnt = pageHandler.QboardPageCount();  //0
-
 		// 전체 게시글수
 		int totalCnt = pageHandler.QboardAllNumber();
 		
@@ -37,8 +36,6 @@ public class PageHandler {
 		rowNumberList = pageHandler.boardSetPageNumber(pageNum);
 		list = boardService.selectBoardList(map); //페이지 갯수만큼 가져온 값을 list에 저장
 */
-
-
 
 	// 페이지 사이즈, 페이지 그룹
 	private final int PAGESIZE = 10;

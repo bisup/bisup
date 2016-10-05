@@ -11,8 +11,8 @@
 		
 	<!-- @어노테이션 적용 필수 -->
 	<context:annotation-config/>
-	<bean class="controller.TrendController" /> <!-- 매출트렌드 -->
-	<bean class="controller.ConcertingController" /> <!-- 창업컨설팅 -->
+	<bean class="controller.TrendController" p:dao-ref="dao1"/> <!-- 매출트렌드 -->
+	<bean class="controller.ConcertingController" p:dao2-ref="dao2"/> <!-- 창업컨설팅 -->
 
 	<context:property-placeholder location="classpath:db.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -28,7 +28,11 @@
 		<property name="mapperLocations" value="classpath:sql/*.xml" />
 	</bean>
 
-	<bean id="dao" class="dao.TrendDAO">
+	<bean id="dao1" class="dao.TrendDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
+	
+	<bean id="dao2" class="dao.consultingDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
 		

@@ -70,9 +70,7 @@
 	<bean class="controller.QuestionController">
 		 <property name="boardService" ref="boardService"/>
 	</bean>
-	 
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="main" class="controller.MainController"/>
 	<bean class="controller.ModifyController"/>
 </beans>
-  

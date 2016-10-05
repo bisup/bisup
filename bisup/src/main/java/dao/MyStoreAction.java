@@ -32,18 +32,29 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 		return menuByPrice;
 	}
 	
-	public MenuCommand isInsertOrUpdate(Map info){
-		MenuCommand result = getSqlSession().selectOne("mystore.isInsertOrUpdate", info);
-		return result;
+	public int isInsertOrUpdate(Map info){
+		System.out.println("입력/수정 데이터 테스트 id:::"+info.get("id")+", item:::"+info.get("item"));
+		int check = 0;
+		check = getSqlSession().selectOne("mystore.isInsertOrUpdate", info);
+		return check;
 	}
 	
 	public int insertMenu(MenuCommand command){
+		System.out.println("메뉴입력 데이터 테스트 id:::"+command.getId()+", item:::"+command.getItem()+", price:::"+command.getPrice());
 		int check = 0; check=getSqlSession().insert("mystore.insertMenu", command);
 		return check;
 	}
 	
 	public int updateMenu(MenuCommand command){
+		System.out.println("메뉴수정 데이터 테스트 id:::"+command.getId()+", item:::"+command.getItem()+", price:::"+command.getPrice());
 		int check = 0; check=getSqlSession().update("mystore.updateMenu", command);
+		return check;
+	}
+	
+	public int deleteMenu(Map info){
+		System.out.println("메뉴삭제 테스트 id:::"+info.get("id")+", item:::"+info.get("item"));
+		int check = 0;
+		check = getSqlSession().delete("mystore.deleteMenu", info);
 		return check;
 	}
 }

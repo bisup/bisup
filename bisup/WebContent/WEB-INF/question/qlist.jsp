@@ -11,7 +11,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
-
     //something is entered in search form
     $('#system-search').keyup( function() {
        var that = this;
@@ -35,7 +34,6 @@ $(document).ready(function() {
             {
                 $('.search-query-sf').remove();
             }
-
             if( rowText.indexOf( inputText ) == -1 )
             {
                 //hide rows
@@ -55,8 +53,6 @@ $(document).ready(function() {
         }
     });
 });
-
-
 </script>
 <!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
 </head>
