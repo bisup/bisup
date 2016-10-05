@@ -1,16 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-request.setCharacterEncoding("utf-8");  
+request.setCharacterEncoding("utf-8"); 
 %>
-
 <html>
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['line']});
-      google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+	google.charts.load('current', {packages: ['corechart', 'line']});
+	google.charts.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+    var chartData;
 	var param={id:'${id}'};
 	var url='/bisup/sales/drawChart.do';
 	$.ajax({
@@ -19,46 +23,42 @@ request.setCharacterEncoding("utf-8");
 		,data:param
 		,dataType:"json"
 		,success:function(args){
-    	var data = new google.visualization.arrayToDataTable([
-// 	['mon','tot'],
-// 	[args.data[0].mon,args.data[0].tot],
-// 	[args.data[1].mon,args.data[1].tot],
-// 	[args.data[2].mon,args.data[2].tot],
-// 	[args.data[3].mon,args.data[3].tot],
-// 	[args.data[4].mon,args.data[4].tot],		
-// 	]);
- 
-    	['tot','mon'],
-    	[args.data[0].tot,args.data[0].mon],
-    	[args.data[1].tot,args.data[1].mon],
-    	[args.data[2].tot,args.data[2].mon],
-    	[args.data[3].tot,args.data[3].mon],
-    	[args.data[4].tot,args.data[4].mon],		
-    	]);
-     
-var options = {
-        chart: {title: '월별 매출'},
-        width: 900,
-        height: 500,
-        axes: {
-          x: {
-            0: {side: 'top'}
-          }
-        }
-      };
+			// Create the data table.
+	        chartData = new google.visualization.arrayToDataTable([
+			['월','매출'],
+			[args.data[0].mon,args.data[0].tot],
+			[args.data[1].mon,args.data[1].tot],
+			[args.data[2].mon,args.data[2].tot],
+			]); 
 
-	var view = new google.visualization.DataView(data);
 
-      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+	var view = new google.visualization.DataView(chartData);
+      var options = {
+    		  'width':500,
+              'height':500,
+        hAxis: {
+          title: '월별',
+       	  ticks: [1,2,3,4,5,6,7,8,9,10,11,12]
+        },
+        vAxis: {
+          title: '매출 금액'
+        },
+        colors: ['#15A0C8'],
+        series: {
+            0: { pointShape: { type: 'star', sides: 5} }},
+        pointSize: 20,
+             	     	
+      };
 
-      chart.draw(data, options);
-    }
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+  
+     chart.draw(chartData, options);
+  }
 	});
-}
-
-  </script>
+    }
+  </script>
 </head>
 <body>
-  <div id="line_top_x"></div>
+  <div id="chart_div"></div>
 </body>
 </html>

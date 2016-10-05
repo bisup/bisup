@@ -12,6 +12,6 @@ select item,price from menu where id=#{id}
 <!-- select ea,sum(total) total from sale group by ea -->
 <!-- select to_char(sdate,'mm'),sum(total) from sale where id='java' group by to_char(sdate,'mm') -->
 <!-- select substr(sale.sdate,4,2),sum(total) from sale group by substr(sale.sdate,4,2) -->
- select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale group by to_char(sdate,'mm'))
+ select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id='java' group by to_char(sdate,'mm') order by mon)
 	</select>
 </mapper>

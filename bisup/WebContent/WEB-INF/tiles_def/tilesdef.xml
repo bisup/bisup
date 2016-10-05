@@ -145,5 +145,21 @@
 		<put-attribute name="title" value="test" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/testInfo.jsp" />
 	</definition>
+	
+		
+	<!--   이수나 매출 등록   --> 
+ <definition name="salesInserting" extends="base_layout">
+  <put-attribute name="title" value="매출등록" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" /> 
+  </definition>
+ <definition name="salesInsertingPro" extends="base_layout">
+  <put-attribute name="title" value="매출등록완료" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/salesInsertingPro.jsp" /> 
+  </definition>
+ <definition name="drawMonChart" extends="base_layout">
+  <put-attribute name="title" value="매출등록완료" /> 
+  <put-attribute name="body" value="/WEB-INF/sales/drawMonChart.jsp" /> 
+  </definition>
+	
 
 </tiles-definitions>
