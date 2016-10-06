@@ -109,7 +109,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/bisup_trend/business_trend.jsp" />
 	</definition>
-
+ 
 	<!-- 백상휘 작업 -->
 	<definition name="menuInserting" extends="base_layout">
 		<put-attribute name="title" value="메뉴등록" />

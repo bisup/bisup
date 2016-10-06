@@ -63,7 +63,7 @@
 			/* 함수 정의 */
 			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
-		}
+		} 
 	</script>
 </head>
 <body>
