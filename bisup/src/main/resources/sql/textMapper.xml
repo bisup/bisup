@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="text">
 	<select id="selectText" parameterType="String" resultType="command.MemoCommand">
-		select * from memo where id=#{id} and mreg>=mreg-2 and mreg+2>=mreg
+		select * from memo where sub=#{id} and mreg>=mreg-2 and mreg+2>=mreg
 	</select>
 	<insert id="insertText" parameterType="command.MemoCommand">
-		insert into memo values(#{send},#{sub},#{mtitle},#{mcontents},sysdate)
+		insert into memo values(#{send},#{sub},null,#{mcontents},sysdate)
 	</insert>
 	
 </mapper>

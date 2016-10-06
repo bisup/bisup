@@ -12,8 +12,8 @@ import command.MenuCommand;
 
 public class SocketDAO extends SqlSessionDaoSupport {
 
-	public ArrayList<MemoCommand> selectText(String id){
-		ArrayList<MemoCommand> textList = new ArrayList<MemoCommand>();
+	public ArrayList selectText(String id){
+		ArrayList textList = new ArrayList();
 		textList=(ArrayList) getSqlSession().selectList("text.selectText", id);
 		return textList;
 	}
