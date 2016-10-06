@@ -301,7 +301,7 @@ function mouseOutMap()
 					reqFunc(reqParam);
 				}
 			});
-		}
+		}         
 	}
 
 	$(document).ready(function addArea() {
