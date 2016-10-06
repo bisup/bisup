@@ -149,9 +149,9 @@
 	</definition>
 	
 	<!-- 상권분석  -->
-	<definition name="areainfo" extends="base_layout">
+	<definition name="mpinfo" extends="base_layout">
 		<put-attribute name="title" value="test" />
-		<put-attribute name="body" value="/WEB-INF/areaInfo/testInfo.jsp" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp" />
 	</definition>
 	
 		
@@ -169,5 +169,10 @@
   <put-attribute name="body" value="/WEB-INF/sales/drawMonChart.jsp" /> 
   </definition>
 	
+	<!--지형정보검색  -->
+	<definition name="salesarea" extends="base_layout">
+		<put-attribute name="title" value="지형상권정보" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/salesarea.jsp" />
+	</definition>
 
 </tiles-definitions>
