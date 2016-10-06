@@ -82,32 +82,32 @@
 	<definition name="relation" extends="base_layout">
 		<put-attribute name="title" value="연관 사이트 입니다." />
 		<put-attribute name="body"
-			value="/WEB-INF//bisup_concerting/relation.jsp" />
+			value="/WEB-INF/bisup_concerting/relation.jsp" />
 	</definition>
 
 	<definition name="manual" extends="base_layout">
 		<put-attribute name="title" value="창업 메뉴얼 페이지 입니다." />
 		<put-attribute name="body"
-			value="/WEB-INF//bisup_concerting/manual.jsp" />
+			value="/WEB-INF/bisup_concerting/manual.jsp" />
 	</definition>
 
 	<definition name="info_customer" extends="base_layout">
 		<put-attribute name="title" value="거래처 정보 검색 페이지 입니다." />
 		<put-attribute name="body"
-			value="/WEB-INF//bisup_concerting/info_customer.jsp" />
+			value="/WEB-INF/bisup_concerting/info_customer.jsp" />
 	</definition>
 
 	<!-- 매출 및 업종 보고서 -->
 	<definition name="sales_trend" extends="base_layout">
 		<put-attribute name="title" value="매출정보 페이지 입니다." />
 		<put-attribute name="body"
-			value="/WEB-INF//bisup_trend/sales_trend.jsp" />
+			value="/WEB-INF/bisup_trend/sales_trend.jsp" />
 	</definition>
 
 	<definition name="business_trend" extends="base_layout">
 		<put-attribute name="title" value="매출정보 페이지 입니다." />
 		<put-attribute name="body"
-			value="/WEB-INF//bisup_trend/business_trend.jsp" />
+			value="/WEB-INF/bisup_trend/business_trend.jsp" />
 	</definition>
 
 	<!-- 백상휘 작업 -->
