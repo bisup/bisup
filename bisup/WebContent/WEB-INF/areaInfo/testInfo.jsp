@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-
+  
 <head>
     <title>SOP JavaScript : Polygon sample</title>
     <meta charset="utf-8">
