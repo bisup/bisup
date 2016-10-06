@@ -149,9 +149,9 @@
 	</definition>
 	
 	<!-- 상권분석  -->
-	<definition name="areainfo" extends="base_layout">
+	<definition name="mpinfo" extends="base_layout">
 		<put-attribute name="title" value="test" />
-		<put-attribute name="body" value="/WEB-INF/areaInfo/testInfo.jsp" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp" />
 	</definition>
 	
 		

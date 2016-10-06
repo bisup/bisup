@@ -19,7 +19,7 @@
 
 <br>
 
-<a href="<c:url value='/my/areaInfo/testInfo.do'/>">testInfo</a>
+<a href="<c:url value='/my/areaInfo/testInfo.do'/>">MPInfo</a>
 
 
 </body>
