@@ -86,5 +86,6 @@
 	</bean>
 	
 	<bean class="controller.AreaInfoController"/>
+	<bean class="controller.Sgiscontroller"/>
 	
 </beans>
