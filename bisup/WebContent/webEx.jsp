@@ -26,6 +26,7 @@ request.setCharacterEncoding("utf-8");
       onMessage(event)
     };
     function onMessage(event) {
+    	$("#textWindows").append("<p align='right'>"+args.data+"님으로부터의 쪽지");
         //textarea.value += "나나 : " + event.data + "\n";//다른사람에게 출력될 출력문
         /* var url="/bisup/mystore/Broadcasting/onMessage.do";
         var param=event.data;
@@ -80,7 +81,7 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			$("#textWindow").append("<p align='left'>"+args.data+"님에게 전송");
+    			$("#textWindows").append("<p align='left'>"+args.data+"님에게 전송");
     		}
     		,errors:function(args,request,status,error){
 				alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -92,12 +93,7 @@ request.setCharacterEncoding("utf-8");
 </head>
 <body>
 <div id="container">
-    <fieldset >
-        <!-- <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-        <br/>
-        <input id="inputMessage" type="text"/>
-        <input type="submit" value="send" onclick="send()" /> -->
-        
+    <fieldset>        
         <div id="textWindows"></div>
         <input type="text" placeholder="수신자" id="sub">
         <input type="text" placeholder="내용" id="mcontents">

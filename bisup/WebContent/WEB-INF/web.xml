@@ -44,6 +44,15 @@
   <url-pattern>/mystore/*</url-pattern>
 </servlet-mapping>
 
+<!-- 관리자 servlet -->
+<servlet>
+  <servlet-name>dispatcherAdmin</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>dispatcherAdmin</servlet-name>
+  <url-pattern>/admin/*</url-pattern>
+</servlet-mapping>
 
 <servlet>
   <servlet-name>dispatchertrend</servlet-name>

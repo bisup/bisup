@@ -23,4 +23,5 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		check=getSqlSession().insert("text.insertText", command);
 		return check;
 	}
+	
 }
