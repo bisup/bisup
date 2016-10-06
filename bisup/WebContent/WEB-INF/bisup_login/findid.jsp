@@ -33,7 +33,6 @@
 /* .login-signup {
   padding: 0 0 25px;
 } */
-
 .btn-success {
   background: #23bab5;
   border-radius:0;
@@ -41,7 +40,6 @@
   webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
   transition: all 400ms cubic-bezier(.4,0,.2,1);
 }
-
  .btn-success:hover,.btn-success:focus {
   background: rgba(26, 161, 157, 0);
   border: 2px solid #1aa19d;
@@ -49,15 +47,12 @@
   transition: all 400ms cubic-bezier(.4,0,.2,1);
   color: #23BAB5;
 } 
-
 a {
   color: #23bab5;
 }
-
 ul {
   list-style-type: none;
 }
-
 article[role="login"] {
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -67,36 +62,30 @@ article[role="login"] {
   padding: 30px 50px;
   margin-bottom: 20px;
 }
-
 article[role="login"] input[type="submit"] {
   padding: 10px 15px;
   font-size: 16px;
 }
-
 /* article[role="login"]:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(0, 0, 0, 0.23);
   webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
 } */
-
 article[role="login"] h3 {
   font-size: 26px;
   font-weight: 300;
   color: #23bab5;
   margin-bottom: 20px;
 }
-
 article[role="login"] p {
   font-size: 16px;
   padding: 5px 15px;
 }
-
 .nav-tab-holder {
   padding: 0 0 0 30px;
   float: right;
 }
-
 .nav-tab-holder .nav-tabs {
   border: 0;
   float: none;
@@ -104,7 +93,6 @@ article[role="login"] p {
   table-layout: fixed;
   width: 100%;
 }
-
 .nav-tab-holder .nav-tabs > li {
   margin-bottom: -3px;
   text-align: center;
@@ -113,7 +101,6 @@ article[role="login"] p {
   float: none;
   padding: 0;
 }
-
 .nav-tab-holder .nav-tabs > li > a {
   background: #d9d9d9;
   color: #6c6c6c;
@@ -121,21 +108,18 @@ article[role="login"] p {
   font-size: 18px;
   font-weight: 300;
 }
-
 .nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #FFF;
   background-color: #23bab5;
   border: 0;
   border-radius: 0;
 }
-
 .mobile-pull {
   float: right;
 }
 #tab-content{
 	align:middle;
 }
-
 </style>
 </head>
 <body onload="showMsg(${msg})">

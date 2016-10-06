@@ -18,8 +18,16 @@
 <a href="<c:url value='/my/mypage/modifyForm.do'/>">modifyForm</a>
 
 
+
 ----gis사이트 --------
 <a href="http://codefactory.kr/2013/04/02/air-pollution/"></a>
 <a href="http://blog.daum.net/_blog/BlogTypeView.do?blogid=0bnVC&articleno=9"></a>
+
+<br>
+
+<a href="<c:url value='/my/areaInfo/testInfo.do'/>">MPInfo</a>
+
+
+
 </body>
 </html>

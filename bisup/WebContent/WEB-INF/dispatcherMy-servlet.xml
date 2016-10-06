@@ -14,7 +14,7 @@
 <context:annotation-config/>
 
 
-<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/mypage/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -31,8 +31,8 @@
 	
 	<bean class="controller.ModifyController"/>
 	
-	<!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	 프로퍼티스 파일 읽어오기
+	<context:property-placeholder location="classpath:db2.properties" />
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
@@ -50,7 +50,43 @@
 	  <bean id="mypagedao" class="dao.MypageDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
+	 -->
 	
+ 	<!-- 프로퍼티스 파일 읽어오기 -->
+	<!-- <context:property-placeholder location="classpath:db2.properties" />
 	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+>>>>>>> branch 'master' of https://github.com/bisup/bisup
 
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sql/*.xml" />
+	</bean> -->
+	
+	<!--  <bean id="sgisdao" class="dao.SGISDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>  -->
+	 
+	<!-- 타일즈사용 -->
+	<bean id="tilesviewResolver"  
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles_def/tilesdef.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+	</bean>
+	
+	<bean class="controller.AreaInfoController"/>
+	<bean class="controller.Sgiscontroller"/>
+	
 </beans>

@@ -116,7 +116,7 @@
                         <thead>
                             <tr align="center">
                                 <th width="10%">제목</th>
-                                <th width="60%">게시판 제목 입니다.</th>
+                                <th width="60%">${boardCommand.title }</th>
                             </tr>
                         </thead>
                         <tbody>

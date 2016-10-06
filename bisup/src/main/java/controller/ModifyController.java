@@ -43,31 +43,36 @@ import dao.MypageDAO;
 	}
 	
 	@RequestMapping(value="/mypage/modifyCheck.do",method=RequestMethod.POST)
-	public ModelAndView check(@ModelAttribute("member") MemberCommand membercommand,@RequestParam("buttonValue") String state,@RequestParam("inputpw") String ipw){
+	public ModelAndView check(@ModelAttribute("member") MemberCommand membercommand, @RequestParam("buttonValue") String state,@RequestParam("inputpw") String ipw){
 		String id="ss"; //session에 저장되어있는 id값
-		int x=2;
+		int x=-1;
 		membercommand.setId(id);
 		ModelAndView mav =new ModelAndView();
 		System.out.println("버튼값은 "+state + "이고, input 비밀번호값은 " + ipw);
-		
+
+		String bt="";
+
 		String cpw = mypageDAO.Checkpw(id);
 		System.out.println("controller cpw="+cpw);  
 		
 		if(cpw.equals(ipw)){
-			/*if(state.equals("upadate")){
-				return "modifyForm";
+			System.out.println("비밀번호 같아요");
+				x=1;	
+			if(state.equals("update")){
+				bt="1";
 			}
 			else if(state.equals("delete")){
-				return "delSuc";
-			}*/
-			System.out.println("비밀번호 같아요");
-			x=1;
-			
+
+				bt="2";
+			}	
+
 		}
+		
 		mav.setViewName("modifyCheck");
 		mav.addObject("x",new Integer(x));
-		System.out.println("x="+x);
-		//mav.addObject("x",new Integer(x));
+		mav.addObject("bt", bt);
+		System.out.println("x="+x+"bt="+bt);
+
 				return mav;
 	}
 	
@@ -102,7 +107,10 @@ import dao.MypageDAO;
 	}
 	
 	@RequestMapping(value="/mypage/delMem.do")
-	public String deleteM(@RequestParam("id") String id){
+	public String deleteM(){
+		MemberCommand membercommand = new MemberCommand();
+		String id="ss"; //session에 저장되어있는 id값
+		membercommand.setId(id);
 		int x = mypageDAO.deleteMem(id);
 		if(x==1){
 			return "delSuc";

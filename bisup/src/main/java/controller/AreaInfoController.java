@@ -8,7 +8,7 @@ public class AreaInfoController {
 
 	@RequestMapping("/areaInfo/testInfo.do")
 	public String test(){
-	
-		return "areaInfo/testInfo"; 
+		System.out.println("testinfoø‰√ª");
+		return "mpinfo"; 
 	}
 }

@@ -7,8 +7,8 @@ public class consultingCommand {
 	private String company; // 업체명
 	private String address; // 주소
 	private int readcount; // 조회수
-	private long x; // 위도
-	private long y; // 경도
+	private double x; // 위도
+	private double y; // 경도
 	
 	public String getDivision() {
 		return division;
@@ -34,18 +34,19 @@ public class consultingCommand {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public long getX() {
+	public double getX() {
 		return x;
 	}
-	public void setX(long x) {
+	public void setX(double x) {
 		this.x = x;
 	}
-	public long getY() {
+	public double getY() {
 		return y;
 	}
-	public void setY(long y) {
+	public void setY(double y) {
 		this.y = y;
 	}
+	
 	
 	
 	

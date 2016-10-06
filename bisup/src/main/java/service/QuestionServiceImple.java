@@ -64,6 +64,7 @@ public class QuestionServiceImple implements BoardService {
 	//본인확인 비밀번호 검색
 	@Override
 	public String selectPW(int num) {
+		System.out.println("Implenum::" + num);
 		return questionDAO.selectPW(num);
 	}
 	

@@ -20,8 +20,9 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 
 
 	<insert id="insertBoard" parameterType="command.BoardCommand">
-		insert into QUESTION(num, writer, title, contents, cnt, reg,pw)
+		insert into question(num, writer, title, contents, cnt, reg, pw)
 		values(question_num.NEXTVAL,#{writer}, #{title}, #{contents}, #{cnt}, sysdate, #{pw})
+
 	</insert>
 
 	<update id="updateBoard" parameterType="command.BoardCommand"><!-- 글수정 -->
@@ -47,7 +48,7 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 	<select id="selectPW" parameterType="int" resultType="String">
 		select pw 
 		from question 
-		where num = ${num}
+		num = ${num}
 	</select>
 
 </mapper>
