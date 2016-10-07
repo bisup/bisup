@@ -7,5 +7,7 @@
 	<insert id="insertText" parameterType="command.MemoCommand">
 		insert into memo values(#{send},#{sub},null,#{mcontents},sysdate)
 	</insert>
-	
+	<select id="selectOneText" parameterType="String" resultType="command.MemoCommand">
+		select * from memo where mcontents=#{mcontents} order by mreg desc
+	</select>
 </mapper>

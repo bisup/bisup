@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import command.MemoCommand;
 import dao.SocketDAO;
@@ -106,6 +107,18 @@ public class SocketHandler {
 		jsonObject.put("data", sub);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
-			
+	}
+	
+	@RequestMapping("/Broadcasting/window.do")
+	@ResponseBody
+	public void openWindow(@RequestParam("mcontents")String mcontents,
+			HttpServletResponse response) throws Exception{
+		System.out.println("openWindow¡¯¿‘, mcontents="+mcontents);
+		response.setCharacterEncoding("UTF-8");
+		MemoCommand command = new MemoCommand();
+		command = socketDAO.selectOneText(mcontents);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", command);
+		jsonObject.toString();
 	}
 }

@@ -7,7 +7,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $("document").ready(function(){
-	var url="/bisup/mystore/window.do";
+	var url="/bisup/mystore/Broadcasting/window.do";
 	var param="${mcontents}";
 	$.ajax({
 		type:"post"
@@ -35,7 +35,7 @@ $("document").ready(function(){
 		</thead>
 		<tbody>
 			<tr><td id="mcontents"></td></tr>
-			<tr><td></td></tr>
+			<tr><td>bisup</td></tr>
 		</tbody>
 	</table>
 </div>

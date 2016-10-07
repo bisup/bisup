@@ -23,5 +23,12 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		check=getSqlSession().insert("text.insertText", command);
 		return check;
 	}
+
+	public MemoCommand selectOneText(String mcontents) {
+		// TODO Auto-generated method stub
+		MemoCommand command = new MemoCommand();
+		command=getSqlSession().selectOne("text.selectOneText",mcontents);
+		return command;
+	}
 	
 }

@@ -26,9 +26,9 @@ request.setCharacterEncoding("utf-8");
       onMessage(event)
     };
     function onMessage(event) {
-    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('../textWindow.jsp?mcontents="+event.data+"')' "+
+    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('/textWindow.jsp?mcontents="+event.data+"')' "+
     			"resizable=no width=600 height=600> 쪽지가 왔습니다! "+event.data.substring(0,4)+".......</a></p>");
-    	alert(event.data);
+    	alert("쪽지 발송 완료");
     }
     function onOpen(event) {
         //textarea.value += "접속하셨습니다!\n";//접속시 바로 나오는 메시지
@@ -42,7 +42,8 @@ request.setCharacterEncoding("utf-8");
     		,success:function(args){
     			$("#textWindows").append("<p align='center'>비즈업 쪽지창입니다!!!</p><br/>");
     			for(var idx=0; idx<args.data.length; idx++){
-    				$("#textWindows").append(args.data[idx].send+"님으로부터 "+args.data[idx].mreg+"<br/>");
+    				$("#textWindows").append("<a href='#' onclick='window.open('/textWindow.jsp?mcontents="+event.data[idx].mcontents+"')' "+
+    						args.data[idx].send+"님으로부터 "+args.data[idx].mreg+"</a><br/>");
     			}  			
     		}
     		,errors:function(args,request,status,error){
@@ -78,9 +79,9 @@ request.setCharacterEncoding("utf-8");
 </head>
 <body>
 <div id="container">
-    <fieldset>        
+    <fieldset>
         <div id="textWindows"></div>
-        <input type="text" placeholder="수신자" id="sub">
+        <input type="text" placeholder="받으실분" id="sub">
         <input type="text" placeholder="내용" id="mcontents">
         <input type="button" value="send" onclick="send()">
     </fieldset>
