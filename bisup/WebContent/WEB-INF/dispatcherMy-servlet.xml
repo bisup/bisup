@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
   
 <context:annotation-config/>
-
+ 
 
 <!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/mypage/" />
@@ -72,6 +72,7 @@
 	<!--  <bean id="sgisdao" class="dao.SGISDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>  -->
+	 
 	<!-- 타일즈사용 -->
 	<bean id="tilesviewResolver"  
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -86,5 +87,6 @@
 	</bean>
 	
 	<bean class="controller.AreaInfoController"/>
+	<bean class="controller.Sgiscontroller"/>
 	
 </beans>

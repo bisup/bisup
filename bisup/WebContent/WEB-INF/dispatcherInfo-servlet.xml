@@ -12,7 +12,7 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
+  
 <context:annotation-config/>
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

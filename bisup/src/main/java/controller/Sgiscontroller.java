@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AreaInfoController {
-
-	@RequestMapping("/areaInfo/testInfo.do")
+public class Sgiscontroller {
+	@RequestMapping("/areaInfo/salesarea.do")
 	public String test(){
-		System.out.println("testinfo요청");
-		return "mpinfo"; 
+		System.out.println("salesarea요청");
+		return "salesarea"; 
 	}
 }

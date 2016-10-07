@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
+<mapper namespace="admin">
+	<select id="selectMembers" resultType="command.MemberCommand">
+		select rownum,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer from member
+	</select>
+	<select id="getPageNum" resultType="int">
+		select count(*) from member
+	</select>
+	<select id="selectPagingMembers" parameterType="int" resultType="command.MemberCommand">
+		select rownum,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer from member
+	</select>
+</mapper>

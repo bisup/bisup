@@ -28,7 +28,7 @@ public class ConcertingController {
 
 	private consultingDAO dao2;
 	
-	/*//타일즈 적용
+	//타일즈 적용
 	@RequestMapping("/bisup_concerting/info_customer.do")
 	public String info_customerView(){
 		System.out.println("info_customer요청");
@@ -45,9 +45,9 @@ public class ConcertingController {
 	public String relationView(){
 		System.out.println("relation요청");
 		return "relation";
-	}*/
+	}
 	
-	//개인 인덱스 적용
+	/*//개인 인덱스 적용
 	@RequestMapping("info_customer.do")
 	public String info_customerView(@RequestParam(value="division", defaultValue="") String division, Model model){
 		ArrayList concerting = (ArrayList) dao2.list1(division);
@@ -65,7 +65,7 @@ public class ConcertingController {
 	public String relationView(){
 		System.out.println("relation요청");
 		return "bisup_concerting/relation";
-	}
+	}*/
 	
 }     
 

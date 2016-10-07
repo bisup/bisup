@@ -61,19 +61,12 @@
 		<property name="mapperLocations" value="classpath:/sql/*.xml" />
 	</bean>
 
-	<bean class="dao.SaleProgressAction" id="saleProgressAction">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> 
-	<bean class="dao.MyStoreAction" id="myStoreAction">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	<bean class="dao.SocketDAO" id="socketDAO">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<bean class="dao.AdminMemberDAO" id="adminMemberDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	<context:annotation-config/>
 	
 	<!-- 컨트롤러 빈 등록 -->
-	<bean id="mystore" class="controller.MyStoreController" p:myStoreAction-ref="myStoreAction" p:saleProgressAction-ref="saleProgressAction"/>
-	<bean class="controller.SocketHandler" id="socketHandler" p:socketDAO-ref="socketDAO"/>
+	<bean class="controller.AdminController" id="adminController" p:adminMemberDao-ref="adminMemberDAO"/>
 </beans>
 

@@ -42,7 +42,7 @@
 		function drawVisualization() { 
 			var data = google.visualization.arrayToDataTable([
 					['Month',    '월매출',   '아메리카노(총판매수)'],
-					['2016/06',    800,       650],
+					['2016/06',    800,        650],
 					['2016/07',    ${am},      850],
 					['2016/08',    1700,       1400],
 					['2016/09',    1400,       1100],
@@ -54,7 +54,7 @@
 					      fontSize: 25
 					    }, */
 					vAxis: {title: '월매출 단위 : 만원',
-						    ticks:[500,1000,1500,2000] },
+						    ticks:[300,600,900,1200,1500] },
 					hAxis: {title: 'Month(월)'}, 
 					seriesType: 'bars',
 					
@@ -63,7 +63,7 @@
 			/* 함수 정의 */
 			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
-		}
+		} 
 	</script>
 </head>
 <body>
