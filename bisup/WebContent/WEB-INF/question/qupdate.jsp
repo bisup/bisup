@@ -9,7 +9,8 @@
   	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
 	<br><br>
 	<div class="panel panel-default">
-	<form action="qcontents.do" method="get" enctype="multipart/form-data">
+	<!-- enctype="multipart/form-data" -->
+	<form action="good2.do" method="post" >
 	<div class="panel-body">
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">글 제목</label>
@@ -18,22 +19,25 @@
 	  
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">작성자</label>
-	    <input type="text" class="form-control"  name="writer" value="${boardCommand.writer}" disabled>
+	    <input type="text" class="form-control"  name="writer" value="${boardCommand.writer}">
 	  </div>
 	  
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
 	    <textarea class="form-control" rows="5" id="comment" name="contents" required>${boardCommand.contents }</textarea>
 	  </div>
-	  
+	  <input type="hidden" name="cnt" value="${boardCommand.cnt }" disabled>
 	  <!-- @RequestParam 사용 -->
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
 		<input type="file" name="filename" /> <br> 
 	  </div>
 	  <br>
-	  
+                                         
 	  <div align="right">
+	 	<input type="hidden" name="num" value="${boardCommand.num }"/>
+        <input type="hidden" name="cnt" value="${boardCommand.cnt }"/>
+        <input type="hidden" name="pw" value="${boardCommand.pw }" />
 	  <button type="submit" class="btn btn-primary">글쓰기</button>
 	  <button type="button" class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qlist.do'">취소</button>
 	  </div>

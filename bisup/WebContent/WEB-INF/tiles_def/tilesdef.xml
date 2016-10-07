@@ -31,7 +31,6 @@
 		<put-attribute name="body" value="/WEB-INF/notice/nwrite.jsp" />
 	</definition>
 
-
 	<definition name="qlist" extends="base_layout">
 		<put-attribute name="title" value="문의사항 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qlist.jsp" />
@@ -48,12 +47,12 @@
 	</definition>
 
 	<definition name="qpw" extends="base_layout">
-		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
+		<put-attribute name="title" value="문의사항 본인확인 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qpw.jsp" />
 	</definition>
 
 	<definition name="qupdate" extends="base_layout">
-		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
+		<put-attribute name="title" value="문의사항 글 수정 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qupdate.jsp" />
 	</definition>
 
@@ -62,8 +61,15 @@
 		<put-attribute name="body" value="/WEB-INF/question/good.jsp" />
 	</definition>
 	
+		<definition name="good2" extends="base_layout">
+		<put-attribute name="title" value="글 수정 완료." />
+		<put-attribute name="body" value="/WEB-INF/question/good2.jsp" />
+	</definition>
 	
-	
+		<definition name="qdelete" extends="base_layout">
+		<put-attribute name="title" value="글 삭제 완료." />
+		<put-attribute name="body" value="/WEB-INF/question/qdelete.jsp" />
+	</definition>
 	
 	
 	<definition name="joinAgree" extends="base_layout">

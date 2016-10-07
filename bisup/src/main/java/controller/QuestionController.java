@@ -57,11 +57,6 @@ public class QuestionController {
 		if(cnt > 0) {
 			list=boardService.selectBoardList(map);
 		}
-		int number = cnt - (pageNum -1) * pagesize; //수
-		
-		if(cnt > 0) {
-			list=boardService.selectBoardList(map);
-		}
 		//int number = cnt - (pageNum -1) * pagesize; 
 		
 		/****페이지 수 연산****/
@@ -112,47 +107,67 @@ public class QuestionController {
 		boardService.insertBoard(boardCommand);
 		return mav;
 	}
-//글수정
-	// 글 수정 폼
-	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.GET)
-	public ModelAndView updateForm(@RequestParam("num") int num) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		//Map<String, Object> map = new HashMap<String, Object>();
-		BoardCommand boardCommand = new BoardCommand();
-		boardCommand = boardService.selectboardContents(num);
-		mav.addObject("boardCommand", boardCommand);
-		mav.setViewName("qupdate");
-		return mav;
-	}
-
-	// 글 수정 내용 변경 후 저장
+	
+	
+//글수정(update)
+	//글 수정 폼
 	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.POST)
-	public ModelAndView update(
+	public ModelAndView updateForm(
 			@RequestParam(value="num") int num,
 			@RequestParam(value="title") String title, 
 			@RequestParam(value="contents") String contents,
 			@RequestParam(value="pw") String pw,
-			@RequestParam(value="writer") String writer) throws Exception {
+			@RequestParam(value="writer") String writer,
+			@RequestParam(value="cnt") int cnt ) throws Exception {
 		ModelAndView mav = new ModelAndView("qupdate");
 		BoardCommand boardCommand = new BoardCommand();
+		boardCommand.setCnt(cnt);
 		boardCommand.setNum(num);
 		boardCommand.setContents(contents);
 		boardCommand.setPw(pw);
 		boardCommand.setTitle(title);
 		boardCommand.setWriter(writer);
+		
+		mav.addObject("boardCommand", boardCommand);
+		
+		return mav;
+	}
+	// 글 수정 내용 변경 후 저장
+	@RequestMapping(value = "/question/good2.do", method = RequestMethod.POST)
+	public ModelAndView update(
+			@RequestParam(value="num") int num,
+			@RequestParam(value="title") String title, 
+			@RequestParam(value="contents") String contents,
+			@RequestParam(value="pw") String pw,
+			@RequestParam(value="writer") String writer,
+			@RequestParam(value="cnt")int cnt) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("good");
+		BoardCommand boardCommand = new BoardCommand();
+		boardCommand.setNum(num);
+		boardCommand.setTitle(title);
+		boardCommand.setContents(contents);
+		boardCommand.setPw(pw);
+		boardCommand.setWriter(writer);
+		boardCommand.setCnt(cnt);
+		
+		System.out.println("update ::" + title + contents + pw + writer + cnt);
+		boardService.updateBoard(boardCommand);
 		return mav;
 	}
 
 	// 글삭제
-	@RequestMapping("/question/qdelete.do")
-	public ModelAndView delete(@RequestParam(value = "num") int num) throws Exception {
+	@RequestMapping(value="/question/qdelete.do", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam("num") int num) throws Exception {
 		ModelAndView mav = new ModelAndView("qdelete");
 		boardService.deleteBoard(num);
 		return mav;
 	}
+	
+	
 
 	// 글 내용 보기
-		@RequestMapping("/question/qcontents.do")
+		@RequestMapping(value="/question/qcontents.do", method= RequestMethod.GET)
 		public ModelAndView contents(@RequestParam("num") int num) throws Exception {
 			ModelAndView mav = new ModelAndView("qcontents");
 			BoardCommand boardCommand = new BoardCommand();
@@ -160,7 +175,9 @@ public class QuestionController {
 			mav.addObject("boardCommand", boardCommand);
 			return mav;
 		}
-	
+
+		
+		
 	// 본인확인 GET
 	@RequestMapping(value="/question/qpw.do", method=RequestMethod.GET)
 	public ModelAndView pw() {
@@ -170,28 +187,20 @@ public class QuestionController {
 	
 	// 본인확인 POST
 		@RequestMapping(value="/question/qpw.do", method=RequestMethod.POST)
-		public ModelAndView pw(@RequestParam("num") int num, @RequestParam("pw") String pw, @RequestParam("buttonValue") String state) {
+		public ModelAndView pw(@RequestParam("num") int num, @RequestParam("pw") String pw) {
 			ModelAndView mav = new ModelAndView("qpw");
-			System.out.println("Contnum::"+num);
-			
 			String dbpw = boardService.selectPW(num); //게시판 번호에 맞는 비밀번호
-			System.out.println("dbpw ::" + dbpw);
 			int x = -1;
-			String bt="";
 			
 			if(dbpw.equals(pw)){
 				System.out.println("비밀번호 같음");
 				x = 1;
-				if(state.equals("content")){
-					bt="1";
-				}
 			} else{
 				System.out.println("비밀번호 틀림");
 			}
 			
 			mav.addObject("num", num);
 			mav.addObject("pw", pw);
-			mav.addObject("bt", bt);
 			mav.addObject("x", new Integer(x));
 			
 			return mav;

@@ -27,12 +27,12 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 
 	<update id="updateBoard" parameterType="command.BoardCommand"><!-- 글수정 -->
 		update question 
-		set writer = ${writer}, title = ${title}, contents = ${contents}, pw = ${pw} 
-		where num = ${num}
+		set writer = #{writer}, title = #{title}, contents = #{contents}, pw = #{pw} 
+		where num = #{num}
 	</update>
 
 	<delete id="deleteBoard" parameterType="int">
-		delete from question where num = ${num}
+		delete from question where num = #{num}
 	</delete>
 
 	<select id="allCnt" resultType="int"><!-- 전체 글 개수 -->
@@ -48,7 +48,7 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 	<select id="selectPW" parameterType="int" resultType="String">
 		select pw 
 		from question 
-		num = ${num}
+		where num = #{num}
 	</select>
 
 </mapper>
