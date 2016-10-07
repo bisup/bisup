@@ -161,17 +161,12 @@
                                 <td>
                                     <span style='float:right'>
                                         <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qlist.do'">목록</button>
-                                        
-                                    
-                                        
                                         <input type="hidden" name="num" value="${boardCommand.num }"/>
                                         <input type="hidden" name="title" value="${boardCommand.title }"/>
                                         <input type="hidden" name="writer" value="${boardCommand.writer }"/>
                                         <input type="hidden" name="cnt" value="${boardCommand.cnt }"/>
                                          <input type="hidden" name="contents" value="${boardCommand.contents }"/>
                                          <input type="hidden" name="pw" value="${boardCommand.pw }" />
-                                         
-                                         <!-- ?num=${boardCommand.num }&title=${boardCommand.title }&writer=${boardCommand.writer }&cnt=${boardCommand.cnt }&contents=${boardCommand.contents }&pw=${boardCommand.pw } -->
                                         <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qupdate.do'">수정</button>
                                         <button type="button"  class="btn btn-default" data-toggle="modal" data-target="#login-modal">삭제</button>
                                         <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qwrite.do'">글쓰기</button>

@@ -200,7 +200,6 @@ public class QuestionController {
 	public void updateCnt(int num) {
 		boardService.updateCnt(num);
 	}
-
 	/*
 	 * // 파일 업로드
 	 * 
@@ -217,5 +216,4 @@ public class QuestionController {
 	 * dao.insert(fileDB); // 같은 이름의 파일이 존재하면 삭제한뒤 저장 } catch (Exception e) {
 	 * e.printStackTrace(); } }
 	 */
-
 }
