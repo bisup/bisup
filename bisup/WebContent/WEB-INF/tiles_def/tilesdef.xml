@@ -11,11 +11,14 @@
 	</definition>
 
 	<!-- 미래 -->
+	
 	<definition name="main" extends="base_layout">
 		<put-attribute name="title" value="BisUp Main" />
 		<put-attribute name="body" value="/WEB-INF/main/main.jsp" />
 	</definition>
 
+
+<!-- 공지사항 -->
 	<definition name="nlist" extends="base_layout">
 		<put-attribute name="title" value="공지사항 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/nlist.jsp" />
@@ -30,8 +33,40 @@
 		<put-attribute name="title" value="공지사항 글 작성 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/nwrite.jsp" />
 	</definition>
+	
+	<definition name="ncontents" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 보기." />
+		<put-attribute name="body" value="/WEB-INF/notice/ncontents.jsp" />
+	</definition>
+	
+	<definition name="nupdate" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 수정 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/notice/nupdate.jsp" />
+	</definition>
+	
+	<definition name="ndelete" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 삭제 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/notice/ndelete.jsp" />
+	</definition>
+	
+	<definition name="good" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 작성 완료 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/notice/good.jsp" />
+	</definition>
+	
+	<definition name="good2" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 수정 완료 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/notice/good2.jsp" />
+	</definition>
+	
+	<definition name="ncontents_m" extends="base_layout">
+		<put-attribute name="title" value="공지사항 글 내용 (관리자)." />
+		<put-attribute name="body" value="/WEB-INF/notice/ncontents_m.jsp" />
+	</definition>
+	
 
 
+<!-- 문의사항 -->
 	<definition name="qlist" extends="base_layout">
 		<put-attribute name="title" value="문의사항 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qlist.jsp" />
@@ -48,12 +83,12 @@
 	</definition>
 
 	<definition name="qpw" extends="base_layout">
-		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
+		<put-attribute name="title" value="문의사항 본인확인 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qpw.jsp" />
 	</definition>
 
 	<definition name="qupdate" extends="base_layout">
-		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
+		<put-attribute name="title" value="문의사항 글 수정 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qupdate.jsp" />
 	</definition>
 
@@ -62,19 +97,25 @@
 		<put-attribute name="body" value="/WEB-INF/question/good.jsp" />
 	</definition>
 	
+		<definition name="good2" extends="base_layout">
+		<put-attribute name="title" value="글 수정 완료." />
+		<put-attribute name="body" value="/WEB-INF/question/good2.jsp" />
+	</definition>
 	
+		<definition name="qdelete" extends="base_layout">
+		<put-attribute name="title" value="글 삭제 완료." />
+		<put-attribute name="body" value="/WEB-INF/question/qdelete.jsp" />
+	</definition>
 	
-	
-	
+
+
+
 	<definition name="joinAgree" extends="base_layout">
 		<put-attribute name="title" value="이용약관 동의 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/join/joinAgree.jsp" />
 	</definition>
 
 
-	<!-- <definition name="joinform" extends="base_layout"> <put-attribute name="title" 
-		value="회원가입 폼 작성 페이지 입니다."/> <put-attribute name="body" value="/WEB-INF/join/joinForm.jsp"/> 
-		</definition> -->
 
 
 	<!-- 창업 컨설팅 -->

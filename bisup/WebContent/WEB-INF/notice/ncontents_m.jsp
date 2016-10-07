@@ -112,7 +112,7 @@
   	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>  <br><br>
             <div class="row">
                 <div class="col-md-10">
-                    <form action="qupdate.do" method="post">
+                    <form action="nupdate.do" method="post">
                     <table class="table table-condensed">
                         <thead>
                             <tr align="center">
@@ -134,7 +134,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table id="commentTable" class="table table-condensed"></table>
+                  <!--   <table id="commentTable" class="table table-condensed"></table>
                     <table class="table table-condensed">
                         <tr>
                             <td>
@@ -154,27 +154,23 @@
                                 </span>
                             </td>
                         </tr>
-                    </table>
+                    </table> -->
                     <table class="table table-condensed">
                         <thead>
                             <tr>
                                 <td>
                                     <span style='float:right'>
-                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qlist.do'">목록</button>
-                                        
-                                    
+                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nlist.do'">목록</button>
                                         
                                         <input type="hidden" name="num" value="${boardCommand.num }"/>
                                         <input type="hidden" name="title" value="${boardCommand.title }"/>
                                         <input type="hidden" name="writer" value="${boardCommand.writer }"/>
                                         <input type="hidden" name="cnt" value="${boardCommand.cnt }"/>
                                          <input type="hidden" name="contents" value="${boardCommand.contents }"/>
-                                         <input type="hidden" name="pw" value="${boardCommand.pw }" />
                                          
-                                         <!-- ?num=${boardCommand.num }&title=${boardCommand.title }&writer=${boardCommand.writer }&cnt=${boardCommand.cnt }&contents=${boardCommand.contents }&pw=${boardCommand.pw } -->
-                                        <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qupdate.do'">수정</button>
-                                        <button type="button"  class="btn btn-default" data-toggle="modal" data-target="#login-modal">삭제</button>
-                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/question/qwrite.do'">글쓰기</button>
+                                        <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nupdate.do'">수정</button>
+                                        <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/ndelete.do'">삭제</button>
+                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nwrite.do'">글쓰기</button>
                                   		
                                     </span>
                                 </td>
@@ -182,7 +178,7 @@
                         </thead>
                     </table>
                     </form>
-                    <script>
+                    <!-- <script>
    
                         $(function(){
                                
@@ -358,44 +354,27 @@
                                 location.href='/community/notice/edit';
                             });
                         });
-                    </script>
+                    </script> -->
                 </div>
             </div>
             <hr/>
         </div>    
         
-<!-- 삭제 - 모달윈도우 -->
-<script>
-         window.onload=function(){
-          document.getElementById('dform').onsubmit=function(){
-           var pass=document.getElementById('pw1').value;
-           var passCheck=document.getElementById('pwCheck').value;
-           
-           if(pass==passCheck){
-            alert("삭제하였습니다.");
-            document.dform.submit();
-       //    document.location.href="/bisup/bisup/question/qdelete.do?num="+${boardCommand.num };
-           }else{
-            alert("비밀번호가 일치하지 않습니다.");
-             return false; 
-           
-          }
-         }
-        }
-</script>
-		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <!-- 모달윈도우 -->
+
+	<%-- 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h2>삭제 하시겠습니까?</h2><br>
-				  <form id="dform" method="get" action="qdelete.do">
-					<input type="password" id="pw1" name="pw1" placeholder="비밀번호를 입력하세요." >
-					<input type="hidden" id="pwCheck" value="${boardCommand.pw }"/>
+				  <form>
+					<input type="password" name="pw" placeholder="비밀번호를 입력하세요." >
 					<input type="hidden" name="num" value="${boardCommand.num }"/>
+					
 					<input type="submit" name="delete" class="login loginmodal-submit" value="삭제" >
 				  </form>
 				</div>
 			</div>
-		  </div>
+		  </div> --%>
         
         
     </body>
