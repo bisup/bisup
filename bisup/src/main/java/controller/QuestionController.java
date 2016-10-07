@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import command.BoardCommand;
+import command.ReCommand;
 import dao.QuestionDAO;
 import service.QuestionServiceImple;
 
@@ -96,8 +97,10 @@ public class QuestionController {
 
 	// 글쓰기
 	@RequestMapping(value = "/question/good.do", method = RequestMethod.POST)
-	public ModelAndView write(@RequestParam(value = "title") String title,
-			@RequestParam(value = "contents") String contents, @RequestParam(value = "pw") String pw,
+	public ModelAndView write(
+			@RequestParam(value = "title") String title,
+			@RequestParam(value = "contents") String contents, 
+			@RequestParam(value = "pw") String pw,
 			@RequestParam(value = "writer") String writer) throws Exception {
 
 		ModelAndView mav = new ModelAndView("good");
@@ -111,7 +114,6 @@ public class QuestionController {
 		return mav;
 	}
 
-	// 글수정(update)
 	// 글 수정 폼
 	@RequestMapping(value = "/question/qupdate.do", method = RequestMethod.POST)
 	public ModelAndView updateForm(@RequestParam(value = "num") int num, @RequestParam(value = "title") String title,
@@ -216,4 +218,27 @@ public class QuestionController {
 	 * dao.insert(fileDB); // 같은 이름의 파일이 존재하면 삭제한뒤 저장 } catch (Exception e) {
 	 * e.printStackTrace(); } }
 	 */
+	
+	
+	//댓글
+	public ModelAndView reInsert(
+			@RequestParam("num") int num,
+			@RequestParam("rwriter") String rwriter, 
+			@RequestParam("rpw") String rpw,
+			@RequestParam("rcontents") String rcontents){
+		
+		ModelAndView mav = new ModelAndView("good");
+		ReCommand reCommand = new ReCommand();
+		
+		
+		reCommand.setQnum(num);
+		reCommand.setRwriter(rwriter);
+		reCommand.setRpw(rpw);
+		reCommand.setRcontents(rcontents);
+		
+		return mav;
+		
+	}
+	
+	
 }

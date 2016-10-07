@@ -26,7 +26,6 @@ public class BoardCommand {
 		this.pw = pw;
 	}
 
-
 	public Timestamp getReg() {
 		return reg;
 	}

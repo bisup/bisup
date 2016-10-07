@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <html>
-    <head>
+<head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -138,20 +138,20 @@
                     <table class="table table-condensed">
                         <tr>
                             <td>
-                                <span class="form-inline" role="form">
-                                    <p>
-                                        <div class="form-group">
-                                            <input type="text" id="commentParentName" name="qwriter" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" id="commentParentPassword" name="rpw" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
-                                        </div>
-                                    </p>
-                                        <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4"></textarea>
-                                </span>
+                            <span class="form-inline" role="form">
+                            <p>
+                            <div class="form-group">
+                           	 	<input type="text" id="commentParentName" name="rwriter" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
+                            </div>
+                            <div class="form-group">
+                            	<input type="password" id="commentParentPassword" name="rpw" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">
+                            </div>
+                            <div class="form-group">
+                            	<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+                            </div>
+                            </p>
+                            <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4" name="rcontents"></textarea>
+                            </span>
                             </td>
                         </tr>
                     </table>
@@ -340,7 +340,7 @@
                                    
                             });
                                
-                            $( "#list" ).click(function( event ) {
+                            /* $( "#list" ).click(function( event ) {
                                 location.href='/community/notice';
                             });
                             $( "#modify" ).click(function( event ) {
@@ -351,7 +351,7 @@
                             });
                             $( "#write" ).click(function( event ) {
                                 location.href='/community/notice/edit';
-                            });
+                            }); */
                         });
                     </script>
                 </div>

@@ -30,4 +30,8 @@ public interface BoardService {
 
 	// 글 조회시 비밀번호 확인
 	public String selectPW(int num);
+	
+	//댓글 저장
+	//댓글 삭제
+	//댓글 수정
 }
