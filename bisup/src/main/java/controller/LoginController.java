@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class LoginController{
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(@ModelAttribute("login") MemberCommand memberCommand,
+	public String submit(@ModelAttribute("login") MemberCommand memberCommand,HttpSession session, 
 			BindingResult result) {
 		new LoginCommandValidator().validate(memberCommand, result);
 		System.out.println(memberCommand.getId() + memberCommand.getPw() );
@@ -52,15 +54,21 @@ public class LoginController{
 			return "bisup_login/loginmain";
 		}
 		try{
-			int selLog = loginDAO.selLog(memberCommand.getId(), memberCommand.getPw());
-			if(selLog==0){
+			int sort = loginDAO.selLog(memberCommand.getId(), memberCommand.getPw());
+			if(sort==0){
 				System.out.println("관리자 로그인");
+				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("sort", sort);
 				return "main";
-			}else if(selLog == 1){
+			}else if(sort == 1){
 				System.out.println("자영업자 로그인");
+				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("sort", sort);
 				return "main";
-			}else if(selLog == 2){
+			}else if(sort == 2){
 				System.out.println("창업예정자 로그인");
+				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("sort", sort);
 				return "main";
 			}else{
 				System.out.println("꺼져");
