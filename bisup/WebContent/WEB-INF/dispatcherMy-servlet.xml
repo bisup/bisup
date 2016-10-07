@@ -85,6 +85,12 @@
 		</property>
 		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
 	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/areaInfo/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
 	
 	<bean class="controller.AreaInfoController"/>
 	<bean class="controller.Sgiscontroller"/>

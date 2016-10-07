@@ -31,8 +31,8 @@
 ----------------------
 <br>
 
-<a href="<c:url value='/my/areaInfo/testInfo.do'/>">MPInfo</a>
-
+<a href="<c:url value='/my/areaInfo/mpInfo.do'/>">MPInfo</a>
+<a href="<c:url value='/my/areaInfo/test.do'/>">test</a>
 
 
 </body>
