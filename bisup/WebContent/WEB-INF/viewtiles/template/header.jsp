@@ -45,16 +45,16 @@
         </li>
         
          <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출트렌드<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출 현황<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/bisup/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
+            <li><a href="/bisup/bisup/bisup_trend/sales_trend.do">매출 현황 보고서</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
+            <li><a href="/bisup/bisup/bisup_trend/business_trend.do">업종 현황 보고서</a></li>
           </ul>
         </li>
         
          <li class="dropdown"><!-- 창업컨설팅 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업컨설팅<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업 컨설팅<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/bisup/bisup/bisup_concerting/info_customer.do">거래처 정보</a></li>
             <li class="divider"></li>
