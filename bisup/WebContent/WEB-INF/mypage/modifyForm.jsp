@@ -63,11 +63,22 @@
                   <%--  <form:errors path="email"/> --%>
                   </div>
                   <div class="form-group">
-                  <form:label path="pw">연락처</form:label>
+                  <form:label path="phone">연락처</form:label>
                     <form:input path="phone" class="form-control" value="${member.phone}"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
-                  
+                  <%-- <form:label path="jobCode"></form:label>
+	<form:select path="jobCode">
+		<option value="">--선택하세요---</option>
+		<form:options items="${jobCodes}" itemLabel="label" itemValue="code"/>
+	</form:select>
+	<form:errors path="jobCode"/>	 --%>
+					<div class="form-group">
+					<form:label path="gu">관심지역</form:label>
+                  <form:select path="gu">
+                  <form:options items="${guSel}" itemLabel="gun" itemValue="co"/>
+                  </form:select>
+                  </div>
 
                    <c:if test="${member.sort==2}"> 
                   <div class="business" id=bisness>

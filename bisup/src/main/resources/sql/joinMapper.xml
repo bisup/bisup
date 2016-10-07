@@ -26,4 +26,8 @@
      <select id="selectid" parameterType="String" resultType="int">
         select count(*) from member where id=#{id}
     </select>
+    
+    <select id="selectGu" resultType="command.GuCommand">
+    	select * from gucode
+    </select>
 </mapper>

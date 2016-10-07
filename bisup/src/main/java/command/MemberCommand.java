@@ -13,7 +13,14 @@ public class MemberCommand {
 	private String reg;//가입일       
 	private String email;
 	private int cer; //인증여부
+	private int gu; //행정구명
 	
+	public int getGu() {
+		return gu;
+	}
+	public void setGu(int gu) {
+		this.gu = gu;
+	}
 	public int getCer() {
 		return cer;
 	}

@@ -44,7 +44,7 @@
 	 -->
 	
 	<!-- db연결 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:db2.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -63,6 +63,9 @@
     <bean id="mypagedao" class="dao.MypageDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
+	<bean id="joindao" class="dao.JoinDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
     
 	<bean id="boardService" class="service.QuestionServiceImple">
 		<property name="questionDAO" ref="questionDAO"/>
