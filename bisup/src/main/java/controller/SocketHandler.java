@@ -11,11 +11,9 @@ import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import command.MemoCommand;
 import dao.SocketDAO;
 import net.sf.json.JSONObject;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @ServerEndpoint("/Broadcasting")
@@ -85,6 +82,7 @@ public class SocketHandler {
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
+	
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
@@ -99,7 +97,6 @@ public class SocketHandler {
 			HttpServletResponse response) throws Exception{
 		System.out.println("send ¡¯¿‘, sub="+sub+", mcontents="+mcontents+", send="+send);
 		response.setCharacterEncoding("UTF-8");
-		int check = 0;
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);

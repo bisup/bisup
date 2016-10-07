@@ -26,12 +26,10 @@ request.setCharacterEncoding("utf-8");
       onMessage(event)
     };
     function onMessage(event) {
-    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('/textWindow.jsp?mcontents="+event.data+"')' "+
-    			"resizable=no width=600 height=600> 쪽지가 왔습니다! "+event.data.substring(0,4)+".......</a></p>");
-    	alert("쪽지 발송 완료");
+    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('/BroadCasting/open.do?mcontents="+event.data+"','쪽지',"+
+    			"'resizable=no, width=600, height=600')'> 쪽지가 왔습니다! "+event.data.substring(0,4)+".......</a></p>");
     }
     function onOpen(event) {
-        //textarea.value += "접속하셨습니다!\n";//접속시 바로 나오는 메시지
         var url="/bisup/mystore/Broadcasting/onOpen.do";
         var param={id:'java1'};
         $.ajax({
@@ -42,9 +40,10 @@ request.setCharacterEncoding("utf-8");
     		,success:function(args){
     			$("#textWindows").append("<p align='center'>비즈업 쪽지창입니다!!!</p><br/>");
     			for(var idx=0; idx<args.data.length; idx++){
-    				$("#textWindows").append("<a href='#' onclick='window.open('/textWindow.jsp?mcontents="+event.data[idx].mcontents+"')' "+
+    				$("#textWindows").append("<a href='#' class='form-check-input' onclick='window.open('/BroadCasting/open.do?mcontents="+args.data[idx].mcontents+"')'>"+
     						args.data[idx].send+"님으로부터 "+args.data[idx].mreg+"</a><br/>");
-    			}  			
+    			}
+    			$("#textWindows").append("<hr/>");
     		}
     		,errors:function(args,request,status,error){
 			 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -55,9 +54,6 @@ request.setCharacterEncoding("utf-8");
       alert(event.data);
     }
     function send() {
-        //textarea.value += "나 : " + inputMessage.value + "\n";//send누르면 내 화면에 출력
-        //webSocket.send(inputMessage.value);//웹소켓에 메시지값 보냄
-        //inputMessage.value = "";//메시지값 초기화
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
         var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'java1'};
@@ -67,7 +63,8 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			$("#textWindows").append("<p align='left'>"+args.data+"님에게 전송");
+    			$("#textWindows").append("<p class='form-check-input' align='left'>"+args.data+"님에게 전송");
+    	    	alert("쪽지 발송 완료");
     		}
     		,errors:function(args,request,status,error){
 				alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -78,9 +75,9 @@ request.setCharacterEncoding("utf-8");
   </script>
 </head>
 <body>
-<div id="container">
+<div id="container" style="width:300px;overflow:auto;">
     <fieldset>
-        <div id="textWindows"></div>
+        <div id="textWindows" class="form-group"></div>
         <input type="text" placeholder="받으실분" id="sub">
         <input type="text" placeholder="내용" id="mcontents">
         <input type="button" value="send" onclick="send()">
