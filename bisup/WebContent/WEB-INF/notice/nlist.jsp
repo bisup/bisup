@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!-- 
-이미래
-공지사항 리스트-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!-- 이미래 공지사항 리스트-->
 <html>
 <head>
 <title>title</title>
@@ -11,7 +11,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
-
     //something is entered in search form
     $('#system-search').keyup( function() {
        var that = this;
@@ -35,7 +34,6 @@ $(document).ready(function() {
             {
                 $('.search-query-sf').remove();
             }
-
             if( rowText.indexOf( inputText ) == -1 )
             {
                 //hide rows
@@ -51,28 +49,24 @@ $(document).ready(function() {
         //all tr elements are hidden
         if(tableRowsClass.children(':visible').length == 0)
         {
-            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">검색 결과가 없습니다.</td></tr>');
         }
     });
 });
 </script>
+<!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
 </head>
-
-
-
-
 <body>
 <div class="container">
 <br><br>
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">공지사항</h2>
-  	<p style="display: block;">고객의 성공을 돕는 비즈업(BisUp)이 되겠습니다.</p>
-	<div style="width: 300px; float: right;">
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
+  	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
+        <div style="width: 300px; float: right;">
             <form action="#" method="get">
                 <div>
-                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                   <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요." required>
-                <br>
+                   <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요.">
+                   <br>
                 </div>
             </form>
         </div>
@@ -81,43 +75,32 @@ $(document).ready(function() {
                         <tr>
                             <th>번호</th>
                             <th>작성자</th>
-                            <th>제목</th>
-                            <th>내용</th>
+                            <th>제목 </th>
                             <th>조회수</th>
                             <th>작성일</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>미래</td>
-                            <td>TEST</td>
-                            <td>Do some other</td>
-                            <td>123</td>
-                            <td>2016-09-27</td>
-                        </tr>
-                       <tr>
-                            <td>2</td>
-                            <td>관리자</td>
-                            <td>TEST2</td>
-                            <td>Sample</td>
-                            <td>0</td>
-                            <td>2016-09-27</td>
-                        </tr>
+                    <c:choose>
+                    	<c:when test="${fn:length(list) > 0}">
+                    		<c:forEach items="${list}" var="list">
+                    			<tr>
+                    				<td>${list.NUM}</td>
+                    				<td>${list.WRITER}</td>
+                    				<td><a href="/bisup/bisup/notice/ncontents.do?num=${list.NUM}">${list.TITLE}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td>${list.CNT}</td>
+                    				<td>${list.REG}</td>
+                    			</tr>
+                    		</c:forEach>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<tr>
+                    		<td colspan="5">조회된 결과가 없습니다.</td>
+                    	</tr>
+                    	</c:otherwise>
+                    </c:choose>
                     </tbody>
                 </table>   
 		</div>
-	
-<div class="container">
-	<ul class="pagination">
-              <li class="disabled"><a href="#">«</a></li>
-              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">»</a></li>
-            </ul>
-</div>
 </body>
 </html>

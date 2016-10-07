@@ -50,7 +50,6 @@ public class QuestionDAO extends SqlSessionDaoSupport {
  	
  	//글조회시 비밀번호 확인
  	public String selectPW(int num){
- 		System.out.println("DAOnum::" + num);
  		return getSqlSession().selectOne("board.selectPW",num);
  	}
 }

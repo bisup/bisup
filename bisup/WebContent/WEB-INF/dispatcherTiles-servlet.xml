@@ -58,6 +58,7 @@
 	</bean>
     
     <bean id="questionDAO" class="dao.QuestionDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="noticeDAO" class="dao.NoticeDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
     
     <bean id="mypagedao" class="dao.MypageDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
@@ -67,9 +68,18 @@
 		<property name="questionDAO" ref="questionDAO"/>
 	</bean>
 	
+	<bean id="boardService2" class="service.NoticeServiceImple">
+		<property name="noticeDAO" ref="noticeDAO"/>
+	</bean>
+	
 	<bean class="controller.QuestionController">
 		 <property name="boardService" ref="boardService"/>
 	</bean>
+	
+	<bean class="controller.NoticeController">
+		 <property name="boardService2" ref="boardService2"/>
+	</bean>
+	
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="main" class="controller.MainController"/>
 	<bean class="controller.ModifyController"/>
