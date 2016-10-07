@@ -5,6 +5,8 @@
 <!-- 이미래 -->
 <html>
 <head>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 <div style="background-color: #595959;">
