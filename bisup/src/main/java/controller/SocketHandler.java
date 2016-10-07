@@ -13,8 +13,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -105,7 +103,7 @@ public class SocketHandler {
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("data", command.getSub());
+		jsonObject.put("data", sub);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 			

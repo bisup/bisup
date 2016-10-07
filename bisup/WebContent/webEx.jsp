@@ -14,7 +14,7 @@ request.setCharacterEncoding("utf-8");
 
     <script type="text/javascript">
     var textarea = document.getElementById("textWindows");
-    var webSocket = new WebSocket('ws://localhost:8099/bisup/Broadcasting');
+    var webSocket = new WebSocket('ws://192.168.20.5:8088/bisup/Broadcasting');
     var inputMessage = $('#mcontents').val()
     webSocket.onerror = function(event) {
       onError(event)
@@ -26,24 +26,9 @@ request.setCharacterEncoding("utf-8");
       onMessage(event)
     };
     function onMessage(event) {
-    	$("#textWindows").append("<p align='right'>"+args.data+"님으로부터의 쪽지");
-        //textarea.value += "나나 : " + event.data + "\n";//다른사람에게 출력될 출력문
-        /* var url="/bisup/mystore/Broadcasting/onMessage.do";
-        var param=event.data;
-    	$.ajax({
-    		type:"post"
-    		,url:url
-    		,data:param
-    		,dataType:"json"
-    		,success:function(args){
-    			$("#textWindow").append("<p align='right'><a href='#'>"+
-    					args.data.nick+"("+args.data.id+")님으로부터 "+args.data.mreg+"/수신"+
-    					"</a></p>")
-    		}
-    		,errors:function(args,request,status,error){
-			 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-    	}); */
+    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('../textWindow.jsp?mcontents="+event.data+"')' "+
+    			"resizable=no width=600 height=600> 쪽지가 왔습니다! "+event.data.substring(0,4)+".......</a></p>");
+    	alert(event.data);
     }
     function onOpen(event) {
         //textarea.value += "접속하셨습니다!\n";//접속시 바로 나오는 메시지
