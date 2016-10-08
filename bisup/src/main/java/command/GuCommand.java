@@ -2,21 +2,23 @@ package command;
 
 public class GuCommand {
 
-	private int co;
-	private String gun;
+	private int gcode;
+	private String gn;
 	
-	public int getCo() {
-		return co;
+	public int getGcode() {
+		return gcode;
 	}
-	public void setCu(int co) {
-		this.co = co;
+	public void setGcode(int gcode) {
+		this.gcode = gcode;
 	}
-	public String getGun() {
-		return gun;
+	public String getGn() {
+		return gn;
 	}
-	public void setGun(String gun) {
-		this.gun = gun;
+	public void setGn(String gn) {
+		this.gn = gn;
 	}
+	
+	
 	
 	
 }

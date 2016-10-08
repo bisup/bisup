@@ -1,17 +1,20 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import command.GuCommand;
 import command.MemberCommand;
 import dao.JoinDAO;
 import dao.MypageDAO;
@@ -32,12 +35,17 @@ import dao.MypageDAO;
 		this.joinDAO = joinDAO;
 	}
 
-
-
 	@ModelAttribute("member")
 	public MemberCommand formBacking(){
 		return new MemberCommand();
 	}
+
+	/*@ModelAttribute("gu")
+	public GuCommand guModel(){
+		return new GuCommand();
+	}
+	*/
+
 	
 		public ModifyController() {
 		// TODO Auto-generated constructor stub
@@ -95,8 +103,7 @@ import dao.MypageDAO;
 	}
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.GET)
-	public ModelAndView formGet(HttpSession session){
-		MemberCommand membercommand=new MemberCommand();
+	public ModelAndView formGet(@ModelAttribute("member") MemberCommand membercommand,HttpSession session){
 		
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
 		membercommand.setId(id);
@@ -105,15 +112,16 @@ import dao.MypageDAO;
 		
 		ModelAndView mav =new ModelAndView();
 		membercommand = mypageDAO.updateForm(membercommand.getId());
-		List list = joinDAO.gu();
 		
-		
+		List<GuCommand> list = new ArrayList<GuCommand>(); 
+		list = joinDAO.gu();
 		
 		System.out.println("email="+membercommand.getEmail());
-		
+		System.out.println("gucode:::"+membercommand.getGucode());
 		mav.setViewName("modifyForm");
 		mav.addObject("member",membercommand);
 		mav.addObject("guSel",list);
+		//mav.addObject("gu",new GuCommand());
 		return mav;//
 	}
 	

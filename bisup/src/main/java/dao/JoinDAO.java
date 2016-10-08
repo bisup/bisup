@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -42,7 +43,8 @@ public class JoinDAO extends SqlSessionDaoSupport{
 	 
 	 public List gu(){//행정구 가져오는것
 		
-		List<GuCommand> list= getSqlSession().selectList("JoinDAO.selectGu");
+		List<GuCommand> list= new ArrayList<GuCommand>();
+		list = getSqlSession().selectList("JoinDAO.selectGu");
 		return list;
 	 }
 }

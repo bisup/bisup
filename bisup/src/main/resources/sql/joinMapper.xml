@@ -3,7 +3,7 @@
 <mapper namespace="JoinDAO">
 
     <insert id="insertMember" parameterType="command.MemberCommand">
-       insert into member(id,name,pw,nick,sort,snum,phone,tel,reg,email,cer) values(#{id},#{name},#{pw},#{nick},#{sort},#{snum},#{phone},#{tel},sysdate,#{email},0)
+       insert into member(id,name,pw,nick,sort,snum,phone,tel,reg,email,cer,gucode) values(#{id},#{name},#{pw},#{nick},#{sort},#{snum},#{phone},#{tel},sysdate,#{email},0,#{gucode})
     </insert>
     
     <delete id="deleteMember" parameterType="String">
@@ -28,6 +28,6 @@
     </select>
     
     <select id="selectGu" resultType="command.GuCommand">
-    	select * from gucode
+    	select * from gu
     </select>
 </mapper>
