@@ -59,11 +59,11 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		check=socketDAO.insertText(command);
-		responseAjax("insert성공").toString();
-		/*JSONObject jsonObject = new JSONObject();
+		/*responseAjax("insert성공").toString();*/
+		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", "insert성공");
 		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());*/
+		printWriter.print(jsonObject.toString());
 	}
 
 	@OnOpen
@@ -79,11 +79,11 @@ public class SocketHandler {
 		// TODO Auto-generated method stub
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
-		responseAjax(textList).toString();
-		/*JSONObject jsonObject = new JSONObject();
+		/*responseAjax(textList).toString();*/
+		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
-		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());*/
+		System.out.println("onOpenPro메소드 종료 : textList는 "+textList);
+		jsonObject.toString();
 	}
 	
 	@OnClose
@@ -104,10 +104,10 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
-		responseAjax(sub).toString();
-		/*JSONObject jsonObject = new JSONObject();
+		/*responseAjax(sub).toString();*/
+		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
-		jsonObject.toString();*/
+		jsonObject.toString();
 	}
 	
 	@RequestMapping("/Broadcasting/window.do")
@@ -118,10 +118,10 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
 		command = socketDAO.selectOneText(mcontents);
-		responseAjax(command).toString();
-		/*JSONObject jsonObject = new JSONObject();
+		/*responseAjax(command).toString();*/
+		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", command);
-		jsonObject.toString();*/
+		jsonObject.toString();
 	}
 	
 	@RequestMapping("/Broadcasting/deleteText.do")
@@ -132,12 +132,12 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		int check=0;
 		check=socketDAO.deleteText(mcontents);
-		responseAjax(check).toString();
+		/*responseAjax(check).toString();*/
 	}
 	
-	public JSONObject responseAjax(Object param){
+	/*public JSONObject responseAjax(Object param){
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", param);
 		return jsonObject;
-	}
+	}*/
 }

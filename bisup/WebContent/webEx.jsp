@@ -14,7 +14,7 @@ request.setCharacterEncoding("utf-8");
 
     <script type="text/javascript">
     var textarea = document.getElementById("textWindows");
-    var webSocket = new WebSocket('ws://192.168.20.5:8088/bisup/Broadcasting');
+    var webSocket = new WebSocket('ws://192.168.20.39:8088/bisup/Broadcasting');
     var inputMessage = $('#mcontents').val()
     webSocket.onerror = function(event) {
       onError(event)
@@ -41,7 +41,7 @@ request.setCharacterEncoding("utf-8");
     			$("#textWindows").append("<p align='center'>비즈업 쪽지창입니다!!!</p><br/>");
     			for(var idx=0; idx<args.data.length; idx++){
     				$("#textWindows").append("<a href='#' class='form-check-input' onclick='window.open('/BroadCasting/open.do?mcontents="+args.data[idx].mcontents+"')'>"+
-    						args.data[idx].send+"님으로부터 "+args.data[idx].mreg+"</a><br/>");
+    						args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+"</a><br/>");
     			}
     			$("#textWindows").append("<hr/>");
     		}
