@@ -18,7 +18,7 @@ public class MemberCommand {
 	public int getGucode() {
 		return gucode;
 	}
-	public void setGu(int gucode) {
+	public void setGucode(int gucode) {
 		this.gucode = gucode;
 	}
 	public int getCer() {

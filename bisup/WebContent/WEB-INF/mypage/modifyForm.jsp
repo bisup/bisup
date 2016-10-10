@@ -14,9 +14,9 @@
 <title>Insert title here</title>
 </head>
  <script>
-if ("${member.sort==2}"){
+ if ("${member.sort==2}"){
 $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></form:label>');
-}
+} 
 </script> 
     <script>
        function change(){
@@ -36,7 +36,7 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                 		 $('#sort').val('1');
                 	}
                } 
-                </script>  
+                </script> 
 <body>
 <div class="container">
 <div class="col-sm-6 mobile-pull">
@@ -133,7 +133,7 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                
                   <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
                   </form:select>
-                  </div> 
+                </div> 
    		
                
               

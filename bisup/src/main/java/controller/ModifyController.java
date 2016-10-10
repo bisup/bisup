@@ -43,10 +43,11 @@ import dao.MypageDAO;
 
 	public void guModel(Model model){
 		List<GuCommand> list = joinDAO.gu();
-		for(int i=0; i<list.size(); i++){
-			System.out.println(list.get(i));
+		for(GuCommand li:list){
+			System.out.println(li.getGcode()+li.getGn());
+	
 		}
-		model.addAllAttributes(list);
+		model.addAttribute("guSel", list);
 	}
 	
 
@@ -59,10 +60,7 @@ import dao.MypageDAO;
 	@RequestMapping(value="/mypage/modifyCheck.do",method=RequestMethod.GET)
 	public ModelAndView check(){
 		int x=0;
-		ModelAndView mav =new ModelAndView();
-		
-		System.out.println("check get방식 요청");
-		
+		ModelAndView mav =new ModelAndView();	
 		mav.setViewName("modifyCheck");
 		mav.addObject("x",new Integer(x));
 		return mav;//
@@ -73,21 +71,14 @@ import dao.MypageDAO;
 		
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
 		System.out.println("session에 저장되어있는 id="+id);
-		membercommand.setId(id);
+		
 		int x=-1;
 		ModelAndView mav =new ModelAndView();
-		
-		System.out.println("버튼값은 "+state + "이고, input 비밀번호값은 " + ipw);
-
 		String bt="";
 		String cpw = mypageDAO.Checkpw(id);
 		
-		System.out.println("controller cpw="+cpw);  
-		
 		if(cpw.equals(ipw)){
-		
-			System.out.println("비밀번호 같아요");
-			
+			System.out.println("비밀번호 같아요");	
 				x=1;	
 			if(state.equals("update")){
 				bt="1";
@@ -100,49 +91,39 @@ import dao.MypageDAO;
 		mav.setViewName("modifyCheck");
 		mav.addObject("x",new Integer(x));
 		mav.addObject("bt", bt);
-		
-		System.out.println("x="+x+"bt="+bt);
 
 				return mav;
 	}
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.GET)
-	public ModelAndView formGet(Model model,HttpSession session){
+	public String formGet(Model model,HttpSession session){
 		
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
-		//membercommand.setId(id);
-		System.out.println(id);
-		ModelAndView mav =new ModelAndView();
-
 		MemberCommand membercommand = mypageDAO.updateForm(id);
-		guModel(model);
-		System.out.println("email="+membercommand.getEmail());
-/*=======
-		membercommand = mypageDAO.updateForm(membercommand.getId());
+		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
+		model.addAttribute("member", membercommand);
+		model.addAttribute("gucode", membercommand.getGucode());
 		
-		List<GuCommand> list = new ArrayList<GuCommand>(); 
-		list = joinDAO.gu();
-		
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
-*/		System.out.println("gucode:::"+membercommand.getGucode());
+		System.out.println("gucode:::"+membercommand.getGucode());
 	
-		
-		mav.setViewName("modifyForm");
-		mav.addObject("member",membercommand);
-	//	mav.addObject("guSel",model);
-		//mav.addObject("gu",new GuCommand());
-		return mav;//
+		return "modifyForm";//
 	}
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
 	public String formPost(@ModelAttribute("member") MemberCommand membercommand){
+		
+		int gucode=membercommand.getGucode();
 		String id=membercommand.getId();
 
 		System.out.println("id="+id);
-		
+		//membercommand.setGucode(gucode);
+		System.out.println("파라미터로 받아온 gu::"+ membercommand.getGucode());
+		System.out.println("파라미터sort::"+membercommand.getSort());
 		int x = mypageDAO.updatePro(membercommand);
 		if(x==1){
 			System.out.println("update성공");
+			System.out.println("업데이트 후 gu::"+ membercommand.getGucode());
+			System.out.println("업데이트 후 sort::"+membercommand.getSort());
 			return "modSuc";//
 		}
 		
