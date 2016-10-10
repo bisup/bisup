@@ -8,7 +8,11 @@
 		<put-attribute name="header" value="/WEB-INF/viewtiles/template/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp" />
 	</definition>
-
+	
+	<definition name="Chart" template="/WEB-INF/sales/Chart.jsp">
+		 <put-attribute name="one" value="/WEB-INF/sales/drawMonChart.jsp" />
+ 		 <put-attribute name="two" value="/WEB-INF/mystore/salesManaging.jsp" />
+		</definition>
 
 	<!-- 미래 -->
 	<definition name="main" extends="base_layout">
@@ -159,11 +163,6 @@
 		<put-attribute name="body"
 			value="/WEB-INF/sales/salesInserting.jsp" />
 	</definition>
-	<definition name="salesManaging" extends="base_layout">
-		<put-attribute name="title" value="메뉴등록" />
-		<put-attribute name="body" value="/WEB-INF/mystore/salesManaging.jsp" />
-	</definition>
-	
 	
 	<!-- 현아언니 마이페이지 -->
 	<definition name="modifyCheck" extends="base_layout">
@@ -203,9 +202,10 @@
   <put-attribute name="title" value="매출등록완료" /> 
   <put-attribute name="body" value="/WEB-INF/sales/salesInsertingPro.jsp" /> 
   </definition>
- <definition name="drawMonChart" extends="base_layout">
+  
+   <definition name="drawChart" extends="base_layout">
   <put-attribute name="title" value="매출등록완료" /> 
-  <put-attribute name="body" value="/WEB-INF/sales/drawMonChart.jsp" /> 
+  <put-attribute name="body" value="Chart" />
   </definition>
 	
 	<!--지형정보검색  -->
