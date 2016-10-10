@@ -71,7 +71,7 @@
 				map.fitBounds(sopArea.getBounds());
 				sopArea.setStyle({
 					 stroke: true,
-                     color: "blue",
+                     color: "blue",  
                      weight : 3,
                      opacity: 1,
                      fill: true,
