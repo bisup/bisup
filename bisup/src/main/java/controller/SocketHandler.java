@@ -54,6 +54,7 @@ public class SocketHandler {
 			@RequestParam("mcontents")String mcontents,
 			@RequestParam("send")String send,HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("UTF-8");
 		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents+", send"+send);
 		int check = 0;
 		MemoCommand command = new MemoCommand();
@@ -74,18 +75,28 @@ public class SocketHandler {
 	}
 	
 	@RequestMapping("/Broadcasting/onOpen.do")
-	@ResponseBody
 	private void onOpenPro(@RequestParam("id")String id,HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("UTF-8");
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
 		/*responseAjax(textList).toString();*/
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
-		System.out.println("onOpenPro메소드 종료 : textList는 "+textList);
-		jsonObject.toString();
+		System.out.println(textList);
+		toString(textList);
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
 	}
 	
+	private void toString(ArrayList textList) {
+		// TODO Auto-generated method stub
+		for(int i=0; textList.size()>i; i++){
+			MemoCommand command = (MemoCommand) textList.get(i);
+			System.out.println(i+"번째 command 값 : "+command.getSend()+", "+command.getSub()+", "+command.getMtitle()+", "+command.getMcontents()+", "+command.getMreg());
+		}
+	}
+
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set

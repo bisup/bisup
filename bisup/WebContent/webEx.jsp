@@ -31,7 +31,7 @@ request.setCharacterEncoding("utf-8");
     }
     function onOpen(event) {
         var url="/bisup/mystore/Broadcasting/onOpen.do";
-        var param={id:'java1'};
+        var param={id:'java2'};
         $.ajax({
     		type:"post"
     		,url:url
@@ -40,13 +40,14 @@ request.setCharacterEncoding("utf-8");
     		,success:function(args){
     			$("#textWindows").append("<p align='center'>비즈업 쪽지창입니다!!!</p><br/>");
     			for(var idx=0; idx<args.data.length; idx++){
-    				$("#textWindows").append("<a href='#' class='form-check-input' onclick='window.open('/BroadCasting/open.do?mcontents="+args.data[idx].mcontents+"')'>"+
-    						args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+"</a><br/>");
+    				var mc = args.data[idx].mcontents;
+    				$("#textWindows").append("<a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
+    					args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+".......</a><br/>");
     			}
     			$("#textWindows").append("<hr/>");
     		}
-    		,errors:function(args,request,status,error){
-			 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		,errors:function(){
+			 alert();
 			}
     	});
     }
@@ -71,6 +72,10 @@ request.setCharacterEncoding("utf-8");
 			}
     	});
         $("#mcontents").val("");
+    }
+    function goWindow(mcontents){
+    	var url='textWindow.jsp?mcontents='+mcontents;
+    	window.open(url,'textWindow','width=800,height=800');
     }
   </script>
 </head>
