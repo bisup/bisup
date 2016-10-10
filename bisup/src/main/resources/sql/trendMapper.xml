@@ -4,8 +4,8 @@
 <mapper namespace="trend">
 
 
-<select id="concerting"  resultType="String">
-	select gn from gu order by gn asc
+<select id="concerting"  resultType="command.GuCommand">
+	select * from gu order by gn asc
 </select>
 
 

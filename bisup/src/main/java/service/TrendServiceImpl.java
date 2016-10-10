@@ -2,24 +2,32 @@ package service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
+import command.GuCommand;
 import dao.TrendDAO;
 
 public class TrendServiceImpl implements TrendService{
 	
-	@Autowired
-	private TrendDAO dao1;
-	public void setDao1(TrendDAO dao1) {
-		this.dao1 = dao1;
+	@Resource(name="trendDAO")
+	private TrendDAO trendDAO;
+	
+	public TrendDAO getTrendDAO() {
+		return trendDAO;
+	}
+
+	public void setTrendDAO(TrendDAO trendDAO) {
+		this.trendDAO = trendDAO;
 	}
 
 
-	public List<String> listgu(){
-		List<String> list = null;
+
+	public List<GuCommand> listgu(){
+		List<GuCommand> list = null;
 		
 		try{
-			list = dao1.getListgu("trend.concerting");
+			list = trendDAO.getListgu();
+			System.out.println(list.size());
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}

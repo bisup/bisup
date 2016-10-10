@@ -27,15 +27,21 @@
 		<property name="mapperLocations" value="classpath:sql/*.xml" />
 	</bean>
 	
-
+	<bean id="trendDAO" class="dao.TrendDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+	
+	<bean id="trendService" class="service.TrendServiceImpl">
+		<property name="trendDAO" ref="trendDAO"/>
+	</bean>
+	
+	<bean class="controller.TrendController">
+		 <property name="trendService" ref="trendService"/>
+	</bean>
 	
 	<bean id="dao2" class="dao.consultingDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
 	
-	<bean id="" class="service.TrendServiceImple">
-		<property name="" ref=""/>
-	</bean>
+	
 		
 	<!-- dao서포트 넘겨주고 , dao를 컨트롤러에게 넘겨줌 -->
 		

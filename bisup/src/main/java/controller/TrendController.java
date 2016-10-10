@@ -10,20 +10,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import command.GuCommand;
+import dao.TrendDAO;
 import net.sf.json.JSONObject;
-import service.TrendService;
+import service.TrendServiceImpl;
 
 @Controller
 public class TrendController {
+	@Autowired
+	private TrendServiceImpl trendService;
+	public TrendServiceImpl getTrendService() {
+		return trendService;
+	}
+
+	public void setTrendService(TrendServiceImpl trendService) {
+		this.trendService = trendService;
+	}
 
 	@Autowired
-	private TrendService service;
+	private TrendDAO trendDAO;
 	
-	public void setService(TrendService service) {
-		this.service = service;
+
+	
+	public TrendDAO getTrendDAO() {
+		return trendDAO;
 	}
-	
+
+	public void setTrendDAO(TrendDAO trendDAO) {
+		this.trendDAO = trendDAO;
+	}
+
 	@RequestMapping(value = "/bisup_trend/sales_trend.do", method = RequestMethod.GET)
 	public String sale()throws Exception{
 		return "sales_trend";
@@ -32,8 +48,11 @@ public class TrendController {
 	//타일즈 적용
 	@RequestMapping(value="/bisup_trend/sales_trend.do", method=RequestMethod.POST)
 	public void sales_trend(HttpServletResponse resp)throws Exception{
-		List<String> gulist = service.listgu();
-		System.out.println(gulist);
+		List<GuCommand> gulist = trendService.listgu();
+	
+		for(GuCommand list: gulist){
+			System.out.println(list.getGcode() + list.getGn());	
+		}
 		JSONObject jso = new JSONObject();	
 		jso.put("sale", gulist); //jason은 map구조(키,값), data라는 key로 list데이터를 주입했다.
 		
