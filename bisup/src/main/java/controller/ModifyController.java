@@ -116,8 +116,11 @@ import dao.MypageDAO;
 		List<GuCommand> list = new ArrayList<GuCommand>(); 
 		list = joinDAO.gu();
 		
-		System.out.println("email="+membercommand.getEmail());
 		System.out.println("gucode:::"+membercommand.getGucode());
+	
+		for(int i=0; i<list.size(); i++){
+			System.out.println(list.get(i));
+		}
 		mav.setViewName("modifyForm");
 		mav.addObject("member",membercommand);
 		mav.addObject("guSel",list);
