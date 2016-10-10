@@ -3,7 +3,7 @@
 <mapper namespace="mypage">
 
 <update id="updatePro" parameterType="command.MemberCommand">
-update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},snum=#{snum},phone=#{phone},tel=#{tel},reg=sysdate,email=#{email},gucode=#{gucode} where id=#{id}
+update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},snum=#{snum},phone=#{phone},tel=#{tel},email=#{email},gucode=#{gucode} where id=#{id}
 </update>
 
  <delete id="deleteMember" parameterType="String">
