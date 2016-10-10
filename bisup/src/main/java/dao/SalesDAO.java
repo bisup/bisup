@@ -10,7 +10,6 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import command.MenuCommand;
 import command.SaleCommand;
-import command.SaleList;
 
 
 public class SalesDAO extends SqlSessionDaoSupport{
@@ -22,12 +21,6 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
-	public int insertSales(List<SaleList> saleList)
-	{
-		System.out.println("insertdao");
-	return getSqlSession().insert("sales.insertSales",saleList);
-	
-	}
 
 	public ArrayList salePerMon(String id){
 		ArrayList salePerMon = (ArrayList) getSqlSession().selectList("sales.salePerMon", id);

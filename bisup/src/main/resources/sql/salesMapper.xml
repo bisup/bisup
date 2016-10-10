@@ -5,10 +5,6 @@
 select item,price from menu where id=#{id}
 </select>
 
-<insert id="insertSales" parameterType="command.SaleList">
-insert into sale(id,sdate,item,ea) values (#{id}, #{sdate}, #{item},#{ea})
-</insert>
-
 	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
  select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id='java' group by to_char(sdate,'mm') order by mon)
 	</select>
