@@ -75,7 +75,7 @@ request.setCharacterEncoding("utf-8");
   </script>
 </head>
 <body>
-<div id="container" style="width:300px;overflow:auto;">
+<div id="container" style="width:300px;height:400px;overflow:auto;">
     <fieldset>
         <div id="textWindows" class="form-group"></div>
         <input type="text" placeholder="받으실분" id="sub">
