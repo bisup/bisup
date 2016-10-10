@@ -16,14 +16,32 @@ $("document").ready(function(){
 		,dataType:"json"
 		,success:function(args){
 			$("#mtitle").append(args.data.mtitle);
-			$("#mcontens").append(args.data.mcontents);			
+			$("#mcontens").append("<div id='contentsForDel'>"+args.data.mcontents+"</div>");			
 		}
 		,errors:function(args,request,status,error){
 		 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
 });
-
+function deleteText(){
+	var contents=document.getElementById("contentsForDel");
+	var url="/bisup/mystore/Broadcasting/deleteText.do";
+	$.ajax({
+		type:"post"
+		,url:url
+		,data:contents
+		,dataType:"json"
+		,success:function(args){
+			alert("쪽지 삭제 완료!!");
+		}
+		,errors:function(args,request,status,error){
+		 	alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+};
+function replyText(){
+	
+}
 </script>
 <title>Insert title here</title>
 </head>
@@ -31,11 +49,12 @@ $("document").ready(function(){
 <div id="container">
 	<table id=>
 		<thead>
-			<tr><td id="mtitle"></td></tr>
+			<tr><td id="mtitle" style="font: bold italic large Palatino, serif"></td></tr>
 		</thead>
 		<tbody>
 			<tr><td id="mcontents"></td></tr>
-			<tr><td>bisup</td></tr>
+			<tr><td><input type="button" value="쪽지삭제" onclick="deleteText()">
+			<input type="button" value="답장쓰기" onclick="replyText()"></td></tr>
 		</tbody>
 	</table>
 </div>
