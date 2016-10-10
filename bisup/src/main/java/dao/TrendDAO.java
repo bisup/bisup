@@ -1,15 +1,18 @@
 package dao;
 
+import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import command.GuCommand;
+
 public class TrendDAO extends SqlSessionDaoSupport{
 	
-	public int list(String item){
-		int selectsales=getSqlSession().selectOne("trend.list", item);
-		return selectsales;
+	public List<GuCommand> getListgu(){		
+		List<GuCommand> total= getSqlSession().selectList("trend.concerting");
+		return total;
 	}
-
+	
 
 }
  

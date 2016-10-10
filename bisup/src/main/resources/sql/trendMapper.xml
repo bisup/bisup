@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="trend">
- 
-<select id="list" parameterType="String" resultType="int">
-	select sum(ea) from sale where item = #{item} 
+
+
+<select id="concerting"  resultType="command.GuCommand">
+	select * from gu order by gn asc
 </select>
 
-<select id="concerting" parameterType="string" resultType="command.consultingCommand">
-	select * from retail where division = #{division}
-</select>
+
+
 
 </mapper>

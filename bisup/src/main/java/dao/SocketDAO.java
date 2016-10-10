@@ -30,5 +30,12 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		command=getSqlSession().selectOne("text.selectOneText",mcontents);
 		return command;
 	}
+
+	public int deleteText(String mcontents) {
+		// TODO Auto-generated method stub
+		int check=0;
+		check=getSqlSession().delete("text.deleteText",mcontents);
+		return check;
+	}
 	
 }

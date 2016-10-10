@@ -17,7 +17,7 @@
 <script>
 
 
-/* 비밀번호 일치여부 확인 */
+/* 비밀번호 일치여부 확인후 정보수정폼이나 탈퇴로  */
 $(document).ready(function() {
 	
 	if(${x != 0}){
@@ -41,7 +41,7 @@ $(document).ready(function() {
 });
 </script>
 <script>
-/* 비밀번호 일치여부 확인 함수 수정 필요*/
+/* post방식으로 보낼때*/
   
   function sub(action){
 	//submit버튼 2개 

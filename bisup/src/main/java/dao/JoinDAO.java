@@ -1,10 +1,11 @@
 package dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import command.GuCommand;
 import command.MemberCommand;
 
 public class JoinDAO extends SqlSessionDaoSupport{
@@ -38,5 +39,12 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		 
 		 List mc = getSqlSession().selectList("JoinDAO.selectAll"); 
 		 return mc;
-	 }	 
+	 }	
+	 
+	 public List<GuCommand> gu(){//행정구 가져오는것
+		
+		List<GuCommand> list= new ArrayList<GuCommand>();
+		list = getSqlSession().selectList("JoinDAO.selectGu");
+		return list;
+	 }
 }

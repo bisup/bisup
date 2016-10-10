@@ -1,118 +1,98 @@
 <%@ page  contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String list = request.getContextPath(); //첫번째 경로를 가져온다
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html >
-<html> 
+<html>
 <head>
 <title>매출 트렌드 보고서</title>
-<style>
-.tb_date{
-    table-layout: fixed;
-    border: 0;
-    border-spacing: 0;
-    border-top: 3px solid #444;
-    background: #fff;
-    overflow: hidden;
+<style type="text/css">
+.wid{
+	widht: 900px;
 }
-
-#th{
-    
-    height: 5px;
-    border: 0;
-    border-left:  solid #cbcbcb;
-    border-bottom: 1px solid #cbcbcb;
-    text-align: center;
-}
-
-#content {
-    clear: both;
-    width: 750px;
-    min-height: 400px;
-    margin: auto;
-    padding: 55px 0 100px;
-    overflow: hidden;
+.trend{
+	text-align: left;	
 }
 </style>
+<script>
+$(function(){
+		//구 테이블의 리스트 가져오기
+		var url="<%=list%>/bisup_trend/sales_trend.do";
+		var params="dumi";
+		
+		$.ajax({
+			type: "post",
+			url:url,
+			data:params,
+			dataType:"json",
+			success:function(args){
+				for(var gross=0; gross<args.sale.length; gross++){
+					$("#gu").append("<option value='"+args.sale[gross].gcode+"'>"+args.sale[gross].gn+"</option>");
+				}	
+			}
+			,error:function(e) {	// 이곳의 ajax에서 에러가 나면 얼럿창으로 에러 메시지 출력
+			    	alert(e.responseText);					
+			}
+		});
+});
 
-	<!-- 라이브러리 로딩 / 최신버전 불러오기-->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawVisualization);
-		
-		/* 데이터 세팅 */
-		function drawVisualization() { 
-			var data = google.visualization.arrayToDataTable([
-					['Month',    '월매출',   '아메리카노(총판매수)'],
-					['2016/06',    800,        650],
-					['2016/07',    ${am},      850],
-					['2016/08',    1700,       1400],
-					['2016/09',    1400,       1100],
-					    
+
+function drawVisualization(){
+				
+				var data = google.visualization.arrayToDataTable([
+					['Month', '(총매출)', '(평균 매출)'],
+					['2016/06',  165,      938],
+					['2016/07',  135,      1120],
+					['2016/08',  157,      1167],
+					['2016/09',  139,      1110],
+					['2008/09',  136,      691]
 				]);
+			
 			var options = {
-					/* title : '2016년 월 매출 차트',
-					titleTextStyle: {
-					      fontSize: 25
-					    }, */
-					vAxis: {title: '월매출 단위 : 만원',
-						    ticks:[300,600,900,1200,1500] },
+					title : '2016년 지역별 매출 현황',
+					vAxis: {title: '단위:만원',
+					       ticks:[0,200,400,600,800,1000]
+							},
 					hAxis: {title: 'Month(월)'}, 
 					seriesType: 'bars',
 					
 				};
-			
-			/* 함수 정의 */
+		
 			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
-		} 
-	</script>
+			
+		}
+</script>
+
 </head>
 <body>
-<center>
-<div id="content">
-	<br>
-	<h2 width="750" align="left">2016년 월 매출 차트</h2>
-	<div id="chart_div" style="width:750px; height: 500px;"></div>
+	<center>
+	<form:form method="post">
+		<div style="width:700px;" class="trend">
+				<h4>※이 정보는 bisup 창업자 대상으로 제공된 데이터 입니다.※</h4>
+			<select id="gu" class="trend">
+				<option value="">::지역 선택::</option>
+				
+			</select>&nbsp;&nbsp;
+			<input type="submit" value="검색" onclick="drawVisualization();">
 
-			<h2 align="left">2016년 월 매출 현황</h2>
-	<table border="1" width="750" class="tb_date">
-	<tr>
-		<th id="th" style="border-left: 0" width="10">순위</th>
-		<th id="th" width="30">업체명</th>
-		<th id="th" width="30">item</th>
-		<th id="th" width="10">수량</th></tr>
-	
-	<tr height="5">
-		<td id="th" style="border-left: 0">1</td>
-		<td id="th">${q}</td>
-		<td id="th">${w}</td>
-		<td id="th">${e}</td></tr>
-	
-	<tr height="5">
-		<td id="th" style="border-left: 0">2</td>
-		<td id="th">${q}</td>
-		<td id="th">${w}</td>
-		<td id="th">${e}</td></tr>
-	
-	<tr height="5">
-		<td id="th" style="border-left: 0">3</td>
-		<td id="th">${q}</td>
-		<td id="th">${w}</td>
-		<td id="th">${e}</td></tr>
-	
-	<tr height="5">
-		<td id="th" style="border-left: 0">4</td>
-		<td id="th">${q}</td>
-		<td id="th">${w}</td>
-	<td id="th">${e}</td></tr>
-	
-	<tr height="5">
-		<td id="th" style="border-left: 0">5</td>
-		<td id="th">${q}</td>
-		<td id="th">${w}</td>
-		<td id="th">${e}</td>
-	</tr>
-	</table>
+	</div>		
+	</form:form>
+
+
+<div>
+	<div id="chart_div" style="width:900px; height: 500px;" ></div>		
 </div>
+
 </body>
 </html>
-		

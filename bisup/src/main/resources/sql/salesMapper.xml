@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="sales">
-<select id="menulist" parameterType="command.MenuCommand" resultType="String">
+<select id="menuList" parameterType="String" resultType="command.MenuCommand">
 select item,price from menu where id=#{id}
 </select>
 

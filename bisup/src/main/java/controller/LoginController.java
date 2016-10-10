@@ -46,8 +46,8 @@ public class LoginController{
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(@ModelAttribute("login") MemberCommand memberCommand,HttpSession session, 
-			BindingResult result) {
+	public String submit(@ModelAttribute("login") MemberCommand memberCommand,BindingResult result, HttpSession session
+			) {
 		new LoginCommandValidator().validate(memberCommand, result);
 		System.out.println(memberCommand.getId() + memberCommand.getPw() );
 		if (result.hasErrors()) {

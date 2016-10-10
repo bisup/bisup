@@ -1,4 +1,7 @@
 package command;
+
+import java.util.List;
+
 //매출관리
 public class SaleCommand {
 
@@ -9,6 +12,7 @@ public class SaleCommand {
 	private String total; //총매출
 	private int mon;//sdate 차트 월별 별칭임
 	private int tot;//total 차트 총매출 별칭임
+
 	public String getId() {		
 		return id;
 	}
@@ -50,8 +54,6 @@ public class SaleCommand {
 	}
 	public void setTot(int tot) {
 		this.tot = tot;
-	}
-	
-	
+	}	
 
 }
