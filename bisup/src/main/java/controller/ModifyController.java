@@ -43,6 +43,9 @@ import dao.MypageDAO;
 
 	public void guModel(Model model){
 		List<GuCommand> list = joinDAO.gu();
+		for(int i=0; i<list.size(); i++){
+			System.out.println(list.get(i));
+		}
 		model.addAllAttributes(list);
 	}
 	
@@ -110,13 +113,23 @@ import dao.MypageDAO;
 		//membercommand.setId(id);
 		System.out.println(id);
 		ModelAndView mav =new ModelAndView();
+
 		MemberCommand membercommand = mypageDAO.updateForm(id);
 		guModel(model);
 		System.out.println("email="+membercommand.getEmail());
-		System.out.println("gucode:::"+membercommand.getGucode());
+/*=======
+		membercommand = mypageDAO.updateForm(membercommand.getId());
+		
+		List<GuCommand> list = new ArrayList<GuCommand>(); 
+		list = joinDAO.gu();
+		
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
+*/		System.out.println("gucode:::"+membercommand.getGucode());
+	
+		
 		mav.setViewName("modifyForm");
 		mav.addObject("member",membercommand);
-		mav.addObject("guSel",model);
+	//	mav.addObject("guSel",model);
 		//mav.addObject("gu",new GuCommand());
 		return mav;//
 	}

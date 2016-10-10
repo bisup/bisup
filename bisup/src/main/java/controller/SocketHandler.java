@@ -59,10 +59,11 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		check=socketDAO.insertText(command);
-		JSONObject jsonObject = new JSONObject();
+		responseAjax("insert성공");
+		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", "insert성공");
 		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());
+		printWriter.print(jsonObject.toString());*/
 	}
 
 	@OnOpen
@@ -73,14 +74,16 @@ public class SocketHandler {
 	}
 	
 	@RequestMapping("/Broadcasting/onOpen.do")
+	@ResponseBody
 	private void onOpenPro(@RequestParam("id")String id,HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
-		JSONObject jsonObject = new JSONObject();
+		responseAjax(textList);
+		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
 		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());
+		printWriter.print(jsonObject.toString());*/
 	}
 	
 	@OnClose
@@ -91,6 +94,7 @@ public class SocketHandler {
 	}
 	
 	@RequestMapping("/Broadcasting/send.do")
+	@ResponseBody
 	public void send(@RequestParam("sub")String sub,
 			@RequestParam("mcontents")String mcontents,
 			@RequestParam("send")String send,
@@ -100,10 +104,10 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
-		JSONObject jsonObject = new JSONObject();
+		responseAjax(sub);
+		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
-		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());
+		jsonObject.toString();*/
 	}
 	
 	@RequestMapping("/Broadcasting/window.do")
@@ -114,8 +118,27 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
 		command = socketDAO.selectOneText(mcontents);
-		JSONObject jsonObject = new JSONObject();
+		responseAjax(command);
+		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", command);
+		jsonObject.toString();*/
+	}
+	
+	@RequestMapping("/Broadcasting/deleteText.do")
+	@ResponseBody
+	public void deleteText(@RequestParam("contents")String mcontents,
+			HttpServletResponse response) throws Exception{
+		System.out.println("deleteText진입, mcontents="+mcontents);
+		response.setCharacterEncoding("UTF-8");
+		int check=0;
+		check=socketDAO.deleteText(mcontents);
+		responseAjax(check);
+	}
+	
+	@ResponseBody
+	public void responseAjax(Object param){
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", param);
 		jsonObject.toString();
 	}
 }

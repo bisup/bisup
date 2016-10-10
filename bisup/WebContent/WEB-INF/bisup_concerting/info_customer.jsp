@@ -29,10 +29,11 @@ width: 350px;
 
 #map{
    position: absolute;
+   top: 30%;
    bottom: 20%;
    left:55%;
    width: 35%;
-   height: 60%;
+   height: 40%;
    text-align: right;
    padding-left: 50;
    
@@ -125,7 +126,7 @@ width: 350px;
          var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다 
          
          
-     	 /* // 지도에 마커를 생성하고 표시한다
+     	 // 지도에 마커를 생성하고 표시한다
          for(i=0; i<x.length; i++ ){
             
             var mposition = new daum.maps.LatLng(parseFloat(x[i]), parseFloat(y[i]));
@@ -163,7 +164,7 @@ width: 350px;
             
          
             
-         } */
+         } 
          
          
       </script>
