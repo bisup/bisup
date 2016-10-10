@@ -11,8 +11,6 @@
 		select rownum,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer from member
 	</select>
 	<select id="getMember" parameterType="Map" resultType="command.MemberCommand">
-		select r,id,name,pw,nick,sort,snum,phone,tel,reg,email from 
-		(select rownum r,id,name,pw,nick,sort,snum,phone,tel,reg,email from member 
-		order by sysdate desc) where rownum>=#{startNum} and #{endNum}>=rownum
+		select r,id,name,pw,nick,sort,snum,phone,tel,reg,email from (select rownum r,id,name,pw,nick,sort,snum,phone,tel,reg,email from member order by rownum desc) where rownum>=#{startNum} and #{endNum}>=rownum
 	</select>
 </mapper>

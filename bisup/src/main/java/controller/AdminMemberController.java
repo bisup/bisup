@@ -35,12 +35,12 @@ public class AdminMemberController {
 		ArrayList members=new ArrayList();//회원정보 저장
 		int count=0; Map map = new HashMap(); 
 		
-		map.put("startNum", (page)*10); map.put("endNum", (page+1)*10);//10개씩 출력할것이므로 10을 곱함.
+		map.put("startNum", (page-1)*10+1); map.put("endNum", (page)*10);//10개씩 출력할것이므로 10을 곱함.
 		count=adminMemberDao.getMemberCount();//회원 수 받아옴. 페이징 넘버 구성
 		members=adminMemberDao.getMember(map);//페이지에 해당하는 멤버 구해옴.
 		Object[] param = {members,count/10+1};
 		System.out.println("count="+count+", members="+members+", map.startnum"+map.get("startNum")+","+map.get("endNum"));
-		responseAjax(param);
+		responseAjax(param).toString();
 	}
 	
 	@RequestMapping(value="/main.do",produces="text/plain;charset=UTF-8")
@@ -48,12 +48,11 @@ public class AdminMemberController {
 		return "adminMember";
 	}
 		
-	@ResponseBody
-	public void responseAjax(Object[] param){
+	public JSONObject responseAjax(Object[] param){
 		JSONObject jsonObject = new JSONObject();
 		for(int i=1; i<=param.length; i++){
 			jsonObject.put("data"+i, param[i-1]);//data1은 회원정보, data2는 페이징 넘버
 		}
-		jsonObject.toString();
+		return jsonObject;
 	}
 }
