@@ -59,7 +59,7 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		check=socketDAO.insertText(command);
-		responseAjax("insert성공");
+		responseAjax("insert성공").toString();
 		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", "insert성공");
 		PrintWriter printWriter = response.getWriter();
@@ -79,7 +79,7 @@ public class SocketHandler {
 		// TODO Auto-generated method stub
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
-		responseAjax(textList);
+		responseAjax(textList).toString();
 		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
 		PrintWriter printWriter = response.getWriter();
@@ -104,7 +104,7 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
-		responseAjax(sub);
+		responseAjax(sub).toString();
 		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
 		jsonObject.toString();*/
@@ -118,7 +118,7 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
 		command = socketDAO.selectOneText(mcontents);
-		responseAjax(command);
+		responseAjax(command).toString();
 		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", command);
 		jsonObject.toString();*/
@@ -132,13 +132,12 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		int check=0;
 		check=socketDAO.deleteText(mcontents);
-		responseAjax(check);
+		responseAjax(check).toString();
 	}
 	
-	@ResponseBody
-	public void responseAjax(Object param){
+	public JSONObject responseAjax(Object param){
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", param);
-		jsonObject.toString();
+		return jsonObject;
 	}
 }
