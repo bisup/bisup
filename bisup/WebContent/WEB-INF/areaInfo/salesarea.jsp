@@ -23,10 +23,10 @@
 
 </div>
 <script type="text/javascript">
-  var accessToken = '21df932c-7e7e-4b95-bcc1-0811ca0842c9';
+  var accessToken = 'c9426431-06cb-4f7b-9f46-9d99bf16dab3';
   var consumer_key = 'ed2cc2868ea14215a368';
   var consumer_secret = 'b2d23f3f8e314efa8896';
-	var map, mapOptions, oriArea, sopArea, logger, divConsole;
+	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
 	logger = divLogger();
 	mapOptions = {
 		ollehTileLayer: true,
@@ -54,9 +54,11 @@
 		}         
 	}
 	divConsole = sop.DomUtil.get("divCon");
+
 	$(document).ready(function addArea() {
-		   var year = "2010";
+		   var year = "2012";
 	      	var adm_cd = "11";
+	      	var theme_cd="5010"
 			$.ajax({
 	          url : 'http://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson' +
 	          		'?accessToken='+ accessToken +'&year='+year+'&adm_cd='+adm_cd,
@@ -64,39 +66,45 @@
 	  datatype : "geojson",
 			success: function( res,status) {
                oriArea = res;
+       
 				sopArea = sop.geoJson(res).addTo(map);
 				map.fitBounds(sopArea.getBounds());
-				logger("경계조회 결과");
-				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
+				sopArea.setStyle({
+					 stroke: true,
+                     color: "blue",
+                     weight : 3,
+                     opacity: 1,
+                     fill: true,
+                     fillColor:"red",
+                     fillOpacity: 0.2
+				});
+				adm_cd = "11010";
+                     $.ajax({ 
+     		            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/sggtobcorpcount.json' +
+     		          	'?accessToken='+accessToken+'&theme_cd='+theme_cd,
+     		            type : 'get',
+     		            datatype:'json',
+     					success: function (res,status) {
+     						var idx, len, target, conComplite = {}, key, value, strToolTip;
+     						target = res.result;
+     		     			for (idx = 0, len = target.length; idx < len; idx ++) {
+     							conComplite[target[idx].sido_cd] = target[idx];
+     						}
+     						logger("----------- [ 산업체 조회 조회 성공 ] -----------");
+     						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
+     						sopArea.eachLayer(function (layer) {
+     							key = layer.feature.properties.sido_cd;
+     							value = conComplite[key];
+
+     						});
+     					}
+                     });
 			}
-		});
-			 $.ajax({  
-		            url : 'http://sgisapi.kostat.go.kr/OpenAPI3/stats/company.json' +
-		          	'?accessToken='+accessToken+'&year='+year,
-		            type : 'get',
-					success: function (res,status) {
-						// 맵형태로 변환 한다.
-						var idx, len, target, conComplite = {}, key, value, strToolTip;
-						target = res.result;
-
-						for (idx = 0, len = target.length; idx < len; idx ++) {
-							conComplite[target[idx].adm_cd] = target[idx];
-						}
-						sopArea.eachLayer(function (layer) {
-							key = layer.feature.properties.adm_cd;
-							value = conComplite[key];
-							if (!value) { return; }
-							strToolTip = "<p>지역(구)명 : " + value.adm_nm + "</p>";
-							strToolTip += "<p>지역(구)코드 : " + value.adm_cd + "</p>";
-							strToolTip += "<p>사업체 수 : " + value.corp_cnt + "</p>";
-							strToolTip += "<p>종사자수  : " + value.tot_worker + "</p>";
-							layer.bindToolTip(strToolTip);
-							});
-						}
-							
-						});
-
+			});
 	});
+	
+     				
+
 			
 
 	 function divLogger() {

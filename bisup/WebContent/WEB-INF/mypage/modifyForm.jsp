@@ -19,14 +19,15 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
 }
 </script> -->
     <script>
-               /* function change(){
+               function change(){
 
                 	if($('#sort').is(":checked")){
                 		
                 		document.getElementById('changeBis').style.display = '';
                 		//document.getElementById("changeBis").display = false;
                 		 $('#sort').val('2');
-                		 $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></form:label>');
+                		 $('.guSelect').html('<form:label path="
+"><b>카페 위치 행정구</b></form:label>');
 
                 	} 
                 	else{
@@ -34,7 +35,7 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                 		 $('.guSelect').html('<form:label path="gucode"><b>관심지역</b></form:label>');
                 		 $('#sort').val('1');
                 	}
-               } */
+               } 
                 </script>  
 <body>
 <div class="container">
@@ -125,13 +126,13 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                 </div> <!-- checkbox 선택시 (창업예정자에서 창업자로 변경할 경우)보여질 구역 -->
                
                
-              <%--  <div class="form-group">
+               <div class="form-group">
 					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
                   <form:select path="gucode">
                  <!--  <option value="11000" selected="selected">{member.gu}</option> -->
                   <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
                   </form:select>
-                  </div> --%>
+                  </div> 
    		
                
               

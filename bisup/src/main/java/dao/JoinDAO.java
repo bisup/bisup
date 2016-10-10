@@ -41,7 +41,7 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		 return mc;
 	 }	
 	 
-	 public List gu(){//행정구 가져오는것
+	 public List<GuCommand> gu(){//행정구 가져오는것
 		
 		List<GuCommand> list= new ArrayList<GuCommand>();
 		list = getSqlSession().selectList("JoinDAO.selectGu");

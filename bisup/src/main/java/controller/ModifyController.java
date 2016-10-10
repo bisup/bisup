@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,11 +41,11 @@ import dao.MypageDAO;
 		return new MemberCommand();
 	}
 
-	/*@ModelAttribute("gu")
-	public GuCommand guModel(){
-		return new GuCommand();
+	public void guModel(Model model){
+		List<GuCommand> list = joinDAO.gu();
+		model.addAllAttributes(list);
 	}
-	*/
+	
 
 	
 		public ModifyController() {
@@ -103,24 +104,19 @@ import dao.MypageDAO;
 	}
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.GET)
-	public ModelAndView formGet(@ModelAttribute("member") MemberCommand membercommand,HttpSession session){
+	public ModelAndView formGet(Model model,HttpSession session){
 		
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
-		membercommand.setId(id);
-		
-		System.out.println(membercommand.getId());
-		
+		//membercommand.setId(id);
+		System.out.println(id);
 		ModelAndView mav =new ModelAndView();
-		membercommand = mypageDAO.updateForm(membercommand.getId());
-		
-		List<GuCommand> list = new ArrayList<GuCommand>(); 
-		list = joinDAO.gu();
-		
+		MemberCommand membercommand = mypageDAO.updateForm(id);
+		guModel(model);
 		System.out.println("email="+membercommand.getEmail());
 		System.out.println("gucode:::"+membercommand.getGucode());
 		mav.setViewName("modifyForm");
 		mav.addObject("member",membercommand);
-		mav.addObject("guSel",list);
+		mav.addObject("guSel",model);
 		//mav.addObject("gu",new GuCommand());
 		return mav;//
 	}
