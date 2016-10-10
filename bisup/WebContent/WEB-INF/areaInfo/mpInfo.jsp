@@ -70,7 +70,7 @@
 			sopArea.remove();
 			sopArea = undefined;
 			oriArea = undefined;
-		}
+		}  
         var year = "2010";
       	var adm_cd = "11";
 		$.ajax({
