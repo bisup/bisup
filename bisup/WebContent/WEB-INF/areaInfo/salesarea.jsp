@@ -23,7 +23,7 @@
 
 </div>
 <script type="text/javascript">
-  var accessToken = 'c9426431-06cb-4f7b-9f46-9d99bf16dab3';
+  var accessToken = 'd6b85358-fde8-45f2-8d21-a78888402a6e';
   var consumer_key = 'ed2cc2868ea14215a368';
   var consumer_secret = 'b2d23f3f8e314efa8896';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
@@ -56,7 +56,7 @@
 	divConsole = sop.DomUtil.get("divCon");
 
 	$(document).ready(function addArea() {
-		   var year = "2012";
+		   var year = "2013";
 	      	var adm_cd = "11";
 	      	var theme_cd="5010"
 			$.ajax({
@@ -78,25 +78,41 @@
                      fillColor:"red",
                      fillOpacity: 0.2
 				});
-				adm_cd = "11010";
                      $.ajax({ 
-     		            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/sggtobcorpcount.json' +
-     		          	'?accessToken='+accessToken+'&theme_cd='+theme_cd,
+     		            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/stats/company.json' +
+     		          	'?accessToken='+accessToken+'&year='+year+'&area_type='+0+'&theme_cd='+theme_cd+'&adm_cd='+11010,
      		            type : 'get',
      		            datatype:'json',
      					success: function (res,status) {
      						var idx, len, target, conComplite = {}, key, value, strToolTip;
      						target = res.result;
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
-     							conComplite[target[idx].sido_cd] = target[idx];
+     							conComplite[target[idx].adm_cd] = target[idx];
+     							if(target[idx].corp_cnt < 1000 ){
+     								sopArea.setStyle({
+     									 stroke: true,
+     				                     color: "red",
+     				                     weight : 3,
+     				                     opacity: 1,
+     				                     fill: true,
+     				                     fillColor:"red",
+     				                     fillOpacity: 0.2
+     								});	
+     							} 
      						}
      						logger("----------- [ 산업체 조회 조회 성공 ] -----------");
      						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
      						sopArea.eachLayer(function (layer) {
-     							key = layer.feature.properties.sido_cd;
+     							key = layer.feature.properties.adm_cd;
      							value = conComplite[key];
-
+     							strToolTip = "<p>지역(구)명 : " + value.adm_nm + "</p>";
+     							strToolTip += "<p>지역코드 : " + value.adm_cd + "</p>";
+     							strToolTip += "<p>카폐수(개) : " + value.corp_cnt + "</p>";
+     	
+     							layer.bindToolTip(strToolTip);
+     							
      						});
+     						
      					}
                      });
 			}
