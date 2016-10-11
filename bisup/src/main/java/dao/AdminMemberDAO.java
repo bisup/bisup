@@ -1,9 +1,13 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+
+import command.GuCommand;
+import command.MemberCommand;
 
 public class AdminMemberDAO extends SqlSessionDaoSupport {
 
@@ -24,4 +28,14 @@ public class AdminMemberDAO extends SqlSessionDaoSupport {
 		ArrayList members = (ArrayList) getSqlSession().selectList("admin.getMember",map);
 		return members;
 	}//pageNumber가 넘어왔을 시 해당 회원만 나오도록 하는 메소드
+	
+	
+	public List<MemberCommand> getStore(){
+		List<MemberCommand> getstore = getSqlSession().selectList("admin.getStore");
+		return getstore;
+	}
+	
+	public List<MemberCommand> getGucode(){
+		return getSqlSession().selectList("admin.getgucode");
+	}
 }

@@ -14,7 +14,51 @@ public class MemberCommand {
 	private String email;
 	private int cer; //인증여부
 	private int gucode; //행정구명
+	private int gcode; //gu테이블 gucode
+	private String gn;//gu테이블 gu이름
+	private int cd; //구코드별 갯수
 	
+	
+	public MemberCommand(){}
+	
+	
+	public MemberCommand(String id, String name, String pw, String nick, int sort, int snum, String phone, String tel,
+			String reg, String email, int cer, int gucode, int gcode, String gn, int cd) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.pw = pw;
+		this.nick = nick;
+		this.sort = sort;
+		this.snum = snum;
+		this.phone = phone;
+		this.tel = tel;
+		this.reg = reg;
+		this.email = email;
+		this.cer = cer;
+		this.gucode = gucode;
+		this.gcode = gcode;
+		this.gn = gn;
+		this.cd = cd;
+	}
+	public int getGcode() {
+		return gcode;
+	}
+	public void setGcode(int gcode) {
+		this.gcode = gcode;
+	}
+	public String getGn() {
+		return gn;
+	}
+	public void setGn(String gn) {
+		this.gn = gn;
+	}
+	public int getCd() {
+		return cd;
+	}
+	public void setCd(int cd) {
+		this.cd = cd;
+	}
 	public int getGucode() {
 		return gucode;
 	}

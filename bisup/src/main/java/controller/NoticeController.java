@@ -160,13 +160,14 @@ public class NoticeController {
 					@RequestParam(value = "writer") String writer)
 					throws Exception {
 
-				ModelAndView mav = new ModelAndView("success");
+				ModelAndView mav = new ModelAndView();
 				BoardCommand boardCommand = new BoardCommand();
 				boardCommand.setCnt(0);
 				boardCommand.setContents(contents);
 				boardCommand.setTitle(title);
 				boardCommand.setWriter(writer);
 				boardService2.insertBoard(boardCommand);
+				mav.setViewName("success");
 				return mav;
 			}
 
@@ -226,7 +227,7 @@ public class NoticeController {
 					@RequestParam(value = "writer") String writer,
 					@RequestParam(value = "cnt") int cnt) throws Exception {
 
-				ModelAndView mav = new ModelAndView("successUp");
+				ModelAndView mav = new ModelAndView();
 				BoardCommand boardCommand = new BoardCommand();
 				boardCommand.setNum(num);
 				boardCommand.setTitle(title);
@@ -234,6 +235,7 @@ public class NoticeController {
 				boardCommand.setWriter(writer);
 				boardCommand.setCnt(cnt);
 				boardService2.updateBoard(boardCommand);
+				mav.setViewName("successUp");
 				return mav;
 			}
 			

@@ -39,11 +39,11 @@ position:absolute;
     			// Create the data table.
     	        chartData = new google.visualization.arrayToDataTable([
     	        		['item',{label: '매출', type: 'number'},{ role: 'style' }],
-    	        		[args.data[0].item,args.data[0].total,'#ff9933'],
-    	        		[args.data[1].item,args.data[1].total,'#000000'],
-    	        		[args.data[2].item,args.data[2].total,'#cc3300'],
-    	        		[args.data[3].item,args.data[3].total,'#ff9900'],
-    	        		[args.data[4].item,args.data[4].total,'#800000'],
+    	        		[args.data[0].item, args.data[0].total,'#ff9933'],
+    	        		[args.data[1].item, args.data[1].total,'#000000'],
+    	        		[args.data[2].item, args.data[2].total,'#cc3300'],
+    	        		[args.data[3].item, args.data[3].total,'#ff9900'],
+    	        		[args.data[4].item, args.data[4].total,'#800000'],
     	        ]);
     	     // Set chart options
 				var view = new google.visualization.DataView(chartData);
