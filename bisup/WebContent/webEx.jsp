@@ -11,8 +11,7 @@ request.setCharacterEncoding("utf-8");
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
+<script>
     var textarea = document.getElementById("textWindows");
     var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
     var inputMessage = $('#mcontents').val()
@@ -26,7 +25,7 @@ request.setCharacterEncoding("utf-8");
       onMessage(event)
     };
     function onMessage(event) {
-    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open('/BroadCasting/open.do?mcontents="+event.data+"','쪽지',"+
+    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open(/BroadCasting/open.do?mcontents="+event.data+",'쪽지',"+
     			"'resizable=no, width=600, height=600')'> 쪽지가 왔습니다! "+event.data.substring(0,4)+".......</a></p>");
     }
     function onOpen(event) {
@@ -75,18 +74,18 @@ request.setCharacterEncoding("utf-8");
     }
     function goWindow(mcontents){
     	var url='textWindow.jsp?mcontents='+mcontents;
-    	window.open(url,'textWindow','width=800,height=800');
+    	window.open(url,'textWindow','width=500,height=500');
     }
-  </script>
+</script>
 </head>
 <body>
-<div id="container" style="width:300px;height:400px;overflow:auto;">
-    <fieldset>
+    <fieldset style="border:1">
+    <div style="width:500px;">
         <div id="textWindows" class="form-group"></div>
         <input type="text" placeholder="받으실분" id="sub">
         <input type="text" placeholder="내용" id="mcontents">
         <input type="button" value="send" onclick="send()">
+    </div>
     </fieldset>
-</div>
 </body>
 </html>

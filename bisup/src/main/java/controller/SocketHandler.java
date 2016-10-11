@@ -56,11 +56,9 @@ public class SocketHandler {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents+", send"+send);
-		int check = 0;
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
-		check=socketDAO.insertText(command);
-		/*responseAjax("insert성공").toString();*/
+		socketDAO.insertText(command);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", "insert성공");
 		PrintWriter printWriter = response.getWriter();
@@ -80,7 +78,6 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
-		/*responseAjax(textList).toString();*/
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
 		System.out.println(textList);
@@ -115,40 +112,46 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
-		/*responseAjax(sub).toString();*/
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
 		jsonObject.toString();
 	}
 	
 	@RequestMapping("/Broadcasting/window.do")
-	@ResponseBody
 	public void openWindow(@RequestParam("mcontents")String mcontents,
 			HttpServletResponse response) throws Exception{
 		System.out.println("openWindow진입, mcontents="+mcontents);
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
 		command = socketDAO.selectOneText(mcontents);
-		/*responseAjax(command).toString();*/
+		PrintWriter printWriter = response.getWriter();
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", command);
-		jsonObject.toString();
+		System.out.println("openWindow완료, mcontents="+command.getMreg());
+		printWriter.print(jsonObject.toString());
 	}
 	
-	@RequestMapping("/Broadcasting/deleteText.do")
+	@RequestMapping("/deleteText.do")
 	@ResponseBody
 	public void deleteText(@RequestParam("contents")String mcontents,
 			HttpServletResponse response) throws Exception{
-		System.out.println("deleteText진입, mcontents="+mcontents);
 		response.setCharacterEncoding("UTF-8");
+		System.out.println("deleteText진입, mcontents="+mcontents);
 		int check=0;
 		check=socketDAO.deleteText(mcontents);
-		/*responseAjax(check).toString();*/
+		if(check>0){
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("data", "쪽지 삭제 완료");
+			jsonObject.toString();
+		}
 	}
 	
-	/*public JSONObject responseAjax(Object param){
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("data", param);
-		return jsonObject;
-	}*/
+	@RequestMapping("/replyText.do")
+	@ResponseBody
+	public void replyText(@RequestParam("contents")String mcontents,
+			HttpServletResponse response) throws Exception{
+		System.out.println("replyText진입, mcontents="+mcontents);
+		response.setCharacterEncoding("UTF-8");
+		socketDAO.replyText(mcontents);
+	}
 }

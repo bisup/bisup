@@ -27,7 +27,9 @@ public class SocketDAO extends SqlSessionDaoSupport {
 	public MemoCommand selectOneText(String mcontents) {
 		// TODO Auto-generated method stub
 		MemoCommand command = new MemoCommand();
-		command=getSqlSession().selectOne("text.selectOneText",mcontents);
+		ArrayList arrayList = new ArrayList();
+		arrayList=(ArrayList) getSqlSession().selectList("text.selectOneText",mcontents);
+		command=(MemoCommand) arrayList.get(0);
 		return command;
 	}
 
@@ -36,6 +38,11 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		int check=0;
 		check=getSqlSession().delete("text.deleteText",mcontents);
 		return check;
+	}
+
+	public void replyText(String mcontents) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
