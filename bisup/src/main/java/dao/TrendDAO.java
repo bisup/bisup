@@ -21,7 +21,7 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		System.out.println(total1);
 		return total1;
 		
-	}
+	} 
 	
 
 }

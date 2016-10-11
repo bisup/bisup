@@ -15,3 +15,4 @@ public interface TrendService {
 	public List listtotal(String gucode);
 
 }
+ 

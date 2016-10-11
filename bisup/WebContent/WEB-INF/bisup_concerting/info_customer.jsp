@@ -55,7 +55,7 @@ width: 350px;
     border-left:  solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
     text-align: center;
-}
+} 
 </style>
 </head>
 <body>

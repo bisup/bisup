@@ -16,5 +16,5 @@
 <select id="concerting1"  resultType="command.consultingCommand"> 
 	select * from retail where division = #{division}
 </select>
-
+ 
 </mapper>

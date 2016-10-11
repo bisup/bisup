@@ -60,7 +60,7 @@ public class TrendController {
 		PrintWriter out = resp.getWriter();
 		out.print(jso.toString()); //out.print 내용을 ajax의 dataType이 jason에게 데이터 쏴줌
 	}
-	
+	 
 	@RequestMapping(value="/bisup_trend/sales_trend1.do", method=RequestMethod.POST)
 	public String sales_trend1(@RequestParam("gn") String gucode, Model model)throws Exception{
 		ArrayList gn = (ArrayList) trendService.listtotal(gucode);

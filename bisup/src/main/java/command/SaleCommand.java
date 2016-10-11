@@ -4,7 +4,7 @@ import java.util.List;
 
 //매출관리
 public class SaleCommand {
-
+ 
 	private String id; //아이디
 	private String sdate; //등록일
 	private String item; //메뉴이름

@@ -12,3 +12,4 @@ public class consultingDAO extends SqlSessionDaoSupport{
 		return concerting;
 	}
 }
+ 

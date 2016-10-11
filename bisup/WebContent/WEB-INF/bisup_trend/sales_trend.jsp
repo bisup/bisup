@@ -58,7 +58,7 @@ function drawVisualization(){
 					<c:forEach var="a" items="${sale1}">
 					['2016/07',  ${a.tot},      ${a.avg}], //345,  765
 					</c:forEach>
-					
+			 		
 					['2016/08',  157000,      116700],
 					['2016/09',  139000,      111000]
 				]);

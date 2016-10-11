@@ -16,7 +16,7 @@ import dao.consultingDAO;
 @Controller
 public class ConcertingController {
 	
-
+ 
 
 	public void setDao2(consultingDAO dao2) {
 		this.dao2 = dao2;
