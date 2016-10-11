@@ -87,7 +87,7 @@ $(document).ready(function() {
                     			<tr>
                     				<td>${list.NUM}</td>
                     				<td>${list.WRITER}</td>
-                    				<td><a href="/bisup/bisup/notice/ncontents.do?num=${list.NUM}">${list.TITLE}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td><a href="/bisup/bisup/notice/ncontents.do?num=${list.NUM}">${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
                     				<td>${list.REG}</td>
                     			</tr>

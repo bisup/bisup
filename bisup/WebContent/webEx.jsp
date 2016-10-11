@@ -14,7 +14,7 @@ request.setCharacterEncoding("utf-8");
 
     <script type="text/javascript">
     var textarea = document.getElementById("textWindows");
-    var webSocket = new WebSocket('ws://192.168.20.39:8088/bisup/Broadcasting');
+    var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
     var inputMessage = $('#mcontents').val()
     webSocket.onerror = function(event) {
       onError(event)

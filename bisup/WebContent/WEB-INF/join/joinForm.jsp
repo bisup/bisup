@@ -235,7 +235,15 @@ $(function(){
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                 
-                 
+                 <div class="form-group">
+
+					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
+                  <form:select path="gucode">
+               
+                  <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
+                  </form:select>
+                </div> 
+                
                   <div class="form-group">
                     <div class="checkbox">
                       <label>
@@ -319,6 +327,14 @@ $(function(){
                     <form:input path="tel" class="form-control" placeholder="카페 연락처를 입력해주세요"/>
                     <%--  <form:errors path="tel"/> --%>
                   </div>
+                  <div class="form-group">
+
+					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
+                  <form:select path="gucode">
+               
+                  <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
+                  </form:select>
+                </div> 
                 <div class="form-group">
                   <div class="checkbox">
                     <label>

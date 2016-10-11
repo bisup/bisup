@@ -6,6 +6,8 @@
 	
 	<definition name="base_layout" template="/WEB-INF/viewtiles/template/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/viewtiles/template/header.jsp" />
+		<put-attribute name="header2" value="/WEB-INF/viewtiles/template/header2.jsp"/>
+		<put-attribute name="header_m" value="/WEB-INF/viewtiles/template/header_m.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp" />
 	</definition>
 	
