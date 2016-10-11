@@ -10,24 +10,18 @@ public class AdminMemberDAO extends SqlSessionDaoSupport {
 	public ArrayList selectMembers(){
 		ArrayList allMembers = (ArrayList) getSqlSession().selectList("admin.selectMembers");
 		return allMembers;
-	}
+	}//member테이블의 모든 정보를 불러오는 메소드
 
 	public int getMemberCount() {
 		// TODO Auto-generated method stub
 		int check = 0;
 		check = getSqlSession().selectOne("admin.getMemberCount");
 		return check;
-	}
-
-	public ArrayList selectPagingMembers(int page) {
-		// TODO Auto-generated method stub
-		ArrayList allMembers = (ArrayList) getSqlSession().selectList("admin.selectPagingMembers",page);
-		return allMembers;
-	}
+	}//member테이블의 줄 갯수
 
 	public ArrayList getMember(Map map) {
 		// TODO Auto-generated method stub
 		ArrayList members = (ArrayList) getSqlSession().selectList("admin.getMember",map);
 		return members;
-	}
+	}//pageNumber가 넘어왔을 시 해당 회원만 나오도록 하는 메소드
 }

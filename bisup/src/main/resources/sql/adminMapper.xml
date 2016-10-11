@@ -2,13 +2,10 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="admin">
 	<select id="selectMembers" resultType="command.MemberCommand">
-		select rownum,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer from member
+		select * from member
 	</select>
 	<select id="getMemberCount" resultType="int">
 		select count(*) from member
-	</select>
-	<select id="selectPagingMembers" parameterType="int" resultType="command.MemberCommand">
-		select rownum,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer from member
 	</select>
 	<select id="getMember" parameterType="Map" resultType="command.MemberCommand">
 		select r,id,name,pw,nick,sort,snum,phone,tel,reg,email from (select rownum r,id,name,pw,nick,sort,snum,phone,tel,reg,email from member order by rownum desc) where r>=#{startNum} and #{endNum}>=r

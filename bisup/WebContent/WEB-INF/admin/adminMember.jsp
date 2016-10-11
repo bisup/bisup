@@ -16,28 +16,28 @@ request.setCharacterEncoding("utf-8");
 <script type="text/javascript">
 	$("document").ready(function(){
 		var url="/bisup/admin/allMembers.do";
-		var pageNum=1;
 		$.ajax({
 			type:"post"
 			,url:url
-			,data:pageNum
+			,data:""
 			,dataType:"json"
 			,success:function(args){
 				for(var idx=0; idx<args.data.length; idx++){
-					$("#allMember").append("<tr><td><a href='/bisup/admin/selectOneMember' onsubmit><input type='text' name='id'>"+args.data1[idx].id+"</td><td>"
-							+args.data1[idx].nam+"</td><td>"+args.data1[idx].pw+"</td><td>"
-							+args.data1[idx].nick+"</td><td>"+args.data1[idx].sort+"</td><td>"
-							+args.data1[idx].snum+"</td><td>"+args.data1[idx].phone+"</td><td>"
-							+args.data1[idx].tel+"</td><td>"+args.data1[idx].reg+"</td><td>"
-							+args.data1[idx].email+"</td><td>"+args.data1[idx].cer+"</td><td>")         
+					$("#allMember").append("<tr><td>"+args.data[idx].id+"</td><td>"
+							+args.data[idx].name+"</td><td>"+args.data[idx].pw+"</td><td>"
+							+args.data[idx].nick+"</td><td>"+args.data[idx].sort+"</td><td>"
+							+args.data[idx].snum+"</td><td>"+args.data[idx].phone+"</td><td>"
+							+args.data[idx].tel+"</td><td>"+args.data[idx].reg+"</td><td>"
+							+args.data[idx].email+"</td><td>"+args.data[idx].cer+"</td><td>"
+							+args.data[idx].cer+"</td><td>")         
 				}
-				for(var idx=1; args.data2>=idx; idx++){
+				/* for(var idx=1; args.data2>=idx; idx++){
 					if(args.data2>idx){
 						$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>&#124;");
 					}else{
 						$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>");
 					}
-				}
+				} *///페이지 번호를 위한 for문
 				return false;
 			}
 			,error:function(e){
@@ -46,39 +46,6 @@ request.setCharacterEncoding("utf-8");
 			}
 		});
 	})
-	
-	function selectPageNum(page){
-		var pageNum = page;
-		var url="/bisup/admin/allMembers.do";
-		$.ajax({
-			type:"post"
-			,url:url
-			,data:pageNum
-			,dataType:"json"
-			,success:function(args){
-				for(var idx=0; idx<args.data.length; idx++){
-					$("#allMember").append("<tr><td><input type='text' name='id'>"+args.data1[idx].id+"</td><td>"
-							+args.data1[idx].nam+"</td><td>"+args.data1[idx].pw+"</td><td>"
-							+args.data1[idx].nick+"</td><td>"+args.data1[idx].sort+"</td><td>"
-							+args.data1[idx].snum+"</td><td>"+args.data1[idx].phone+"</td><td>"
-							+args.data1[idx].tel+"</td><td>"+args.data1[idx].reg+"</td><td>"
-							+args.data1[idx].email+"</td><td>"+args.data1[idx].cer+"</td><td>")         
-				}
-				for(var idx=1; args.data2>=idx; idx++){
-					if(args.data2>idx){
-						$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>&#124;");
-					}else{
-						$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>");
-					}
-				}
-				return false;
-			}
-			,error:function(e){
-				alert(e.responseText);
-				return false;
-			}
-		});
-	}
 </script>
 </head>
 <body>
@@ -89,6 +56,7 @@ request.setCharacterEncoding("utf-8");
 	<thead><tr>
 		<td>ID</td><td>이름</td><td>비밀번호</td><td>닉네임</td><td>분류</td><td>snum</td>
 		<td>전화번호</td><td>핸드폰번호</td><td>가입일</td><td>이메일</td><td>이메일확인여부</td>
+		<td>행정구역(구)코드</td>
 	</tr></thead>
 	<tbody id="allMember">
 	
