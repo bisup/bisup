@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import command.GuCommand;
 import command.MemberCommand;
 import dao.JoinDAO;
 import mail.CreateCode;
@@ -70,13 +72,23 @@ public class MemberController {
 		return new MemberCommand();
 	}
 	
+	public void guModel(Model model){
+		List<GuCommand> list = joinDao.gu();
+		for(GuCommand li:list){
+			System.out.println(li.getGcode()+li.getGn());
+	
+		}
+		model.addAttribute("guSel", list);
+	}
+	
 	@RequestMapping(value="/bisup_login/agree.do" ,method = RequestMethod.GET)
 	public String joinagree(){
 		return "join/joinAgree";
 		
 	}
 	@RequestMapping(value= "/join.do" ,method = RequestMethod.GET)
-	public String joinform(){
+	public String joinform(Model model){
+		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
 		return "join/joinForm";
 		
 	}
