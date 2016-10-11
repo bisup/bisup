@@ -63,7 +63,7 @@
         </li>
         
         <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항 작성</a></li>
-        <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
+        <li><a href="/bisup/bisup/question/qlist_m.do">문의사항</a></li>
         
         
         <!-- 관리자페이지 -->
@@ -72,7 +72,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="/bisup/admin/main.do">회원 관리</a></li>
             <li class="divider"></li>
-            <li><a href="#">점포 관리</a></li>
+            <li><a href="/bisup/admin/store.do">점포 관리</a></li>
           </ul>
         </li>
       </ul>

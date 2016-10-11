@@ -10,4 +10,13 @@
 	<select id="getMember" parameterType="Map" resultType="command.MemberCommand">
 		select r,id,name,pw,nick,sort,snum,phone,tel,reg,email from (select rownum r,id,name,pw,nick,sort,snum,phone,tel,reg,email from member order by rownum desc) where r>=#{startNum} and #{endNum}>=r
 	</select>
+	
+	<select id="getStore" resultType="command.MemberCommand" >
+	select g.gn, count(g.gcode) from gu g, member m where g.gcode = m.gucode group by g.gn
+	</select>
+	
+	<select id="getgucode" resultType="command.MemberCommand">
+	select gucode from member
+	</select>
+	
 </mapper>

@@ -82,6 +82,51 @@ public class QuestionController {
 
 		return mav;
 	}
+	
+	
+	
+	// 문의사항 전체 글 목록
+		@RequestMapping("/question/qlist_m.do")
+		public ModelAndView list_m() throws Exception {
+			List<BoardCommand> list = null;
+
+			mav = new ModelAndView("qlist_m");
+			int pageNum = 1;
+			int pagesize = 10;
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			int startRow = (pageNum * 10) - 9;
+			int endRow = (pageNum * pagesize);
+			map.put("startRow", startRow);
+			map.put("endRow", endRow);
+
+			int cnt = boardService.allCnt(); // 전체 글 갯수
+			// cnt(전체 글 갯수가)가 0이면 저장된 글 없음
+			if (cnt > 0) {
+				list = boardService.selectBoardList(map);
+				System.out.println(list.toString());
+			}
+			// int number = cnt - (pageNum -1) * pagesize;
+
+			/**** 페이지 수 연산 ****/
+			int pageCount = cnt / pagesize + (cnt % pagesize == 0 ? 0 : 1);
+			int startPage = (int) (pageNum / 5) * 5 + 1;
+			int pageBlock = 5;
+			int endPage = startPage + pageBlock - 1;
+			if (endPage > pageCount)
+				endPage = pageCount;
+
+			mav.addObject("pageNumber", pageNum); // 페이지 번호
+			mav.addObject("totalcnt", cnt); // 전체 글 수
+			mav.addObject("pageCount", pageCount); // 페이지 수
+			mav.addObject("startPage", startPage); // 시작 페이지
+			mav.addObject("endPage", endPage); // 끝 페이지
+			mav.addObject("list", list);
+
+			return mav;
+		}
+	
+	
 
 	// 글쓰기 첫번째 폼
 	@RequestMapping(value = "/question/qwrite.do", method = RequestMethod.GET)

@@ -32,7 +32,7 @@
 	 	<input type="hidden" name="num" value="${boardCommand.num }"/>
         <input type="hidden" name="cnt" value="${boardCommand.cnt }"/>
         <input type="hidden" name="pw" value="${boardCommand.pw }" />
-	  <button type="submit" class="btn btn-primary">글쓰기</button>
+	  <button type="submit" class="btn btn-primary">글수정</button>
 	  <button type="button" class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nlist_m.do'">취소</button>
 	  </div>
 	  </div>

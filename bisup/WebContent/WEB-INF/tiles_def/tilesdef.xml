@@ -3,26 +3,32 @@
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	
-	<definition name="base_layout" template="/WEB-INF/viewtiles/template/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/viewtiles/template/header.jsp" />
-		<put-attribute name="header2" value="/WEB-INF/viewtiles/template/header2.jsp"/>
-		<put-attribute name="header_m" value="/WEB-INF/viewtiles/template/header_m.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp" />
-	</definition>
-	
-	<definition name="Chart" template="/WEB-INF/sales/Chart.jsp">
-		 <put-attribute name="one" value="/WEB-INF/sales/drawMonChart.jsp" />
- 		 <put-attribute name="two" value="/WEB-INF/mystore/salesManaging.jsp" />
-		</definition>
 
-	<!-- 미래 -->
+	<definition name="base_layout" template="/WEB-INF/viewtiles/template/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/viewtiles/template/header.jsp" />
+		<put-attribute name="header2"
+			value="/WEB-INF/viewtiles/template/header2.jsp" />
+		<put-attribute name="header_m"
+			value="/WEB-INF/viewtiles/template/header_m.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/viewtiles/template/footer.jsp" />
+	</definition>
+
+	<definition name="Chart" template="/WEB-INF/sales/Chart.jsp">
+		<put-attribute name="one" value="/WEB-INF/sales/drawMonChart.jsp" />
+		<put-attribute name="two" value="/WEB-INF/mystore/salesManaging.jsp" />
+	</definition>
+
+
+	<!-- 미래 메인 -->
 	<definition name="main" extends="base_layout">
 		<put-attribute name="title" value="BisUp Main" />
 		<put-attribute name="body" value="/WEB-INF/main/main.jsp" />
 	</definition>
 
-<!-- 공지사항 -->
+
+	<!-- 공지사항 -->
 	<definition name="nlist" extends="base_layout">
 		<put-attribute name="title" value="공지사항 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/nlist.jsp" />
@@ -37,45 +43,48 @@
 		<put-attribute name="title" value="공지사항 글 작성 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/nwrite.jsp" />
 	</definition>
-	
+
 	<definition name="ncontents" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 보기." />
 		<put-attribute name="body" value="/WEB-INF/notice/ncontents.jsp" />
 	</definition>
-	
+
 	<definition name="nupdate" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 수정 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/nupdate.jsp" />
 	</definition>
-	
+
 	<definition name="ndelete" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 삭제 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/notice/ndelete.jsp" />
 	</definition>
-	
-	<definition name="good" extends="base_layout">
+
+	<definition name="success" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 작성 완료 페이지 입니다." />
-		<put-attribute name="body" value="/WEB-INF/notice/good.jsp" />
+		<put-attribute name="body" value="/WEB-INF/notice/success.jsp" />
 	</definition>
-	
-	<definition name="good2" extends="base_layout">
+
+	<definition name="successUp" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 수정 완료 페이지 입니다." />
-		<put-attribute name="body" value="/WEB-INF/notice/good2.jsp" />
+		<put-attribute name="body" value="/WEB-INF/notice/successUp.jsp" />
 	</definition>
-	
+
 	<definition name="ncontents_m" extends="base_layout">
 		<put-attribute name="title" value="공지사항 글 내용 (관리자)." />
 		<put-attribute name="body" value="/WEB-INF/notice/ncontents_m.jsp" />
 	</definition>
-	
 
 
-<!-- 문의사항 -->
+	<!-- 문의사항 -->
 	<definition name="qlist" extends="base_layout">
 		<put-attribute name="title" value="문의사항 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qlist.jsp" />
 	</definition>
 
+	<definition name="qlist_m" extends="base_layout">
+		<put-attribute name="title" value="관리자 문의사항 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/question/qlist_m.jsp" />
+	</definition>
 	<definition name="qwrite" extends="base_layout">
 		<put-attribute name="title" value="문의사항 글 작성 페이지 입니다." />
 		<put-attribute name="body" value="/WEB-INF/question/qwrite.jsp" />
@@ -100,19 +109,16 @@
 		<put-attribute name="title" value="글 작성 완료." />
 		<put-attribute name="body" value="/WEB-INF/question/good.jsp" />
 	</definition>
-	
-		<definition name="good2" extends="base_layout">
+
+	<definition name="good2" extends="base_layout">
 		<put-attribute name="title" value="글 수정 완료." />
 		<put-attribute name="body" value="/WEB-INF/question/good2.jsp" />
 	</definition>
-	
-		<definition name="qdelete" extends="base_layout">
+
+	<definition name="qdelete" extends="base_layout">
 		<put-attribute name="title" value="글 삭제 완료." />
 		<put-attribute name="body" value="/WEB-INF/question/qdelete.jsp" />
 	</definition>
-	
-
-
 
 	<definition name="joinAgree" extends="base_layout">
 		<put-attribute name="title" value="이용약관 동의 페이지 입니다." />
@@ -120,10 +126,7 @@
 	</definition>
 
 
-
-
 	<!-- 창업 컨설팅 -->
-
 	<definition name="relation" extends="base_layout">
 		<put-attribute name="title" value="연관 사이트 입니다." />
 		<put-attribute name="body"
@@ -142,6 +145,7 @@
 			value="/WEB-INF/bisup_concerting/info_customer.jsp" />
 	</definition>
 
+
 	<!-- 매출 및 업종 보고서 -->
 	<definition name="sales_trend" extends="base_layout">
 		<put-attribute name="title" value="매출정보 페이지 입니다." />
@@ -154,7 +158,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/bisup_trend/business_trend.jsp" />
 	</definition>
- 
+
+
 	<!-- 백상휘 작업 -->
 	<definition name="menuInserting" extends="base_layout">
 		<put-attribute name="title" value="메뉴등록" />
@@ -162,64 +167,72 @@
 	</definition>
 	<definition name="salesInserting" extends="base_layout">
 		<put-attribute name="title" value="메뉴등록" />
-		<put-attribute name="body"
-			value="/WEB-INF/sales/salesInserting.jsp" />
+		<put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" />
 	</definition>
-	
+
+
 	<!-- 현아언니 마이페이지 -->
 	<definition name="modifyCheck" extends="base_layout">
 		<put-attribute name="title" value="마이페이지 본인확인" />
 		<put-attribute name="body" value="/WEB-INF/mypage/modifyCheck.jsp" />
 	</definition>
-	
+
 	<definition name="modifyForm" extends="base_layout">
 		<put-attribute name="title" value="회원정보 수정" />
 		<put-attribute name="body" value="/WEB-INF/mypage/modifyForm.jsp" />
 	</definition>
-	
+
 	<definition name="delSuc" extends="base_layout">
 		<put-attribute name="title" value="회원 삭제" />
 		<put-attribute name="body" value="/WEB-INF/mypage/delSuc.jsp" />
 	</definition>
-	
-	
+
 	<definition name="modSuc" extends="base_layout">
 		<put-attribute name="title" value="확인" />
 		<put-attribute name="body" value="/WEB-INF/mypage/modSuc.jsp" />
 	</definition>
-	
-	<!-- 상권분석  -->
+
+
+	<!-- 상권분석 -->
 	<definition name="mpinfo" extends="base_layout">
 		<put-attribute name="title" value="test" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp" />
 	</definition>
-	
-		
-	<!--   이수나 매출 등록     --> 
- <definition name="salesInserting" extends="base_layout">
-  <put-attribute name="title" value="매출등록" /> 
-  <put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" /> 
-  </definition>
- <definition name="salesInsertingPro" extends="base_layout">
-  <put-attribute name="title" value="매출등록완료" /> 
-  <put-attribute name="body" value="/WEB-INF/sales/salesInsertingPro.jsp" /> 
-  </definition>
-  
-   <definition name="drawChart" extends="base_layout">
-  <put-attribute name="title" value="매출등록완료" /> 
-  <put-attribute name="body" value="Chart" />
-  </definition>
-	
-	<!--지형정보검색  -->
+
+
+	<!-- 이수나 매출 등록 -->
+	<definition name="salesInserting" extends="base_layout">
+		<put-attribute name="title" value="매출등록" />
+		<put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" />
+	</definition>
+	<definition name="salesInsertingPro" extends="base_layout">
+		<put-attribute name="title" value="매출등록완료" />
+		<put-attribute name="body"
+			value="/WEB-INF/sales/salesInsertingPro.jsp" />
+	</definition>
+
+	<definition name="drawChart" extends="base_layout">
+		<put-attribute name="title" value="매출등록완료" />
+		<put-attribute name="body" value="Chart" />
+	</definition>
+
+
+	<!--지형정보검색 -->
 	<definition name="salesarea" extends="base_layout">
 		<put-attribute name="title" value="지형상권정보" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/salesarea.jsp" />
 	</definition>
-	
+
+
 	<!-- 관리자페이지 -->
 	<definition name="adminMember" extends="base_layout">
-		<put-attribute name="title" value="관리자페이지" />
+		<put-attribute name="title" value="관리자 회원 관리" />
 		<put-attribute name="body" value="/WEB-INF/admin/adminMember.jsp" />
+	</definition>
+
+	<definition name="store" extends="base_layout">
+		<put-attribute name="title" value="관리자 점포 관리" />
+		<put-attribute name="body" value="/WEB-INF/admin/store.jsp" />
 	</definition>
 
 </tiles-definitions>

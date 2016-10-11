@@ -47,9 +47,9 @@
          <li class="dropdown"><!-- 매출트렌드 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출트렌드<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">매출 트렌트 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
             <li class="divider"></li>
-            <li><a href="#">업종 트렌드 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
           </ul>
         </li>
         
