@@ -37,4 +37,5 @@ public class AdminMemberController {
 		return "adminMember";
 	}//회원관리 페이지 이동 위한 메소드
 	
+	
 }

@@ -90,7 +90,7 @@ $(document).ready(function() {
                     			<tr>
                     				<td>${list.NUM}</td>
                     				<td>${list.WRITER}</td>
-                    				<td><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}">${list.TITLE}</a><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></td>
+                    				<td><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}">${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
                     				<td>${list.REG}</td>
                     			</tr>

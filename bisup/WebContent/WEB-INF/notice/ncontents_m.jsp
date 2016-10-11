@@ -169,7 +169,7 @@
                                          <input type="hidden" name="contents" value="${boardCommand.contents }"/>
                                          
                                         <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nupdate.do'">수정</button>
-                                        <button type="submit"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/ndelete.do'">삭제</button>
+                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/ndelete.do?num=${boardCommand.num }'">삭제</button>
                                         <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nwrite.do'">글쓰기</button>
                                   		
                                     </span>
@@ -362,7 +362,7 @@
         
         <!-- 모달윈도우 -->
 
-	<%-- 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h2>삭제 하시겠습니까?</h2><br>
@@ -374,7 +374,7 @@
 				  </form>
 				</div>
 			</div>
-		  </div> --%>
+		  </div> 
         
         
     </body>

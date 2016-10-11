@@ -9,32 +9,32 @@
   	<p style="display: block;">고객의 성공을 돕는 비즈업(BisUp)이 되겠습니다.</p>
 	<br>
 	<div class="panel panel-default">
-	<form>
+	<form action="/bisup/bisup/notice/success.do" method="post">
 	<div class="panel-body">
 	  <div class="form-group">
-	    <label for="exampleInputEmail1">글 제목</label>
-	    <input type="text" class="form-control" name="ntitle" placeholder="제목을 입력하세요." required>
+	    <label for="exampleInputTitle">글 제목</label>
+	    <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요." required>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label for="exampleInputEmail1">작성자</label>
-	    <input type="text" class="form-control" name="nnick" placeholder="닉네임을 입력하세요." required>
+	    <label for="exampleInputWriter">작성자</label>
+	    <input type="text" class="form-control" name="writer" value="관리자" required>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label for="exampleInputPassword1">글 내용</label>
-	    <textarea class="form-control" rows="5" id="comment" name="ncontents" placeholder="작성할 내용을 입력하세요." required></textarea>
+	    <label for="exampleInputContents">글 내용</label>
+	    <textarea class="form-control" rows="5" id="comment" name="contents" placeholder="작성할 내용을 입력하세요." required></textarea>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label for="exampleInputPassword1">파일</label>
+	    <label for="exampleInputFile">파일</label>
 	    <input type="file" class="form-control">
 	  </div>
 	  <br>
 	  
 	  <div align="right">
 	  <button type="submit" class="btn btn-primary">글쓰기</button>
-	  <button type="button" class="btn btn-default" onclick="bisup/bisup/notice/nlist_m.do">취소</button>
+	  <button type="button" class="btn btn-default"onclick="javascript:location='/bisup/bisup/notice/nlist_m.do'">취소</button>
 	  </div>
 	  </div>
 	</form>

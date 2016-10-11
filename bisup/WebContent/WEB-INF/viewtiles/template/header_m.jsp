@@ -23,7 +23,7 @@
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
 <li><a href="logout.do">로그아웃</a></li>
-<li><a href="#">사이트소개</a></li>
+<li><a href="#">사이트맵</a></li>
 </ol>
 </div>
 <br><br><br>
@@ -73,8 +73,6 @@
             <li><a href="/bisup/admin/main.do">회원 관리</a></li>
             <li class="divider"></li>
             <li><a href="#">점포 관리</a></li>
-            <li class="divider"></li>
-            <li><a href="#">쪽지함</a></li>
           </ul>
         </li>
       </ul>
