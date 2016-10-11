@@ -11,7 +11,6 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import command.MenuCommand;
 import command.SaleCommand;
 
-
 public class SalesDAO extends SqlSessionDaoSupport{
 
 	public List<MenuCommand> menuList(String id)

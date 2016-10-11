@@ -1,14 +1,18 @@
 package controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.GuCommand;
 import dao.TrendDAO;
@@ -49,17 +53,19 @@ public class TrendController {
 	@RequestMapping(value="/bisup_trend/sales_trend.do", method=RequestMethod.POST)
 	public void sales_trend(HttpServletResponse resp)throws Exception{
 		List<GuCommand> gulist = trendService.listgu();
-	
-		for(GuCommand list: gulist){
-			System.out.println(list.getGcode() + list.getGn());	
-		}
 		JSONObject jso = new JSONObject();	
 		jso.put("sale", gulist); //jason은 map구조(키,값), data라는 key로 list데이터를 주입했다.
 		
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		out.print(jso.toString()); //out.print 내용을 ajax의 dataType이 jason에게 데이터 쏴줌
-		
+	}
+	
+	@RequestMapping(value="/bisup_trend/sales_trend1.do", method=RequestMethod.POST)
+	public String sales_trend1(@RequestParam("gn") String gucode, Model model)throws Exception{
+		ArrayList gn = (ArrayList) trendService.listtotal(gucode);
+		model.addAttribute("sale1", gn);
+		return "sales_trend";
 	}
 	
 	@RequestMapping("/bisup_trend/business_trend.do")

@@ -12,7 +12,14 @@ public class SaleCommand {
 	private String total; //ÃÑ¸ÅÃâ
 	private int mon;//sdate Â÷Æ® ¿ùº° º°ÄªÀÓ
 	private int tot;//total Â÷Æ® ÃÑ¸ÅÃâ º°ÄªÀÓ
-
+	private int avg;//Æò±Õ ¸ÅÃâ º°Äª
+	
+	public int getAvg() {
+		return avg;
+	}
+	public void setAvg(int avg) {
+		this.avg = avg;
+	}
 	public String getId() {		
 		return id;
 	}

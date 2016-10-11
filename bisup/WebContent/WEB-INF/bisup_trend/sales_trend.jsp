@@ -31,7 +31,7 @@ $(function(){
 			dataType:"json",
 			success:function(args){
 				for(var gross=0; gross<args.sale.length; gross++){
-					$("#gu").append("<option value='"+args.sale[gross].gcode+"'>"+args.sale[gross].gn+"</option>");
+					$("#gu").append("<option value="+args.sale[gross].gcode+">"+args.sale[gross].gn+"</option>");
 				}	
 			}
 			,error:function(e) {	// 이곳의 ajax에서 에러가 나면 얼럿창으로 에러 메시지 출력
@@ -44,24 +44,29 @@ $(function(){
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawVisualization);
 
+		
 function drawVisualization(){
 				
 				var data = google.visualization.arrayToDataTable([
+				 
 					['Month', '(총매출)', '(평균 매출)'],
-					['2016/06',  165,      938],
-					['2016/07',  135,      1120],
-					['2016/08',  157,      1167],
-					['2016/09',  139,      1110],
-					['2008/09',  136,      691]
+					['2016/06',  165000,      93800],
+					<c:forEach var="a" items="${sale1}">
+					['2016/07',  ${a.tot},      ${a.avg}], //345,  765
+					</c:forEach>
+					
+					['2016/08',  157000,      116700],
+					['2016/09',  139000,      111000]
 				]);
-			
+		
 			var options = {
 					title : '2016년 지역별 매출 현황',
 					vAxis: {title: '단위:만원',
-					       ticks:[0,200,400,600,800,1000]
+					       ticks:[0,20000,40000,60000,80000,100000]
 							},
 					hAxis: {title: 'Month(월)'}, 
 					seriesType: 'bars',
@@ -71,28 +76,29 @@ function drawVisualization(){
 			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 			
-		}
+			}
+
 </script>
 
 </head>
 <body>
 	<center>
-	<form:form method="post">
+	<form method="post" action="/bisup/bisup_trend/sales_trend1.do">
 		<div style="width:700px;" class="trend">
 				<h4>※이 정보는 bisup 창업자 대상으로 제공된 데이터 입니다.※</h4>
-			<select id="gu" class="trend">
+			<select id="gu" name="gn" class="trend">
 				<option value="">::지역 선택::</option>
 				
 			</select>&nbsp;&nbsp;
-			<input type="submit" value="검색" onclick="drawVisualization();">
+			<input type="submit" value="검색" >
+			
+			
+	
 
-	</div>		
-	</form:form>
+	<div id="chart_div" style="width:900px; height: 500px;" ></div>
+	</div>	
+	</form>	
 
-
-<div>
-	<div id="chart_div" style="width:900px; height: 500px;" ></div>		
-</div>
 
 </body>
 </html>
