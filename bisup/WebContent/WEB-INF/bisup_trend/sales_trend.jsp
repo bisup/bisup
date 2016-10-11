@@ -15,7 +15,7 @@
 	widht: 900px;
 }
 .trend{
-	text-align: left;	
+	text-alig	n: left;	
 }
 </style>
 <script>
