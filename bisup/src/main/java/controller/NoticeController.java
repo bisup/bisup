@@ -152,15 +152,15 @@ public class NoticeController {
 				return new BoardCommand();
 			}
 
-			// 글쓰기
-			@RequestMapping(value = "/notice/good.do", method = RequestMethod.POST)
+			// 글쓰기(관리자)
+			@RequestMapping(value = "/notice/success.do", method = RequestMethod.POST)
 			public ModelAndView write(
 					@RequestParam(value = "title") String title,
 					@RequestParam(value = "contents") String contents, 
 					@RequestParam(value = "writer") String writer)
 					throws Exception {
 
-				ModelAndView mav = new ModelAndView("good");
+				ModelAndView mav = new ModelAndView("success");
 				BoardCommand boardCommand = new BoardCommand();
 				boardCommand.setCnt(0);
 				boardCommand.setContents(contents);
@@ -191,9 +191,34 @@ public class NoticeController {
 
 				return mav;
 			}
+			
+			
+			
+			// 글 수정 폼(관리자)
+			@RequestMapping(value = "/notice/nupdate_m.do", method = RequestMethod.POST)
+			public ModelAndView updateForm_m(
+					@RequestParam(value = "num") int num, 
+					@RequestParam(value = "title") String title,
+					@RequestParam(value = "contents") String contents, 
+					@RequestParam(value = "writer") String writer,
+					@RequestParam(value = "cnt") int cnt) throws Exception {
+				ModelAndView mav = new ModelAndView("nupdate_m");
+				BoardCommand boardCommand = new BoardCommand();
+				boardCommand.setCnt(cnt);
+				boardCommand.setNum(num);
+				boardCommand.setContents(contents);
+				boardCommand.setTitle(title);
+				boardCommand.setWriter(writer);
 
-			// 글 수정 내용 변경 후 저장
-			@RequestMapping(value = "/notice/good2.do", method = RequestMethod.POST)
+				mav.addObject("boardCommand", boardCommand);
+
+				return mav;
+			}
+			
+			
+
+			// 글 수정 내용 변경 후 저장(일반)
+			@RequestMapping(value = "/notice/successUp.do", method = RequestMethod.POST)
 			public ModelAndView update(
 					@RequestParam(value = "num") int num, 
 					@RequestParam(value = "title") String title,
@@ -201,7 +226,7 @@ public class NoticeController {
 					@RequestParam(value = "writer") String writer,
 					@RequestParam(value = "cnt") int cnt) throws Exception {
 
-				ModelAndView mav = new ModelAndView("good2");
+				ModelAndView mav = new ModelAndView("successUp");
 				BoardCommand boardCommand = new BoardCommand();
 				boardCommand.setNum(num);
 				boardCommand.setTitle(title);
@@ -225,7 +250,7 @@ public class NoticeController {
 			// 글삭제
 			@RequestMapping(value = "/notice/ndelete.do", method = RequestMethod.GET)
 			public ModelAndView delete(@RequestParam("num") int num) throws Exception {
-				ModelAndView mav = new ModelAndView("qdelete");
+				ModelAndView mav = new ModelAndView("ndelete");
 				boardService2.deleteBoard(num);
 				return mav;
 			}

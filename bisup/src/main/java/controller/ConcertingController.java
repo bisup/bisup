@@ -16,7 +16,7 @@ import dao.consultingDAO;
 @Controller
 public class ConcertingController {
 	
-
+ 
 
 	public void setDao2(consultingDAO dao2) {
 		this.dao2 = dao2;
@@ -31,6 +31,7 @@ public class ConcertingController {
 	//타일즈 적용
 	@RequestMapping("/bisup_concerting/info_customer.do")
 	public String info_customerView(@RequestParam(value="division", defaultValue="") String division, Model model){
+		System.out.println(division);
 		ArrayList concerting = (ArrayList) dao2.list1(division);
 		model.addAttribute("concerting", concerting);
 		return "info_customer";

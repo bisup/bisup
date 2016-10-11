@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -12,6 +14,14 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		List<GuCommand> total= getSqlSession().selectList("trend.concerting");
 		return total;
 	}
+	
+	public List getListtotal(String gucode){
+		System.out.println("dao...:"+gucode);
+		ArrayList total1 = (ArrayList) getSqlSession().selectList("trend.total", Integer.parseInt(gucode));
+		System.out.println(total1);
+		return total1;
+		
+	} 
 	
 
 }

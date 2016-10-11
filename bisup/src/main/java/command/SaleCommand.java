@@ -4,7 +4,7 @@ import java.util.List;
 
 //매출관리
 public class SaleCommand {
-
+ 
 	private String id; //아이디
 	private String sdate; //등록일
 	private String item; //메뉴이름
@@ -12,7 +12,14 @@ public class SaleCommand {
 	private String total; //총매출
 	private int mon;//sdate 차트 월별 별칭임
 	private int tot;//total 차트 총매출 별칭임
-
+	private int avg;//평균 매출 별칭
+	
+	public int getAvg() {
+		return avg;
+	}
+	public void setAvg(int avg) {
+		this.avg = avg;
+	}
 	public String getId() {		
 		return id;
 	}

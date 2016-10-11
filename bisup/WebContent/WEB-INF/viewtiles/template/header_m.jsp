@@ -23,7 +23,7 @@
 <ol class="breadcrumb ">
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
 <li><a href="logout.do">로그아웃</a></li>
-<li><a href="#">사이트소개</a></li>
+<li><a href="#">사이트맵</a></li>
 </ol>
 </div>
 <br><br><br>
@@ -42,29 +42,39 @@
           </ul>
         </li>
         
-         <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출트렌드<span class="caret"></span></a>
+        <li class="dropdown"><!-- 매출트렌드 -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출 현황<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">매출 트렌트 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
             <li class="divider"></li>
-            <li><a href="#">업종 트렌드 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
           </ul>
         </li>
         
          <li class="dropdown"><!-- 창업컨설팅 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업컨설팅<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">거래처 정보</a></li>
+            <li><a href="/bisup/bisup_concerting/info_customer.do">거래처 정보</a></li>
             <li class="divider"></li>
-            <li><a href="#">창업 메뉴얼</a></li>
+            <li><a href="/bisup/bisup_concerting/manual.do">창업 메뉴얼</a></li>
             <li class="divider"></li>
-            <li><a href="#">연관 사이트</a></li>
+            <li><a href="/bisup/bisup_concerting/relation.do">연관 사이트</a></li>
           </ul>
         </li>
         
-        <li><a href="/bisup/">공지사항</a></li>
-        <li><a href="#">문의사항</a></li>
-        <li><a href="#">관리자페이지</a></li>
+        <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항 작성</a></li>
+        <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
+        
+        
+        <!-- 관리자페이지 -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">관리자 페이지<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bisup/admin/main.do">회원 관리</a></li>
+            <li class="divider"></li>
+            <li><a href="#">점포 관리</a></li>
+          </ul>
+        </li>
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

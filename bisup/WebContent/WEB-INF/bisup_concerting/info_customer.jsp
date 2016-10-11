@@ -55,7 +55,7 @@ width: 350px;
     border-left:  solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
     text-align: center;
-}
+} 
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@ width: 350px;
 					<th id="th" width="300">주소</th>
 				</tr>
 				
-				<%-- <c:if test="${concerting.division.equals('null')"> --%>
+				
 				<c:forEach var="bis" items="${concerting}">
 					<tr height="40">
 						<td id="th" style="border-left: 0">${bis.division}</td>
