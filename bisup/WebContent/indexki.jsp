@@ -4,12 +4,11 @@
 <head>
 <title>Insert title here</title>
 
- <META http-equiv=refresh content="0;url=bisup_login/main.do"/> 
+<!--  <META http-equiv=refresh content="0;url=bisup_login/main.do"/>  -->
 
 </head>
 <body>
 
-<%--  <a href="<c:url value='/my/areaInfo/salesarea.do'/>">지형정보</a> 
- --%>
+ <a href="<c:url value='/my/areaInfo/salesarea.do'/>">지형정보</a> 
 
 </html>   
