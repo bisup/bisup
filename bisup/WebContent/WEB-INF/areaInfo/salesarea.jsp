@@ -49,7 +49,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-  var accessToken = 'ca1c22f2-c43c-43b6-8dac-de14da597d42';
+  var accessToken = 'e119689b-3f11-41f5-9e2e-0e9bc8b852f9';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
@@ -83,7 +83,7 @@ $(document).ready(function(){
 
 	$('#gcode').click(function addArea() {
 		   var year = "2013";
-	      	var adm_cd = $('#gcode').val ;
+	      	var adm_cd = $(this).val() ;
 	      	var theme_cd="5010"
 			$.ajax({
 	          url : 'http://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson' +
@@ -95,15 +95,7 @@ $(document).ready(function(){
        
 				sopArea = sop.geoJson(res).addTo(map);
 				map.fitBounds(sopArea.getBounds());
-				sopArea.setStyle({
-					 stroke: true,
-                     color: "blue",  
-                     weight : 3,
-                     opacity: 1,
-                     fill: true,
-                     fillColor:"red",
-                     fillOpacity: 0.2
-				});
+				
                      $.ajax({ 
      		            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/stats/company.json' +
      		          	'?accessToken='+accessToken+'&year='+year+'&area_type='+0+'&theme_cd='+theme_cd+'&adm_cd='+1101010,
