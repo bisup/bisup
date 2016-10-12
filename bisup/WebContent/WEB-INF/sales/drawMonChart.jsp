@@ -35,7 +35,7 @@ request.setCharacterEncoding("utf-8");
 
 	var view = new google.visualization.DataView(chartData);
       var options = {
-    		  'width':500,
+    		  'width':800,
               'height':500,
         hAxis: {
           title: '월별',
@@ -60,6 +60,8 @@ request.setCharacterEncoding("utf-8");
   </script>
 </head>
 <body>
-  <div id="chart_div"></div>
+<!-- <div id="container" > -->
+  <div id="chart_div" ></div>
+<!--  </div> -->
 </body>
 </html>

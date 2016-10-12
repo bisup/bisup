@@ -5,11 +5,13 @@
 <title></title>
 </head>
 <body>
-<table align="center">
+<div id="container" align="center">
+<table>
 <tr>
 <td><tiles:insertAttribute name="one"/></td>
 <td><tiles:insertAttribute name="two"/></td>
 </tr>
 </table>
+</div>
 </body>
 </html>

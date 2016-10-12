@@ -39,11 +39,11 @@ position:absolute;
     			// Create the data table.
     	        chartData = new google.visualization.arrayToDataTable([
     	        		['item',{label: '매출', type: 'number'},{ role: 'style' }],
-    	        		[args.data[0].item, args.data[0].total,'#ff9933'],
-    	        		[args.data[1].item, args.data[1].total,'#000000'],
-    	        		[args.data[2].item, args.data[2].total,'#cc3300'],
-    	        		[args.data[3].item, args.data[3].total,'#ff9900'],
-    	        		[args.data[4].item, args.data[4].total,'#800000'],
+    	        		[args.data[0].item,args.data[0].total,'#ff9933'],
+    	        		[args.data[1].item,args.data[1].total,'#000000'],
+    	        		[args.data[2].item,args.data[2].total,'#cc3300'],
+    	        		[args.data[3].item,args.data[3].total,'#ff9900'],
+    	        		[args.data[4].item,args.data[4].total,'#800000'],
     	        ]);
     	     // Set chart options
 				var view = new google.visualization.DataView(chartData);
@@ -54,7 +54,7 @@ position:absolute;
                          role: "annotation" },
                        1]);
     	        var options = {
-    	                       'width':500,
+    	                       'width':800,
     	                       'height':500};
     	        
     	        // Instantiate and draw our chart, passing in some options.
@@ -67,12 +67,8 @@ position:absolute;
 </script>
 </head>
 <body>
-<div id="container">
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">메뉴등록</h2>
-  	<p style="display: block;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
-	<!--Div that will hold the pie chart-->
-<div id="columnchart_values" align="center"></div>
-<center><label >일별 매출 현황</label></center>
-</div>
+<!-- <div id="container"> -->
+<div id="columnchart_values"></div>
+<!-- </div> -->
 </body>
 </html>
