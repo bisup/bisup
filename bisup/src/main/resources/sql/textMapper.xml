@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="text">
 	<select id="selectText" parameterType="String" resultType="command.MemoCommand">
-		select * from memo where sub=#{id} and mreg>=mreg-2 and mreg+2>=mreg
+		select send,sub,mcontents,mreg from (select rownum,send,sub,mcontents,mreg from memo) where 10>=rownum and rownum>=1
 	</select>
 	<insert id="insertText" parameterType="command.MemoCommand">
-		insert into memo values(#{send},#{sub},null,#{mcontents},sysdate)
+		insert into memo values(#{send},#{sub},#{mcontents},sysdate)
 	</insert>
 	<select id="selectOneText" parameterType="String" resultType="command.MemoCommand">
 		select * from memo where mcontents=#{mcontents} order by mreg desc
@@ -13,4 +13,10 @@
 	<delete id="deleteText" parameterType="String">
 		delete from memo where mcontents=#{mcontents}
 	</delete>
+	<select id="pagedText" parameterType="Map" resultType="command.MemoCommand">
+		select r,send,sub,mcontents,mreg from (select rownum r,send,sub,mcontents,mreg from memo order by rownum desc) where #{endNum}>=r and r>=#{startNum}
+	</select>
+	<select id="textCount" resultType="int">
+		select count(*) from memo
+	</select>
 </mapper>

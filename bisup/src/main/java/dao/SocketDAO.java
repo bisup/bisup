@@ -39,5 +39,17 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		check=getSqlSession().delete("text.deleteText",mcontents);
 		return check;
 	}
-	
+
+	public ArrayList getPagedText(Map startandend, ArrayList pagedList) {
+		// TODO Auto-generated method stub
+		pagedList=(ArrayList) getSqlSession().selectList("text.pagedText",startandend);
+		return pagedList;
+	}
+
+	public int countText() {
+		// TODO Auto-generated method stub
+		int count=0;
+		count=getSqlSession().selectOne("text.textCount");
+		return count;
+	}
 }

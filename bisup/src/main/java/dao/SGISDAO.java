@@ -19,7 +19,7 @@ public class SGISDAO extends SqlSessionDaoSupport {
 	
 	//admcd테이블에 동명가져오기
 	public List<GuCommand> dongS(int gcode){
-		System.out.println("dao에서 gcode::"+ gcode);
+		
 		return getSqlSession().selectList("JoinDAO.dongS",gcode);
 	}
 	

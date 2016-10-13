@@ -227,12 +227,10 @@
 		<put-attribute name="body" value="/WEB-INF/mypage/modSuc.jsp" />
 	</definition>
 
-	
-
 	<!-- 상권분석 -->
 	<definition name="mpinfo" extends="base_layout">
 		<put-attribute name="title" value="test" />
-		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp"/>
 	</definition>
 	
 	<!-- layout3적용 -->
@@ -266,14 +264,11 @@
 		<put-attribute name="body" value="Chart" />
 	</definition>
 
-
 	<!--지형정보검색 -->
 	<definition name="salesarea" extends="base_layout">
 		<put-attribute name="title" value="지형상권정보" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/salesarea.jsp" />
 	</definition>
-	
-
 
 	<!-- 관리자페이지 -->
 	<definition name="adminMember" extends="base_layout">
