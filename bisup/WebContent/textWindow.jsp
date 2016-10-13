@@ -10,8 +10,18 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
+webSocket.onerror = function(event) {
+    onError(event)
+  };
+  webSocket.onopen = function(event) {
+    onOpen(event)
+  };
+  webSocket.onmessage = function(event) {
+    onMessage(event)
+  };
 
-$(window).ready(function(){
+function onOpen(event){
 	var mcontents = '<%=mcontents%>';
 	var url="/bisup/mystore/Broadcasting/window.do";
 	var param={mcontents:'<%=mcontents%>'};
@@ -30,32 +40,41 @@ $(window).ready(function(){
 		 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
-});
-	
+}
+function onError(event){
+	alert("에러입니다!! ㅠㅠ")
+}
+function send(event){
+	replyText();
+}
+
 function deleteText(){
-	var contents=mcontents;
+	var contents={contents:mcontents};
 	var url="/bisup/mystore/Broadcasting/deleteText.do";
+	alert("삭제하기 전"+contents);
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:contents
 		,dataType:"json"
 		,success:function(args){
-			alert(args.data);
+			alert("답장을 보냈습니다!!");
 			window.close();
 		}
 		,errors:function(args,request,status,error){
 		 	alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
-};
+}
 function replyText(){
-	var contents=document.getElementById("replyContents");
-	var url="/bisup/mystore/Broadcasting/replyText.do";
+	webSocket.send(document.getElementById("replyContents"));
+	var url="/bisup/mystore/Broadcasting/send.do";
+	params={contents:document.getElementById("replyContents"),send:document.getElementById("send"),sub:document.getElementById("sub")};
+	alert("contents:"+document.getElementById("replyContents")+", send:"+document.getElementById("send")+", sub:"+document.getElementById("sub"));
 	$.ajax({
 		type:"post"
 		,url:url
-		,data:contents
+		,data:params
 		,dataType:"json"
 		,success:function(args){
 			alert("답장을 보냈습니다!!");
@@ -85,9 +104,9 @@ text-align:center;}
 		</thead>
 		<tbody class="tbody">
 			<tr><td style="font-size:150%; text-align:center;">보내신분 : <div id="send"></div></td>
-				<td style="font-size:150%; text-align:center;"> 받는분 : <div id="sub"></div></td></tr>
+				<td style="font-size:150%; text-align:center;">받는분 : <div id="sub"></div></td></tr>
 			<tr><td id="mcontents" colspan="2" style="color:#003300"></td></tr>
-			<tr align="center"><td colspan="2"><input type="button" value="쪽지삭제" onclick="deleteText()"></td></tr>
+			<tr align="center"><td colspan="2"><input type="button" value="쪽지삭제" onclick="onMessage()"></td></tr>
 		</tbody>
 	</table>
 </div>
@@ -97,9 +116,8 @@ text-align:center;}
 <div style="font: bold large Palatino, serif"><ins>답장쓰기</ins></div>
 <br/>
 	<textarea id="replyContents" cols="40" rows="10">
-	
 	</textarea>
-	<br/><input type="button" value="답장쓰기" onclick="replyText()">
+	<br/><input type="button" value="답장쓰기" onclick="send()">
 	</div>
 </body>
 </html>
