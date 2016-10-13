@@ -36,7 +36,7 @@
 	-webkit-border-radius:15px;
 	border-radius:15px;
 	text-align:center;
-	vertical-align:middle;
+	vertical-align:middle;  
 	display:inline-block;
 	font-size:15px;
 	color:#0f0f0f;
