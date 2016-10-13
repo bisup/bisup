@@ -74,39 +74,56 @@
 <div align="center" class="container">
 <br>
 <h2>상권정보검색</h2><br><br>
-<table class="table" style="position: relative; width:auto; ">
+<table class="table" style="position: relative; width:150px; text-align:center;   ">
   <thead>
   <tr align="center">
   <c:forEach items="${list }" var="list"  end="4">
-      <td align="center"> <button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+      <td align="center"> <button value="${list.gcode}" class="gcode" onchange="jasontable()" >${list.gn}</button></td>
 </c:forEach> </tr>   
 <tr align="center">
   <c:forEach items="${list }" var="list" begin="5" end="9">
-      <td> <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+      <td><button value="${list.gcode}" class="gcode" id="list">${list.gn}</button></td>
 </c:forEach> </tr>    
 <tr align="center">
   <c:forEach items="${list }" var="list" begin="10" end="14">
-      <td> <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+     <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr>  
 <tr align="center">
   <c:forEach items="${list }" var="list" begin="15" end="19">
-      <td> <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+       <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr>  
 <tr align="center">
   <c:forEach items="${list }" var="list" begin="20" end="24">
-      <td> <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+     <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr> 
          </tbody></table>
 <div id="map" style="width:650px;height:400px"></div>
-<div id="divCon"></div>
 
+<table  class="table table_t">
+  <thead>
+  <tr>
+      <th>#</th>
+      <th>동이름</th>
+      <th>카폐 갯수</th>
+      <th>종사자 수</th>
+         </tr>
+       </thead>
+       <tbody id="tbody">
+     </tbody></table>
 </div>
 <script type="text/javascript">
+
+$("#list").click(function(){
+     
+	
+})
+
 $(document).ready(function(){
-  var accessToken = '8884b37d-ea29-4ae9-ad82-88df0af05f9b';
+  var accessToken = '976979e8-edb6-4f6b-a16d-5d348c8ee583';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
+	var idx, len, target, conComplite = {}, key, value, strToolTip;
 	logger = divLogger();
 	mapOptions = {
 		ollehTileLayer: true,
@@ -161,10 +178,12 @@ $(document).ready(function(){
      		            datatype:'json',
      					success: function (res,status) {
      						 alert("내용:"+adm_cd); 
-     						var idx, len, target, conComplite = {}, key, value, strToolTip;
+     						//var idx, len, target, conComplite = {}, key, value, strToolTip;
      						target = res.result;
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
      							conComplite[target[idx].adm_cd] = target[idx];
+     							value=conComplite[target[idx].adm_cd];
+     							
      							if(target[idx].corp_cnt < 1000 ){
      								sopArea.setStyle({
      									 stroke: true,
@@ -175,10 +194,11 @@ $(document).ready(function(){
      				                     fillColor:"red",
      				                     fillOpacity: 0.2
      								});	
+     								
      							} 
      						}
-     						logger("----------- [ 산업체 조회 조회 성공 ] -----------");
-     						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
+     					/* 	logger("----------- [ 산업체 조회 조회 성공 ] -----------");
+     						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>"); */
      						sopArea.eachLayer(function (layer) {
      							key = layer.feature.properties.adm_cd;
      							value = conComplite[key];
@@ -195,24 +215,41 @@ $(document).ready(function(){
 			}
 			});
 	});
-	function divLogger() {
-		var lineNum = 0;
-		var prefix = "";
-		return function (str) {
-			prefix = lineNum++ + " : ";
-			str = prefix + str;
-			if (divConsole.innerHTML.length < 300000) {
-				divConsole.innerHTML +=  str;
-			} else {
-				divConsole.innerHTML =  str;
-			}
-			divConsole.innerHTML += "<br>";
-			//console.log(divConsole);
-			divConsole.scrollTop = divConsole.scrollHeight;
-			//divConsole.scrollHeight = 999999;
-		};
-	} 
+	
 });
+function divLogger() {
+	var lineNum = 0;
+	var prefix = "";
+	return function (str) {
+		prefix = lineNum++ + " : ";
+		str = prefix + str;
+		if (divConsole.innerHTML.length < 300000) {
+			divConsole.innerHTML +=  str;
+		} else {
+			divConsole.innerHTML =  str;
+		}
+		divConsole.innerHTML += "<br>";
+//		console.log(divConsole);
+		divConsole.scrollTop = divConsole.scrollHeight;
+//		divConsole.scrollHeight = 999999;
+	};
+}
+function jasontable(){
+	var tbody=docoment.getElementbyId("tbody");
+	for(idx = 0, len = target.length; idx < len; idx ++){
+		conComplite[target[idx].adm_cd] = target[idx];
+		value=conComplite[target[idx].adm_cd];
+		var tr =document.createElement("tr");
+		var td1 =document.createElement("td");
+		var td2 =document.createElement("td");
+		var td3 =document.createElement("td");
+		
+		td1.innerHTML.value.adm_nm;
+		td2.innerHTML.value.corp_cnt;
+		td3.innerHTML.value.tot_worker;
+		
+	}
+}
 </script>
 </body>
 </html>
