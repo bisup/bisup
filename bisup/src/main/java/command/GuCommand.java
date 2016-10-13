@@ -6,6 +6,11 @@ public class GuCommand {
 	private String gn;
 	private int cd; //구코드별 갯수
 	
+	//table admcd 
+	private int dcode;
+	private String dn;
+
+	
 	public int getCd() {
 		return cd;
 	}
@@ -23,6 +28,20 @@ public class GuCommand {
 	}
 	public void setGn(String gn) {
 		this.gn = gn;
+	}
+	
+	//table admcd 
+	public int getDcode() {
+		return dcode;
+	}
+	public void setDcode(int dcode) {
+		this.dcode = dcode;
+	}
+	public String getDn() {
+		return dn;
+	}
+	public void setDn(String dn) {
+		this.dn = dn;
 	}
 	
 	
