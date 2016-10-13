@@ -17,4 +17,10 @@ public class AreaInfoController {
 		System.out.println("testGet요청");
 		return "test"; 
 	}
+	
+	@RequestMapping("/areaInfo/test2.do")
+	public String test1(){
+		System.out.println("testGet요청");
+		return "layout22"; 
+	}
 }

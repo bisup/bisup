@@ -32,8 +32,8 @@
 <br>
 
 <a href="<c:url value='/my/areaInfo/mpInfo.do'/>">MPInfo</a>
-<a href="<c:url value='/my/areaInfo/test.do'/>">test</a>
+<a href="<c:url value='/my/areaInfo/test.do'/>">layout3</a>
 
-
+<a href="<c:url value='/my/areaInfo/test2.do'/>">layout2</a>
 </body>
 </html>
