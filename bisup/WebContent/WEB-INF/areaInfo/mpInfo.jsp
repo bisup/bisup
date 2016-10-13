@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <% 
 	String cp = request.getContextPath(); //웹컨텐츠앞경로까지 가져오기 (프로젝트명)
 	request.setCharacterEncoding("UTF-8");
@@ -12,11 +14,16 @@
 	<title>SOP JavaScript Unit TEST: Service population</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js">
-  	</script>
-	<script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	<script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+  	
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!-- <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script> -->
 <style type="text/css">
-.gcode {
+.gcode{
 	text-decoration:none;
 	font-family:Arial;
 	box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
@@ -32,21 +39,21 @@
 	background:-ms-linear-gradient(#f7f7f7, #ffffff);
 	background:linear-gradient(#f7f7f7, #ffffff);
 	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:25px;
-	-webkit-border-radius:25px;
-	border-radius:25px;
+	line-height:20px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
 	text-align:center;
-	vertical-align:middle;
+	vertical-align:middle;  
 	display:inline-block;
-	font-size:20px;
+	font-size:15px;
 	color:#0f0f0f;
-	width:100px;
+	width:80px;
 	height:30px;
-	padding:13px;
+	padding:5px;
 	text-shadow:#dfe6e8 2px 2px 0px;
 	border-color:#fff7ff;
-	border-width:2px;
+	border-width:1px;
 	border-style:solid;
 }
 
@@ -83,25 +90,25 @@
 <body>
 <!-- gu/dong선택 -->
 <div id="dongS">
+<h4>지역을 선택해주세요</h4>
 <table class="table" style="position: relative; width:150px; text-align:center;">
-  <thead><h4>지역을 선택해주세요</h4></thead>
-  <tbody>
+ 
   	<tr align="center">
  <c:forEach items="${list}" var="list"  end="8">
-      <td align="center"> <button value="${list.gcode}" class="gcode" onclick="dongS()" >${list.gn}</button></td>
+      <td> <button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 	</c:forEach> 
 	</tr>   
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="9" end="17">
-      <td><button value="${list.gcode}" class="gcode" id="list">${list.gn}</button></td>
+      <td><button value="${list.gcode}" class="gcode">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>    
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="18" end="24">
-     <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+     <td><button value="${list.gcode}" class="gcode">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>  
- 	</tbody></table>
+ 	</table>
  	
  <div id="dcode"></div>
          </div> <!-- gu/dong선택 종료 -->
@@ -303,27 +310,32 @@
 </script>
  -->
 <script>
- function dongS(){
-	var gcode=$(".gcode").val();
+ 
+ $('.gcode').click(function dongS() {
+ 	var g=$(this).val();
+	var url="/bisup/my/areaInfo/mpInfo.do";
+	var params ="gcode="+g;
 	
-	var url="<%=cp%>/my/areaInfo/mpInfo.do";
-	var params ="gcode="+gcode;
-	
+	$("#dcode button").each(function(){
+		//id가 city 이며 option인 요소를
+		$("#dcode button:eq(0)").remove();
+		//city option의 1번째를 계속 삭제(0번째만 남기고 모두 지우게 된다. )
+		//eq : 지정된 index번째의 엘리먼트 선택
+	});
+
 	$.ajax({
 		type:"post" // 포스트방식
 		,url:url //url주소
 		,data:params //요청에 전달되는 프로퍼티를 가진 객체
 		,dataType:"json" //리턴된 데이터타입 : json타입으로 받겠다 
-		,success:function(args){ //응답이 성공 상태 코드를 반환하면 호출되는 함수
+		,success:function(args){//응답이 성공 상태 코드를 반환하면 호출되는 함수
+			
 			for(var idx=0; idx<args.data.length; idx++){
-				alert(args.data1[idx].dcode+)
-				/* $("#dcode").append("<option value='"+args.data1[idx].dcode+"'>"+args.data1[idx].dn+"</option>");
-				$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
-				$("#dcode").append("<button value='"+args.data1[idx].dcode+"'+ class="gcode" onclick="dongS()" >${list.gn}</button>"); */
-				//id가 sido인 요소 선택
-				//append로 기존 셀렉터로 선택된 요소 다음에  다음 내용이 들어감
-				//<option value='0'>서울</option> 이런식으로 sido의 요소안에 자식으로 들어감
-				  // args.data[idx] : args 는 function(args)의 인자. data는 controller.java에서 json객체에 넣어준 key(여기서는 list가 값이 된다). [idx]는 list의 몇번쨰 데이터를 가져올지 배열을 나타냄		  
+				
+				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='gcode'>"+args.data[idx].dn+"</button>");
+				//alert(args.data1[idx].dn);
+				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
+				
 			}
 		}
 	,error:function(e){
@@ -331,8 +343,8 @@
 		alert(e.responseText);
 		
 	}
-	});
- }
+	});  
+ });  
 </script>
 
 

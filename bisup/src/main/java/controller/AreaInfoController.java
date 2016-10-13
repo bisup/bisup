@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import command.GuCommand;
 import dao.SGISDAO;
@@ -27,17 +27,18 @@ public class AreaInfoController {
 	}
 
 	@RequestMapping(value="/areaInfo/mpInfo.do",method=RequestMethod.GET)
-	public String mpGet(Model model){
-		
+	public ModelAndView mpGet(){
+		ModelAndView mav = new ModelAndView("mpinfo");
 		System.out.println("mpinfoø‰√ª");
 		
 		List<GuCommand> list=dao.GuS();
 		for(GuCommand gd:list){
 		System.out.println(gd.getGn()+"::"+gd.getGcode());
 		}		
-		model.addAttribute("list", list);
 		
-		return "mpinfo"; 
+		mav.addObject("list", list);
+		
+		return mav; 
 	}
 	
 	@RequestMapping(value="/areaInfo/mpInfo.do",method=RequestMethod.POST)
