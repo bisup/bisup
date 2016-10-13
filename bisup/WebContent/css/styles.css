@@ -616,3 +616,58 @@ img::-moz-selection {
     text-shadow: 0 2px 2px rgba(0,0,0,0.5);
   }
   
+/*   layout3적용 css */
+/* 사이드 메뉴바 */
+#topMenu-side {
+	height: 50px; /* 메뉴의 높이 */
+	width: 180px; /* 메뉴의 넓이 */
+	margin: auto;
+	float: none;
+}
+
+#topMenu-side ul { /* 메뉴 안의 ul을 설정 */
+	float: none; /* 메뉴바 위치 */
+	list-style-type: none; /* 메뉴 안의 ul 내부의 목록 표시를 없애줌 */
+	margin: 0px left; /* 메뉴 안의 ul의 margin을 없앰 */
+	padding: 0px; /* 메뉴 안의 ul의 padding을 없앰 */
+}
+
+#topMenu-side ul li { /* 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용 */
+	color: white; /* 글씨 색을 흰색으로 설정 */
+	background-color: #FFAF0A; /* 배경 색을 설정 */
+	float: left; /* 왼쪽으로 나열되도록 설정 */
+	line-height: 40px; /* 텍스트 한 줄의 높이  설정 */
+	vertical-align: middle; /* 세로 정렬을 가운데로 설정 */
+	text-align: center; /* 텍스트를 가운데로 정렬 */
+	position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 */
+}
+
+.menuLink-side { /*메뉴의 a 태그에  설정할 스타일 */
+	text-decoration: none; /* a 태그의 꾸밈 효과 제거 */
+	display: block; /* a 태그의 클릭 범위를 넓힘 */
+	width: 180px; /* 기본 넓이 설정 */
+	font-size: 15px; /* 폰트 사이즈 설정 */
+	font-weight: bold; /* 폰트를 굵게 설정 */
+	font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */
+}
+
+.menuLink-side { /* 메뉴의 글씨색을 흰색으로 설정 */
+	color: white;
+}
+
+.topMenuLi-side:hover .menuLink-side { /*  메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
+	color: white; /* 글씨 색 */
+	background-color: #FF8200; /* 배경색 설정 */
+}
+
+/* 사이드메뉴 슬라이더 설정 */
+#md-sidebar {
+	width: 140px;
+	padding: 5px;
+	margin: 0px auto;
+	float: none;
+	border: 1px solid;
+	text-align: center;
+}
+
+  
