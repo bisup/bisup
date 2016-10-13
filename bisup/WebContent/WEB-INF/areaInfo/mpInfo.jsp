@@ -11,7 +11,7 @@
 <html>
 <head>
 
-	<title>SOP JavaScript Unit TEST: Service population</title>
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<!-- <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script> -->
+<script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
 <style type="text/css">
 .gcode{
 	text-decoration:none;
@@ -122,8 +122,8 @@
 <div id="divCon"></div>
 
 
-<!-- <script type="text/javascript">
-  var accessToken = 'cf7e33ec-1cc7-405f-b39d-b38a3e7a90f0';
+ <script type="text/javascript">
+  var accessToken = '0d5dc53e-b0d6-484a-9c37-286de2409e68';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole;
@@ -159,17 +159,17 @@
 	sop.DomUtil.get("clear").onclick = clear;
 	divConsole = sop.DomUtil.get("divCon");
 
-	function addArea() {
+	$('.gcode').click(function addArea() {
 		if (sopArea) {
 			sopArea.remove();
 			sopArea = undefined;
 			oriArea = undefined;
 		}  
         var year = "2010";
-      	var adm_cd = "11040";
+      	var adm_cd = $('.gcode').val();
 		$.ajax({
           url : 'http://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson' +
-          		'?accessToken='+ accessToken +'&year='+year+'&adm_cd='+adm_cd+'&low_search='+0,	
+          		'?accessToken='+ accessToken +'&year='+year+'&adm_cd='+adm_cd+'&low_search='+1,	
           type : 'get',
 	  datatype : "geojson",
 			success: function( res,status) {
@@ -180,7 +180,7 @@
 				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
 			}
 		});
-	}
+	});
 
 /* 	function addStatistic() {
 		if (!oriArea) {
@@ -229,16 +229,17 @@
 
 			}
 		});
-	} */
+	}  */
 	
-	function addStatistic() {
+	$('#dong').click(function addStatistic() {
+		
 		if (!oriArea) {
 			alert("경계조회를 먼저 하세요");
 			return;
 		}
 
           
-          var adm_cd = "11040";
+          var adm_cd = $('#dong').val();
          
           $.ajax({
             url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
@@ -276,7 +277,7 @@
 
 			}
 		});
-	}
+	});
 	
 
 	function clear() {
@@ -308,7 +309,7 @@
 	}
 
 </script>
- -->
+ 
 <script>
  
  $('.gcode').click(function dongS() {
@@ -332,7 +333,7 @@
 			
 			for(var idx=0; idx<args.data.length; idx++){
 				
-				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='gcode'>"+args.data[idx].dn+"</button>");
+				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='gcode' id=dong>"+args.data[idx].dn+"</button>");
 				//alert(args.data1[idx].dn);
 				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
 				
@@ -346,6 +347,8 @@
 	});  
  });  
 </script>
+
+
 
 
 

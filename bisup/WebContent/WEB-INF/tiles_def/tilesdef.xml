@@ -232,9 +232,15 @@
 		<put-attribute name="title" value="test" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp"/>
 	</definition>
+	<!-- layout3적용 -->
+	<definition name="test" extends="base_layout">
+		<put-attribute name="title" value="test" />
+		
+		<put-attribute name="body" value="/WEB-INF/areaInfo/test.jsp" />
+	</definition>
 	
 	<!-- layout3적용 -->
-	<definition name="test" extends="layout3">
+	<definition name="aa" extends="layout3">
 		<put-attribute name="title" value="test" />
 		
 		<put-attribute name="body" value="/WEB-INF/areaInfo/test.jsp" />
