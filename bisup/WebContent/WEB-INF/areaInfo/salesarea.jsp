@@ -31,21 +31,21 @@
 	background:-ms-linear-gradient(#f7f7f7, #ffffff);
 	background:linear-gradient(#f7f7f7, #ffffff);
 	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:25px;
-	-webkit-border-radius:25px;
-	border-radius:25px;
+	line-height:20px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
 	text-align:center;
 	vertical-align:middle;
 	display:inline-block;
-	font-size:20px;
+	font-size:15px;
 	color:#0f0f0f;
-	width:100px;
+	width:80px;
 	height:30px;
-	padding:13px;
+	padding:5px;
 	text-shadow:#dfe6e8 2px 2px 0px;
 	border-color:#fff7ff;
-	border-width:2px;
+	border-width:1px;
 	border-style:solid;
 }
 
@@ -99,7 +99,7 @@
          </tbody></table>
 <div id="map" style="width:650px;height:400px"></div>
 
-<table  class="table table_t">
+<table  class="table">
   <thead>
   <tr>
       <th>#</th>
@@ -108,18 +108,13 @@
       <th>종사자 수</th>
          </tr>
        </thead>
-       <tbody id="tbody">
+       <tbody class="tbody">
      </tbody></table>
 </div>
 <script type="text/javascript">
 
-$("#list").click(function(){
-     
-	
-})
-
 $(document).ready(function(){
-  var accessToken = '976979e8-edb6-4f6b-a16d-5d348c8ee583';
+  var accessToken = '2945cb2f-5762-4a1c-82c1-85a92ce33803';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
@@ -143,7 +138,7 @@ $(document).ready(function(){
               url : 'http://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json' +
               		'?consumer_key='+consumer_key+'&consumer_secret='+consumer_sercret,
               type : 'get',
-				success: function (res, status) {
+              success: function(res, status) {
 					reqParam.accessToken = res.result.accessToken;
 					reqFunc(reqParam);
 				}
@@ -166,6 +161,7 @@ $(document).ready(function(){
 					sopArea.remove();
 					sopArea = undefined;
 					oriArea = undefined;
+					
 				}
                oriArea = res;
 				sopArea = sop.geoJson(res).addTo(map);
@@ -176,26 +172,17 @@ $(document).ready(function(){
      		          	'?accessToken='+accessToken+'&year='+year+'&area_type='+0+'&theme_cd='+theme_cd+'&adm_cd='+adm_cd+'&low_search='+1,
      		            type : 'get',
      		            datatype:'json',
-     					success: function (res,status) {
-     						 alert("내용:"+adm_cd); 
+     					success: function (res,status) { 
      						//var idx, len, target, conComplite = {}, key, value, strToolTip;
      						target = res.result;
+     						$(".tbody").find("tr").remove(); 
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
      							conComplite[target[idx].adm_cd] = target[idx];
      							value=conComplite[target[idx].adm_cd];
+     							key =target[idx].adm_cd;
+     							 $(".tbody").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].corp_cnt+"</td><td>"+conComplite[key].tot_worker+"</td></tr>");
      							
-     							if(target[idx].corp_cnt < 1000 ){
-     								sopArea.setStyle({
-     									 stroke: true,
-     				                     color: "red",
-     				                     weight : 3,
-     				                     opacity: 1,
-     				                     fill: true,
-     				                     fillColor:"red",
-     				                     fillOpacity: 0.2
-     								});	
-     								
-     							} 
+    
      						}
      					/* 	logger("----------- [ 산업체 조회 조회 성공 ] -----------");
      						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>"); */
