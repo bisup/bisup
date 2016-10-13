@@ -106,7 +106,6 @@ text-align:center;}
 			<tr><td style="font-size:150%; text-align:center;">보내신분 : <div id="send"></div></td>
 				<td style="font-size:150%; text-align:center;">받는분 : <div id="sub"></div></td></tr>
 			<tr><td id="mcontents" colspan="2" style="color:#003300"></td></tr>
-			<tr align="center"><td colspan="2"><input type="button" value="쪽지삭제" onclick="onMessage()"></td></tr>
 		</tbody>
 	</table>
 </div>

@@ -3,10 +3,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -15,7 +16,6 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,7 +51,7 @@ public class SocketHandler {
 		}
 	}
 	
-	@RequestMapping("/onMessage.do")
+	@RequestMapping("/Broadcasting/onMessage.do")
 	private void onMessagePro(@RequestParam("sub")String sub,
 			@RequestParam("mcontents")String mcontents,
 			@RequestParam("send")String send,HttpServletResponse response) throws Exception {
@@ -80,10 +80,18 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
+		int count=socketDAO.countText();
+		if(count<=10){
+			count=1;
+		}else if(count>10){
+			count=count/10+1;
+		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
+		jsonObject.put("count", count);
 		System.out.println(textList);
 		toString(textList);
+		System.out.println("count:::"+count);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
@@ -144,7 +152,6 @@ public class SocketHandler {
 		return "textDeleteSuccess";
 	}
 
-	
 	@RequestMapping("/Broadcasting/replyText.do")
 	public void replyText(@RequestParam("contents")String mcontents,
 			@RequestParam("send")String send,@RequestParam("sub")String sub,
@@ -154,6 +161,21 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
 		socketDAO.insertText(command);
-		
+	}
+	
+	@RequestMapping("/Broadcasting/selectPageNum.do")
+	public void selectPageNum(@RequestParam("pageNum")String pageNum,
+			HttpServletResponse response) throws Exception{
+		System.out.println("selectPageNum진입");
+		response.setCharacterEncoding("UTF-8");
+		Map startandend = new HashMap();
+		ArrayList pagedList = new ArrayList();
+		startandend.put("startNum", (Integer.parseInt(pageNum)*10)+1);startandend.put("endNum", (Integer.parseInt(pageNum)+2)*10);
+		pagedList=socketDAO.getPagedText(startandend,pagedList);
+		JSONObject jsonObject = new JSONObject();
+		System.out.println("pageListNull?:::"+pagedList.isEmpty());
+		jsonObject.put("pagedList", pagedList);
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
 	}
 }

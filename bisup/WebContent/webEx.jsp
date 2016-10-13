@@ -51,6 +51,11 @@ request.setCharacterEncoding("utf-8");
     				var mc = args.data[idx].mcontents;
     				$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.data[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
     					args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+    				
+    			}
+    			
+    			for(var num=1; num<args.count; num++){
+    				$("#textPages").append("<a href='javascript:selectPageNum("+num+")'>"+num+"</a>")
     			}
     		}
     		,errors:function(){
@@ -76,8 +81,11 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			$("#onMessageWindow").append("<div class=row align='left'>"+args.data+"님에게 전송<div><hr/>");
-    	    	alert("쪽지 발송 완료");
+    			for(var idx=0; idx<args.data.length; idx++){
+    				var mc = args.data[idx].mcontents;
+    				$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.pagedList[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
+    					args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+    			}
     		}
     		,errors:function(args,request,status,error){
 				alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -87,8 +95,32 @@ request.setCharacterEncoding("utf-8");
     }
     
 	function deleteText(){
-		alert("메시지 삭제 완료!");
 		location.href=location.href;
+	}
+	
+	function selectPageNum(num){
+		var url="/bisup/mystore/Broadcasting/selectPageNum.do";
+		var pageNum={pageNum:num};
+		$.ajax({
+	    	type:"post"
+	    	,url:url
+	    	,data:pageNum
+	    	,dataType:"json"
+	    	,success:function(args){
+	    		var textWindows=document.getElementById("textWindows")
+	    		textWindows.remove();
+	    		$("#afterRemove").prepend("<div id='textWindows'></div>");
+	    		$("#textWindows").append("<div class=title><p align='center'>비즈업 쪽지창입니다!!!</p><br/></div><hr>");
+	    		for(var idx=0; idx<args.pagedList.length; idx++){
+	    			var mc = args.pagedList[idx].mcontents;
+	    			$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.pagedList[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
+	       			args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+	   			}
+	    	}
+	    	,errors:function(args,request,status,error){
+				alert("failed");
+	    	}
+	   	});
 	}
     
     //쪽지를 클릭 시 새 창에서 보여주기 위한 function입니다.
@@ -118,12 +150,13 @@ request.setCharacterEncoding("utf-8");
 #textButtons{
 	padding:20 0 0 60;
 }
+
 </style>
 </head>
 <body>
     <fieldset>
     <div>
-    <div style="border-right:1px solid black; float: left; width: 40%;">
+    <div id="afterRemove" style="border-right:1px inset black; float: left; width: 40%;">
     <form onsubmit="deleteText()" action="/bisup/mystore/Broadcasting/deleteText.do">
         <div id="textWindows"></div>
         <div id="textButtons">
@@ -132,9 +165,10 @@ request.setCharacterEncoding("utf-8");
         <input type="button" value="send" onclick="send()">
         <input type="submit" value="삭제"	>
         </div>
+        <div id="textPages" align="center"></div>
     </form>
     </div>
-    <div id="onMessageWindow" style="width:300px; float: left; width:40%;"></div>
+    <div id="onMessageWindow" style="border-left:1px inset black;width:300px; float: left; width:40%;"></div>
     </div>
     </fieldset>
 </body>
