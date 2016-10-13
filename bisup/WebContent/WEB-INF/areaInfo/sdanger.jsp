@@ -115,7 +115,7 @@ $(document).ready(function(){
   <tr>
       <th>#</th>
       <th>구이름</th>
-      <th>동이름</th>
+      <th>동이름</th>  
       <th>위험지표</th>
       <th>평균 폐업기간</th>
       <th>점포증감률</th>
