@@ -134,13 +134,14 @@ public class SocketHandler {
 	}
 	
 	@RequestMapping("/Broadcasting/deleteText.do")
-	public void deleteText(String[] mcontents,
+	public String deleteText(String[] mcontents,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
 		System.out.println(mcontents);
 		for(String contents:mcontents){
 			socketDAO.deleteText(contents);
 		}
+		return "textDeleteSuccess";
 	}
 
 	
@@ -153,5 +154,6 @@ public class SocketHandler {
 		MemoCommand command = new MemoCommand();
 		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
 		socketDAO.insertText(command);
+		
 	}
 }
