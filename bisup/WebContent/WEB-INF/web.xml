@@ -44,6 +44,7 @@
   <url-pattern>/mystore/*</url-pattern>
 </servlet-mapping>
 
+
 <!-- 관리자 servlet -->
 <servlet>
   <servlet-name>dispatcherAdmin</servlet-name>

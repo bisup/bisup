@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -14,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +37,7 @@ public class SocketHandler {
 	private static Set<Session> clients = Collections
 			.synchronizedSet(new HashSet<Session>());
 	
-	@OnMessage
+	@OnMessage//onMessage이벤트 발생시 실행합니다.
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println("onMessage 진입, "+message+", "+session);
 		synchronized (clients) {
@@ -131,27 +133,25 @@ public class SocketHandler {
 		printWriter.print(jsonObject.toString());
 	}
 	
-	@RequestMapping("/deleteText.do")
-	@ResponseBody
-	public void deleteText(@RequestParam("contents")String mcontents,
+	@RequestMapping("/Broadcasting/deleteText.do")
+	public void deleteText(String[] mcontents,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("deleteText진입, mcontents="+mcontents);
-		int check=0;
-		check=socketDAO.deleteText(mcontents);
-		if(check>0){
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("data", "쪽지 삭제 완료");
-			jsonObject.toString();
+		System.out.println(mcontents);
+		for(String contents:mcontents){
+			socketDAO.deleteText(contents);
 		}
 	}
+
 	
-	@RequestMapping("/replyText.do")
-	@ResponseBody
+	@RequestMapping("/Broadcasting/replyText.do")
 	public void replyText(@RequestParam("contents")String mcontents,
+			@RequestParam("send")String send,@RequestParam("sub")String sub,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
 		response.setCharacterEncoding("UTF-8");
-		socketDAO.replyText(mcontents);
+		MemoCommand command = new MemoCommand();
+		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
+		socketDAO.insertText(command);
 	}
 }

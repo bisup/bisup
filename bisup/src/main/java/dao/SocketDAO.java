@@ -39,10 +39,5 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		check=getSqlSession().delete("text.deleteText",mcontents);
 		return check;
 	}
-
-	public void replyText(String mcontents) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

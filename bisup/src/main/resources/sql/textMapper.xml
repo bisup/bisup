@@ -11,6 +11,6 @@
 		select * from memo where mcontents=#{mcontents} order by mreg desc
 	</select>
 	<delete id="deleteText" parameterType="String">
-		delete * from memo where mcontents=#{mcontents}
+		delete from memo where mcontents=#{mcontents}
 	</delete>
 </mapper>
