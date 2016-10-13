@@ -41,5 +41,8 @@
     	SELECT dcode, dn FROM admcd  WHERE gcode=#{gcode} and rowid in(select max(rowid) from admcd group by dcode) order by dcode;
     </select>
     
+    <select id="danger" parameterType="int" resultType="command.GuCommand">
+    select * from danger where gcode=#{gcode}
+    </select>
     
 </mapper>
