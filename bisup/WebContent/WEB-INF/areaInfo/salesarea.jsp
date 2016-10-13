@@ -114,7 +114,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  var accessToken = '2945cb2f-5762-4a1c-82c1-85a92ce33803';
+  var accessToken = 'b4c50e40-df0f-49c8-bfbc-a07c152208b9';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
