@@ -22,17 +22,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
-<style type="text/css">
 
-	#divCon {
-		margin: 5px 0;
-		width: 660px;
-		height: 160px;
-		overflow-x:hidden;
-		overflow-y:auto;
-		border: 2px dotted #3388ff;
-	}
-</style>
 </head>
 
 <body>
@@ -66,19 +56,30 @@
 <div id="map" style="width:650px;height:400px"></div> <!-- 지도 구역 구간 -->
 <div id="ageR"></div><!--  연령별 비율 차트 구간 -->
 
+<table  class="table">
+  <thead>  
+  <tr>
+      <th>#</th>
+      <th>동이름</th>
+      <th>여자비율</th>
+      <th>남자비율 </th>
+      <th>여자인구 </th>
+      <th>남자인구 </th>
+      <th>총인구 </th>
+         </tr>
+       </thead>
+       <tbody class="tbody">
+    </tbody></table>
 
-<!-- <button id="addArea">경계조회</button>
-<button id="addStatistic">인구통계조회</button>
-<button id="clear">지도초기화</button>-->
-<div id="divCon"> --------------console구간---------</div> 
 
 
  <script type="text/javascript">
-  var accessToken = 'b87efa4b-70d0-408f-9c15-ae2686fc9919';
+  var accessToken = '1365f9d7-1df3-44fe-87ca-5b8f8b9002d5';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	
   var map, mapOptions, oriArea, sopArea, logger, divConsole;
+  var idx, len, target, conComplite = {}, key, value, strToolTip;
 	logger = divLogger();
 	mapOptions = {
 		ollehTileLayer: true,
@@ -106,11 +107,6 @@
 		}
 	} //token 받기 종료
 
-	//sop.DomUtil.get("addarea").onclick = gcode;
-	
-	//sop.DomUtil.get("addStatistic").onclick = addStatistic;
-	//sop.DomUtil.get("clear").onclick = clear;
-	divConsole = sop.DomUtil.get("divCon");
 
 	/* 지도에 경계띄우기 : 구버튼클릭했을때 동경계보여주기*/
 	$('.gcode').click(function addArea() {
@@ -122,7 +118,7 @@
 					}  
         var year = "2013";
      	var adm_cd =$(this).val();
-		
+		var gcode=$(this).val();
       	alert("adm_cd"+adm_cd);
 		
       	$.ajax({
@@ -136,33 +132,109 @@
 				map.fitBounds(sopArea.getBounds());
 				/*  logger("경계조회 결과");
 				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");  */
-				var idx, len, target, conComplite = {}, key, value, strToolTip;
-				target = res.result;
-  
-				for (idx = 0, len = target.length; idx < len; idx ++) {
-					conComplite[target[idx].adm_cd] = target[idx];
+				
+				//*******구 경계나눴을때 동이름 띄우기!!
+				
+				var g=gcode;
+				var url="/bisup/my/areaInfo/mpInfo.do";
+				var params ="gcode="+g;
+	
+				$("#dcode button").each(function(){
+				//id가 city 이며 option인 요소를
+				$("#dcode button:eq(0)").remove();
+				//city option의 1번째를 계속 삭제(0번째만 남기고 모두 지우게 된다. )
+				//eq : 지정된 index번째의 엘리먼트 선택
+				});
+				alert('button ajax시작')
+				$.ajax({
+					type:"post" // 포스트방식
+					,url:url //url주소
+					,data:params //요청에 전달되는 프로퍼티를 가진 객체
+					,dataType:"json" //리턴된 데이터타입 : json타입으로 받겠다 
+					,success:function(args){//응답이 성공 상태 코드를 반환하면 호출되는 함수
+			
+					for(var idx=0; idx<args.data.length; idx++){
+				
+					$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id=dong>"+args.data[idx].dn+"</button>");
+					//alert(args.data1[idx].dn);
+					
+					
+				
 				}
+				
+					$('.dcode').click(function addStatistic() {
 
-				/* logger("----------- [ 가구통계 조회 성공 ] -----------");
-				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>"); */
-				sopArea.eachLayer(function (layer) {
-					key = layer.feature.properties.adm_cd;
-					value = conComplite[key];
-
-					if (!value) { return; }
-
-					strToolTip = "<p>지역명 : " + value.adm_nm + "</p>";
-
-					layer.bindToolTip(strToolTip);
-			});
-		}
+						var adm_cd = $(this).val();
+				
+				          $.ajax({
+				            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
+				          	'?accessToken='+accessToken+'&adm_cd='+adm_cd
+				            ,
+				            type : 'get',
+							success: function (res,status) {
+								// 맵형태로 변환 한다.
+								
+								 target = res.result;
+				     						//$(".tbody").find("tr").remove(); 
+				     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
+				     							conComplite[target[0].adm_cd] = target[0];
+				     							 value=conComplite[target[0].adm_cd];
+				     							key =target[0].adm_cd;
+				     							alert('a');
+				     							 $(".tbody").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].f_per+"</td><td>"+conComplite[key].m_per+"</td><td>"+conComplite[key].f_ppl+"</td><td>"+conComplite[key].m_ppl+"</td><td>"+conComplite[key].total_ppl+"</td></tr>"); 
+				     		     			//}
+							}
+							});
+						}); //dong버튼클릭
+				}
+				
+				
+					,error:function(e){
+					//이곳의 ajax에서 에러가 나면 알러창으로 에러 메시지 출력
+			alert(e.responseText);
+		
+			}
+				});  
+	
+	
+			}
       	}); 
 	}   
 			 /* addArea()종료 */ 
 		); /* 클릭펑션종료 */
 
+		
+		
+			/* 	$('#dong').click(function addStatistic() {
+					alert('a');
+					
+					var adm_cd = $(this).val();
+			         alert("adm_cd::"+adm_cd)
+			          $.ajax({
+			            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
+			          	'?accessToken='+accessToken+'&adm_cd='+adm_cd
+			            ,
+			            type : 'get',
+						success: function (res,status) {
+							// 맵형태로 변환 한다.
+							
+							 target = res.result;
+			     						$(".tbody").find("tr").remove(); 
+			     		     			for (idx = 0, len = target.length; idx < len; idx ++) {
+			     							conComplite[target[idx].adm_cd] = target[idx];
+			     							 value=conComplite[target[idx].adm_cd];
+			     							key =target[idx].adm_cd;
+			     							 $(".tbody").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].f_per+"</td><td>"+conComplite[key].m_per+"</td><td>"+conComplite[key].f_ppl+"</td><td>"+conComplite[key].m_ppl+"</td><td>"+conComplite[key].total_ppl+"</td></tr>"); 
+			     		     			}
+						}
+						});
+					}); */
+			
+
+		
+		
 	
-/* 	function addStatistic() {
+	/* $(.dcode)function addStatistic() {
 		if (!oriArea) {
 			alert("경계조회를 먼저 하세요");
 			return;
@@ -209,18 +281,13 @@
 
 			}
 		});
-	}  */
+	}   */
 	
-	$('#dong').click(
-		function addStatistic() {
+/* 	$('#dong').click(function addStatistic() {
+		alert('a');
 		
-		if (!oriArea) {
-			alert("경계조회를 먼저 하세요");
-			return;
-		}
-		
-		var adm_cd = $('#dong').val();
-         
+		var adm_cd = $(this).val();
+         alert("adm_cd::"+adm_cd)
           $.ajax({
             url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
           	'?accessToken='+accessToken+'&adm_cd='+adm_cd
@@ -228,7 +295,22 @@
             type : 'get',
 			success: function (res,status) {
 				// 맵형태로 변환 한다.
-				var idx, len, target, conComplite = {}, key, value, strToolTip;
+				
+				 target = res.result;
+     						$(".tbody").find("tr").remove(); 
+     		     			for (idx = 0, len = target.length; idx < len; idx ++) {
+     							conComplite[target[idx].adm_cd] = target[idx];
+     							 value=conComplite[target[idx].adm_cd];
+     							key =target[idx].adm_cd;
+     							 $(".tbody").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].f_per+"</td><td>"+conComplite[key].m_per+"</td><td>"+conComplite[key].f_ppl+"</td><td>"+conComplite[key].m_ppl+"</td><td>"+conComplite[key].total_ppl+"</td></tr>"); 
+     		     			}
+			}
+			});
+		});
+			 */	
+				
+				
+				/* var idx, len, target, conComplite = {}, key, value, strToolTip;
 				target = res.result;
 
 				for (idx = 0, len = target.length; idx < len; idx ++) {
@@ -253,11 +335,9 @@
                   	
 
 					layer.bindToolTip(strToolTip);
-				});
+				}); */
 
-			}
-		});
-	});
+			
 	
 
 	function clear() {
@@ -291,7 +371,7 @@
 </script> 
  
 <script>
- 
+/*  
  $('.gcode').click(function dongS() {
  	var g=$(this).val();
 	var url="/bisup/my/areaInfo/mpInfo.do";
@@ -325,7 +405,7 @@
 		
 	}
 	});  
- });  
+ });   */
 </script>
 
 
