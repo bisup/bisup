@@ -204,6 +204,10 @@
 		<put-attribute name="title" value="메뉴등록" />
 		<put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" />
 	</definition>
+	<definition name="updatedUsers" extends="base_layout">
+		<put-attribute name="title" value="창업성공자"/>
+		<put-attribute name="body" value="/WEB-INF/mystore/updatedUsers.jsp"/>
+	</definition>
 
 
 	<!-- 현아언니 마이페이지 -->

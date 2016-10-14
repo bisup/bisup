@@ -10,6 +10,7 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+//새 쪽지창입니다. 같은 세션에서 활동하기 위해서는 다시 한번 웹소켓 객체를 열어줘야 합니다.
 var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
 webSocket.onerror = function(event) {
     onError(event)
@@ -21,6 +22,7 @@ webSocket.onerror = function(event) {
     onMessage(event)
   };
 
+//메시지 내용을 통해 메시지의 전체 데이터를 가져와 창을 구성합니다.
 function onOpen(event){
 	var mcontents = '<%=mcontents%>';
 	var url="/bisup/mystore/Broadcasting/window.do";
@@ -44,28 +46,13 @@ function onOpen(event){
 function onError(event){
 	alert("에러입니다!! ㅠㅠ")
 }
+
+//답장쓰기 버튼을 누를 시 데이터를 이용해서 replyText를 호출하게 합니다.
 function send(event){
 	replyText();
 }
 
-function deleteText(){
-	var contents={contents:mcontents};
-	var url="/bisup/mystore/Broadcasting/deleteText.do";
-	alert("삭제하기 전"+contents);
-	$.ajax({
-		type:"post"
-		,url:url
-		,data:contents
-		,dataType:"json"
-		,success:function(args){
-			alert("답장을 보냈습니다!!");
-			window.close();
-		}
-		,errors:function(args,request,status,error){
-		 	alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
+//쪽지내용, 보낸사람, 받는사람을 이용해 답장 쪽지를 DB에 저장합니다.
 function replyText(){
 	webSocket.send(document.getElementById("replyContents"));
 	var url="/bisup/mystore/Broadcasting/send.do";

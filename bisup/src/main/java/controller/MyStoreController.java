@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,7 @@ import command.SaleCommand;
 import dao.MyStoreAction;
 import dao.SaleProgressAction;
 import net.sf.json.JSONObject;
+import service.UpdatedUsersServiceImpl;
 @Controller
 public class MyStoreController {
 
@@ -146,9 +148,47 @@ public class MyStoreController {
 		return "salesManaging";
 	}
 	
-	//chat
-	@RequestMapping("/chat.do")
-	public String viewChattingPage(){
-		return "chat";
+	//chart
+	
+	@Autowired
+	private UpdatedUsersServiceImpl updatedUsersService;
+	
+	public UpdatedUsersServiceImpl getUpdatedUsersService() {
+		return updatedUsersService;
+	}
+
+	public void setUpdatedUsersService(UpdatedUsersServiceImpl updatedUsersService) {
+		this.updatedUsersService = updatedUsersService;
+	}
+
+	@RequestMapping("/chartMain.do")
+	public String chartMain(){
+		return "updatedUsers";
+	}
+	
+	@RequestMapping("/drawChart.do")
+	public void drawChart(HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("utf-8");
+		Object[] objects = {updatedUsersService.getAllUsers(),updatedUsersService.getUpdatedUsers()};
+		forPrintWriterPrint(objects, response);
+	}
+	
+	@ResponseBody
+	public void forJSONPrint(Object[] objects) throws Exception{
+		JSONObject jsonObject = new JSONObject();
+		for(int i=1; i<=objects.length; i++){
+			jsonObject.put("data"+i, objects[i-1]);
+		}
+		jsonObject.toString();
+	}
+	
+	
+	public void forPrintWriterPrint(Object[] objects, HttpServletResponse response) throws Exception{
+		JSONObject jsonObject = new JSONObject();
+		for(int i=1; i<=objects.length; i++){
+			jsonObject.put("data"+i, objects[i-1]);
+		}
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
 	}
 }

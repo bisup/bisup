@@ -28,4 +28,10 @@
 	<select id="salePerDay" parameterType="String" resultType="command.SaleCommand">
 		select item,sum(total) total from sale where id=#{id} and sysdate>=sysdate-2 and sysdate+2>=sysdate group by item
 	</select>
+	<select id="getAllUsers" resultType="int">
+		select count(*) from member
+	</select>
+	<select id="getUpdatedUsers" resultType="int">
+		select count(*) from chang
+	</select>
 </mapper>

@@ -34,10 +34,12 @@ public class SocketHandler {
 		this.socketDAO = socketDAO;
 	}
 
+	//현재 세션 내에 있는 모든 클라이언트정보(해시코드인 것으로 추정)를 받아옵니다.
 	private static Set<Session> clients = Collections
 			.synchronizedSet(new HashSet<Session>());
 	
-	@OnMessage//onMessage이벤트 발생시 실행합니다. 현재 웹소켓 세션에 접속한 모든 유저(자신을 제외한)에게 메시지를 전송합니다.
+	//onMessage이벤트 발생시 실행합니다. 현재 웹소켓 세션에 접속한 모든 유저(자신을 제외한)에게 메시지를 전송합니다.
+	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println("onMessage 진입, "+message+", "+session);
 		synchronized (clients) {
@@ -51,6 +53,7 @@ public class SocketHandler {
 		}
 	}
 	
+	//메시지를 받았을 때 자신의 아이디와 내용을 통해 자신의 쪽지인지 유추합니다.
 	@RequestMapping("/Broadcasting/onMessage.do")
 	private void onMessagePro(@RequestParam("id")String sub,
 			@RequestParam("mcontents")String mcontents,
@@ -70,6 +73,7 @@ public class SocketHandler {
 		
 	}
 
+	//클라이언트들을 하나의 세션에 넣는 onOpen메소드입니다.
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set
@@ -77,6 +81,7 @@ public class SocketHandler {
 		clients.add(session);
 	}
 	
+	//onOpen시 페이징 된 쪽지 내역을 보여주는 메소드입니다.
 	@RequestMapping("/Broadcasting/onOpen.do")
 	private void onOpenPro(@RequestParam("id")String id,HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
@@ -99,6 +104,7 @@ public class SocketHandler {
 		printWriter.print(jsonObject.toString());
 	}
 	
+	//위의 onOpenPro메소드에서 받아온 쪽지 내용을 모두 출력하기 위한 toString 오버라이딩입니다.
 	private void toString(ArrayList textList) {
 		// TODO Auto-generated method stub
 		for(int i=0; textList.size()>i; i++){
@@ -107,6 +113,7 @@ public class SocketHandler {
 		}
 	}
 
+	//페이지를 강제 종료하는 등 접속이 끊길 시 세션과의 접속을 끊는 메소드입니다.
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
@@ -114,6 +121,7 @@ public class SocketHandler {
 		clients.remove(session);
 	}
 	
+	//쪽지를 보낼 시 DB에 쪽지 내용을 저장합니다.
 	@RequestMapping("/Broadcasting/send.do")
 	@ResponseBody
 	public void send(@RequestParam("sub")String sub,
@@ -130,6 +138,8 @@ public class SocketHandler {
 		jsonObject.toString();
 	}
 	
+	//쪽지를 클릭했을 때 내용을 이용해 쪽지의 모든 데이터를 가지고 옵니다.
+	//새 창에서 쪽지를 열어보기때문에 필요합니다.
 	@RequestMapping("/Broadcasting/window.do")
 	public void openWindow(@RequestParam("mcontents")String mcontents,
 			HttpServletResponse response) throws Exception{
@@ -144,6 +154,8 @@ public class SocketHandler {
 		printWriter.print(jsonObject.toString());
 	}
 	
+	//체크박스로 선택한 쪽지를 지우는 메소드입니다.
+	//여러개 선택될 경우를 생각하여 파라미터를 String배열로 설정했습니다.
 	@RequestMapping("/Broadcasting/deleteText.do")
 	public String deleteText(String[] mcontents,
 			HttpServletResponse response) throws Exception{
@@ -152,9 +164,12 @@ public class SocketHandler {
 		for(String contents:mcontents){
 			socketDAO.deleteText(contents);
 		}
+		//다시 처음 창으로 돌아가야 되는데 안됩니다.....
 		return "textDeleteSuccess";
 	}
 
+	//쪽지를 연 상태에서 답장쓰기 버튼을 누를 시 웹소켓 내에서 제공하는 function send()를 이용하여 답장을 보냅니다.
+	//위의 send메소드와 비슷한 로직입니다.
 	@RequestMapping("/Broadcasting/replyText.do")
 	public void replyText(@RequestParam("contents")String mcontents,
 			@RequestParam("send")String send,@RequestParam("sub")String sub,
@@ -166,6 +181,8 @@ public class SocketHandler {
 		socketDAO.insertText(command);
 	}
 	
+	//페이지 번호를 눌렀을 때 페이지 정보를 가지고 새로운 쪽지 내역을 출력합니다.
+	//처음 쪽지창을 열 때엔 1-10까지의 쪽지만 나오게 됩니다.
 	@RequestMapping("/Broadcasting/selectPageNum.do")
 	public void selectPageNum(@RequestParam("pageNum")String pageNum,
 			HttpServletResponse response) throws Exception{

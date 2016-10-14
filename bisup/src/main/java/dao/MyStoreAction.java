@@ -57,4 +57,16 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 		check = getSqlSession().delete("mystore.deleteMenu", info);
 		return check;
 	}
+
+	public int getAllUsers(int allUsers) {
+		// TODO Auto-generated method stub
+		allUsers=getSqlSession().selectOne("mystore.getAllUsers");
+		return allUsers;
+	}
+
+	public int getUpdatedUsers(int updatedUsers) {
+		// TODO Auto-generated method stub
+		updatedUsers=getSqlSession().selectOne("mystore.getUpdatedUsers");
+		return updatedUsers;
+	}
 }

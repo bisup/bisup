@@ -70,8 +70,7 @@ public class AdminMemberController {
 		List<MemberCommand> gucode = null;
 		gucode = adminMemberDao.getGucode();
 		model.addAttribute("gucode", gucode);
-		return "store";
-		
-		
+		return "store";	
 	}
+	
 }
