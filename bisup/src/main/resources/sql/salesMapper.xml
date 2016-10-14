@@ -15,6 +15,7 @@ insert into sale(id,sdate,item,ea) values (#{id}, #{sdate}, #{item}, #{ea})
 select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate}
 </select>
 
+
 <update id="insertTotal" parameterType="command.SaleCommand">
 update sale set (total)=(select total from(select(select(select ea from sale where id=#{id} and sdate=#{sdate} and item=#{item})*(select price from menu where item=#{item})from dual)as total from dual))where id=#{id} and item=#{item} and ea=#{ea}
 </update>
