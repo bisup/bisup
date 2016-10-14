@@ -249,37 +249,6 @@
 			 /* addArea()종료 */ 
 		); /* 클릭펑션종료 */
 
-										/* target = res.result;
-
-										for (idx = 0, len = target.length; idx < len; idx ++) {
-											conComplite[target[idx].adm_cd] = target[idx];
-										}
-
-										logger("----------- [ 가구통계 조회 성공 ] -----------");
-										logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
-										sopArea.eachLayer(function (layer) {
-											key = layer.feature.properties.adm_cd;
-											value = conComplite[key];
-
-											if (!value) { return; }
-
-											strToolTip = "<p>지역(구)명 : " + value.adm_nm + "</p>";
-											strToolTip += "<p>10대미만: " + value.teenage_less_than_per + "</p>";
-											strToolTip += "<p>10대 : " + value.teenage_per + "</p>";
-											strToolTip += "<p>20 : " + value.twenty_per + "</p>";
-											strToolTip += "<p>30 : " + value.thirty_per + "</p>";
-											strToolTip += "<p>40: " + value.forty_per + "</p>";
-											strToolTip += "<p>50 : " + value.fifty_per + "</p>";
-						                  	strToolTip += "<p>60 : " + value.sixty_per + "</p>";
-						                	strToolTip += "<p>70 : " + value.seventy_more_than_per + "</p>";
-						                  	
-
-											layer.bindToolTip(strToolTip);
-										}); */
-
-						
-	
-
 </script> 
  
 
