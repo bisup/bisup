@@ -41,9 +41,9 @@ function menuClick(param){
 		,success:function(args){
 			$("#oneMenuPrint").append("<table id='table' class='table'><tr><td></td><td>변경전</td><td>변경후</td></tr><tr><td>메뉴이름</td><td>"+
 				"<input id='printedItem' disabled='disabled' value='"+args.data.item+"'>"+
-				"</div></td><td><input type='text' id='selecteditem'></td></tr><tr><td>가격</td><td>"+
-				"<input disabled='disabled' value='"+args.data.price+"'></td><td><input type='text' id='selectedprice'></td></tr></table>");
-			$("#table").append("<div align='center'><input type='button' id='button1' onclick='insertOrUpdate()' value='입력/수정'>"+
+				"</div></td><td><input type='text' id='selecteditem' class='form-control'></td></tr><tr><td>가격</td><td>"+
+				"<input disabled='disabled' value='"+args.data.price+"'></td><td><input type='text' id='selectedprice' class='form-control'></td></tr></table>");
+			$("#table").append("<div align=center><input type='button' id='button1' onclick='insertOrUpdate()' value='입력/수정'>"+
 			"&nbsp;&nbsp;&nbsp;<input type='button' id='button2' onclick='deleteMenu()' value='삭제'></div>");
 		}
 		,errors:function(e){
@@ -93,13 +93,32 @@ function deleteTarget(){
 	}
 }
 </script>
+<style>
+#menuList{
+position:relative;
+width:400px;
+right:100px;
+bottom:50px;
+border-right:1px dotted #000000;
+padding-right: 20px;
+}
+#target{
+position:relative;
+width:600px;
+height:300px;
+bottom:460px;
+left:400px;
+padding-left:20px;
+}
+</style>
 </head>  
 <body>
-<div id="container">
  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">메뉴등록</h2>
   	<p style="display: block;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
 
-<div id="menuList">
+<div id="container" align="center">
+<div id="menuList" align="center">
+<div align="center"><h3>메뉴목록</h3><hr width="350px"/></div>
 <table class="table table-condensed">
 	<thead><tr>
 		<td>No.</td><td>메뉴이름</td><td>가격</td>
@@ -118,8 +137,7 @@ function deleteTarget(){
 	</tbody>
 </table>
 </div>
-<hr style="border: dashed">
-<div id="target" align='center'><div id="oneMenuPrint" align="center"/><h3>선택하신 메뉴</h3></div>
+<div id="target" align='center'><div id="oneMenuPrint" align="center"/><h3>선택하신 메뉴</h3><hr width="400px"/></div>
 </div>
 </body>
 </html>

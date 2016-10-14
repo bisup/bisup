@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>  
 <html>
 
@@ -97,24 +98,25 @@
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr> 
          </tbody></table>
+<h5 style="font: italic;color:red; ">구 선택후 지도위에 마우스를 놓으시면 현재 카폐의 갯수가 나옵니다</h5>
 <div id="map" style="width:650px;height:400px"></div>
-
+<br><br>
 <table  class="table">
   <thead>
   <tr>
       <th>#</th>
       <th>동이름</th>
-      <th>카폐 갯수</th>
-      <th>종사자 수</th>
+      <th>사업체 수</th>
+      <th>종사자수 </th>
          </tr>
        </thead>
        <tbody class="tbody">
      </tbody></table>
-</div>
+     
 <script type="text/javascript">
 
 $(document).ready(function(){
-  var accessToken = 'b4c50e40-df0f-49c8-bfbc-a07c152208b9';
+  var accessToken = '110998a8-89cb-442d-bfc2-bbaddf515fa8';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
@@ -178,7 +180,7 @@ $(document).ready(function(){
      						$(".tbody").find("tr").remove(); 
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
      							conComplite[target[idx].adm_cd] = target[idx];
-     							value=conComplite[target[idx].adm_cd];
+     							 value=conComplite[target[idx].adm_cd];
      							key =target[idx].adm_cd;
      							 $(".tbody").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].corp_cnt+"</td><td>"+conComplite[key].tot_worker+"</td></tr>");
      							
@@ -196,14 +198,15 @@ $(document).ready(function(){
      							layer.bindToolTip(strToolTip);
      							
      						});
-     						
      					}
                      });
 			}
 			});
 	});
 	
-});
+
+	});
+
 function divLogger() {
 	var lineNum = 0;
 	var prefix = "";
@@ -221,22 +224,10 @@ function divLogger() {
 //		divConsole.scrollHeight = 999999;
 	};
 }
-function jasontable(){
-	var tbody=docoment.getElementbyId("tbody");
-	for(idx = 0, len = target.length; idx < len; idx ++){
-		conComplite[target[idx].adm_cd] = target[idx];
-		value=conComplite[target[idx].adm_cd];
-		var tr =document.createElement("tr");
-		var td1 =document.createElement("td");
-		var td2 =document.createElement("td");
-		var td3 =document.createElement("td");
-		
-		td1.innerHTML.value.adm_nm;
-		td2.innerHTML.value.corp_cnt;
-		td3.innerHTML.value.tot_worker;
-		
-	}
-}
+//<td>"+args.list[idx].dang_num+"</td>
+
+
+
 </script>
 </body>
 </html>

@@ -30,4 +30,19 @@
     <select id="selectGu" resultType="command.GuCommand">
     	select * from gu
     </select>
+    
+    <!-- admcd테이블에 구명 -->
+    <select id="GuS" resultType="command.GuCommand">
+    	select gcode, gn from admcd  where rowid in(select max(rowid) from admcd group by gcode) order by gn
+    </select>
+    
+    <!-- admcd테이블에 동명 -->
+    <select id="dongS" parameterType="int" resultType="command.GuCommand">
+    	select dcode, dn from admcd  where gcode=#{gcode} and rowid in(select max(rowid) from admcd group by dcode) order by dn
+    </select>
+    
+    <select id="danger" parameterType="int" resultType="command.GuCommand">
+    select * from danger where dcode=#{dcode}
+    </select>
+    
 </mapper>

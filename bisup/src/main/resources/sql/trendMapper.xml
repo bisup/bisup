@@ -13,6 +13,7 @@
 	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/07/01' and '16/07/30')
 </select>
 
+
 <select id="concerting1"  resultType="command.consultingCommand"> 
 	select * from retail where division = #{division}
 </select>

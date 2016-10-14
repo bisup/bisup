@@ -31,9 +31,9 @@ request.setCharacterEncoding("utf-8");
     //onMessage 이벤트는 동일한 웹소켓에 접속한 모든 user에게 동일하게 발생합니다.
     //단지 그걸 볼 수 있는 user는 한정되어있습니다.
     function onMessage(event) {
-    	$("#textWindows").append("<p align='right'><a href='#' onclick='window.open(/BroadCasting/open.do?mcontents="
+    	$("#onMessageWindow").append("<div align='right' class=row><a href='#' onclick='window.open(/BroadCasting/open.do?mcontents="
     			+event.data+",'쪽지',"+"'resizable=no, width=600, height=600')'> 쪽지가 왔습니다! "
-    			+event.data.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+event.data+"'/></p>");
+    			+event.data.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+event.data+"'/></div><hr/>");
     }
     
     //웹소켓이 실행(창이 열림)되는 순간 접속한 ID에게 온 쪽지를 보여줍니다(5일치).
@@ -46,13 +46,17 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			$("#textWindows").append("<div class=row><p align='center'>비즈업 쪽지창입니다!!!</p><br/></div>");
+    			$("#textWindows").append("<div class=title><p align='center'>비즈업 쪽지창입니다!!!</p><br/></div><hr>");
     			for(var idx=0; idx<args.data.length; idx++){
     				var mc = args.data[idx].mcontents;
     				$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.data[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
-    					args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+".......</a><br/></div>");
+    					args.data[idx].send+"님으로부터 "+args.data[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+    				
     			}
-    			$("#textWindows").append("<hr/>");
+    			
+    			for(var num=1; num<args.count; num++){
+    				$("#textPages").append("<a href='javascript:selectPageNum("+num+")'>"+num+"</a>")
+    			}
     		}
     		,errors:function(){
 			 alert();
@@ -77,8 +81,11 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			$("#textWindows").append("<p class='form-check-input' align='left'>"+args.data+"님에게 전송");
-    	    	alert("쪽지 발송 완료");
+    			for(var idx=0; idx<args.data.length; idx++){
+    				var mc = args.data[idx].mcontents;
+    				$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.pagedList[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
+    					args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+    			}
     		}
     		,errors:function(args,request,status,error){
 				alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -88,8 +95,32 @@ request.setCharacterEncoding("utf-8");
     }
     
 	function deleteText(){
-		alert("메시지 삭제 완료!");
-		window.history.go(-1);
+		location.href=location.href;
+	}
+	
+	function selectPageNum(num){
+		var url="/bisup/mystore/Broadcasting/selectPageNum.do";
+		var pageNum={pageNum:num};
+		$.ajax({
+	    	type:"post"
+	    	,url:url
+	    	,data:pageNum
+	    	,dataType:"json"
+	    	,success:function(args){
+	    		var textWindows=document.getElementById("textWindows")
+	    		textWindows.remove();
+	    		$("#afterRemove").prepend("<div id='textWindows'></div>");
+	    		$("#textWindows").append("<div class=title><p align='center'>비즈업 쪽지창입니다!!!</p><br/></div><hr>");
+	    		for(var idx=0; idx<args.pagedList.length; idx++){
+	    			var mc = args.pagedList[idx].mcontents;
+	    			$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.pagedList[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
+	       			args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
+	   			}
+	    	}
+	    	,errors:function(args,request,status,error){
+				alert("failed");
+	    	}
+	   	});
 	}
     
     //쪽지를 클릭 시 새 창에서 보여주기 위한 function입니다.
@@ -99,20 +130,46 @@ request.setCharacterEncoding("utf-8");
     	window.open(url,'textWindow','width=500,height=500');
     }
 </script>
+<style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+.title{
+	font-family:'Nanum Pen Script', cursive; 
+	font-size:150%;
+	text-align:center;
+	height:20px;
+}
+.row{
+	height:30px;
+	valign:center;
+	align:left;
+}
+#textWindows{
+	border:1 solid #ff0000;
+	padding:0 10 0 40;
+}
+#textButtons{
+	padding:20 0 0 60;
+}
+
+</style>
 </head>
 <body>
-<div id="container" align="center">
-    <fieldset style="border:1">
-    <div style="width:500px;">
+    <fieldset>
+    <div>
+    <div id="afterRemove" style="border-right:1px inset black; float: left; width: 40%;">
     <form onsubmit="deleteText()" action="/bisup/mystore/Broadcasting/deleteText.do">
-        <div id="textWindows" class="col-lg-8 col-lg-offset-2"></div>
+        <div id="textWindows"></div>
+        <div id="textButtons">
         <input type="text" placeholder="받으실분" id="sub">
         <input type="text" placeholder="내용" id="mcontents">
         <input type="button" value="send" onclick="send()">
         <input type="submit" value="삭제"	>
+        </div>
+        <div id="textPages" align="center"></div>
     </form>
     </div>
+    <div id="onMessageWindow" style="border-left:1px inset black;width:300px; float: left; width:40%;"></div>
+    </div>
     </fieldset>
-</div>
 </body>
 </html>

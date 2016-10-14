@@ -20,7 +20,7 @@
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-
+ 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:/sql/*.xml" />
@@ -66,12 +66,11 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> 
 	 -->
-	
- 	<!-- 프로퍼티스 파일 읽어오기 -->
-	<!-- <context:property-placeholder location="classpath:db2.properties" />
+	<!-- 
+ 	프로퍼티스 파일 읽어오기
+	<context:property-placeholder location="classpath:db2.properties" />
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
->>>>>>> branch 'master' of https://github.com/bisup/bisup
 
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -86,7 +85,7 @@
 	
 	<!--  <bean id="sgisdao" class="dao.SGISDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>  -->
+	</bean>    -->
 	 
 	<!-- 타일즈사용 -->
 	<bean id="tilesviewResolver"  
@@ -109,5 +108,7 @@
 	
 	<bean class="controller.AreaInfoController"/>
 	<bean class="controller.Sgiscontroller"/>
+	
+	
 	
 </beans>

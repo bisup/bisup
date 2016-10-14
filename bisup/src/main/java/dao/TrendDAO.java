@@ -16,11 +16,8 @@ public class TrendDAO extends SqlSessionDaoSupport{
 	}
 	
 	public List getListtotal(String gucode){
-		System.out.println("dao...:"+gucode);
 		ArrayList total1 = (ArrayList) getSqlSession().selectList("trend.total", Integer.parseInt(gucode));
-		System.out.println(total1);
-		return total1;
-		
+		return total1;	
 	} 
 	
 
