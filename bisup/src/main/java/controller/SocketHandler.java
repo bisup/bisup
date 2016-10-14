@@ -37,7 +37,7 @@ public class SocketHandler {
 	private static Set<Session> clients = Collections
 			.synchronizedSet(new HashSet<Session>());
 	
-	@OnMessage//onMessage이벤트 발생시 실행합니다.
+	@OnMessage//onMessage이벤트 발생시 실행합니다. 현재 웹소켓 세션에 접속한 모든 유저(자신을 제외한)에게 메시지를 전송합니다.
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println("onMessage 진입, "+message+", "+session);
 		synchronized (clients) {
@@ -52,19 +52,22 @@ public class SocketHandler {
 	}
 	
 	@RequestMapping("/Broadcasting/onMessage.do")
-	private void onMessagePro(@RequestParam("sub")String sub,
+	private void onMessagePro(@RequestParam("id")String sub,
 			@RequestParam("mcontents")String mcontents,
-			@RequestParam("send")String send,HttpServletResponse response) throws Exception {
+			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents+", send"+send);
+		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents);
 		MemoCommand command = new MemoCommand();
-		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
-		socketDAO.insertText(command);
+		Map idMcontents = new HashMap();
+		idMcontents.put("sub", sub); idMcontents.put("mcontents", mcontents);
+		command=socketDAO.selectDelivered(idMcontents);
+		System.out.println("onMessage 결과command확인 ::: "+command.getMcontents()+", "+command.getSub());
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("data", "insert성공");
+		jsonObject.put("delivered", command);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
+		
 	}
 
 	@OnOpen

@@ -52,4 +52,11 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		count=getSqlSession().selectOne("text.textCount");
 		return count;
 	}
+
+	public MemoCommand selectDelivered(Map idMcontents) {
+		// TODO Auto-generated method stub
+		MemoCommand command = new MemoCommand();
+		command = getSqlSession().selectOne("text.selectDelivered", idMcontents);
+		return command;
+	}
 }

@@ -19,4 +19,7 @@
 	<select id="textCount" resultType="int">
 		select count(*) from memo
 	</select>
+	<select id="selectDelivered" parameterType="Map" resultType="command.MemoCommand">
+		select * from memo where sub=#{sub} and mcontents=#{mcontents}
+	</select>
 </mapper>

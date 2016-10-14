@@ -31,8 +31,24 @@ request.setCharacterEncoding("utf-8");
     //onMessage 이벤트는 동일한 웹소켓에 접속한 모든 user에게 동일하게 발생합니다.
     //단지 그걸 볼 수 있는 user는 한정되어있습니다.
     function onMessage(event) {
-    	$("#onMessageWindow").append("<div align='right' class=row><a href='#' onclick=goWindow('"+event.data+"')> 쪽지가 왔습니다! "
-    			+event.data.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+event.data+"'/></div><hr/>");
+    	var url="/bisup/mystore/Broadcasting/onMessage.do";
+        var param={id:'java1',mcontents:event.data};
+    	$.ajax({
+    		type:"post"
+    		,url:url
+    		,data:param
+    		,dataType:"json"
+    		,success:function(args){
+    				$("#onMessageWindow").append("<div align='right' class=row><a href='#' onclick=goWindow('"+args.delivered.mcontents+"')> 쪽지가 왔습니다! "
+    		    			+args.delivered.mcontents.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+args.delivered.mcontents+"'/></div><hr/>");
+    		}
+    		,errors:function(){
+			 alert();
+			}
+    	});
+    	/* $("#onMessageWindow").append("<div align='right' class=row><a href='#' onclick=goWindow('"+event.data+"')> 쪽지가 왔습니다! "
+    			+event.data.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+event.data+"'/></div><hr/>"); */
+    	
     }
     
     //웹소켓이 실행(창이 열림)되는 순간 접속한 ID에게 온 쪽지를 보여줍니다(5일치).
