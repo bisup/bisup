@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="text">
 	<select id="selectText" parameterType="String" resultType="command.MemoCommand">
-		select send,sub,mcontents,mreg from (select rownum,send,sub,mcontents,mreg from memo) where 10>=rownum and rownum>=1
+		select send,sub,mcontents,mreg from (select rownum,send,sub,mcontents,mreg from memo) where 10>=rownum and rownum>=1 and sub=#{id}
 	</select>
 	<insert id="insertText" parameterType="command.MemoCommand">
 		insert into memo values(#{send},#{sub},#{mcontents},sysdate)
