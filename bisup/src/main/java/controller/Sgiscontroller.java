@@ -36,9 +36,9 @@ public class Sgiscontroller {
 	}
 	
 	@RequestMapping(value="/areaInfo/return.do" , method = RequestMethod.GET)
-	public void getdan(@RequestParam("gcode")int gcode,HttpServletResponse resp) throws Exception{
+	public void getdan(@RequestParam("dcode")int dcode,HttpServletResponse resp) throws Exception{
 			System.out.println("옴");
-			List<GuCommand> list =sgisdao.getdan(gcode);
+			List<GuCommand> list =sgisdao.getdan(dcode);
 			JSONObject jso = new JSONObject();
 			jso.put("list", list);
 			for(GuCommand li:list){
@@ -48,6 +48,20 @@ public class Sgiscontroller {
 			PrintWriter out = resp.getWriter();
 			out.print(jso.toString());
 		}
+	
+	@RequestMapping(value="/areaInfo/Info.do",method=RequestMethod.POST)
+	public void sidoList(HttpServletResponse resp,@RequestParam("gcode") int gcode) throws Exception{
+		System.out.println("파라미터로 받아온 gcode::"+gcode);
+		List<GuCommand> list = sgisdao.dongS(gcode);
+		System.out.println("list의 갯수::"+list.size());
+		JSONObject jso = new JSONObject(); //JSON 객체생성
+		jso.put("data", list); //json은 map구조(키,값), data라는 key로 list데이터를 주입했다.		
+		resp.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.print(jso.toString());
+		//out.print 내용을 ajax의 dataType이 json에게 데이터 쏴줌
+		//response에 추가시킬때는 String으로
+	}
 	
 	@RequestMapping("/areaInfo/sdanger.do")
 	public ModelAndView form(){

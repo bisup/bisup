@@ -102,7 +102,7 @@
 <div id="map" style="width:650px;height:400px"></div>
 <br><br>
 <table  class="table">
-  <thead>
+  <thead>  
   <tr>
       <th>#</th>
       <th>동이름</th>
