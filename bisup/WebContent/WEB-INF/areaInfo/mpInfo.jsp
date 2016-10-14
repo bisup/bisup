@@ -95,17 +95,17 @@
  
   	<tr align="center">
  <c:forEach items="${list}" var="list"  end="8">
-      <td> <button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+      <td> <button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>   
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="9" end="17">
-      <td><button value="${list.gcode}" class="gcode">${list.gn}</button></td>
+      <td><button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>    
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="18" end="24">
-     <td><button value="${list.gcode}" class="gcode">${list.gn}</button></td>
+     <td><button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>  
  	</table>
@@ -115,18 +115,22 @@
          <br>
          <br>
          <br>
-<div id="map" style="width:650px;height:400px"></div>
-<button id="addArea">경계조회</button>
+<div id="map" style="width:650px;height:400px"></div> <!-- 지도 구역 구간 -->
+<div id="ageR"></div><!--  연령별 비율 차트 구간 -->
+
+
+<!-- <button id="addArea">경계조회</button>
 <button id="addStatistic">인구통계조회</button>
-<button id="clear">지도초기화</button>
-<div id="divCon"></div>
+<button id="clear">지도초기화</button>-->
+<div id="divCon"> --------------console구간---------</div> 
 
 
  <script type="text/javascript">
-  var accessToken = '0d5dc53e-b0d6-484a-9c37-286de2409e68';
+  var accessToken = '4480911f-6047-413b-9326-9a6dc1055bb5';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
-	var map, mapOptions, oriArea, sopArea, logger, divConsole;
+	
+  var map, mapOptions, oriArea, sopArea, logger, divConsole;
 	logger = divLogger();
 	mapOptions = {
 		ollehTileLayer: true,
@@ -152,36 +156,64 @@
 				}
 			});
 		}
-	}
+	} //token 받기 종료
 
-	sop.DomUtil.get("addArea").onclick = addArea;
-	sop.DomUtil.get("addStatistic").onclick = addStatistic;
-	sop.DomUtil.get("clear").onclick = clear;
+	//sop.DomUtil.get("addarea").onclick = gcode;
+	
+	//sop.DomUtil.get("addStatistic").onclick = addStatistic;
+	//sop.DomUtil.get("clear").onclick = clear;
 	divConsole = sop.DomUtil.get("divCon");
 
+	/* 지도에 경계띄우기 : 구버튼클릭했을때 동경계보여주기*/
 	$('.gcode').click(function addArea() {
-		if (sopArea) {
+		/* 다른거 클릭하면 없어지는지 확인 */
+	  	if (sopArea) {
 			sopArea.remove();
 			sopArea = undefined;
 			oriArea = undefined;
-		}  
-        var year = "2010";
-      	var adm_cd = $('.gcode').val();
-		$.ajax({
-          url : 'http://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson' +
+					}  
+        var year = "2013";
+     	var adm_cd =$(this).val();
+		
+      	alert("adm_cd"+adm_cd);
+		
+      	$.ajax({
+          	url : 'http://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson' +
           		'?accessToken='+ accessToken +'&year='+year+'&adm_cd='+adm_cd+'&low_search='+1,	
-          type : 'get',
-	  datatype : "geojson",
+          	type : 'get',
+	 		 datatype : "geojson",
 			success: function( res,status) {
                 oriArea = res;
 				sopArea = sop.geoJson(res).addTo(map);
 				map.fitBounds(sopArea.getBounds());
-				logger("경계조회 결과");
-				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
-			}
-		});
-	});
+				/*  logger("경계조회 결과");
+				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");  */
+				var idx, len, target, conComplite = {}, key, value, strToolTip;
+				target = res.result;
 
+				for (idx = 0, len = target.length; idx < len; idx ++) {
+					conComplite[target[idx].adm_cd] = target[idx];
+				}
+
+				/* logger("----------- [ 가구통계 조회 성공 ] -----------");
+				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>"); */
+				sopArea.eachLayer(function (layer) {
+					key = layer.feature.properties.adm_cd;
+					value = conComplite[key];
+
+					if (!value) { return; }
+
+					strToolTip = "<p>지역명 : " + value.adm_nm + "</p>";
+
+					layer.bindToolTip(strToolTip);
+			});
+		}
+      	}); 
+	}   
+			 /* addArea()종료 */ 
+		); /* 클릭펑션종료 */
+
+	
 /* 	function addStatistic() {
 		if (!oriArea) {
 			alert("경계조회를 먼저 하세요");
@@ -231,15 +263,15 @@
 		});
 	}  */
 	
-	$('#dong').click(function addStatistic() {
+	$('#dong').click(
+		function addStatistic() {
 		
 		if (!oriArea) {
 			alert("경계조회를 먼저 하세요");
 			return;
 		}
-
-          
-          var adm_cd = $('#dong').val();
+		
+		var adm_cd = $('#dong').val();
          
           $.ajax({
             url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
@@ -308,7 +340,7 @@
 		};
 	}
 
-</script>
+</script> 
  
 <script>
  

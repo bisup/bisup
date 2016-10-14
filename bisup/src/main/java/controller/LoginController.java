@@ -60,12 +60,12 @@ public class LoginController{
 				session.setAttribute("id",memberCommand.getId());
 				session.setAttribute("sort", sort);
 				return "main";
-			}else if(sort == 1){
+			}else if(sort == 2){
 				System.out.println("자영업자 로그인");
 				session.setAttribute("id",memberCommand.getId());
 				session.setAttribute("sort", sort);
 				return "main";
-			}else if(sort == 2){
+			}else if(sort == 1){
 				System.out.println("창업예정자 로그인");
 				session.setAttribute("id",memberCommand.getId());
 				session.setAttribute("sort", sort);

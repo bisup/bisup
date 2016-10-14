@@ -67,6 +67,7 @@
         
         
         <!-- 관리자페이지 -->
+        <c:if test="${sessionScope.sort==0}">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">관리자 페이지<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -75,6 +76,15 @@
             <li><a href="/bisup/admin/store.do">점포 관리</a></li>
           </ul>
         </li>
+        </c:if>
+        
+       <!--  마이페이지 -->
+        <c:if test="${sessionScope.sort!=0}">
+        <li>
+          <a href="/bisup/bisup/mypage/modifyCheck.do">마이 페이지</a>
+        </li>
+        </c:if>
+        
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴
