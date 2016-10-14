@@ -190,7 +190,7 @@
 				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");  */
 				var idx, len, target, conComplite = {}, key, value, strToolTip;
 				target = res.result;
-
+  
 				for (idx = 0, len = target.length; idx < len; idx ++) {
 					conComplite[target[idx].adm_cd] = target[idx];
 				}
