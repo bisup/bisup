@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <%
 String cp=request.getContextPath();
 request.setCharacterEncoding("UTF-8");
@@ -17,7 +19,8 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet" href="/bisup/css/jang.css" />
 <script type="text/javascript">
 $(document).ready(function(){
-	$('.dcode').click(function(){
+	<%--  $('.dcode').click(function lk(){
+		alert("dcode");
 		var dcode = $(this).val() ;
 		var url="<%=cp%>/my/areaInfo/return.do";
 		var params="dcode="+dcode;
@@ -27,6 +30,7 @@ $(document).ready(function(){
 			data:params,
 			dataType:"json",
 			success:function(args){
+				alert(dcode);
 				$(".tbody").find("tr").remove(); 
 				for(idx=0 ; idx<args.list.length ; idx++){
 					//alert(args.list[idx].dn);
@@ -34,16 +38,16 @@ $(document).ready(function(){
 				}
 			}
 		});
-	});
+	});  --%>
 
 $('.gcode').click(function dongS() {
  	var g=$(this).val();
 	var url="<%=cp%>/my/areaInfo/Info.do";
 	var params ="gcode="+g;
 	
-	$("#dcode button").each(function(){
+	$("#code button").each(function(){
 		//id가 city 이며 option인 요소를
-		$("#dcode button:eq(0)").remove();
+		$("#code button:eq(0)").remove();
 		//city option의 1번째를 계속 삭제(0번째만 남기고 모두 지우게 된다. )
 		//eq : 지정된 index번째의 엘리먼트 선택
 	});
@@ -57,10 +61,28 @@ $('.gcode').click(function dongS() {
 			
 			for(var idx=0; idx<args.data.length; idx++){
 				
-				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id='dcode'>"+args.data[idx].dn+"</button>");
+				$("#code").append("<input type='checkbox' value='"+args.data[idx].dcode+"' id='dcode' class='dcode'>" +args.data[idx].dn+"</button>" );
 				//alert(args.data1[idx].dn);
 				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
 				
+				$('.dcode').click(function lk(){
+					var dcode = $(this).val() ;
+					var url="<%=cp%>/my/areaInfo/return.do";
+					var params="dcode="+dcode;
+					$.ajax({
+						type:"get",
+						url:url,
+						data:params,
+						dataType:"json",
+						success:function(args){
+							$(".tbody").find("tr").remove(); 
+							for(idx=0 ; idx<args.list.length ; idx++){
+								//alert(args.list[idx].dn);
+								 $(".tbody").append("<tr><td><td>"+args.list[idx].gn+"</td><td><a href=# onclick=chart('"+args.list[idx].dn+"') >"+args.list[idx].dn+"</a></td><td>"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+							}
+						}
+					});
+				});
 			}
 		}
 	,error:function(e){
@@ -73,7 +95,7 @@ $('.gcode').click(function dongS() {
 });
 		</script>
 <title>위험지표</title>
-</head>
+</head> 
 <body>
 <table class="table" style="position: relative; width:150px; text-align:center;   ">
   <thead>
@@ -86,8 +108,9 @@ $('.gcode').click(function dongS() {
       <td><button value="${list.gcode}" class="gcode" id="list">${list.gn}</button></td>
 </c:forEach> </tr>      
          </tbody></table>
+         <form:form >
   <br>
-     <div id="dcode"></div><!-- gu/dong선택 종료 -->
+     <div id="code"></div><!-- gu/dong선택 종료 -->
          <br>
          <br>
 <table  class="table">
@@ -103,8 +126,8 @@ $('.gcode').click(function dongS() {
        </thead>
        <tbody class="tbody">
      </tbody></table>
-    
      
+     </form:form>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
        <div id="chart_div" style="width: 400px; height: 120px;"></div>
 </div>
