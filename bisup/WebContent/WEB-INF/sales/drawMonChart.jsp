@@ -26,7 +26,7 @@ request.setCharacterEncoding("utf-8");
 		,success:function(args){
 			// Create the data table.
 	        chartData = new google.visualization.arrayToDataTable([
-			['월','매출'],
+			['월','매출'], 
 			[args.data[0].mon,args.data[0].tot],
 			[args.data[1].mon,args.data[1].tot],
 			[args.data[2].mon,args.data[2].tot],

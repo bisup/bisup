@@ -2,10 +2,51 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="sales">
 <select id="menuList" parameterType="String" resultType="command.MenuCommand">
-select item,price from menu where id=#{id}
+select id,item,price from menu where id=#{id}
 </select>
 
+
+<insert id="insertSales" parameterType="command.SaleCommand">
+insert into sale(id,sdate,item,ea) values (#{id}, #{sdate}, #{item}, #{ea})
+</insert>
+
+
+<select id="saleList" parameterType="map" resultType="command.SaleCommand">
+select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate}
+</select>
+
+<update id="insertTotal" parameterType="command.SaleCommand">
+update sale set (total)=(select total from(select(select(select ea from sale where id=#{id} and sdate=#{sdate} and item=#{item})*(select price from menu where item=#{item})from dual)as total from dual))where id=#{id} and item=#{item} and ea=#{ea}
+</update>
+
+
+<update id="updateSales" parameterType="command.SaleCommand">
+update sale set ea=#{ea} where id=#{id} and item=#{item} and sdate=#{sdate}
+</update>
+
+
+
+<!-- 부수비용 부분 -->
+<insert id="insertOther" parameterType="command.OtherCommand">
+insert into other(id,mon,rent,sal,mcost,duty,prcost) values (#{id}, #{mon}, #{rent}, #{sal}, #{mcost}, #{duty}, #{prcost})
+</insert>
+
+
+<select id="otherList" parameterType="String" resultType="command.OtherCommand">
+select id,mon,rent,sal,mcost,duty,prcost,etcco from other where id=#{id}
+</select>
+
+<update id="otherTotal" parameterType="command.OtherCommand">
+update other set (etcco) = (select(select rent+sal+mcost+duty+prcost from other where id=#{id} and mon=#{mon})as etcco from dual) where id=#{id} and mon=#{mon}
+</update>
+
+
+<update id="updateOther" parameterType="command.OtherCommand">
+update other set rent=#{rent},sal=#{sal},mcost=#{mcost},duty=#{duty},prcost=#{prcost} where id=#{id} and mon=#{mon}
+</update>
+
+<!-- 월별매출 차트 -->
 	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
- select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id='java' group by to_char(sdate,'mm') order by mon)
+ select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id=#{id} group by to_char(sdate,'mm') order by mon)
 	</select>
 </mapper>
