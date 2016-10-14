@@ -17,65 +17,13 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   	<script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-  	
+  	<link rel="stylesheet" href="/bisup/css/jang.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
 <style type="text/css">
-.gcode{
-	text-decoration:none;
-	font-family:Arial;
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	background:#f7f7f7;
-	background:-o-linear-gradient(90deg, #f7f7f7, #ffffff);
-	background:-moz-linear-gradient( center top, #f7f7f7 5%, #ffffff 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #ffffff) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#ffffff');
-	background:-webkit-linear-gradient(#f7f7f7, #ffffff);
-	background:-ms-linear-gradient(#f7f7f7, #ffffff);
-	background:linear-gradient(#f7f7f7, #ffffff);
-	text-indent:0px;
-	line-height:20px;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;
-	border-radius:15px;
-	text-align:center;
-	vertical-align:middle;  
-	display:inline-block;
-	font-size:15px;
-	color:#0f0f0f;
-	width:80px;
-	height:30px;
-	padding:5px;
-	text-shadow:#dfe6e8 2px 2px 0px;
-	border-color:#fff7ff;
-	border-width:1px;
-	border-style:solid;
-}
 
-.gcode:active {
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	position:relative;
-	top:3px
-}
-
-.gcode:hover {
-	background:#ffffff;
-	background:-o-linear-gradient(90deg, #ffffff, #f7f7f7);
-	background:-moz-linear-gradient( center top, #ffffff 5%, #f7f7f7 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f7f7f7) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f7f7f7');
-	background:-webkit-linear-gradient(#ffffff, #f7f7f7);
-	background:-ms-linear-gradient(#ffffff, #f7f7f7);
-	background:linear-gradient(#ffffff, #f7f7f7);
-}
 	#divCon {
 		margin: 5px 0;
 		width: 660px;
@@ -95,17 +43,17 @@
  
   	<tr align="center">
  <c:forEach items="${list}" var="list"  end="8">
-      <td> <button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
+      <td> <button value="${list.gcode}" class="gcode" id="gu">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>   
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="9" end="17">
-      <td><button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
+      <td><button value="${list.gcode}" class="gcode" id="gu">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>    
 	<tr align="center">
   	<c:forEach items="${list }" var="list" begin="18" end="24">
-     <td><button value="${list.gcode}" class="gcode" id="gcode">${list.gn}</button></td>
+     <td><button value="${list.gcode}" class="gcode" id="gu">${list.gn}</button></td>
 	</c:forEach> 
 	</tr>  
  	</table>
@@ -126,7 +74,7 @@
 
 
  <script type="text/javascript">
-  var accessToken = '4480911f-6047-413b-9326-9a6dc1055bb5';
+  var accessToken = 'b87efa4b-70d0-408f-9c15-ae2686fc9919';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	
@@ -365,7 +313,7 @@
 			
 			for(var idx=0; idx<args.data.length; idx++){
 				
-				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='gcode' id=dong>"+args.data[idx].dn+"</button>");
+				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id=dong>"+args.data[idx].dn+"</button>");
 				//alert(args.data1[idx].dn);
 				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
 				
