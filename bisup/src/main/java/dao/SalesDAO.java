@@ -59,7 +59,6 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	}
 	
 	
-	
 	// 부수비용 부분
 	public int insertOther(OtherCommand otherCommand)
 	{

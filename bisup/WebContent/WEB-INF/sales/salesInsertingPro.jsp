@@ -29,7 +29,6 @@ tr{padding:15px;}
 <br>
 <div align="center">
 <fieldset>
-
 <legend>총 매출 내역</legend>
 <form id="sales" method="get" action="salesInserting.do">
 <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">

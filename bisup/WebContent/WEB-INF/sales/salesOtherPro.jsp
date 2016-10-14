@@ -22,6 +22,7 @@ text-align: center;
 h1{margin-left:50px;}
 
 tr{padding:15px;}
+
 </style>
 </head>
 <body>

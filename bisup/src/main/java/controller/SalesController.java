@@ -30,7 +30,6 @@ import net.sf.json.JSONObject;
 @Controller
 public class SalesController {
 
-
 	//dao파일
 	private SalesDAO salesDao;
 	

@@ -30,7 +30,6 @@ update sale set ea=#{ea} where id=#{id} and item=#{item} and sdate=#{sdate}
 </update>
 
 
-
 <!-- 부수비용 부분 -->
 <insert id="insertOther" parameterType="command.OtherCommand">
 insert into other(id,year,mon,rent,sal,mcost,duty,prcost) values (#{id}, #{year}, #{mon}, #{rent}, #{sal}, #{mcost}, #{duty}, #{prcost})

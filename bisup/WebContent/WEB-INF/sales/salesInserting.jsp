@@ -55,7 +55,6 @@ tr{padding:15px;}
 <td></td>
 <td style="text-align:right;"><input type="submit" value="등록" class="btn btn-default"></td>
   </tr>
-
 </table>
 </fieldset>
 </form>

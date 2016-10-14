@@ -3,7 +3,7 @@ package command;
 public class OtherCommand {
 
 	private String id; //아이디
-	private String year; //년
+	private String year;//년
 	private String mon;//월
 	private int rent;//월세
 	private int sal;//월급
