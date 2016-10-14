@@ -14,61 +14,7 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<style type="text/css">
-.gcode {
-	text-decoration:none;
-	font-family:Arial;
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 3px 2px;
-	background:#f7f7f7;
-	background:-o-linear-gradient(90deg, #f7f7f7, #ffffff);
-	background:-moz-linear-gradient( center top, #f7f7f7 5%, #ffffff 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f7f7f7), color-stop(1, #ffffff) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#ffffff');
-	background:-webkit-linear-gradient(#f7f7f7, #ffffff);
-	background:-ms-linear-gradient(#f7f7f7, #ffffff);
-	background:linear-gradient(#f7f7f7, #ffffff);
-	text-indent:0px;
-	line-height:20px;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;
-	border-radius:15px;
-	text-align:center;
-	vertical-align:middle;  
-	display:inline-block;
-	font-size:15px;
-	color:#0f0f0f;
-	width:80px;
-	height:30px;
-	padding:5px;
-	text-shadow:#dfe6e8 2px 2px 0px;
-	border-color:#fff7ff;
-	border-width:1px;
-	border-style:solid;
-}
-
-.gcode:active {
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#fffaff 1px 0 2px;
-	position:relative;
-	top:3px
-}
-
-.gcode:hover {
-	background:#ffffff;
-	background:-o-linear-gradient(90deg, #ffffff, #f7f7f7);
-	background:-moz-linear-gradient( center top, #ffffff 5%, #f7f7f7 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f7f7f7) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f7f7f7');
-	background:-webkit-linear-gradient(#ffffff, #f7f7f7);
-	background:-ms-linear-gradient(#ffffff, #f7f7f7);
-	background:linear-gradient(#ffffff, #f7f7f7);
-}
-</style>
+<link rel="stylesheet" href="/bisup/css/jang.css" />
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.dcode').click(function(){
@@ -111,7 +57,7 @@ $('.gcode').click(function dongS() {
 			
 			for(var idx=0; idx<args.data.length; idx++){
 				
-				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dong' id='dong'>"+args.data[idx].dn+"</button>");
+				$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id='dcode'>"+args.data[idx].dn+"</button>");
 				//alert(args.data1[idx].dn);
 				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
 				
