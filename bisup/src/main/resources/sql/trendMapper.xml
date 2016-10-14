@@ -10,7 +10,22 @@
 
 <select id="total" parameterType="int" resultType="command.SaleCommand">
 	select avg(total) as avg, sum(total) as tot from sale 
+	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/06/01' and '16/06/30')
+</select>
+
+<select id="total1" parameterType="int" resultType="command.SaleCommand">
+	select avg(total) as avg, sum(total) as tot from sale 
 	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/07/01' and '16/07/30')
+</select>
+
+<select id="total2" parameterType="int" resultType="command.SaleCommand">
+	select avg(total) as avg, sum(total) as tot from sale 
+	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/08/01' and '16/08/30')
+</select>
+
+<select id="total3" parameterType="int" resultType="command.SaleCommand">
+	select avg(total) as avg, sum(total) as tot from sale 
+	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/09/01' and '16/09/30')
 </select>
 
 

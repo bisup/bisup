@@ -60,11 +60,17 @@ public class TrendController {
 		PrintWriter out = resp.getWriter();
 		out.print(jso.toString()); //out.print 내용을 ajax의 dataType이 jason에게 데이터 쏴줌
 	}
-	 
+	// 매출 트렌드 6/7/8/9 월 차트 로직 
 	@RequestMapping(value="/bisup_trend/sales_trend1.do", method=RequestMethod.POST)
 	public String sales_trend1(@RequestParam("gn") String gucode, Model model)throws Exception{
-		ArrayList gn = (ArrayList) trendService.listtotal(gucode);
-		model.addAttribute("sale1", gn);
+		ArrayList gn6 = (ArrayList) trendService.listtotal(gucode);
+		ArrayList gn7 = (ArrayList) trendService.listtotal1(gucode);
+		ArrayList gn8 = (ArrayList) trendService.listtotal2(gucode);
+		ArrayList gn9 = (ArrayList) trendService.listtotal3(gucode);
+		model.addAttribute("gn6", gn6);
+		model.addAttribute("gn7", gn7);
+		model.addAttribute("gn8", gn8);
+		model.addAttribute("gn9", gn9);
 		return "sales_trend";
 	}
 	

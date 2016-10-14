@@ -48,19 +48,26 @@ $(function(){
 		google.charts.setOnLoadCallback(drawVisualization);
 function drawVisualization(){
 				var data = google.visualization.arrayToDataTable([
-					['Month', '(총매출)', '(평균 매출)'],
-					['2016/06',  1650,      938],
-					<c:forEach var="a" items="${sale1}">
-					['2016/07',  ${a.tot},      ${a.avg}], //345,  765
+					['Month', '(총매출)'],	
+					<c:forEach var="sale6" items="${gn6}">
+					['2016/06',   ${sale6.tot}],
 					</c:forEach>
-					['2016/08',  1570,      1100],
-					['2016/09',  1390,      1110]
+					<c:forEach var="sale7" items="${gn7}">
+					['2016/07', ${sale7.tot}], //345,  765
+					</c:forEach>
+					<c:forEach var="sale8" items="${gn8}">
+					['2016/08', ${sale8.tot}],
+					</c:forEach>
+					<c:forEach var="sale9" items="${gn9}">
+					['2016/09',  ${sale9.tot}]
+					</c:forEach>
+					
 				]);
 				
 				var options = {
 						title : '2016년 지역별 총매출 현황',
 						vAxis: {title: '단위:만원',
-						       ticks:[0,3000,6000,9000,12000,15000]
+						       ticks:[0,200000,400000,600000,800000,1000000]
 								},
 						hAxis: {title: 'Month(월)'}, 
 						seriesType: 'bars',
@@ -72,7 +79,7 @@ function drawVisualization(){
 			
 			}
 </script>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -80,10 +87,20 @@ function drawVisualization(){
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['2016/06',     35350],
-          ['2016/07',      25303],
-          ['2016/08',  	   40010],
-          ['2016/09', 	   34052]
+          <c:forEach var="sale6" items="${gn6}">
+          ['2016/06',   ${sale6.avg}],
+          </c:forEach>
+          <c:forEach var="sale7" items="${gn7}">
+          ['2016/07',      ${sale7.avg}],
+          </c:forEach>
+          <c:forEach var="sale8" items="${gn8}">
+          ['2016/08',  	   ${sale8.avg}],
+          </c:forEach>
+          <c:forEach var="sale9" items="${gn9}">
+          ['2016/09', 	    ${sale9.avg}]
+          </c:forEach>
+         
+          
         ]);
 
         var options = {
