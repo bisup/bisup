@@ -42,45 +42,55 @@ $(function(){
 
 </script>
 
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawVisualization);
-function drawVisualization(){
-				var data = google.visualization.arrayToDataTable([
-					['Month', '(총매출)'],	
-					<c:forEach var="sale6" items="${gn6}">
-					['2016/06',   ${sale6.tot}],
-					</c:forEach>
-					<c:forEach var="sale7" items="${gn7}">
-					['2016/07', ${sale7.tot}], //345,  765
-					</c:forEach>
-					<c:forEach var="sale8" items="${gn8}">
-					['2016/08', ${sale8.tot}],
-					</c:forEach>
-					<c:forEach var="sale9" items="${gn9}">
-					['2016/09',  ${sale9.tot}]
-					</c:forEach>
-					
-				]);
+if(${gucode}!=null){
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawVisualization);
+	
+	
+	function drawVisualization(){
+			var data = google.visualization.arrayToDataTable([
+				['Month', '(총매출)'],	
+				<c:forEach var="sale6" items="${gn6}">
+				['2016/06',   ${sale6.tot}],
+				</c:forEach>
+				<c:forEach var="sale7" items="${gn7}">
+				['2016/07', ${sale7.tot}], //345,  765
+				</c:forEach>
+				<c:forEach var="sale8" items="${gn8}">
+				['2016/08', ${sale8.tot}],
+				</c:forEach>
+				<c:forEach var="sale9" items="${gn9}">
+				['2016/09',  ${sale9.tot}]
+				</c:forEach>
 				
-				var options = {
-						title : '2016년 지역별 총매출 현황',
-						vAxis: {title: '단위:만원',
-						       ticks:[0,200000,400000,600000,800000,1000000]
-								},
-						hAxis: {title: 'Month(월)'}, 
-						seriesType: 'bars',
-						
-					};
-				
-			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
+			]);
 			
-			}
+			var options = {
+					title : '2016년 지역별 총매출 현황',
+					vAxis: {title: '단위:만원',
+					       ticks:[0,200000,400000,600000,800000,1000000]
+							},
+					hAxis: {title: 'Month(월)'}, 
+					seriesType: 'bars',
+					
+				};
+			
+		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+		
+		}
+	
+}
+		
 </script>
 
     <script type="text/javascript">
+    if(${gucode}!=null){
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -111,6 +121,7 @@ function drawVisualization(){
 
         chart.draw(data, options);
       }
+    }
     </script>
 
 
@@ -121,10 +132,14 @@ function drawVisualization(){
 		<div style="width:700px;" class="trend">
 				<h4>※이 정보는 bisup 창업자 대상으로 제공된 데이터 입니다.※</h4><br>
 			<select id="gu" name="gn" class="trend">
-				<option value="" selected>::지역 선택::</option>
+				<option value=null selected>::지역 선택::</option>
 				
 			</select>&nbsp;&nbsp;
-			<input type="submit" value="검색" >
+			<input type="submit" value="검색"  >
+			<br><br>
+			<c:if test="${gucode == null }">
+			<h3 style="color:red">원하시는 구를 선택하시면 데이터를 보실 수 있습니다.</h3>
+			</c:if>
 			
 	<div id="chart_div" style="width:900px; height: 500px;" ></div>
 	<div id="piechart" style="width: 900px; height: 500px;"></div>

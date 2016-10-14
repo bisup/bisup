@@ -52,6 +52,7 @@ public class TrendController {
 	//타일즈 적용
 	@RequestMapping(value="/bisup_trend/sales_trend.do", method=RequestMethod.POST)
 	public void sales_trend(HttpServletResponse resp)throws Exception{
+		
 		List<GuCommand> gulist = trendService.listgu();
 		JSONObject jso = new JSONObject();	
 		jso.put("sale", gulist); //jason은 map구조(키,값), data라는 key로 list데이터를 주입했다.
@@ -71,6 +72,9 @@ public class TrendController {
 		model.addAttribute("gn7", gn7);
 		model.addAttribute("gn8", gn8);
 		model.addAttribute("gn9", gn9);
+		
+		model.addAttribute("gucode", gucode);
+		System.out.println(gucode);
 		return "sales_trend";
 	}
 	

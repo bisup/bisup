@@ -34,7 +34,6 @@ public class TrendServiceImpl implements TrendService{
 		List list1 = null;
 		try{
 			list1 = trendDAO.getListtotal(gucode);
-			System.out.println(gucode);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}     
@@ -45,7 +44,6 @@ public class TrendServiceImpl implements TrendService{
 		List list2 = null;
 		try{
 			list2 = trendDAO.getListtotal1(gucode);
-			System.out.println(gucode);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}     
@@ -56,7 +54,6 @@ public class TrendServiceImpl implements TrendService{
 		List list3 = null;
 		try{
 			list3= trendDAO.getListtotal2(gucode);
-			System.out.println(gucode);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}     
@@ -67,7 +64,6 @@ public class TrendServiceImpl implements TrendService{
 		List list4= null;
 		try{
 			list4 = trendDAO.getListtotal3(gucode);
-			System.out.println(gucode);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}     
