@@ -50,7 +50,7 @@ tr{padding:15px;}
    </c:forEach>
     <tr>
 <td colspan="2"></td>
-<td style="text-align:right;"><input type="submit" value="추가등록"></td>
+<td style="text-align:right;"><input type="submit" value="추가등록" class="btn btn-default"></td>
  </table>
  </form>
  </fieldset>
@@ -67,8 +67,8 @@ tr{padding:15px;}
     <th></th>
   </tr>
   <tr>
-  <td align="center"> 
-	<select name="item">
+  <td>
+	<select name="item" class="form-control">
 	<c:forEach var="menu" items="${menu}" varStatus="status">
 	<option value="<c:out value="${menu.item}"/>">
 	<c:if test="${result.item == menu.item}">selected="selected"</c:if><c:out value="${menu.item}"/>
@@ -76,12 +76,10 @@ tr{padding:15px;}
 			 </c:forEach>
 	</select>
 </td>
-    <td><input type="text" id="ea" name="ea"></td>
-    <td><input type="submit" value="수정하기" ></td>   
+    <td><input type="text" id="ea" name="ea" class="form-control" required></td>
+    <td><input type="submit" value="수정하기" class="btn btn-default"></td>   
   </tr>
 </table>
-
-
 </form>
 </fieldset>
 </div>
