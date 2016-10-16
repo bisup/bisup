@@ -12,6 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%=cp%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <title>비즈업(BisUp)</title>
+<style>
+.loginid{
+color: blue;
+}
+</style>
 </head>
 <body>
    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
@@ -22,7 +27,9 @@
 <img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/></a>
 
 <div class="pull-right">
+<p align="right" class="loginid">${sessionScope.id}님 환영합니다.</p>
 <ol class="breadcrumb ">
+
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
 <li><a href="logout.do">로그아웃</a></li>
 <li><a href="/bisup/bisup/main/siteMap.do">사이트맵</a></li>
