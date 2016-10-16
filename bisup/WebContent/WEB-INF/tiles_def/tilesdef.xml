@@ -288,6 +288,10 @@
 		<put-attribute name="title" value="지형상권정보" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/salesarea.jsp" />
 	</definition>
+	<definition name="sdanger" extends="base_layout">
+		<put-attribute name="title" value="지형상권정보" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/sdanger.jsp" />
+	</definition>
 
 	<!-- 관리자페이지 -->
 	<definition name="adminMember" extends="base_layout">
@@ -301,4 +305,9 @@
 	</definition>
 	
 
+<!--사이트맵  -->
+	<definition name="siteMap" extends="base_layout">
+		<put-attribute name="title" value="관리자 점포 관리" />
+		<put-attribute name="body" value="/WEB-INF/main/siteMap.jsp" />
+	</definition>
 </tiles-definitions>

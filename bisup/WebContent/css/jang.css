@@ -104,3 +104,11 @@
 	background:-ms-linear-gradient(#ffffff, #f7f7f7);
 	background:linear-gradient(#ffffff, #f7f7f7);
 }
+.btn {
+    background-color: transparent;
+    border:1px solid #f0f0f0;
+    border-color:#f0f0f0;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
