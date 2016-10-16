@@ -31,7 +31,7 @@
                     <li> <a href='/bisup/bisup_concerting/manual.do'>창업 메뉴얼</a>  </li>
                    <li>  <a href='/bisup/bisup_concerting/relation.do'>연관 사이트</a>   </li>
                   </ul> 
-                  </td>
+                  </td>  
 <td class="tables">
  
                   <h1><div>매출트렌드</div></h1>
