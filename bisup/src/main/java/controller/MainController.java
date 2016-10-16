@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +15,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main/siteMap.do")
-	public String siteMap(){
+	public String siteMap(HttpSession session){
 		System.out.println("사이트맵 페이지");
 		return "siteMap"; 
 	}
