@@ -1,9 +1,8 @@
 package controller;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.GuCommand;
@@ -33,9 +31,7 @@ public class Sgiscontroller {
    public ModelAndView test(){
       ModelAndView mav=new ModelAndView("salesarea");
       List<GuCommand> list=sgisdao.guselect();
-      for(GuCommand gd:list){
-      System.out.println(gd.getGn()+"::"+gd.getGcode());
-      }      mav.addObject("list", list);
+         mav.addObject("list", list);
       return mav; 
    }
    
@@ -52,21 +48,33 @@ public class Sgiscontroller {
          PrintWriter out = resp.getWriter();
          out.print(jso.toString());
       }
-   @RequestMapping(value="/areaInfo/sel.do", method = RequestMethod.POST, produces ="text/plain;charset=UTF-8")
-   @ResponseBody
-	public String dongList(HttpServletResponse resp, @RequestParam("dcodeA")int[] dcodeA) throws Exception {
-	   resp.setContentType("text/html; charset=UTF-8");
-	   JSONObject jso = new JSONObject();
-	   for(int i=0; i<dcodeA.length;i++){
-		  int dcode=dcodeA[i];
-		  System.out.println(dcode);
-	   List<GuCommand> list =sgisdao.getd(dcode);
-	   jso.put("list", list);
-	   for(GuCommand li:list){
-           System.out.println(li.getDn());
-         }
+   @RequestMapping(value="/areaInfo/sel.do", method = RequestMethod.POST)
+   public ModelAndView dongList( @RequestParam(value="dcode")String[] dcode,HttpServletResponse resp) throws Exception {
+	   ModelAndView mav =new ModelAndView("sdanger");
+		  int dc=Integer.parseInt(dcode[0]);
+		  if(!dcode[1].isEmpty()){
+		  int dc1=Integer.parseInt(dcode[1]);
+		  List<GuCommand> list1 =sgisdao.getd(dc1);
+		  mav.addObject("li1", list1);
+		  }else{
+			  List<GuCommand> list1 =sgisdao.getd(dc);
+			  mav.addObject("li1", list1); 
+		  }
+		  if(!dcode[2].isEmpty()){
+		  int dc2=Integer.parseInt(dcode[2]);
+		  List<GuCommand> list2 =sgisdao.getd(dc2);
+		  mav.addObject("li2", list2);
+		  }else{
+			  List<GuCommand> list2 =sgisdao.getd(dc);
+			  mav.addObject("li2", list2); 
+		  }
+	   List<GuCommand> list=sgisdao.guselect();
+	   List<GuCommand> list0 =sgisdao.getd(dc);
+	   mav.addObject("list", list);
+	   mav.addObject("li", list0);
+	  // mav.addObject("li1", list1);
 	
-   }  	return jso.toString();   
+	   return mav;   
    }
    
    @RequestMapping("/areaInfo/sdanger.do")

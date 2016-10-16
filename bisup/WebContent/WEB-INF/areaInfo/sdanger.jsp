@@ -12,8 +12,8 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>	
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="/bisup/css/jang.css" />
 <script type="text/javascript">
@@ -29,7 +29,11 @@ $(document).ready(function(){
 			dataType:"json",
 			success:function(args){
 				$(".tbody").find("tr").remove(); 
-				 
+				$(".th").find("th").remove();
+				$(".bto").find("button").remove();
+				$(".th").append( "<th>#</th><th>구이름</th><th>동이름</th><th>위험지표</th><th>평균 폐업기간</th><th>점포증감률</th>"); 
+				$(".bto").append("<button type='submit' class='btn'>비교하기</button>");
+				
 				for(idx=0 ; idx<args.list.length ; idx++){
 					//alert(args.list[idx].dn);
 					var i=idx+1;
@@ -58,68 +62,56 @@ $(document).ready(function(){
 });
 
 </script>
-<script type="text/javascript">
-$(document).ready(function(){
+ <script type="text/javascript">
+/* $(document).ready(function(){
 	$('.btn').click(function seldcode(){
 		var para=new Array();
 		$("input[name='dcode']:checked").each(function(i){para.push($(this).val()); });
 		var data ={"dcodeA":para};
-		var url="<%=cp%>/my/areaInfo/sel.do";
-		$.ajax({
-			url:url,
-			type:'post',
-			data: data,
-			traditional:true,
-			error:function(){
-				alert("데이터가 없습니다");
-			},success:function(args){
-				for(idx=0; idx<= args.list.length; idx++){
-				alert(args.list.dcode);
-				drawSeriesChart(d);
-				}
-			}
-		});
-		
+		document.myform.submit();
 	});	
-	});
+	}); */
 
-</script>
+</script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawSeriesChart);
 
+  function drawSeriesChart() {
+	  <c:forEach var="li" items="${li}"  >  
+	  var dname='${li.dn}'; 
+	  </c:forEach>
+	  <c:forEach var="li" items="${li1}"  >  
+	  var dname1='${li.dn}'; 
+	  </c:forEach>
+	  <c:forEach var="li" items="${li2}"  >  
+	  var dname2='${li.dn}'; 
+	  </c:forEach>
+    var data = google.visualization.arrayToDataTable([
+          ['ID', '신규_창업_위험_지수_값', '점포증감률'],
+      	<c:forEach var="li" items="${li}"  >      	
+          [dname,   ${li.jumpol},  ${li.arg}],
+      </c:forEach>
+      	<c:forEach var="li1" items="${li1}"  >      	
+        [dname1,   ${li1.jumpol},  ${li1.arg}],
+    </c:forEach>
+    	<c:forEach var="li2" items="${li2}" >      	
+        [dname2,   ${li2.jumpol},  ${li2.arg}]
+    </c:forEach>
+        ]);
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawSeriesChart);
+    var options = {
+            title: dname+','+dname1+','+dname2+' '+'별 위험지수 비교 ',
+            hAxis: {title: '신규_창업_위험_지수_값'},
+            vAxis: {title: '점포증감률'},
+            bubble: {textStyle: {fontSize: 11}}
+          };
 
-function drawSeriesChart() {
-
-var data = google.visualization.arrayToDataTable([
-  ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
-  ['CAN',    80.66,              1.67,      'North America',  33739900],
-  ['DEU',    79.84,              1.36,      'Europe',         81902307],
-  ['DNK',    78.6,               1.84,      'Europe',         5523095],
-  ['EGY',    72.73,              2.78,      'Middle East',    79716203],
-  ['GBR',    80.05,              2,         'Europe',         61801570],
-  ['IRN',    72.49,              1.7,       'Middle East',    73137148],
-  ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
-  ['ISR',    81.55,              2.96,      'Middle East',    7485600],
-  ['RUS',    68.6,               1.54,      'Europe',         141850000],
-  ['USA',    78.09,              2.05,      'North America',  307007000]
-]);
-
-var options = {
-  title: 'Correlation between life expectancy, fertility rate ' +
-         'and population of some world countries (2010)',
-  hAxis: {title: 'Life Expectancy'},
-  vAxis: {title: 'Fertility Rate'},
-  bubble: {textStyle: {fontSize: 11}}
-};
-
-var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-chart.draw(data, options);
-}
-
-		</script>
+    var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+    chart.draw(data, options);
+  }
+    </script>
 <title>위험지표</title>
 </head>
 <body>
@@ -138,24 +130,23 @@ chart.draw(data, options);
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr>   
          </tbody></table>
+         <form:form method="post" action="/bisup/my/areaInfo/sel.do" name="myform">
 <table  class="table">
   <thead>
-  <tr>
-      <th>#</th>
+  <tr class="th">
+     <!--  <th>#</th>
       <th>구이름</th>
       <th>동이름</th>  
       <th>위험지표</th>
       <th>평균 폐업기간</th>
-      <th>점포증감률</th>
+      <th>점포증감률</th> -->
          </tr>
        </thead>
        <tbody class="tbody">
      </tbody></table>
      <br>
-     <br>
-    
-     <div align="center" class="bt"><button class='btn'>비교하기</button></div>
-     <div id='series_chart_div' style='width: 900px; height: 500px;'></div>      
-    
+     <br>   
+     <div align="center" class="bto"></div></form:form>
+      <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
