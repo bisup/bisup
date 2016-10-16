@@ -36,18 +36,11 @@
         <li class="dropdown"><!-- 상권정보검색 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">상권 정보 검색<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">상권 정보 검색</a></li>
+            <li><a href="#">지역별 상권 정보 </a></li>
             <li class="divider"></li>
-            <li><a href="#">위험 지표 검색</a></li>
-          </ul>
-        </li>
-        
-        <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출 현황<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
+            <li><a href="/bisup/my/areaInfo/mpInfo.do">지역별 인구 현황</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
+            <li><a href="#">지역별 위험 지표 </a></li>
           </ul>
         </li>
         
@@ -62,7 +55,17 @@
           </ul>
         </li>
         
-        <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항 작성</a></li>
+           <li class="dropdown"><!-- 매출트렌드 -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출 현황<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
+            <li class="divider"></li>
+            <li><a href="/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
+          </ul>
+        </li>
+        
+        
+        <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항 </a></li>
         <li><a href="/bisup/bisup/question/qlist_m.do">문의사항</a></li>
         
         
