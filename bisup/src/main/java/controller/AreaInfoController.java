@@ -31,10 +31,7 @@ public class AreaInfoController {
 		ModelAndView mav = new ModelAndView("mpinfo");
 		System.out.println("mpinfo요청");
 		
-		List<GuCommand> list=dao.GuS();
-		for(GuCommand gd:list){
-		System.out.println(gd.getGn()+"::"+gd.getGcode());
-		}		
+		List<GuCommand> list=dao.GuS();	
 		
 		mav.addObject("list", list);
 		
@@ -45,7 +42,7 @@ public class AreaInfoController {
 	public void sidoList(HttpServletResponse resp,@RequestParam("gcode") int gcode) throws Exception{
 		System.out.println("파라미터로 받아온 gcode::"+gcode);
 		List<GuCommand> list = dao.dongS(gcode);
-		System.out.println("list의 갯수::"+list.size());
+		
 		JSONObject jso = new JSONObject(); //JSON 객체생성
 		jso.put("data", list); //json은 map구조(키,값), data라는 key로 list데이터를 주입했다.
 		

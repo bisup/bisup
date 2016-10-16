@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import command.AdmcdCommand;
 import command.GuCommand;
 import command.MemberCommand;
 
@@ -37,5 +38,15 @@ public class AdminMemberDAO extends SqlSessionDaoSupport {
 	
 	public List<MemberCommand> getGucode(){
 		return getSqlSession().selectList("admin.getgucode");
+	}
+
+	public ArrayList getGu() {
+		// TODO Auto-generated method stub
+		return (ArrayList) getSqlSession().selectList("admin.getGu");
+	}
+
+	public int getGuMem(AdmcdCommand command) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("admin.getGuMem",command.getGcode());
 	}
 }

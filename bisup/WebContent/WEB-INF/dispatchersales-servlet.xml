@@ -46,7 +46,7 @@
 	
 	
 <!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:db2.properties" />
 <!--	커넥션풀연결 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />

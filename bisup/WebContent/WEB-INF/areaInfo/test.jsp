@@ -12,11 +12,11 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Work',     10],
+          ['Eat',      20],
+          ['Commute',  30],
+          ['Watch TV', 5],
+          ['Sleep',    35]
         ]);
 
         var options = {

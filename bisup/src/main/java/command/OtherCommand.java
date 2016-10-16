@@ -3,6 +3,7 @@ package command;
 public class OtherCommand {
 
 	private String id; //아이디
+	private String year;//년
 	private String mon;//월
 	private int rent;//월세
 	private int sal;//월급
@@ -57,6 +58,12 @@ public class OtherCommand {
 	}
 	public void setEtcco(int etcco) {
 		this.etcco = etcco;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 	
 	

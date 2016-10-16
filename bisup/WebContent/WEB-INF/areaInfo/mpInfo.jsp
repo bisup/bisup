@@ -17,11 +17,13 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   	<script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-  	<link rel="stylesheet" href="/bisup/css/jang.css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/bisup/css/jang.css" />
 
 </head>
 
@@ -68,6 +70,7 @@
       <th>총인구 </th>
          </tr>
        </thead>
+     
        <tbody class="tbody1">
     </tbody></table>
     
@@ -89,15 +92,20 @@
        <tbody class="tbody2">
     </tbody></table>
 
+ <div id="donutchart" style="width: 900px; height: 500px;"></div>
+ <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
 
 
  <script type="text/javascript">
-  var accessToken = '652db858-a5eb-473c-a0cf-480b9d0fff14';
+  var accessToken = 'dda731b4-f02a-433b-8765-4dc42ff061e0';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	
   var map, mapOptions, oriArea, sopArea, logger, divConsole;
   var idx, len, target, conComplite = {}, key, value, strToolTip;
+  
+  var adm_nm,zero,ten,twenty,thirty,forty,fifty,sixty,seventy='';
+	
 	
 	mapOptions = {
 		ollehTileLayer: true,
@@ -183,7 +191,8 @@
 					$('.dcode').click(function addStatistic() {
 
 						var adm_cd = $(this).val();
-				
+						
+						
 				          $.ajax({
 				            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/mfratiosummary.json' +
 				          	'?accessToken='+accessToken+'&adm_cd='+adm_cd
@@ -195,11 +204,10 @@
 								 target = res.result;
 				     						$(".tbody1").find("tr").remove(); 
 				     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
-				     							conComplite[target[0].adm_cd] = target[0];
-				     							 value=conComplite[target[0].adm_cd];
-				     							key =target[0].adm_cd;
 				     							
-				     							 $(".tbody1").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].f_per+"</td><td>"+conComplite[key].m_per+"</td><td>"+conComplite[key].f_ppl+"</td><td>"+conComplite[key].m_ppl+"</td><td>"+conComplite[key].total_ppl+"</td></tr>"); 
+				     							 value=target[0];
+				     							
+				     							 $(".tbody1").append("<tr><td><td>"+value.adm_nm+"</td><td>"+value.f_per+"</td><td>"+value.m_per+"</td><td>"+value.f_ppl+"</td><td>"+value.m_ppl+"</td><td>"+value.total_ppl+"</td></tr>"); 
 				     		  
 							}
 							});
@@ -208,25 +216,63 @@
 						$('.dcode').click(function ageRate() {
 							var adm_cd = $(this).val();
 						 
-							  $.ajax({
-						            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/pplsummary.json' +
-						          	'?accessToken='+accessToken+'&adm_cd='+adm_cd
-						            ,
-						            type : 'get',
-									success: function (res,status) {
-										// 맵형태로 변환 한다.
-									
-										 target = res.result;
-						     						$(".tbody2").find("tr").remove(); 
-						     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
-						     							conComplite[target[0].adm_cd] = target[0];
-						     							 value=conComplite[target[0].adm_cd];
-						     							key =target[0].adm_cd;
-						     							
-						     							 $(".tbody2").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].teenage_less_than_per+"</td><td>"+conComplite[key].teenage_per+"</td><td>"+conComplite[key].twenty_per+"</td><td>"+conComplite[key].thirty_per+"</td><td>"+conComplite[key].forty_per+"</td><td>"+conComplite[key].fifty_per+"</td><td>"+conComplite[key].sixty_per+"</td><td>"+conComplite[key].seventy_more_than_per+"</td></tr>"); 
+							 google.charts.load("current", {packages:["corechart"]});
+						      google.charts.setOnLoadCallback(drawChart);
+						      function drawChart() {
+						    	 
+						    	  $.ajax({
+							            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/pplsummary.json' +
+							          	'?accessToken='+accessToken+'&adm_cd='+adm_cd
+							            ,
+							            type : 'get',
+										success: function (res,status) {
+											// 맵형태로 변환 한다.
 										
-									}
-								});
+											 target = res.result;
+							     						$(".tbody2").find("tr").remove(); 
+							     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
+							     							
+							     							 value=target[0];
+							     							
+							     							
+							     							// $(".tbody2").append("<tr><td><td>"+conComplite[key].adm_nm+"</td><td>"+conComplite[key].teenage_less_than_per+"</td><td>"+conComplite[key].teenage_per+"</td><td>"+conComplite[key].twenty_per+"</td><td>"+conComplite[key].thirty_per+"</td><td>"+conComplite[key].forty_per+"</td><td>"+conComplite[key].fifty_per+"</td><td>"+conComplite[key].sixty_per+"</td><td>"+conComplite[key].seventy_more_than_per+"</td></tr>"); 
+															adm_nm=value.adm_nm;
+							     						 	zero=value.teenage_less_than_per;
+							     							ten=value.teenage_per;
+							     							twenty=value.twenty_per;
+							     							thirty=value.thirty_per;
+							     							forty=value.forty_per;
+							     							fifty=value.fifty_per;
+							     							sixty=value.sixty_per;
+							     							seventy=value.seventy_more_than_per;
+							     						
+							     							
+			
+										}
+									});
+						    	  alert('60대는'+sixty)
+						        var data = google.visualization.arrayToDataTable([
+						                                                          ['task',adm_nm],
+						                                                          ['10대미만', zero],
+						                                             	         ['10대',    ten],
+						                                             	         ['20대',     twenty],
+						                                             	         ['30대',  thirty],
+						                                             	         ['40대', forty],
+						                                             	         ['50대',    fifty],
+						                                             	         ['60대',    sixty],
+						                                             	         ['70대이상',    seventy]
+						        ]);
+						    	  alert('70대는'+seventy)
+
+						        var options = {
+						          title: adm_nm,
+						          pieHole: 0.4,
+						        };
+						    	  alert('10대는'+ten)
+						        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+						        chart.draw(data, options);
+						      }
+							  
 						});
 					 
 						
@@ -248,6 +294,8 @@
 	}   
 			 /* addArea()종료 */ 
 		); /* 클릭펑션종료 */
+		
+		
 
 </script> 
  

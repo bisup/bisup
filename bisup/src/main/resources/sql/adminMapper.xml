@@ -19,4 +19,11 @@
 	select gucode from member
 	</select>
 	
+	<select id="getGu" resultType="command.admcdCommand">
+		select gcode,gn from admcd group by gcode
+	</select>
+	
+	<select id="getGuMem" parameterType="int" resultType="command.admcdCommand">
+		select count(*) from member where gcode=#{gcode}
+	</select>
 </mapper>
