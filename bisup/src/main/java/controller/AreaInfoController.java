@@ -66,9 +66,11 @@ public class AreaInfoController {
 		return "layout22"; 
 	}
 	
-	@RequestMapping("/areaInfo/cal.do")
+	@RequestMapping("/manual.do")
 	public String cal(){
-		System.out.println("testGet요청");
-		return "calendar"; 
+		//manual_bis get방식 요청
+		return "manual_bis"; 
 	}
+	
+	
 }

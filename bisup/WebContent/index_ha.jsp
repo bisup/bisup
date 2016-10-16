@@ -28,6 +28,6 @@
 <br>
 <a href="<c:url value='/my/areaInfo/test2.do'/>">layout2</a>
 <br>
-<a href="<c:url value='/my/areaInfo/cal.do'/>">chart</a>
+<a href="<c:url value='/my/manual.do'/>">manual</a>
 </body>
 </html>

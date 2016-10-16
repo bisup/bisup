@@ -200,6 +200,12 @@
 		<put-attribute name="title" value="구별 회원현황"/>
 		<put-attribute name="body" value="/WEB-INF/admin/GuMember.jsp"/>
 	</definition>
+	
+	<!-- 창업매뉴얼 -->
+	<definition name="manual_bis" extends="base_layout">
+		<put-attribute name="title" value="지형상권정보" />
+		<put-attribute name="body" value="/WEB-INF/bisup_trend/manual_bis.jsp" />
+	</definition>
 
 
 	<!-- 현아언니 마이페이지 -->
@@ -296,10 +302,7 @@
 		<put-attribute name="body" value="/WEB-INF/admin/store.jsp" />
 	</definition>
 	
-	<definition name="calendar" extends="base_layout">
-		<put-attribute name="title" value="지형상권정보" />
-		<put-attribute name="body" value="/WEB-INF/areaInfo/calendar.jsp" />
-	</definition>
+	
 	
 
 <!--사이트맵  -->
