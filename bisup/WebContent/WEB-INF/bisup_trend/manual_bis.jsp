@@ -50,43 +50,43 @@ $(document).ready(function(){
     $('#image1').hover(function(){
     	document.getElementById('infochang1').style.display = '';
     });
-    $('#image1').blur(function(){
-    	alert("blur")
+    $('#image1').mouseleave(function(){
+    	
     	document.getElementById('infochang1').style.display = 'none';
     });
     
     $('#image2').hover(function(){
     	document.getElementById('infochang2').style.display = '';
     });
-    $('#image2').blur(function(){
+    $('#image2').mouseleave(function(){
     	document.getElementById('infochang2').style.display = 'none';
     });
     
     $('#image3').hover(function(){
     	document.getElementById('infochang3').style.display = '';
     });
-    $('#image3').blur(function(){
+    $('#image3').mouseleave(function(){
     	document.getElementById('infochang3').style.display = 'none';
     });
     
     $('#image4').hover(function(){
     	document.getElementById('infochang4').style.display = '';
     });
-    $('#image4').blur(function(){
+    $('#image4').mouseleave(function(){
     	document.getElementById('infochang4').style.display = 'none';
     });
     
     $('#image5').hover(function(){
     	document.getElementById('infochang5').style.display = '';
     });
-    $('#image5').blur(function(){
+    $('#image5').mouseleave(function(){
     	document.getElementById('infochang5').style.display = 'none';
     });
     
     $('#image6').hover(function(){
     	document.getElementById('infochang6').style.display = '';
     });
-    $('#image6').blur(function(){
+    $('#image6').mouseleave(function(){
     	document.getElementById('infochang6').style.display = 'none';
     });
 });
