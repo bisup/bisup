@@ -208,6 +208,10 @@
 		<put-attribute name="title" value="창업성공자"/>
 		<put-attribute name="body" value="/WEB-INF/mystore/updatedUsers.jsp"/>
 	</definition>
+	<definition name="GuMember" extends="base_layout">
+		<put-attribute name="title" value="구별 회원현황"/>
+		<put-attribute name="body" value="/WEB-INF/admin/GuMember.jsp"/>
+	</definition>
 
 
 	<!-- 현아언니 마이페이지 -->

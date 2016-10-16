@@ -9,17 +9,20 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.BoardCommand;
 import command.MemberCommand;
 import dao.AdminMemberDAO;
 import net.sf.json.JSONObject;
+import service.AdminMemberServiceImpl;
 
 @Controller
 public class AdminMemberController {
@@ -73,4 +76,50 @@ public class AdminMemberController {
 		return "store";	
 	}
 	
+	//지역구별 회원 수 차트 구하기
+	
+	@Autowired
+	private AdminMemberServiceImpl adminMemberService;
+	
+	public AdminMemberServiceImpl getAdminMemberService() {
+		return adminMemberService;
+	}
+	public void setAdminMemberService(AdminMemberServiceImpl adminMemberService) {
+		this.adminMemberService = adminMemberService;
+	}
+	
+	@RequestMapping("/guMemMain.do")
+	public String guMemMain(){
+		return "GuMember";
+	}
+	
+	@RequestMapping("/getGuMem.do")
+	public void getGuMem(HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("utf-8");
+		ArrayList gu = new ArrayList();
+		ArrayList guMem = new ArrayList();
+		gu = adminMemberService.getGu(gu);
+		guMem = adminMemberService.getGuMem(guMem, gu);
+		Object[] Objects = {gu,guMem};
+		forJSONPrint(Objects);
+	}
+	
+	@ResponseBody
+	public void forJSONPrint(Object[] Objects) throws Exception{
+		JSONObject jsonObject = new JSONObject();
+		for(int i=1; i<=Objects.length; i++){
+			jsonObject.put("data"+i, Objects[i]);
+		}
+		jsonObject.toString();
+	}
+	
+	
+	public void forPrintWriterPrint(Object[] Objects, HttpServletResponse response) throws Exception{
+		JSONObject jsonObject = new JSONObject();
+		for(int i=1; i<=Objects.length; i++){
+			jsonObject.put("data"+i, Objects[i]);
+		}
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(jsonObject.toString());
+	}
 }
