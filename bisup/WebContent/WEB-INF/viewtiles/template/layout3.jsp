@@ -10,7 +10,7 @@
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 	  
 		<div id="top">
-			<tiles:insertAttribute name="header_m" />
+			<tiles:insertAttribute name="header" />
 		</div>
 		<div id="left">
 			<tiles:insertAttribute name="menu" />
