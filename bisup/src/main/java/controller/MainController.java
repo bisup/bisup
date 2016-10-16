@@ -12,5 +12,11 @@ public class MainController {
 		return "main"; 
 	}
 	
+	@RequestMapping("/main/siteMap.do")
+	public String siteMap(){
+		System.out.println("사이트맵 페이지");
+		return "siteMap"; 
+	}
+	
 	
 }

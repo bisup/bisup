@@ -42,6 +42,10 @@
     </select>
     
     <select id="danger" parameterType="int" resultType="command.GuCommand">
+    select * from danger where gcode=#{gcode}
+    </select>
+    
+     <select id="dand" parameterType="int" resultType="command.GuCommand">
     select * from danger where dcode=#{dcode}
     </select>
     

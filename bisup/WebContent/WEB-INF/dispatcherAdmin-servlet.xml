@@ -67,6 +67,9 @@
 	<context:annotation-config/>
 	
 	<!-- 컨트롤러 빈 등록 -->
-	<bean class="controller.AdminMemberController" id="adminController" p:adminMemberDao-ref="adminMemberDAO"/>
+	<bean class="controller.AdminMemberController" id="adminController" p:adminMemberDao-ref="adminMemberDAO" p:adminMemberService-ref="adminMemberService"/>
+	<bean class="service.AdminMemberServiceImpl" id="adminMemberService">
+		<property name="adminMemberDAO" ref="adminMemberDAO"/>
+	</bean>
 </beans>
 
