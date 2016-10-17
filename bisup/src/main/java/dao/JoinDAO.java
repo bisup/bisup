@@ -48,11 +48,18 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		return list;
 	 }
 	 
- public String selectnick(String nick){ //닉네임 중복
+ public int selectnick(String nick){ //닉네임 중복
 		 
-		 String mc = getSqlSession().selectOne("JoinDAO.nick", nick); 
+		 int mc = getSqlSession().selectOne("JoinDAO.nick", nick); 
 		 System.out.println("mc="+mc);
 		 return mc;
 		 
 	 } 
+ public int selectsnum(int snum){ //닉네임 중복
+	 
+	 int mc = getSqlSession().selectOne("JoinDAO.ss", snum); 
+	 //System.out.println("mc="+mc);
+	 return mc;
+	 
+ } 
 }
