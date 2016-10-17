@@ -8,7 +8,14 @@ public class ReportedCommand {
 	private String id;
 	private String title;
 	private Timestamp reg;
+	private String address;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public int getNum() {
 		return num;
 	}

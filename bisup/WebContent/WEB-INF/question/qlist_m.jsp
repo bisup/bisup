@@ -18,7 +18,8 @@ $(document).ready(function() {
        var that = this;
         // affect all table rows on in systems table
         var tableBody = $('.table-list-search tbody');
-        var tableRowsClass = $('.table-list-search tbody tr');
+        var tableRowsCla
+        ss = $('.table-list-search tbody tr');
         $('.search-sf').remove();
         tableRowsClass.each( function(i, val) {
         
@@ -69,7 +70,7 @@ $(document).ready(function() {
                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                    <input class="form-control" id="system-search" name="q" placeholder="검색할 키워드를 입력하세요.">
                    <br>
-                   <input type="button" class="btn btn-primary" value="글쓰기"  onclick="javascript:location='/bisup/bisup/question/qwrite.do'" style="float: right;">
+                   <input type="button" class="btn btn-primary" value="글쓰기"  onclick="javascript:location='/bisup/bisup/bisup_trend/qwrite.do'" style="float: right;">
                 </div>
             </form>
         </div>

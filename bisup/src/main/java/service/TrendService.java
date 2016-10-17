@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public interface TrendService {
 	
 	//카페 트렌드 리스트
 	public List<ReportedCommand> selectReportList();
-	// 글 조회수 증가
-	public void updatereport(int num);
+	// 글 쓰기
+	public int insertReport(ReportedCommand rc);
 }
  

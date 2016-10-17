@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,16 +87,34 @@ public class TrendController {
 	public String business_trend(Model model){
 		ArrayList report = (ArrayList) trendService.selectReportList();
 		model.addAttribute("report", report);
-		
 		return "business_trend";
 	}
 	
-	@RequestMapping(value="/bisup_trend/business_trend.do", method=RequestMethod.POST)
-	public void updatereport(@RequestParam("num" )int num) {
-		System.out.println("num"+num);
-		trendService.updatereport(num);
+	@ModelAttribute("command")
+	public ReportedCommand command() {
+		return new ReportedCommand();
 	}
 	
+	@RequestMapping(value = "/bisup_trend/writer.do", method = RequestMethod.GET)
+	public String writerForm(){
+		System.out.println("writer get방식 요청");
+		return "writer";
+	}
+	
+	@RequestMapping(value = "/bisup_trend/business_write1.do", method = RequestMethod.POST)
+	public ModelAndView writer(
+			@RequestParam(value="title") String title,
+			@RequestParam(value="id") String id,
+			@RequestParam(value="address") String address)throws Exception{
+		
+		ModelAndView mav = new ModelAndView("writer1");
+		ReportedCommand rc = new ReportedCommand();
+		rc.setId(id);
+		rc.setTitle(title);
+		rc.setAddress(address);
+		mav.addObject("check", trendService.insertReport(rc));
+		return mav;
+	}
 	
 
 	

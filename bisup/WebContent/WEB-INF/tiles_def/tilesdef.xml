@@ -181,6 +181,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/bisup_trend/business_trend.jsp" />
 	</definition>
+	
+	<definition name="writer" extends="base_layout">
+		<put-attribute name="title" value="글작성 페이지입니다" />
+		<put-attribute name="body" value="/WEB-INF/bisup_trend/writer.jsp" />
+	</definition>
+	
+	<definition name="writer1" extends="base_layout">
+		<put-attribute name="title" value="글 insert 성공 페이지 입니다." />
+		<put-attribute name="body" value="/WEB-INF/bisup_trend/writer1.jsp" />
+	</definition>
 
 
 	<!-- 백상휘 작업 -->
@@ -306,4 +316,18 @@
 		<put-attribute name="title" value="관리자 점포 관리" />
 		<put-attribute name="body" value="/WEB-INF/main/siteMap.jsp" />
 	</definition>
-</tiles-definitions>
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</tiles-definitions>

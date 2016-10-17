@@ -40,10 +40,15 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		List<ReportedCommand> list = getSqlSession().selectList("trend.selectReportList");
 		return list;
 	}
-	
-	public int updatecount(int num){
-		return getSqlSession().delete("trend.updatereport", num);
+
+	public int insertReport(ReportedCommand rc) {
+		int check1 = getSqlSession().insert("trend.insert", rc);
+		return check1;
 	}
+	
+	
+	
+	
 	
 	
 
