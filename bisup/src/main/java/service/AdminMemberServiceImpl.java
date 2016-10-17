@@ -12,14 +12,14 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	@Resource(name="adminMemberDAO")
 	private AdminMemberDAO adminMemberDAO;
 	
-	public AdminMemberDAO getMyStoreAction() {
+	public AdminMemberDAO getAdminMemberDAO() {
 		return adminMemberDAO;
 	}
-	
-	public void setMyStoreAction(AdminMemberDAO adminMemberDAO) {
+
+	public void setAdminMemberDAO(AdminMemberDAO adminMemberDAO) {
 		this.adminMemberDAO = adminMemberDAO;
 	}
-	
+
 	@Override
 	public ArrayList getGu(ArrayList gu) {
 		// TODO Auto-generated method stub

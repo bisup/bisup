@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="getGu" resultType="command.AdmcdCommand">
-		select gcode,gn from admcd group by gcode
+		select distinct gcode, gn from admcd
 	</select>
 	
 	<select id="getGuMem" parameterType="int" resultType="command.AdmcdCommand">

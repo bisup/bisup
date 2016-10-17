@@ -2,7 +2,7 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/bisup/bisup.git
 eclipse.preferences.version=1
-encoding//WebContent/WEB-INF/areaInfo/test.jsp=UTF-8
+encoding//WebContent/WEB-INF/areaInfo/bisChart.jsp=UTF-8
 encoding//WebContent/WEB-INF/bisup_login/loginmain.jsp=UTF-8
 encoding//WebContent/resources/bootstrap/css/layout.css=UTF-8
 encoding//WebContent/webEx.jsp=UTF-8

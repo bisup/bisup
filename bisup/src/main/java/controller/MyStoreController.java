@@ -47,7 +47,7 @@ public class MyStoreController {
 	public ModelAndView main(@RequestParam("id") String id){
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList menuList = myStoreAction.selectMenu(id);
-		  
+		
 		modelAndView.addObject("menuList", menuList);
 		modelAndView.addObject("id", id);
 		modelAndView.setViewName("menuInserting");

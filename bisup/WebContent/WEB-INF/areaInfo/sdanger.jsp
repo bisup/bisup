@@ -115,7 +115,8 @@ $(document).ready(function(){
 <title>위험지표</title>
 </head>
 <body>
-<table class="table" style="position: relative; width:150px; text-align:center;   ">
+<h1 align="center">지역별 위험지표</h1><br><br>
+<div align="center"><table class="table" style="position: relative; width:150px; text-align:center;">
   <thead>
   <tr align="center">
   <c:forEach items="${list }" var="list"  end="10">
@@ -147,6 +148,6 @@ $(document).ready(function(){
      <br>
      <br>   
      <div align="center" class="bto"></div></form:form>
-   <div align="center">   <div id="series_chart_div" style="width: 900px; height: 500px;"></div></div>
+   <div id="series_chart_div" style="width: 900px; height: 500px;"></div></div>
 </body>
 </html>

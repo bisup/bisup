@@ -49,7 +49,7 @@ public class SalesController {
 		model.addAttribute("menu",salesDao.menuList(id));
 		System.out.println("saleInserting get");
 		return "salesInserting";
-	}
+	}	
 	
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.POST)
 	public String insertSales(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session){
