@@ -45,11 +45,11 @@ public class QuestionController {
 	// 게시판리스트
 	// 문의사항 전체 글 목록
 	@RequestMapping("/question/qlist.do")
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(@RequestParam(value="pageNum", defaultValue="1") String page) throws Exception {
 		List<BoardCommand> list = null;
 
 		mav = new ModelAndView("qlist");
-		int pageNum = 1;
+		int pageNum = Integer.parseInt(page);
 		int pagesize = 10;
 		Map<String, Object> map = new HashMap<String, Object>();
 
