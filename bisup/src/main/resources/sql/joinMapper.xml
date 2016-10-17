@@ -48,5 +48,9 @@
      <select id="dand" parameterType="int" resultType="command.GuCommand">
     select * from danger where dcode=#{dcode}
     </select>
+    <!--닉네임 중복체크  -->
+    <select id="nick" parameterType="String" resultType="String">
+    select nick from member where nick=#{nick}
+    </select>
     
 </mapper>

@@ -193,6 +193,16 @@ public class MemberController {
 			return jso.toString();
 		}         
 		}	
+	  @RequestMapping(value="/checkn.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String checkN(@RequestParam("nick")String nick,HttpServletResponse resp) throws Exception{
+		resp.setContentType("text/html; charset=UTF-8");
+		JSONObject jso = new JSONObject();
+		String mc=joinDao.selectnick(nick);
+			jso.put("mc",mc);
+			return jso.toString();
+	    
+		}	
 }
 
  
