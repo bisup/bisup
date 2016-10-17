@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import command.GuCommand;
+import command.ReportedCommand;
 import dao.TrendDAO;
 import net.sf.json.JSONObject;
 import service.TrendServiceImpl;
@@ -79,9 +83,17 @@ public class TrendController {
 	}
 	
 	@RequestMapping("/bisup_trend/business_trend.do")
-	public String business_trend(){
-		System.out.println("trendø‰√ª");
+	public String business_trend(Model model){
+		ArrayList report = (ArrayList) trendService.selectReportList();
+		model.addAttribute("report", report);
+		
 		return "business_trend";
+	}
+	
+	@RequestMapping(value="/bisup_trend/business_trend.do", method=RequestMethod.POST)
+	public void updatereport(@RequestParam("num" )int num) {
+		System.out.println("num"+num);
+		trendService.updatereport(num);
 	}
 	
 	

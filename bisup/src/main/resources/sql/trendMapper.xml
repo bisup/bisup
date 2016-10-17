@@ -3,11 +3,12 @@
 
 <mapper namespace="trend">
 
-
+<!-- 지역별 구 리스트 -->
 <select id="concerting"  resultType="command.GuCommand">
 	select * from gu order by gn asc
 </select>
 
+<!--각 월별 매출  -->
 <select id="total" parameterType="int" resultType="command.SaleCommand">
 	select avg(total) as avg, sum(total) as tot from sale 
 	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/06/01' and '16/06/30')
@@ -28,9 +29,18 @@
 	where id in(select id from member where gucode = #{gucode} and SDATE  BETWEEN '16/09/01' and '16/09/30')
 </select>
 
-
+<!-- 거래처 정보 리스트 -->
 <select id="concerting1"  resultType="command.consultingCommand"> 
 	select * from retail where division = #{division}
 </select>
+
+<!-- 카페트렌드 보고서 리스트 -->
+<select id="selectReportList"  resultType="command.ReportedCommand">
+select num, id, title, reg from reported order by num asc
+</select>
+
+<update id="updatereport" parameterType="int"><!-- 글 조회수 증가 -->
+update reported set readcount = readcount + 1 where num = #{num}
+	</update>
  
 </mapper>

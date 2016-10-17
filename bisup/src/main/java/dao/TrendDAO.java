@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import command.GuCommand;
+import command.ReportedCommand;
 
 public class TrendDAO extends SqlSessionDaoSupport{
 	
@@ -34,6 +35,16 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		ArrayList total4 = (ArrayList) getSqlSession().selectList("trend.total3", Integer.parseInt(gucode));
 		return total4;	
 	} 
+	
+	public List<ReportedCommand> selectReportList(){
+		List<ReportedCommand> list = getSqlSession().selectList("trend.selectReportList");
+		return list;
+	}
+	
+	public int updatecount(int num){
+		return getSqlSession().delete("trend.updatereport", num);
+	}
+	
 	
 
 }
