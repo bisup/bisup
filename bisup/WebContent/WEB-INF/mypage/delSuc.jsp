@@ -4,8 +4,9 @@
 <head>
 
 <title>Insert title here</title>
+<META http-equiv=refresh content="0;url=/bisup/bisup_login/main.do"/>  
 </head>
 <body>
-탈퇴 완료
+
 </body>
 </html>

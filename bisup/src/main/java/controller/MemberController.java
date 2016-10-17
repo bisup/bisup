@@ -41,7 +41,7 @@ public class MemberController {
     private SendEmail sendEmail;
     @Autowired
     private CreateCode code;
-    
+     
     
 
 	public SendEmail getSendEmail() {

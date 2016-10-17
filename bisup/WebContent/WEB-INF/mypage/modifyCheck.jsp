@@ -28,9 +28,9 @@ $(document).ready(function() {
 					}
 				else if(${bt==2}){	//탈퇴버튼
 					if(confirm("정말 삭제하시겠습니까?")===true){
-						document.location.href="/bisup/my/mypage/delMem.do";
+						document.location.href="/bisup/bisup/mypage/delMem.do";
 						} else{
-						document.location.href="/bisup/my/mypage/modifyCheck.do";
+						document.location.href="/bisup/bisup/mypage/modifyCheck.do";
 						}
 				}
 		}else if(${x ==-1}){//비밀번호 불일치

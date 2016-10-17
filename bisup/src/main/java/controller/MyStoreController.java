@@ -169,7 +169,7 @@ public class MyStoreController {
 	@RequestMapping("/drawChart.do")
 	public void drawChart(HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("utf-8");
-		Object[] objects = {updatedUsersService.getAllUsers(),updatedUsersService.getUpdatedUsers()};
+		Object[] objects = {updatedUsersService.getAllUsers()-updatedUsersService.getUpdatedUsers(),updatedUsersService.getUpdatedUsers()};
 		forPrintWriterPrint(objects, response);
 	}
 	

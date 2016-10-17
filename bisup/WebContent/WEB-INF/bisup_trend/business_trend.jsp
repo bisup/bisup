@@ -113,6 +113,7 @@ a .btn{
 									target="_blank" class="btn" align="center">이동</a>
 						</td>
 						</c:if>		
+					
 					</tr>
 				</c:forEach>
 						

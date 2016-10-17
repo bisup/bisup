@@ -18,10 +18,11 @@
 	$("document").ready(
 			function() {
 				var url = "/bisup/admin/allMembers.do";
+				var pageNum = {pageNum:${pageNum}};
 				$.ajax({
 					type : "post",
 					url : url,
-					data : "",
+					data : pageNum,
 					dataType : "json",
 					success : function(args) {
 						for (var idx = 0; idx < args.data.length; idx++) {
@@ -40,7 +41,19 @@
 											+ "</td><td>" + args.data[idx].email
 											+ "</td><td>" + args.data[idx].gucode
 											+ "</td><td>")
+							
 						}
+						$("#paging").append("< ");
+						for (var idx = 1; idx <= args.count; idx++){
+							if(idx==args.count){
+								$("#paging").append("<a href=/bisup/admin/main.do?pageNum="+idx+">"+idx+"</a>");
+							}else{
+								$("#paging").append("<a href=/bisup/admin/main.do?pageNum="+idx+">"+idx+"</a>"+" | ");
+							}
+						}
+						$("#paging").append(" >");
+						
+						
 						/* for(var idx=1; args.data2>=idx; idx++){
 							if(args.data2>idx){
 								$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>&#124;");
@@ -146,7 +159,7 @@ $(document).ready(function() {
 
 					</tbody>
 				</table>
-				<div id="paging"></div>
+				<div id="paging" align="center"></div>
 			</div>
 		</form:form>
 	</div>
