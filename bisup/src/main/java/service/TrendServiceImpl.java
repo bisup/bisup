@@ -6,12 +6,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import command.GuCommand;
+import command.ReportedCommand;
 import dao.TrendDAO;
 
 public class TrendServiceImpl implements TrendService{
 	
 	@Resource(name="trendDAO")
 	private TrendDAO trendDAO;
+	
 	public TrendDAO getTrendDAO() {
 		return trendDAO;
 	}
@@ -69,6 +71,27 @@ public class TrendServiceImpl implements TrendService{
 		}     
 		return list4;
 	}
+	public List<ReportedCommand> selectReportList(){
+		List<ReportedCommand> list = null;
+		      
+		try{
+			list = trendDAO.selectReportList();
+			System.out.println("list.."+list);
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+	
+	public void updatereport(int num){
+		int count = 0;
+		try{
+			count = trendDAO.updatecount(num);
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+	}
+	
 	
 	
 
