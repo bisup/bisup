@@ -16,6 +16,8 @@
 .loginid{
 color: blue;
 }
+
+
 </style>
 </head>
 <body>
@@ -42,6 +44,7 @@ color: blue;
         <!-- <li ><a href="#">Link <span class="sr-only">(current)</span></a></li> 활성화 class="active"
         <li><a href="#">Link</a></li> 드롭다운 아닌 그냥 메뉴-->
         
+      
           <li class="dropdown"><!-- 상권정보검색 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">상권 정보 검색<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -88,9 +91,17 @@ color: blue;
         </li>
         </c:if>
         
-        <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
-        <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
+          <li class="dropdown"><!-- 창업컨설팅 -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Q & A<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
+            <li class="divider"></li>	
+            <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
+          </ul>
+        </li>
         
+        
+
         <!-- 관리자페이지 -->
         <c:if test="${sessionScope.sort==0}">
         <li class="dropdown">
@@ -114,19 +125,7 @@ color: blue;
         
       </ul>
       
-  <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul> -->
+ 
     </div><!-- /.navbar-collapse -->
   <!-- </div>/.container-fluid -->
 <!-- </nav> -->

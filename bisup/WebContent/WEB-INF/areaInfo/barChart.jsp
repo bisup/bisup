@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%-- <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,4 +41,4 @@
 <body>
 <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
 </body>
-</html>
+</html> --%>
