@@ -118,15 +118,15 @@ $(document).ready(function(){
 <table class="table" style="position: relative; width:150px; text-align:center;   ">
   <thead>
   <tr align="center">
-  <c:forEach items="${list }" var="list"  end="8">
+  <c:forEach items="${list }" var="list"  end="10">
       <td align="center"> <button value="${list.gcode}" class="gcode" onchange="jasontable()" >${list.gn}</button></td>
 </c:forEach> </tr>   
 <tr align="center">
-  <c:forEach items="${list }" var="list" begin="9" end="16">
+  <c:forEach items="${list }" var="list" begin="11" end="21">
       <td><button value="${list.gcode}" class="gcode" id="list">${list.gn}</button></td>
 </c:forEach> </tr>    
 <tr align="center">
-  <c:forEach items="${list }" var="list" begin="17" end="24">
+  <c:forEach items="${list }" var="list" begin="22" end="24">
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr>   
          </tbody></table>
@@ -147,6 +147,6 @@ $(document).ready(function(){
      <br>
      <br>   
      <div align="center" class="bto"></div></form:form>
-      <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+   <div align="center">   <div id="series_chart_div" style="width: 900px; height: 500px;"></div></div>
 </body>
 </html>
