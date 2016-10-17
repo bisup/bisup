@@ -12,8 +12,8 @@ import command.MemberCommand;
 
 public class AdminMemberDAO extends SqlSessionDaoSupport {
 
-	public ArrayList selectMembers(){
-		ArrayList allMembers = (ArrayList) getSqlSession().selectList("admin.selectMembers");
+	public ArrayList selectMembers(Map startEndNum){
+		ArrayList allMembers = (ArrayList) getSqlSession().selectList("admin.selectMembers",startEndNum);
 		return allMembers;
 	}//member테이블의 모든 정보를 불러오는 메소드
 

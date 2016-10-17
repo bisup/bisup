@@ -40,9 +40,17 @@ function drawSeriesChart() {
 		var options = {
 			title: '지역구 별 회원 현황',
 			hAxis: {title: '지역구'},
-			vAxis: {title: '회원수'},
-			bubble: {textStyle: {fontSize: 11}}
-			
+			vAxis: {title: '회원수',axisTitlesPosition: 'in'},
+			bubble: {textStyle: {fontSize: 11}},
+			backgroundColor: {stroke:'#666',strokeWidth:2},
+			chartArea: {left:20},
+			explorer: {actions:['dragToPan', 'rightClickToReset']},
+			sizeAxis: {minValue: 10000,  maxValue: 12000, maxSize:50, minSize:5},
+			tooltip: {textStyle: {color: '#0000ff'}, showColorCode: true},
+			width: 1500,
+			height: 1000,
+			sortBubblesBySize: false,
+			theme: 'maximized'
 		};
 		var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
 		chart.draw(data, options);
@@ -51,6 +59,8 @@ function drawSeriesChart() {
 </script>
 </head>
 <body>
-	<div id="series_chart_div" style="width: 1700px; height: 1000px;"></div>
+<div align="center">
+	<div id="series_chart_div" style="width: 1500px; height: 800px;"></div>
+</div>
 </body>
 </html>
