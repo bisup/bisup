@@ -45,11 +45,11 @@ public class NoticeController {
 
 	// 공지사항 전체 글 목록(고객)
 	@RequestMapping("/notice/nlist.do")
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(@RequestParam(value="pageNum", defaultValue="1") String page) throws Exception {
 		List<BoardCommand> list = null;
 
 		mav = new ModelAndView("nlist");
-		int pageNum = 1;
+		int pageNum = Integer.parseInt(page);
 		int pagesize = 10;
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -77,7 +77,7 @@ public class NoticeController {
 		mav.addObject("pageCount", pageCount); // 페이지 수
 		mav.addObject("startPage", startPage); // 시작 페이지
 		mav.addObject("endPage", endPage); // 끝 페이지
-		mav.addObject("list", list);
+		mav.addObject("list", list);//전체 회원
 
 		return mav;
 	}
