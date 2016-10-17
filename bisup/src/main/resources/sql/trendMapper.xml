@@ -43,5 +43,5 @@ select num, id, title, REG, address from reported order by num desc
 insert into reported(num, id, title, address, reg) 
 values(num_seq.NEXTVAL, #{id}, #{title}, #{address}, sysdate)
 </insert>
-
+  
 </mapper>

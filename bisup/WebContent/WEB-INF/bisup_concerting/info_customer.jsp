@@ -21,7 +21,7 @@
     overflow: hidden;
     left:15%;
    
-}
+} 
 #f1{
 width: 350px;
 

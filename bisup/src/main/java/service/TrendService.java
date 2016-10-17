@@ -23,4 +23,4 @@ public interface TrendService {
 	// ±Û ¾²±â
 	public int insertReport(ReportedCommand rc);
 }
- 
+  

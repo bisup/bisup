@@ -22,7 +22,7 @@
     border-bottom: 1px solid #cbcbcb;
     text-align: center;
 }
-
+ 
 .tb_date{
    
     table-layout: fixed;

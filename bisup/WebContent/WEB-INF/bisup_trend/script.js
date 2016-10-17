@@ -17,4 +17,4 @@ function writeSave() {
 		document.writeform.kind.focus();
 		return false;
 	}
-}
+} 

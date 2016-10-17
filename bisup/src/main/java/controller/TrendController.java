@@ -31,7 +31,7 @@ public class TrendController {
 	public TrendServiceImpl getTrendService() {
 		return trendService;
 	}
-
+ 
 	public void setTrendService(TrendServiceImpl trendService) {
 		this.trendService = trendService;
 	}
