@@ -29,9 +29,9 @@ width: 350px;
 
 #map{
    position: absolute;
-   top: 30%;
-   bottom: 20%;
-   left:55%;
+   top: 27%;
+   bottom: 25%;
+   left:47%;
    width: 35%;
    height: 40%;
    text-align: right;
@@ -82,7 +82,7 @@ width: 350px;
 				
 			<table width="500" border="1" class="tb_date">
 				<tr>
-					<th id="th" width="100" style="border-left: 0">구분</th>
+					<th id="th" width="150" style="border-left: 0">구분</th>
 					<th id="th" width="150">업체명</th>
 					<th id="th" width="300">주소</th>
 				</tr>

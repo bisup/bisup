@@ -78,7 +78,7 @@ a .btn{
 						<td id="th" style="border-left: 0">${bis.num}</td>
 						<td id="th">${bis.title }</td>
 						<td id="th">${bis.id }</td>
-						<td id="th">${sd.format(bis.reg)}</td>
+						<td id="th">${bis.reg}</td>
 						
 						<c:if test="${bis.num == 1 }">
 						<td id="th">
