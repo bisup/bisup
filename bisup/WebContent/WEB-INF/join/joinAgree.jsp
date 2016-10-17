@@ -31,6 +31,7 @@ height: 200px;
 .btn btn-primary btn-lg{
 align:center;
 }
+.
 </style>
 <script>
 /* 동의 체크 */
@@ -95,10 +96,12 @@ $(document).ready(function () {
 });
 </script>
 <body>
-
+<div align="center">
+<img alt="로고" src="/bisup/resources/img/logo.png" width="200px">
+<h1 align="center">회원가입</h1><br><br>
 <div class="agree">
 <div class="containerTop">
-<div class="mStep1">
+<div class="mStep1" align="left">
 					<img src="../../resources/img/step1.PNG">
 						</div>
 <hr>
@@ -283,15 +286,15 @@ $(document).ready(function () {
 </div>
 <br>	
 <hr>
- <div class="containerBottom">
-  <h2>개인정보 수집 및 이용안내</h2>
-  <ul class="nav nav-pills">
-    <li class="active"><a href="#first" data-toggle="tab">개인정보수집 및 이용목적</a></li>
+ <div class="containerBottom" align="center">
+  <h2>개인정보 수집 및 이용안내</h2><br><br>
+<div align="center"> <ul class="nav nav-pills" style="">
+    <li class="active" align="center"><a href="#first" data-toggle="tab">개인정보수집 및 이용목적</a></li>
     <li><a href="#second" data-toggle="tab">수집하는 개인정보의 항목</a></li>
-    <li><a href="#third" data-toggle="tab">개인정보보유 및 이용기간</a></li>
-    <li><a href="#forth" data-toggle="tab">개인정보의 위탁처리</a></li>
+    <li align="center"><a href="#third" data-toggle="tab">개인정보보유 및 이용기간</a></li>
+    <li align="center"><a href="#forth" data-toggle="tab">개인정보의 위탁처리</a></li>
   </ul>
-
+</div><br><br>
   <div class="tab-content">
     <div id="first" class="tab-pane fade in active">
      
@@ -352,7 +355,7 @@ $(document).ready(function () {
 </textarea>
 
     </div>
-    <div id="second" class="tab-pane fade">
+    <div id="second" class="tab-pane fade" align="center">
     <textarea  readonly="readonly" class="textarea" cols="250" rows="10">
      수집하는 개인정보의 항목
      회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
@@ -360,7 +363,7 @@ $(document).ready(function () {
 ο 개인정보 수집방법 : 웹사이트(www.OOO.com)
    </textarea>
     </div>
-    <div id="third" class="tab-pane fade">
+    <div id="third" class="tab-pane fade" align="center">
       <textarea  readonly="readonly" class="textarea" cols="250" rows="10">
       개인정보의 보유 및 이용기간
       원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 
@@ -381,7 +384,7 @@ $(document).ready(function () {
 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</p>
    </textarea>
     </div>
-    <div id="forth" class="tab-pane fade">
+    <div id="forth" class="tab-pane fade" align="center">
       <textarea readonly="readonly" class="textarea" cols="250" rows="10">
     개인 정보 제공
       회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다. 
@@ -424,6 +427,7 @@ $(document).ready(function () {
   				다음단계로
 		   	</button>
 	</div>	
+</div>
 </div>
 </body>
 </html>
