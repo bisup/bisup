@@ -44,7 +44,7 @@
 	 -->
 	
 	<!-- db연결 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:db2.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -83,7 +83,9 @@
 		 <property name="boardService2" ref="boardService2"/>
 	</bean>
 	
+	
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="main" class="controller.MainController"/>
 	<bean class="controller.ModifyController"/>
+	
 </beans>

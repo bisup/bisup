@@ -48,5 +48,12 @@
      <select id="dand" parameterType="int" resultType="command.GuCommand">
     select * from danger where dcode=#{dcode}
     </select>
+    <!--닉네임 중복체크  -->
+    <select id="nick" parameterType="String" resultType="int">
+    select count(*) from member where nick=#{nick}
+    </select>
+     <select id="ss" parameterType="int" resultType="int">
+    select count(*) from member where snum=#{snum}
+    </select>
     
 </mapper>

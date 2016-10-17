@@ -14,10 +14,16 @@
 <title>Insert title here</title>
 </head>
  <script>
- if ("${member.sort==2}"){
+ $(document).ready(function(){
+ if ("${mem.sort==2}"){
+	 alert("sort2")
 $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></form:label>');
 } 
+ });
 </script> 
+<script>
+
+</script>
     <script>
        function change(){
 
@@ -26,14 +32,23 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                 		
                 		document.getElementById('changeBis').style.display = '';
                 		//document.getElementById("changeBis").display = false;
-                		 $('#sort').val('2');
+                		$('.sortSel').html('<input type="hidden" name="sort" value="2" class="sort" id="sort"/>');
+               			
                 		 $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></form:label>');
-
+                		/*  $(".changeBis").append(
+                				 '<div class="form-group"><form:label path="snum">사업자번호</form:label><form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/></div><div class="form-group">'
+                				 +'<form:label path="tel">상호 전화번호</form:label><form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/></div>');
+                		 */
                 	} 
                 	else{
                 		document.getElementById('changeBis').style.display = 'none';
-                		 $('.guSelect').html('<form:label path="gucode"><b>관심지역</b></form:label>');
-                		 $('#sort').val('1');
+                		$('.sortSel').html('<input type="hidden" name="sort" value="1" class="sort" id="sort"/>');
+               			 
+                		
+               			 $('.guSelect').html('<form:label path="gucode"><b>관심지역</b></form:label>');
+                		 
+                		 
+                		 
                 	}
                } 
                 </script> 
@@ -48,86 +63,92 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
   </h4>
   <br>  
   
-  <form:form commandName="member" class="signup">
+  <form:form commandName="mem" class="signup">
   
   <!-- 수정완료창뜨고 마이페이지 맨앞으로 -->
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
            	  <form:label path="id">본인 ID</form:label>
-           	 <form:input path="id" class="form-control" readonly="true" value="${member.id}" />
+           	 <form:input path="id" class="form-control" readonly="true" value="${mem.id}" />
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
               <form:label path="name">이름</form:label>
-                    <form:input path="name" class="form-control" value="${member.name}"/>
+                    <form:input path="name" class="form-control" value="${mem.name}"/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
                    <form:label path="pw">비밀번호</form:label>
-                   <form:password path="pw" showPassword="false" class="form-control" value="${member.pw}"/>
+                   <form:password path="pw" showPassword="false" class="form-control" value="${mem.pw}"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
                   <form:label path="pw">비밀번호 확인</form:label>
-                   <input type="password" value="${member.pw}" class="form-control">
+                   <input type="password" value="${mem.pw}" class="form-control">
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
                   <form:label path="nick">닉네임</form:label>
-                    <form:input path="nick" class="form-control" value="${member.nick}"/>
+                    <form:input path="nick" class="form-control" value="${mem.nick}"/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
                    <div class="form-group">
                    <form:label path="email">이메일</form:label>
-                    <form:input path="email" class="form-control" value="${member.email}"/>
+                    <form:input path="email" class="form-control" readonly="true" value="${mem.email}"/>
                     	<!-- 정규식추가 -->
                   <%--  <form:errors path="email"/> --%>
                   </div>
                   <div class="form-group">
                   <form:label path="phone">연락처</form:label>
-                    <form:input path="phone" class="form-control" value="${member.phone}"/>
+                    <form:input path="phone" class="form-control" value="${mem.phone}"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
 
-                   <c:if test="${member.sort==2}"> 
+                   <c:if test="${mem.sort==2}"> 
                   <div class="business" id=bisness>
 
                   <div class="form-group">
                   <form:label path="snum">사업자번호</form:label>
-                    <form:input path="snum" class="form-control" value="${member.snum}"  readonly="true"/>
-                  <%--  <form:errors path="snum"/> --%>
+                    <form:input path="snum" class="form-control" value="${snum}"  readonly="true"/>
+                   <form:errors path="snum"/>
                   </div>
                   <div class="form-group">
                   <form:label path="tel">상호 전화번호</form:label>
-                    <form:input path="tel" class="form-control" value="${member.tel}"/>
-                     <%-- <form:errors path="tel"/> --%>
-
+                    <form:input path="tel" class="form-control" value="${mem.tel}"/>
+                     <form:errors path="tel"/>
+				<input type="hidden" name="sort" value="2" class="sort" id="sort"/>
                   </div>
                   </div>
-        		</c:if> <!-- 자영업자 일경우 -->
+        		</c:if> <!-- 자영업자 일경우 --> 
 
                  
-                 <c:if test="${member.sort==1}">
+                 <c:if test="${mem.sort==1}">
                  
                 <div class="form-group" id="readyBis">            
-                      <input type="checkbox" id="sort" name="sort" class="changeChk" value="" onchange="change()">
+                      <input type="checkbox" id="sortC" name="sortC" class="changeChk" value="1" onchange="change()">
                       <label>BISUP을 통해 창업에 성공하여 상호 정보를 추가하고 싶습니다.</label>                
                 </div>
+                <p class="sortSel">
+                <input type="hidden" name="sort" value="1" class="sort" id="sort"/>
+                </p>
                 </c:if>  <!-- 창업예정자일 경우 -->
                  
                  <div id="changeBis" style="display:none">
-                 <div class="form-group">
-                 	<form:label path="snum">사업자번호</form:label><form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/></div>
-                	<div class="form-group">
-      				<form:label path="tel">상호 전화번호</form:label>
-      					<form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/>
-      				</div>
-                </div> <!-- checkbox 선택시 (창업예정자에서 창업자로 변경할 경우)보여질 구역 -->
-               
-               
-
+                 
                 <div class="form-group">
-
+                <form:label path="snum">사업자번호</form:label>
+                <form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/>
+                </div>
+      
+                <div class="form-group">
+                <form:label path="tel">상호 전화번호</form:label>
+                <form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/>
+                </div>
+                 <!-- checkbox 선택시 (창업예정자에서 창업자로 변경할 경우)보여질 구역 -->
+          
+          		</div>
+          		
+                <div class="form-group">
 					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
                   <form:select path="gucode">
                

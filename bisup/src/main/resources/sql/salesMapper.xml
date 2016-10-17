@@ -11,47 +11,40 @@ select id,item from sale where id=#{id} and sdate=#{sdate}
 </select>
 
 <insert id="insertSales" parameterType="command.SaleCommand">
-insert into sale(id,sdate,item,ea) values (#{id}, #{sdate}, #{item}, #{ea})
+insert into sale(id,sdate,item,ea,total) values (#{id}, #{sdate}, #{item}, #{ea}, (select price*#{ea} from menu where item=#{item}))
 </insert>
 
-
 <select id="saleList" parameterType="map" resultType="command.SaleCommand">
-select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate}
+select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate} order by sdate
 </select>
 
-
-<update id="insertTotal" parameterType="command.SaleCommand">
-update sale set (total)=(select total from(select(select(select ea from sale where id=#{id} and sdate=#{sdate} and item=#{item})*(select price from menu where item=#{item})from dual)as total from dual))where id=#{id} and item=#{item} and ea=#{ea}
-</update>
-
-
 <update id="updateSales" parameterType="command.SaleCommand">
-update sale set ea=#{ea} where id=#{id} and item=#{item} and sdate=#{sdate}
+update sale set ea=#{ea},total=(select price*#{ea} from menu where item=#{item}) where id=#{id} and item=#{item} and sdate=#{sdate}
 </update>
 
+<select id="sdateList" parameterType="String" resultType="command.SaleCommand">
+select distinct('20'||(to_char(to_date(sdate,'yy-mm-dd'),'YYMMDD')))as sdate from sale where id=#{id}
+</select>
 
 <!-- 부수비용 부분 -->
 <insert id="insertOther" parameterType="command.OtherCommand">
-insert into other(id,year,mon,rent,sal,mcost,duty,prcost) values (#{id}, #{year}, #{mon}, #{rent}, #{sal}, #{mcost}, #{duty}, #{prcost})
+insert into other(id,sdate,rent,sal,mcost,duty,prcost,etcco) values (#{id}, #{year}||#{mon}, TO_CHAR(#{rent}||'0000'), TO_CHAR(#{sal}||'0000'),TO_CHAR(#{mcost}||'0000'), TO_CHAR(#{duty}||'0000'), TO_CHAR(#{prcost}||'0000'),(TO_CHAR(#{rent}||'0000') + TO_CHAR(#{sal}||'0000') +TO_CHAR(#{mcost}||'0000') + TO_CHAR(#{duty}||'0000') + TO_CHAR(#{prcost}||'0000')))
 </insert>
 
-
 <select id="otherList" parameterType="String" resultType="command.OtherCommand">
-select id,year,mon,rent,sal,mcost,duty,prcost,etcco from other where id=#{id}
+select id,sdate,rent,sal,mcost,duty,prcost,etcco from other where id=#{id} order by sdate
 </select>
 
-<update id="otherTotal" parameterType="command.OtherCommand">
-update other set (etcco) = (select(select rent+sal+mcost+duty+prcost from other where id=#{id} and year=#{year} and mon=#{mon})as etcco from dual) where id=#{id} and year=#{year} and mon=#{mon}
-</update>
-
-
 <update id="updateOther" parameterType="command.OtherCommand">
-update other set rent=#{rent},sal=#{sal},mcost=#{mcost},duty=#{duty},prcost=#{prcost} where id=#{id} and year=#{year} and mon=#{mon}
+update other set rent=TO_CHAR(#{rent}||'0000'),sal=TO_CHAR(#{sal}||'0000'),mcost=TO_CHAR(#{mcost}||'0000'),duty=TO_CHAR(#{duty}||'0000'),prcost=TO_CHAR(#{prcost}||'0000'),etcco=(TO_CHAR(#{rent}||'0000') + TO_CHAR(#{sal}||'0000') +TO_CHAR(#{mcost}||'0000') + TO_CHAR(#{duty}||'0000') + TO_CHAR(#{prcost}||'0000')) where id=#{id} and sdate=#{year}||#{mon}
 </update>
 
-
-<!-- 월별매출 차트 -->
-	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
- select mon,tot from(select to_char(sdate,'mm')as mon,sum(total)as tot from sale where id=#{id} group by to_char(sdate,'mm') order by mon)
-	</select>
+<!-- 순수익,월별매출 차트 -->
+<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
+select (sum(total))as tot from sale where id=#{id} group by ('20'||(to_char(to_date(sdate,'yyyy-mm-dd'),'YYMM'))) order by ('20'||(to_char(to_date(sdate,'yyyy-mm-dd'),'YYMM')))
+</select>
+	
+<select id="otherMon" parameterType="String" resultType="command.OtherCommand">
+select sdate,(etcco)as etcco from other where id=#{id} order by sdate
+</select>
 </mapper>

@@ -166,14 +166,129 @@ $(function(){
 			}
 		});
 	});
+
+});
+$(function(){
+	$('#id1').blur(function(){
+		$.ajax({
+			type:"POST",
+			url:"checkId.do",
+			data:{
+				"id":$('#id1').val()
+			},
+			dataType:"json",
+			success:function(data){
+				//var b=Number(1);
+				//var i=parseInt(args.x);
+			/* 	args.x.typeofValue */
+				if(data.x == 1){
+					alert("아이디 중복입니다.");
+					$('#id').val('');	
+				}else{
+					alert("아이디사용가능합니다.");			
+					}
+			}
+		});
+	});
 });
 
-
-
+</script>
+<script type="text/javascript">
+function passwordCheck() {
+    var pw = document.getElementById("pw").value;
+    var pw_c = document.getElementById("pw_c").value;
+    
+    // 재입력 일치 여부
+    if (pw != pw_c) {
+        alert("입력한 두 개의 비밀번호가 서로  일치하지 않습니다.");
+        myform.pw1.empty();
+        myform.pw1.focus();
+        return false;
+    }
+}
+function pass(){
+	  var pw = document.getElementById("pw").value;
+    // 길이
+    if(!/^[a-zA-Z0-9!@#$%^&*()?_~]{6,15}$/.test(pw))
+    { 
+        alert("비밀번호는 숫자, 영문, 특수문자 조합으로 6~15자리를 사용해야 합니다."); 
+        myform.pw.empty();
+        myform.pw.focus();
+	   	return ;
+    }
+}
+$(function(){
+	 var nick = document.getElementById("nick").value;
+	 $('#nick').blur(function nickHH(){
+	  $.ajax({
+			type:'get',
+			url:'checkn.do',
+			data:{
+				"nick":$('#nick').val()
+			},
+			dataType:"json",
+			success:function(data){
+				//var b=Number(1);
+				//var i=parseInt(args.x);
+			/* 	args.x.typeofValue */
+				if(data.n > 0){
+					alert("닉네임 중복입니다.");
+					$('#nick').val('');	
+				}else{
+					alert("닉네임사용가능합니다.");			
+					}
+			}
+		});
+	 });
+	 $('#nick1').blur(function nickHH(){
+		  $.ajax({
+				type:'get',
+				url:'checkn.do',
+				data:{
+					"nick":$('#nick1').val()
+				},
+				dataType:"json",
+				success:function(data){
+					//var b=Number(1);
+					//var i=parseInt(args.x);
+				/* 	args.x.typeofValue */
+					if(data.n > 0){
+						alert("닉네임 중복입니다.");
+						$('#nick1').val('');	
+					}else{
+						alert("닉네임사용가능합니다.");			
+						}
+				}
+			});
+		 });
+	 $('#snum').blur(function snum(){
+		  $.ajax({
+				type:'get',
+				url:'checksn.do',
+				data:{
+					"snum":$('#snum').val()
+				},
+				dataType:"json",
+				success:function(data){
+					//var b=Number(1);
+					//var i=parseInt(args.x);
+				/* 	args.x.typeofValue */
+					if(data.mc > 0 ){
+						alert("사업자번호 중복입니다.");
+						$('#snum').val('');	
+					}else{
+						alert("사업자번호 사용가능합니다.");			
+						}
+				}
+			});
+		 });
+});
 </script>
 </head>
 <body>
-
+<div align="center">
+<img alt="로고" src="/bisup/resources/img/logo.png" width="250px">
+<!-- <h1 align="center">회원가입</h1> --><br><br>
 	<div class="container">
 	<div class="mStep1">
 					<img src="/bisup/resources/img/step2.PNG">
@@ -212,15 +327,15 @@ $(function(){
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
-                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required="필수입력창입니다"/>
+                   <input type="password" name="pw" id="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required="필수입력창입니다" onblur="pass()"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required="필수입력창입니다"/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required="필수입력창입니다" onblur="passwordCheck()"/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요"required="필수입력창입니다"/>
+                    <input type="text" name="nick" id="nick" class="form-control" placeholder="닉네임을 입력해주세요"required="필수입력창입니다" />
                   <%--  <form:errors path="nick"/> --%>
                   </div>
                     <div class="form-group input-group">
@@ -254,7 +369,7 @@ $(function(){
                   <div class="form-group">
                   <input type="hidden" name="sort" value="1"/>
                    <input type="hidden" name="tel" value="0"/>
-                    <input type="submit" class="btn btn-success btn-block"  value="회원 등록">
+                    <input type="submit" class="btn btn-success btn-block"  value="회원 등록" >
                   </div>
               </form:form>
 
@@ -290,23 +405,23 @@ $(function(){
               <form:form commandName="member" class="signup">
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
-            <input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required="" onclick="javascript:window.open('checkId.do','아이디찾기','scrollbars=yes,toolbar=yes,location=yes,width=500,height=550')"/>
+            <input type="text" name="id"  id="id1" class="form-control" placeholder="아이디를 입력해주세요" required=""/>
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required=""/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
-                   <div class="form-group">
-                   <input type="password" name="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required=""/>
+                    <div class="form-group">
+                   <input type="password" name="pw" id="pw" showPassword="false" class="form-control" placeholder="비밀번호를 입력해주세요"required="필수입력창입니다" onblur="pass()"/>
             	 <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required=""/>
+                    <input type="password" id="pw_c" name="pw_c"  class="form-control" placeholder="비밀번호를 다시 한번 입력해주세요"required="필수입력창입니다" onblur="passwordCheck()"/>
                   <%--  <form:errors path="password"/> --%>
                   </div>
                   <div class="form-group">
-                   <input type="text" name="nick" class="form-control" placeholder="닉네임을 입력해주세요" required=""/>
+                   <input type="text" name="nick" id="nick1" class="form-control" placeholder="닉네임을 입력해주세요" required=""/>
                   <%--  <form:errors path="nick"/> --%>
                   </div>
                     <div class="form-group input-group">
@@ -320,7 +435,7 @@ $(function(){
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/>
+                    <input type="text" name="snum" id="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/>
                   <%--  <form:errors path="snum"/> --%>
                   </div>
                   <div class="form-group">
@@ -367,6 +482,6 @@ $(function(){
       </div>
   </div>
   </div>
-
+</div>
 </body>
 </html>

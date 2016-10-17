@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="admin">
-	<select id="selectMembers" resultType="command.MemberCommand">
-		select * from member
+	<select id="selectMembers" parameterType="Map" resultType="command.MemberCommand">
+		select r,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer,gucode from (select rownum r,id,name,pw,nick,sort,snum,phone,tel,reg,email,cer,gucode from member order by rownum desc) where #{endNum}>=r and r>=#{startNum}
 	</select>
 	<select id="getMemberCount" resultType="int">
 		select count(*) from member
@@ -20,10 +20,10 @@
 	</select>
 	
 	<select id="getGu" resultType="command.AdmcdCommand">
-		select distinct gcode, gn from admcd
+		select distinct gcode, gn from admcd order by gcode
 	</select>
 	
-	<select id="getGuMem" parameterType="int" resultType="command.AdmcdCommand">
-		select count(*) from member where gcode=#{gcode}
+	<select id="getGuMem" parameterType="int" resultType="int">
+		select count(*) from member where gucode=#{gcode}
 	</select>
 </mapper>

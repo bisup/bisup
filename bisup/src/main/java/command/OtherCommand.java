@@ -5,6 +5,7 @@ public class OtherCommand {
 	private String id; //아이디
 	private String year;//년
 	private String mon;//월
+	private String sdate;
 	private int rent;//월세
 	private int sal;//월급
 	private int mcost;//관리비
@@ -64,6 +65,12 @@ public class OtherCommand {
 	}
 	public void setYear(String year) {
 		this.year = year;
+	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
 	
 	

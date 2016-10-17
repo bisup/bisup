@@ -73,7 +73,8 @@
 
 
  <script type="text/javascript">
-  var accessToken = '5cdeba67-8f21-42ed-a02c-27bcdcf40467';
+ $(document).ready(function(){
+  var accessToken = '';
   var consumer_key = "bce731c194bf44debe25";
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	
@@ -91,20 +92,14 @@
 	map = sop.map("map", mapOptions);
 	map.setView([953427, 1950827], 0);
 
-	function createServiceRequest(reqFunc, reqParam) {
-		return function () {
-			// 인증 API
-			$.ajax({
-              url : 'http://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json' +
-              		'?consumer_key='+consumer_key+'&consumer_secret='+consumer_sercret,
-              type : 'get',
-				success: function (res, status) {
-					reqParam.accessToken = res.result.accessToken;
-					reqFunc(reqParam);
-				}
-			});
-		}
-	} //token 받기 종료
+	$.ajax({
+        url : 'http://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json' +
+        		'?consumer_key=bce731c194bf44debe25&consumer_secret=b91c3a3960a146b5b79e',
+        type : 'get',
+        success: function(res, status) {
+				accessToken = res.result.accessToken;
+			}
+		});
 
 
 	/* 지도에 경계띄우기 : 구버튼클릭했을때 동경계보여주기*/
@@ -275,7 +270,7 @@
 	}   
 			 /* addArea()종료 */ 
 		); /* 클릭펑션종료 */
-
+      	});
 </script> 
  
 

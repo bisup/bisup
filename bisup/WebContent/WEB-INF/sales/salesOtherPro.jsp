@@ -32,6 +32,9 @@ tr{padding:15px;}
 <fieldset>
 <legend>총 부수비용 내역</legend>
 <form id="other" method="get" action="salesOtherPro.do">
+<table style="width:80%">
+<tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
+</table>
 <table class="table table-striped" style="width:80%">
   <tr>
     <th>월</th>
@@ -44,7 +47,7 @@ tr{padding:15px;}
   </tr>
   <c:forEach var="other" items="${other}" varStatus="status">
   	<tr>
-  	<td>${other.mon}월</td> 
+  	<td>${other.sdate}</td> 
     <td>${other.rent}</td>
     <td>${other.sal}</td>
     <td>${other.mcost}</td>

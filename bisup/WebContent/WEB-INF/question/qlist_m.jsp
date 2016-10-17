@@ -55,6 +55,16 @@ $(document).ready(function() {
             tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">검색 결과가 없습니다.</td></tr>');
         }
     });
+    $("#paging").append("< ");
+    var pageCount=${pageCount};
+	for (var idx = 1; idx <= pageCount; idx++){
+		if(idx==pageCount){
+			$("#paging").append("<a href=/bisup/bisup/question/qlist_m.do?pageNum="+idx+">"+idx+"</a>");
+		}else{
+			$("#paging").append("<a href=/bisup/bisup/question/qlist_m.do?pageNum="+idx+">"+idx+"</a>"+" | ");
+		}
+	}
+	$("#paging").append(" >");
 });
 </script>
 <!-- <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button> -->
@@ -106,5 +116,6 @@ $(document).ready(function() {
                     </tbody>
                 </table>   
 		</div>
+		<div id="paging" align="center"></div>
 </body>
 </html>

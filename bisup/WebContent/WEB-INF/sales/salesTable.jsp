@@ -29,36 +29,30 @@ tr{padding:15px;}
 <br>
 <div align="center">
 <fieldset>
-<legend>매출 등록하기</legend>
-<form id="sales" method="post" action="salesInserting.do">
-<div align="left"><label>날짜</label> <input type="date" name="sdate"></div>
-<input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
-<table class="table table-striped" style="width:80%">
+<legend>매출 내역 확인 및 수정</legend>
+<form id="sales" method="post" action="salesTable.do">
+<div align="left">
+<table>
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <td></td>
-  </tr>
-  <tr>
-  <td>
-	<select name="item" class="form-control" required>
-	<c:forEach var="menu" items="${menu}" varStatus="status">
-	<option value="<c:out value="${menu.item}"/>">
-	<c:if test="${result.item == menu.item}">selected="selected"</c:if><c:out value="${menu.item}"/>
+  <td>날짜 선택</td>
+    <td>
+	<select name="sdate" class="form-control" required>
+	<c:forEach var="sale" items="${sale}" varStatus="status">
+	<option value="<c:out value="${sale.sdate}"/>">
+	<c:if test="${result.sdate == sale.sdate}">selected="selected"</c:if><c:out value="${sale.sdate}"/>
 			</option>
 			 </c:forEach>
 	</select>
-</td>
-    <td><input type="text" id="ea" name="ea" class="form-control" required></td>   
-	<td><input type="submit" value="등록하기" class="btn btn-default"></td>
-  </tr>
+	</td>
+	<td><input type="submit" value="선택" class="btn btn-default"></td>
+	</tr>
 </table>
 </form>
 </fieldset>
 </br>
 <fieldset>
 <legend>총 매출 내역</legend>
-<form id="sales" method="get" action="salesInsertingPro.do">
+<form id="sales" method="get" action="salesTablePro.do">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
   <tr>
@@ -66,11 +60,11 @@ tr{padding:15px;}
     <th>판매수량</th>
     <th>총매출</th>
   </tr>
-  <c:forEach var="sale" items="${sale}" varStatus="status">
+  <c:forEach var="sales" items="${sales}" varStatus="status">
   <tr>
-    <td>${sale.item}</td>
-    <td>${sale.ea}</td>
-    <td>${sale.total}</td>
+    <td>${sales.item}</td>
+    <td>${sales.ea}</td>
+    <td>${sales.total}</td>
   </tr>
    </c:forEach>
  </table>
@@ -79,7 +73,7 @@ tr{padding:15px;}
  </br>
  <fieldset>
   <legend>등록 수정하기</legend>
- <form id="sales" method="post" action="salesInsertingPro.do">
+ <form id="sales" method="post" action="salesTablePro.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
@@ -102,10 +96,6 @@ tr{padding:15px;}
     <td><input type="submit" value="수정하기" class="btn btn-default"></td>   
   </tr>
 </table>
-</form>
-<form id="sales" method="post" action="salesTablePage.do">
- <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
- <button>이전 매출 등록 확인/수정 하기</button>
 </form>
 </fieldset>
  <br/>
