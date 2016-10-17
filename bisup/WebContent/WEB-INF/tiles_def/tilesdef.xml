@@ -41,7 +41,9 @@
 	<definition name="Chart" template="/WEB-INF/sales/Chart.jsp">
 		<put-attribute name="one" value="/WEB-INF/sales/drawMonChart.jsp" />
 		<put-attribute name="two" value="/WEB-INF/mystore/salesManaging.jsp" />
+		<put-attribute name="three" value="/WEB-INF/sales/salesTotal.jsp" />
 	</definition>
+
 
 
 	<!-- 미래 메인 -->
@@ -257,10 +259,10 @@
 		<put-attribute name="title" value="매출등록" />
 		<put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" />
 	</definition>
-	<definition name="salesInsertingPro" extends="base_layout">
+	<definition name="salesTable" extends="base_layout">
 		<put-attribute name="title" value="매출등록완료" />
 		<put-attribute name="body"
-			value="/WEB-INF/sales/salesInsertingPro.jsp" />
+			value="/WEB-INF/sales/salesTable.jsp" />
 	</definition>
 	
 	<definition name="salesOther" extends="base_layout">
@@ -270,6 +272,11 @@
 	<definition name="salesOtherPro" extends="base_layout">
 		<put-attribute name="title" value="부수비용 등록완료" />
 		<put-attribute name="body"	value="/WEB-INF/sales/salesOtherPro.jsp" />
+	</definition>
+	
+	<definition name="salesTotal" extends="base_layout">
+		<put-attribute name="title" value="순수익" />
+		<put-attribute name="body" value="/WEB-INF/sales/salesTotal.jsp" />
 	</definition>
 
 	<definition name="drawChart" extends="base_layout">

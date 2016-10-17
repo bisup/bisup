@@ -12,6 +12,7 @@ public class SaleCommand {
 	private String total; //총매출
 	private int mon;//sdate 차트 월별 별칭임
 	private int tot;//total 차트 총매출 별칭임
+	private int stot;
 	private int avg;//평균 매출 별칭
 	
 	public int getAvg() {
@@ -61,6 +62,12 @@ public class SaleCommand {
 	}
 	public void setTot(int tot) {
 		this.tot = tot;
-	}	
+	}
+	public int getStot() {
+		return stot;
+	}
+	public void setStot(int stot) {
+		this.stot = stot;
+	}
 
 }

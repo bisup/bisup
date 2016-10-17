@@ -24,7 +24,7 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	public List<MenuCommand> menuList2(Map<String, String> map)
 	{
-		System.out.println("menuList"+map);
+		System.out.println("menuList2"+map);
 	return getSqlSession().selectList("sales.menuList2",map);
 	
 	}
@@ -32,25 +32,18 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	public int insertSales(SaleCommand saleCommand)
 	{
-		System.out.println("insert sales"+saleCommand);
+		System.out.println("insert sales"+saleCommand.getId());
 	return getSqlSession().insert("sales.insertSales",saleCommand);
 	
 	}
-	
+
 	public List<SaleCommand> saleList(Map<String, String> map)
 	{
 		System.out.println("saleList"+map);
 	return getSqlSession().selectList("sales.saleList",map);
 	
 	}
-	
-	public int insertTotal(SaleCommand saleCommand)
-	{
-		System.out.println("insert sales");
-	return getSqlSession().update("sales.insertTotal",saleCommand);
-	
-	}
-	
+
 	public int updateSales(SaleCommand saleCommand)
 	{
 		System.out.println("update sales"+saleCommand);
@@ -58,6 +51,12 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
+	public List<SaleCommand> sdateList(String id)
+	{
+		System.out.println("saleList"+id);
+	return getSqlSession().selectList("sales.sdateList",id);
+	
+	}
 	
 	// 부수비용 부분
 	public int insertOther(OtherCommand otherCommand)
@@ -74,12 +73,6 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
-	public int otherTotal(OtherCommand otherCommand)
-	{System.out.println("other Total"+otherCommand);
-	return getSqlSession().update("sales.otherTotal",otherCommand);
-	
-	}
-	
 	public int updateOther(OtherCommand otherCommand)
 	{
 		System.out.println("updateOther"+otherCommand);
@@ -88,9 +81,16 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	}
 
 	
-	// 월별 매출 차트
-	public ArrayList salePerMon(String id){
-		ArrayList salePerMon = (ArrayList) getSqlSession().selectList("sales.salePerMon", id);
+	// 순수익,월별 매출 차트
+		public ArrayList salePerMon(String id){
+			System.out.println("chart dao");
+		ArrayList salePerMon = (ArrayList) getSqlSession().selectList("sales.salePerMon",id);
 		return salePerMon;
+		}
+	
+	public ArrayList otherMon(String id){
+		ArrayList otherMon = (ArrayList) getSqlSession().selectList("sales.otherMon",id);
+		return otherMon;
 	}
+	
 }

@@ -30,9 +30,12 @@ tr{padding:15px;}
 <br>
 <br>
 <div align="center">
-<form id="sales" method="post" action="salesOther.do">
+<form id="other" method="post" action="salesOther.do">
 <input type="hidden" name="id" value="<c:out value="${id}"/>">
 <fieldset >
+<table style="width:80%">
+<tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
+</table>
 <table class="table table-striped" style="width:80%">
   <tr>
   	<th>년</th>
@@ -69,8 +72,7 @@ tr{padding:15px;}
     <td><input type="text" id="prcost" name="prcost" class="form-control"></td>
   </tr>
   <tr>
-<td colspan="6"></td>
-<td style="text-align:right;"><input type="submit" value="등록" class="btn btn-default"></td>
+<td colspan="7" align="right"><input type="submit" value="등록" class="btn btn-default"></td>
   </tr>
 </table>
 </fieldset>
