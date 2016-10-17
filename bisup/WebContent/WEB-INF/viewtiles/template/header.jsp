@@ -31,7 +31,7 @@ color: blue;
 <ol class="breadcrumb ">
 
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
-<li><a href="logout.do">로그아웃</a></li>
+<li><a href="/bisup/bisup_login/logout.do">로그아웃</a></li>
 <li><a href="/bisup/bisup/main/siteMap.do">사이트맵</a></li>
 </ol>
 </div>
