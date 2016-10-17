@@ -3,7 +3,7 @@ package command;
 import java.sql.Timestamp;
 
 public class ReportedCommand {
-	
+	 
 	private int num; //
 	private String id;
 	private String title;
