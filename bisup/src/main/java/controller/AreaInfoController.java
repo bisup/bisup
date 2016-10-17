@@ -3,6 +3,7 @@ package controller;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,24 @@ public class AreaInfoController {
 		
 		return mav; 
 	}
+	
+	@RequestMapping(value="/areaInfo/chartview.do",method=RequestMethod.GET)
+	public ModelAndView chartview(HttpServletRequest request, @RequestParam(value = "chartlist") String[] chartlist){
+		System.out.println("파이차트길이는="+chartlist.length);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",chartlist);
+		mav.setViewName("bisChart");
+		return mav; 
+	}
+	
+	/*@RequestMapping(value="/areaInfo/chartbar.do",method=RequestMethod.GET)
+	public ModelAndView chartBar(HttpServletRequest request, @RequestParam(value = "chartlist1") String[] chartlist1){
+		System.out.println("막대차트길이는="+chartlist1.length);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list1",chartlist1);
+		mav.setViewName("barChart");
+		return mav; 
+	}*/
 	
 	@RequestMapping(value="/areaInfo/mpInfo.do",method=RequestMethod.POST)
 	public void sidoList(HttpServletResponse resp,@RequestParam("gcode") int gcode) throws Exception{
