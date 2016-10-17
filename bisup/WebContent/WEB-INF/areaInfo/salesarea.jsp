@@ -113,7 +113,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  var accessToken = '4ab2e848-96c2-4ffd-b39a-012a1dcfd121';
+  var accessToken = '';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
@@ -129,21 +129,15 @@ $(document).ready(function(){
 
 	var map = sop.map('map',mapOptions);
 	map.setView([953427, 1950827], 5);
-
-	function createServiceRequest(reqFunc, reqParam) {
-		return function () {
-			// 인증 API
-			$.ajax({
+	$.ajax({
               url : 'http://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json' +
-              		'?consumer_key='+consumer_key+'&consumer_secret='+consumer_sercret,
+              		'?consumer_key=bce731c194bf44debe25&consumer_secret=b91c3a3960a146b5b79e',
               type : 'get',
               success: function(res, status) {
-					reqParam.accessToken = res.result.accessToken;
-					reqFunc(reqParam);
+					accessToken = res.result.accessToken;
 				}
 			});
-		}         
-	}
+	
 	divConsole = sop.DomUtil.get("divCon");
 
 	$('.gcode').click(function addArea() {

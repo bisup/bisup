@@ -117,9 +117,9 @@
   <c:if test="${sessionScope.sort==2}">
 <td class="tables"><div><h2>메인메뉴</h2></div>
                     <ul>  
-                  <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
-                   <li>   <a href='/bisup/bisup/question/qlist.do'>공지사항</a>  </li>
-                    <li>   <a href='/bisup/bisup/mypage/modifyCheck.do'>공지사항</a>  </li>
+                         <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
+                   <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
+                    <li>   <a href=#>쪽지함</a>  </li>
                   </ul> 
                   </td>
                   
