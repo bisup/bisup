@@ -30,8 +30,8 @@ color: blue;
 <p align="right" class="loginid">${sessionScope.id}님 환영합니다.</p>
 <ol class="breadcrumb ">
 
-<li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
-<li><a href="/bisup/bisup_login/logout.do">로그아웃</a></li>
+<li><a href="/bisup/webEx.jsp" target="_blank"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
+<li><a href="logout.do">로그아웃</a></li>
 <li><a href="/bisup/bisup/main/siteMap.do">사이트맵</a></li>
 </ol>
 </div>
@@ -99,6 +99,8 @@ color: blue;
             <li><a href="/bisup/admin/main.do">회원 관리</a></li>
             <li class="divider"></li>
             <li><a href="/bisup/admin/store.do">점포 관리</a></li>
+            <li class="divider"></li>
+            <li><a href="/bisup/admin/guMemMain.do">점포 관리</a></li>
           </ul>
         </li>
         </c:if>
