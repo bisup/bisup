@@ -20,10 +20,10 @@
 	</select>
 	
 	<select id="getGu" resultType="command.AdmcdCommand">
-		select distinct gcode, gn from admcd
+		select distinct gcode, gn from admcd order by gcode
 	</select>
 	
-	<select id="getGuMem" parameterType="int" resultType="command.AdmcdCommand">
-		select count(*) from member where gcode=#{gcode}
+	<select id="getGuMem" parameterType="int" resultType="int">
+		select count(*) from member where gucode=#{gcode}
 	</select>
 </mapper>

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import command.AdmcdCommand;
 import command.BoardCommand;
 import command.MemberCommand;
+import command.MemoCommand;
 import dao.AdminMemberDAO;
 import net.sf.json.JSONObject;
 import service.AdminMemberServiceImpl;
@@ -89,37 +91,15 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping("/guMemMain.do")
-	public String guMemMain(){
-		return "GuMember";
-	}
-	
-	@RequestMapping("/getGuMem.do")
-	public void getGuMem(HttpServletResponse response) throws Exception{
+	public ModelAndView getGuMem(HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView("GuMember");
 		ArrayList gu = new ArrayList();
 		ArrayList guMem = new ArrayList();
 		gu = adminMemberService.getGu(gu);
 		guMem = adminMemberService.getGuMem(guMem, gu);
-		Object[] Objects = {gu,guMem};
-		forJSONPrint(Objects);
-	}
-	
-	@ResponseBody
-	public void forJSONPrint(Object[] Objects) throws Exception{
-		JSONObject jsonObject = new JSONObject();
-		for(int i=1; i<=Objects.length; i++){
-			jsonObject.put("data"+i, Objects[i]);
-		}
-		jsonObject.toString();
-	}
-	
-	
-	public void forPrintWriterPrint(Object[] Objects, HttpServletResponse response) throws Exception{
-		JSONObject jsonObject = new JSONObject();
-		for(int i=1; i<=Objects.length; i++){
-			jsonObject.put("data"+i, Objects[i]);
-		}
-		PrintWriter printWriter = response.getWriter();
-		printWriter.print(jsonObject.toString());
+		mav.addObject("guMem", guMem);
+		mav.addObject("gu", gu);
+		return mav;
 	}
 }
