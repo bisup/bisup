@@ -6,12 +6,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
-<head>
+<head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%=cp%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <title>비즈업(BisUp)</title>
+<style>
+.loginid{
+color: blue;
+}
+</style>
 </head>
 <body>
    <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
@@ -22,10 +27,12 @@
 <img src="/bisup/resources/img/logo.png" alt="로고이미지" width="250" style="margin-left: auto; margin-right: auto; display: block;"/></a>
 
 <div class="pull-right">
+<p align="right" class="loginid">${sessionScope.id}님 환영합니다.</p>
 <ol class="breadcrumb ">
+
 <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> 쪽지함 </span></a></li>
 <li><a href="logout.do">로그아웃</a></li>
-<li><a href="#">사이트맵</a></li>
+<li><a href="/bisup/bisup/main/siteMap.do">사이트맵</a></li>
 </ol>
 </div>
 <br><br><br>
@@ -35,12 +42,14 @@
         <!-- <li ><a href="#">Link <span class="sr-only">(current)</span></a></li> 활성화 class="active"
         <li><a href="#">Link</a></li> 드롭다운 아닌 그냥 메뉴-->
         
-        <li class="dropdown"><!-- 상권정보검색 -->
+          <li class="dropdown"><!-- 상권정보검색 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">상권 정보 검색<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">상권 정보 검색</a></li>
+             <li><a href="/bisup/my/areaInfo/salesarea.do">지역별 상권 정보 </a></li>
             <li class="divider"></li>
-            <li><a href="#">위험 지표 검색</a></li>
+            <li><a href="/bisup/my/areaInfo/mpInfo.do">지역별 인구 현황</a></li>
+            <li class="divider"></li>
+            <li><a href="/bisup/my/areaInfo/sdanger.do">지역별 위험 지표 </a></li>
           </ul>
         </li>
         
@@ -64,9 +73,43 @@
           </ul>
         </li>
         
+        <c:if test="${sessionScope.sort!=1}">
+        <li class="dropdown"><!-- 매출관리 -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내 점포 매출관리<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">메뉴등록</a></li>
+            <li class="divider"></li>
+            <li><a href="#">매출등록</a></li>
+            <li class="divider"></li>
+            <li><a href="#">매출 추이 조회</a></li>
+            <li class="divider"></li>
+            <li><a href="#">부수 비용 관리</a></li>
+          </ul>
+        </li>
+        </c:if>
+        
         <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
         <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
-        <li><a href="/bisup/bisup/mypage/modifyCheck.do">마이페이지</a></li>
+        
+        <!-- 관리자페이지 -->
+        <c:if test="${sessionScope.sort==0}">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">관리자 페이지<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bisup/admin/main.do">회원 관리</a></li>
+            <li class="divider"></li>
+            <li><a href="/bisup/admin/store.do">점포 관리</a></li>
+          </ul>
+        </li>
+        </c:if>
+        
+       <!--  마이페이지 -->
+        <c:if test="${sessionScope.sort!=0}">
+        <li>
+          <a href="/bisup/bisup/mypage/modifyCheck.do">마이 페이지</a>
+        </li>
+        </c:if>
+        
       </ul>
       
   <!--     <ul class="nav navbar-nav navbar-right"> 오른쪽메뉴

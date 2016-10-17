@@ -27,4 +27,8 @@ public class SGISDAO extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("JoinDAO.danger",dcode);
 	}
 	
+	public List<GuCommand> getd(int dcode){
+		return getSqlSession().selectList("JoinDAO.dand",dcode);
+	}
+	
 }

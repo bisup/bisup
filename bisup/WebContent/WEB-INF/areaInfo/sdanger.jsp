@@ -11,125 +11,142 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  		
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>	
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="/bisup/css/jang.css" />
 <script type="text/javascript">
 $(document).ready(function(){
-	<%--  $('.dcode').click(function lk(){
-		alert("dcode");
-		var dcode = $(this).val() ;
+	$('.gcode').click(function(){
+		var gcode = $(this).val() ;
 		var url="<%=cp%>/my/areaInfo/return.do";
-		var params="dcode="+dcode;
+		var params="gcode="+gcode;
 		$.ajax({
 			type:"get",
 			url:url,
 			data:params,
 			dataType:"json",
 			success:function(args){
-				alert(dcode);
 				$(".tbody").find("tr").remove(); 
+				$(".th").find("th").remove();
+				$(".bto").find("button").remove();
+				$(".th").append( "<th>#</th><th>구이름</th><th>동이름</th><th>위험지표</th><th>평균 폐업기간</th><th>점포증감률</th>"); 
+				$(".bto").append("<button type='submit' class='btn'>비교하기</button>");
+				
 				for(idx=0 ; idx<args.list.length ; idx++){
 					//alert(args.list[idx].dn);
-					 $(".tbody").append("<tr><td><td>"+args.list[idx].gn+"</td><td><a href=# onclick=chart('"+args.list[idx].dn+"') >"+args.list[idx].dn+"</a></td><td>"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+					var i=idx+1;
+					if(args.list[idx].newstore =="의심"){
+					 $(".tbody").append("<tr><td><input type='checkbox'  name='dcode'  value='"+args.list[idx].dcode+"'></td><td>"+args.list[idx].gn+"</td><td><a href='javascript:dn("+args.list[idx].dn+","+args.list[idx].dang_num+")' class='dn'>"+args.list[idx].dn+"</a></td><td><img src='/bisup/resources/img/g.jpg' style='width: 10px'>&nbsp"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+					  
+					}else if(args.list[idx].newstore =="주의"){
+					 $(".tbody").append("<tr><td><input type='checkbox'  name='dcode'  value='"+args.list[idx].dcode+"'></td><td>"+args.list[idx].gn+"</td><td><a href='javascript:dn("+args.list[idx].dn+","+args.list[idx].dang_num+")'  class='dn'>"+args.list[idx].dn+"</a></td><td><img src='/bisup/resources/img/y.jpg' style='width: 10px'>&nbsp"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+					}
+					else if(args.list[idx].newstore =="위험"){
+						 $(".tbody").append("<tr><td><input type='checkbox'  name='dcode'  value='"+args.list[idx].dcode+"'></td><td>"+args.list[idx].gn+"</td><td><a href='javascript:dn("+args.list[idx].dn+","+args.list[idx].dang_num+")'  class='dn'>"+args.list[idx].dn+"</a></td><td><img src='/bisup/resources/img/o.jpg' style='width: 10px'>&nbsp"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+						}else{
+							$(".tbody").append("<tr><td><input type='checkbox'  name='dcode'  value='"+args.list[idx].dcode+"'></td><td>"+args.list[idx].gn+"</td><td><a href='javascript:dn("+args.list[idx].dn+","+args.list[idx].dang_num+")'  class='dn'>"+args.list[idx].dn+"</a></td><td><img src='/bisup/resources/img/r.jpg' style='width: 10px'>&nbsp"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
+						}
 				}
+				 
 			}
 		});
-	});  --%>
-
-$('.gcode').click(function dongS() {
- 	var g=$(this).val();
-	var url="<%=cp%>/my/areaInfo/Info.do";
-	var params ="gcode="+g;
-	
-	$("#code button").each(function(){
-		//id가 city 이며 option인 요소를
-		$("#code button:eq(0)").remove();
-		//city option의 1번째를 계속 삭제(0번째만 남기고 모두 지우게 된다. )
-		//eq : 지정된 index번째의 엘리먼트 선택
 	});
-
-	$.ajax({
-		type:"post" // 포스트방식
-		,url:url //url주소
-		,data:params //요청에 전달되는 프로퍼티를 가진 객체
-		,dataType:"json" //리턴된 데이터타입 : json타입으로 받겠다 
-		,success:function(args){//응답이 성공 상태 코드를 반환하면 호출되는 함수
-			
-			for(var idx=0; idx<args.data.length; idx++){
-				
-				$("#code").append("<input type='checkbox' value='"+args.data[idx].dcode+"' id='dcode' class='dcode'>" +args.data[idx].dn+"</button>" );
-				//alert(args.data1[idx].dn);
-				//$("#city").append("<option value='"+args.data1[idx]+"'>"+args.data1[idx]+"</option>");	
-				
-				$('.dcode').click(function lk(){
-					var dcode = $(this).val() ;
-					var url="<%=cp%>/my/areaInfo/return.do";
-					var params="dcode="+dcode;
-					$.ajax({
-						type:"get",
-						url:url,
-						data:params,
-						dataType:"json",
-						success:function(args){
-							$(".tbody").find("tr").remove(); 
-							for(idx=0 ; idx<args.list.length ; idx++){
-								//alert(args.list[idx].dn);
-								 $(".tbody").append("<tr><td><td>"+args.list[idx].gn+"</td><td><a href=# onclick=chart('"+args.list[idx].dn+"') >"+args.list[idx].dn+"</a></td><td>"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
-							}
-						}
-					});
-				});
-			}
-		}
-	,error:function(e){
-		//이곳의 ajax에서 에러가 나면 알러창으로 에러 메시지 출력
-		alert(e.responseText);
-		
-	}
-	});  
- });  
+	<%-- $('.dn').click(function(){
+		var dn = $(this).val() ;
+		var url="<%=cp%>/my/areaInfo/data.do";
+		var params="dn="+dn;
+	}); --%>
+	
 });
-		</script>
+
+</script>
+ <script type="text/javascript">
+/* $(document).ready(function(){
+	$('.btn').click(function seldcode(){
+		var para=new Array();
+		$("input[name='dcode']:checked").each(function(i){para.push($(this).val()); });
+		var data ={"dcodeA":para};
+		document.myform.submit();
+	});	
+	}); */
+
+</script> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawSeriesChart);
+
+  function drawSeriesChart() {
+	  <c:forEach var="li" items="${li}"  >  
+	  var dname='${li.dn}'; 
+	  </c:forEach>
+	  <c:forEach var="li" items="${li1}"  >  
+	  var dname1='${li.dn}'; 
+	  </c:forEach>
+	  <c:forEach var="li" items="${li2}"  >  
+	  var dname2='${li.dn}'; 
+	  </c:forEach>
+    var data = google.visualization.arrayToDataTable([
+          ['ID', '신규_창업_위험_지수_값', '점포증감률'],
+      	<c:forEach var="li" items="${li}"  >      	
+          [dname,   ${li.jumpol},  ${li.arg}],
+      </c:forEach>
+      	<c:forEach var="li1" items="${li1}"  >      	
+        [dname1,   ${li1.jumpol},  ${li1.arg}],
+    </c:forEach>
+    	<c:forEach var="li2" items="${li2}" >      	
+        [dname2,   ${li2.jumpol},  ${li2.arg}]
+    </c:forEach>
+        ]);
+
+    var options = {
+            title: dname+','+dname1+','+dname2+' '+'별 위험지수 비교 ',
+            hAxis: {title: '신규_창업_위험_지수_값'},
+            vAxis: {title: '점포증감률'},
+            bubble: {textStyle: {fontSize: 11}}
+          };
+
+    var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+    chart.draw(data, options);
+  }
+    </script>
 <title>위험지표</title>
-</head> 
+</head>
 <body>
 <table class="table" style="position: relative; width:150px; text-align:center;   ">
   <thead>
   <tr align="center">
-  <c:forEach items="${list }" var="list"  end="16">
+  <c:forEach items="${list }" var="list"  end="8">
       <td align="center"> <button value="${list.gcode}" class="gcode" onchange="jasontable()" >${list.gn}</button></td>
 </c:forEach> </tr>   
 <tr align="center">
-  <c:forEach items="${list }" var="list" begin="17" end="24">
+  <c:forEach items="${list }" var="list" begin="9" end="16">
       <td><button value="${list.gcode}" class="gcode" id="list">${list.gn}</button></td>
-</c:forEach> </tr>      
+</c:forEach> </tr>    
+<tr align="center">
+  <c:forEach items="${list }" var="list" begin="17" end="24">
+     <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
+</c:forEach> </tr>   
          </tbody></table>
-         <form:form >
-  <br>
-     <div id="code"></div><!-- gu/dong선택 종료 -->
-         <br>
-         <br>
+         <form:form method="post" action="/bisup/my/areaInfo/sel.do" name="myform">
 <table  class="table">
   <thead>
-  <tr>
-      <th>#</th>
+  <tr class="th">
+     <!--  <th>#</th>
       <th>구이름</th>
       <th>동이름</th>  
       <th>위험지표</th>
       <th>평균 폐업기간</th>
-      <th>점포증감률</th>
+      <th>점포증감률</th> -->
          </tr>
        </thead>
        <tbody class="tbody">
      </tbody></table>
-     
-     </form:form>
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-       <div id="chart_div" style="width: 400px; height: 120px;"></div>
-</div>
+     <br>
+     <br>   
+     <div align="center" class="bto"></div></form:form>
+      <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>

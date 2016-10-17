@@ -7,10 +7,6 @@
 	<definition name="base_layout" template="/WEB-INF/viewtiles/template/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/viewtiles/template/header.jsp" />
-		<put-attribute name="header2"
-			value="/WEB-INF/viewtiles/template/header2.jsp" />
-		<put-attribute name="header_m"
-			value="/WEB-INF/viewtiles/template/header_m.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/viewtiles/template/footer.jsp" />
 	</definition>
@@ -18,10 +14,6 @@
 	<definition name="layout2" template="/WEB-INF/viewtiles/template/layout2.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/viewtiles/template/header.jsp" />
-		<put-attribute name="header2"
-			value="/WEB-INF/viewtiles/template/header2.jsp" />
-		<put-attribute name="header_m"
-			value="/WEB-INF/viewtiles/template/header_m.jsp" />
 		<put-attribute name="left_top"
 			value="/WEB-INF/viewtiles/template/test1.jsp" />
 		<put-attribute name="left_bottom"
@@ -38,10 +30,6 @@
 	<definition name="layout3" template="/WEB-INF/viewtiles/template/layout3.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/viewtiles/template/header.jsp" />
-		<put-attribute name="header2"
-			value="/WEB-INF/viewtiles/template/header2.jsp" />
-		<put-attribute name="header_m"
-			value="/WEB-INF/viewtiles/template/header_m.jsp" />
 		<put-attribute name="menu"
 			value="/WEB-INF/viewtiles/template/menu.jsp" />	
 		<put-attribute name="footer"
@@ -208,6 +196,16 @@
 		<put-attribute name="title" value="창업성공자"/>
 		<put-attribute name="body" value="/WEB-INF/mystore/updatedUsers.jsp"/>
 	</definition>
+	<definition name="GuMember" extends="base_layout">
+		<put-attribute name="title" value="구별 회원현황"/>
+		<put-attribute name="body" value="/WEB-INF/admin/GuMember.jsp"/>
+	</definition>
+	
+	<!-- 창업매뉴얼 -->
+	<definition name="manual_bis" extends="base_layout">
+		<put-attribute name="title" value="지형상권정보" />
+		<put-attribute name="body" value="/WEB-INF/bisup_trend/manual_bis.jsp" />
+	</definition>
 
 
 	<!-- 현아언니 마이페이지 -->
@@ -236,7 +234,7 @@
 		<put-attribute name="title" value="test" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/mpInfo.jsp"/>
 	</definition>
-	<!-- layout3적용 -->
+	
 	<definition name="test" extends="base_layout">
 		<put-attribute name="title" value="test" />
 		
@@ -288,6 +286,10 @@
 		<put-attribute name="title" value="지형상권정보" />
 		<put-attribute name="body" value="/WEB-INF/areaInfo/salesarea.jsp" />
 	</definition>
+	<definition name="sdanger" extends="base_layout">
+		<put-attribute name="title" value="지형상권정보" />
+		<put-attribute name="body" value="/WEB-INF/areaInfo/sdanger.jsp" />
+	</definition>
 
 	<!-- 관리자페이지 -->
 	<definition name="adminMember" extends="base_layout">
@@ -300,5 +302,12 @@
 		<put-attribute name="body" value="/WEB-INF/admin/store.jsp" />
 	</definition>
 	
+	
+	
 
+<!--사이트맵  -->
+	<definition name="siteMap" extends="base_layout">
+		<put-attribute name="title" value="관리자 점포 관리" />
+		<put-attribute name="body" value="/WEB-INF/main/siteMap.jsp" />
+	</definition>
 </tiles-definitions>

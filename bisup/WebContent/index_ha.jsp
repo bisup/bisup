@@ -23,9 +23,11 @@
 
 <a href="<c:url value='/my/areaInfo/mpInfo.do'/>">MPInfo</a>
 <br>
-<a href="<c:url value='/my/areaInfo/test.do'/>">layout3</a>
+<a href="<c:url value='/my/areaInfo/test.do'/>">chart</a>
 
 <br>
 <a href="<c:url value='/my/areaInfo/test2.do'/>">layout2</a>
+<br>
+<a href="<c:url value='/my/manual.do'/>">manual</a>
 </body>
 </html>

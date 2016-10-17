@@ -22,6 +22,13 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
+	public List<MenuCommand> menuList2(Map<String, String> map)
+	{
+		System.out.println("menuList"+map);
+	return getSqlSession().selectList("sales.menuList2",map);
+	
+	}
+	
 	
 	public int insertSales(SaleCommand saleCommand)
 	{
@@ -52,7 +59,6 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	}
 	
 	
-	
 	// 부수비용 부분
 	public int insertOther(OtherCommand otherCommand)
 	{
@@ -60,13 +66,6 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	return getSqlSession().insert("sales.insertOther",otherCommand);
 	
 	}
-	
-//	public List<OtherCommand> otherList(Map<String, String> map)
-//	{
-//		System.out.println("otherList"+map);
-//	return getSqlSession().selectList("sales.otherList",map);
-//	
-//	}
 	
 	public List<OtherCommand> otherList(String id)
 	{
@@ -88,6 +87,8 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 
+	
+	// 월별 매출 차트
 	public ArrayList salePerMon(String id){
 		ArrayList salePerMon = (ArrayList) getSqlSession().selectList("sales.salePerMon", id);
 		return salePerMon;

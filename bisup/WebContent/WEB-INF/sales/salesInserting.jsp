@@ -39,8 +39,8 @@ tr{padding:15px;}
     <th>판매수량</th>
   </tr>
   <tr>
-  <td align="center"> 
-	<select name="item">
+  <td>
+	<select name="item" class="form-control" required>
 	<c:forEach var="menu" items="${menu}" varStatus="status">
 	<option value="<c:out value="${menu.item}"/>">
 	<c:if test="${result.item == menu.item}">selected="selected"</c:if><c:out value="${menu.item}"/>
@@ -48,14 +48,13 @@ tr{padding:15px;}
 			 </c:forEach>
 	</select>
 </td>
-    <td><input type="text" id="ea" name="ea"></td>   
+    <td><input type="text" id="ea" name="ea" class="form-control" required></td>   
   </tr>
 
   <tr>
 <td></td>
-<td style="text-align:right;"><input type="submit" value="등록"></td>
+<td style="text-align:right;"><input type="submit" value="등록" class="btn btn-default"></td>
   </tr>
-
 </table>
 </fieldset>
 </form>

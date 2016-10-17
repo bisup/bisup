@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="sales">
+<!-- 월별 매출 등록 -->
 <select id="menuList" parameterType="String" resultType="command.MenuCommand">
-select id,item,price from menu where id=#{id}
+select id,item from menu where id=#{id}
 </select>
 
+<select id="menuList2" parameterType="String" resultType="command.SaleCommand">
+select id,item from sale where id=#{id} and sdate=#{sdate}
+</select>
 
 <insert id="insertSales" parameterType="command.SaleCommand">
 insert into sale(id,sdate,item,ea) values (#{id}, #{sdate}, #{item}, #{ea})
@@ -26,25 +30,25 @@ update sale set ea=#{ea} where id=#{id} and item=#{item} and sdate=#{sdate}
 </update>
 
 
-
 <!-- 부수비용 부분 -->
 <insert id="insertOther" parameterType="command.OtherCommand">
-insert into other(id,mon,rent,sal,mcost,duty,prcost) values (#{id}, #{mon}, #{rent}, #{sal}, #{mcost}, #{duty}, #{prcost})
+insert into other(id,year,mon,rent,sal,mcost,duty,prcost) values (#{id}, #{year}, #{mon}, #{rent}, #{sal}, #{mcost}, #{duty}, #{prcost})
 </insert>
 
 
 <select id="otherList" parameterType="String" resultType="command.OtherCommand">
-select id,mon,rent,sal,mcost,duty,prcost,etcco from other where id=#{id}
+select id,year,mon,rent,sal,mcost,duty,prcost,etcco from other where id=#{id}
 </select>
 
 <update id="otherTotal" parameterType="command.OtherCommand">
-update other set (etcco) = (select(select rent+sal+mcost+duty+prcost from other where id=#{id} and mon=#{mon})as etcco from dual) where id=#{id} and mon=#{mon}
+update other set (etcco) = (select(select rent+sal+mcost+duty+prcost from other where id=#{id} and year=#{year} and mon=#{mon})as etcco from dual) where id=#{id} and year=#{year} and mon=#{mon}
 </update>
 
 
 <update id="updateOther" parameterType="command.OtherCommand">
-update other set rent=#{rent},sal=#{sal},mcost=#{mcost},duty=#{duty},prcost=#{prcost} where id=#{id} and mon=#{mon}
+update other set rent=#{rent},sal=#{sal},mcost=#{mcost},duty=#{duty},prcost=#{prcost} where id=#{id} and year=#{year} and mon=#{mon}
 </update>
+
 
 <!-- 월별매출 차트 -->
 	<select id="salePerMon" parameterType="String" resultType="command.SaleCommand">

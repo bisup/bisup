@@ -11,9 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  		
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 .gcode {
@@ -116,7 +113,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  var accessToken = '110998a8-89cb-442d-bfc2-bbaddf515fa8';
+  var accessToken = '4ab2e848-96c2-4ffd-b39a-012a1dcfd121';
   var consumer_key = 'bce731c194bf44debe25';
   var consumer_secret = 'b91c3a3960a146b5b79e';
 	var map, mapOptions, oriArea, sopArea, logger, divConsole, polygons;
