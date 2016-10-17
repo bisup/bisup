@@ -43,6 +43,8 @@ public class ConcertingController {
 		return "manual";
 	}
 	
+	
+	
 	@RequestMapping("/bisup_concerting/relation.do")
 	public String relationView(){
 		System.out.println("relationø‰√ª");
