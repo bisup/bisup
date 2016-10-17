@@ -60,33 +60,15 @@
   <tr>
       <th>#</th>
       <th>동이름</th>
-      <th>여자비율</th>
-      <th>남자비율 </th>
-      <th>여자인구 </th>
-      <th>남자인구 </th>
       <th>총인구 </th>
+      <th>남자인구 </th>
+      <th>여자인구 </th>
          </tr>
        </thead>
        <tbody class="tbody1">
     </tbody></table>
     
-    <table  class="table2">
-  <thead>  
-  <tr>
-      <th>#</th>
-      <th>동이름</th>
-      <th>10대미만</th>
-      <th>10대</th>
-      <th>20대 </th>
-      <th>30대 </th>
-      <th>40대 </th>
-      <th>50대 </th>
-      <th>60대 </th>
-      <th>70대 이상 </th>
-         </tr>
-       </thead>
-       <tbody class="tbody2">
-    </tbody></table>
+  
 
 
 
@@ -233,7 +215,7 @@
 										// 맵형태로 변환 한다.
 									
 										 target = res.result;
-						     						$(".tbody2").find("tr").remove(); 
+						     						
 						     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
 						     							
 						     							 value=target[0];
@@ -298,7 +280,7 @@
  
 
 <div id="chartView" style="display: none;"></div>
-<div id="chartBar" style="display:none;"></div>
+
 
 
 </body>
