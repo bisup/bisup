@@ -30,7 +30,7 @@
   transition: all 400ms cubic-bezier(.4,0,.2,1);
   color: #23BAB5;
 } 
-
+   
 a {
   color: #23bab5;
 }
