@@ -101,9 +101,9 @@ import dao.MypageDAO;
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
 		MemberCommand membercommand = mypageDAO.updateForm(id);
 		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
-		model.addAttribute("member", membercommand);
+		model.addAttribute("mem", membercommand);
 		model.addAttribute("gucode", membercommand.getGucode());
-		
+		model.addAttribute("snum",membercommand.getSnum());
 		System.out.println("gucode:::"+membercommand.getGucode());
 	
 		return "modifyForm";//
