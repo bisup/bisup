@@ -34,4 +34,7 @@ public class LoginDAO extends SqlSessionDaoSupport {
 			return x;
 		}
 	}
+	public String getnic(String id){
+		return getSqlSession().selectOne("logmain.nick",id);	
+	}
 }

@@ -100,7 +100,7 @@ $(document).ready(function() {
                     			<tr>
                     				<td>${list.NUM}</td>
                     				<td>${list.WRITER}</td>
-                    				<td><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}">${list.TITLE}</a></td>
+                    				<td><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><c:if test="${sessionScope.sort == 0}"><a href="/bisup/bisup/question/qcontents.do?num=${list.NUM}"></c:if><c:if test="${sessionScope.sort != 0}"><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}"></c:if>${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
                     				<td>${list.REG}</td>
                     			</tr>

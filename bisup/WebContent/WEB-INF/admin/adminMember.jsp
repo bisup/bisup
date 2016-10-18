@@ -18,7 +18,7 @@
 	$("document").ready(
 			function() {
 				var url = "/bisup/admin/allMembers.do";
-				var pageNum = {pageNum:${pageNum}};
+				var pageNum = {pageNum:'${pageNum}'};
 				$.ajax({
 					type : "post",
 					url : url,

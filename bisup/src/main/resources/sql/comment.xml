@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+<insert id="insert" parameterType="command.CommantCommand">
+          INSERT
+          INTO question_re(qnum, rpw, rwriter, rcontents, rreg)
+        VALUES(#{qnum}, question_re_qnum.NEXTVAL,#{rwriter},#{rcontents},sysdate)
+      </insert>
+<delete id="delete" parameterType="command.CommantCommand">
+from question_re where qnum = #{qnum} and rpw = #{rpw}
+</delete>
+<select id="select" parameterType="int" resultType="command.CommantCommand">
+select * from question_re where qnum =#{qnum}
+</select>
+</mapper>

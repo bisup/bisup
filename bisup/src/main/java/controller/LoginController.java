@@ -45,7 +45,7 @@ public class LoginController{
 		return "bisup_login/loginmain";//
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST) //로그인 할때
 	public String submit(@ModelAttribute("login") MemberCommand memberCommand,BindingResult result, HttpSession session
 			) {
 		new LoginCommandValidator().validate(memberCommand, result);
@@ -55,23 +55,28 @@ public class LoginController{
 		}
 		try{
 			int sort = loginDAO.selLog(memberCommand.getId(), memberCommand.getPw());
+			String nick=loginDAO.getnic(memberCommand.getId());
 			if(sort==0){
 				System.out.println("관리자 로그인");
 				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("nick",nick);
 				session.setAttribute("sort", sort);
+				System.out.println(nick);
+			
 				return "main";
 			}else if(sort == 2){
 				System.out.println("자영업자 로그인");
 				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("nick",nick);
 				session.setAttribute("sort", sort);
 				return "main";
 			}else if(sort == 1){
 				System.out.println("창업예정자 로그인");
 				session.setAttribute("id",memberCommand.getId());
+				session.setAttribute("nick",nick);
 				session.setAttribute("sort", sort);
 				return "main";
 			}else{
-				System.out.println("꺼져");
 				return "bisup_login/loginfail";
 			}
 			

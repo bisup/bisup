@@ -141,16 +141,13 @@
                             <span class="form-inline" role="form">
                             <p>
                             <div class="form-group">
-                           	 	<input type="text" id="commentParentName" name="rwriter" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
-                            </div>
-                            <div class="form-group">
-                            	<input type="password" id="commentParentPassword" name="rpw" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">
+                           	 	<input type="text" id="commentParentName" name="rwriter"  class="form-control col-lg-2" data-rule-required="true" placeholder="이름" value="${sessionScope.nick}" readonly="readonly">
                             </div>
                             <div class="form-group">
                             	<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
                             </div>
                             </p>
-                            <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4" name="rcontents"></textarea>
+                            <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4" name="rcontents" ></textarea>
                             </span>
                             </td>
                         </tr>
@@ -193,15 +190,30 @@
                                     alert("이름을 입력하세요.");
                                     pName.focus();
                                     return;
-                                }else if($.trim(pPassword.val())==""){
-                                    alert("패스워드를 입력하세요.");
-                                    pPassword.focus();
-                                    return;
                                 }else if($.trim(pText.val())==""){
                                     alert("내용을 입력하세요.");
                                     pText.focus();
                                     return;
                                 }
+                                var num=$('#num').val();
+                               
+                                var url ="/bisup/bisup/question/indel.do?num="+num+"&rwriter="+pName.val()+"&rcontents="+pText.val(); 
+                                $.ajax({
+                                	type:"get",
+                                	url:url,
+                                	dataType:"json",
+								success:function(data){
+									//var b=Number(1);
+									//var i=parseInt(args.x);
+								/* 	args.x.typeofValue */
+									if(data.x = 0 ){
+										alert("댓글 달기 실패");
+
+									}else{
+										alert("댓글 달기 완료");			
+										}
+								}
+                                });  
                                    
                                 var commentParentText = '<tr id="r1" name="commentParentCode">'+
                                                             '<td colspan=2>'+
@@ -226,16 +238,11 @@
                             $(document).on("click","#commentChildSubmit", function(){
                                    
                                 var cName = $("#commentChildName");
-                                var cPassword = $("#commentChildPassword");
                                 var cText = $("#commentChildText");
                                    
                                 if($.trim(cName.val())==""){
                                     alert("이름을 입력하세요.");
                                     cName.focus();
-                                    return;
-                                }else if($.trim(cPassword.val())==""){
-                                    alert("패스워드를 입력하세요.");
-                                    cPassword.focus();
                                     return;
                                 }else if($.trim(cText.val())==""){
                                     alert("내용을 입력하세요.");
@@ -373,10 +380,10 @@
            }else{
             alert("비밀번호가 일치하지 않습니다.");
              return false; 
-           
+        }
           }
          }
-        }
+         
 </script>
 		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
@@ -385,7 +392,7 @@
 				  <form id="dform" method="get" action="qdelete.do">
 					<input type="password" id="pw1" name="pw1" placeholder="비밀번호를 입력하세요." >
 					<input type="hidden" id="pwCheck" value="${boardCommand.pw }"/>
-					<input type="hidden" name="num" value="${boardCommand.num }"/>
+					<input type="hidden" name="num" id="num" value="${boardCommand.num }"/>
 					<input type="submit" name="delete" class="login loginmodal-submit" value="삭제" >
 				  </form>
 				</div>

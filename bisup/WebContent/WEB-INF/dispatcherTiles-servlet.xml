@@ -66,6 +66,9 @@
 	<bean id="joindao" class="dao.JoinDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="commentDAO" class="dao.CommentDAO">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
     
 	<bean id="boardService" class="service.QuestionServiceImple">
 		<property name="questionDAO" ref="questionDAO"/>

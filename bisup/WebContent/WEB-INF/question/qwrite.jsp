@@ -18,7 +18,7 @@
 	  
 		  <div class="form-group">
 		    <label for="exampleInputEmail1">작성자</label>
-		    <input type="text" class="form-control" name="writer" placeholder="닉네임을 입력하세요." required>
+		    <input type="text" class="form-control" name="writer"  value="${sessionScope.nick}" readonly="readonly">
 		  </div>
 		  
 		  <div class="form-group">

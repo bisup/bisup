@@ -3,20 +3,42 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import command.BoardCommand;
+import command.CommantCommand;
 import command.ReCommand;
+import dao.CommentDAO;
 import dao.QuestionDAO;
+import net.sf.json.JSONObject;
 import service.QuestionServiceImple;
 
 @Controller
 public class QuestionController {
+
+	
+	@Autowired
+	private CommentDAO commentDAO;
+	
+	public CommentDAO getCommentDAO() {
+		return commentDAO;
+	}
+
+	public void setCommentDAO(CommentDAO commentDAO) {
+		this.commentDAO = commentDAO;
+	}
 
 	@Autowired
 	private QuestionServiceImple boardService;
@@ -209,9 +231,11 @@ public class QuestionController {
 	@RequestMapping(value = "/question/qcontents.do", method = RequestMethod.GET)
 	public ModelAndView contents(@RequestParam("num") int num) throws Exception {
 		ModelAndView mav = new ModelAndView("qcontents");
+		List<CommantCommand> li= commentDAO.getList(num);
 		BoardCommand boardCommand = new BoardCommand();
 		boardCommand = boardService.selectboardContents(num);
 		mav.addObject("boardCommand", boardCommand);
+		mav.addObject("commantli", li);
 		return mav;
 	}
 
@@ -266,22 +290,24 @@ public class QuestionController {
 	
 	
 	//´ñ±Û
-	public ModelAndView reInsert(
+	
+	  @RequestMapping(value="/question/indel.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String reInsert(
 			@RequestParam("num") int num,
 			@RequestParam("rwriter") String rwriter, 
-			@RequestParam("rpw") String rpw,
-			@RequestParam("rcontents") String rcontents){
-		
+			@RequestParam("rcontents") String rcontents,HttpServletResponse resp){
+		 System.out.println(num+rwriter+" "+rcontents);
+		  resp.setContentType("text/html; charset=UTF-8");
 		ModelAndView mav = new ModelAndView("good");
-		ReCommand reCommand = new ReCommand();
-		
-		
+		CommantCommand reCommand = new CommantCommand();
+		JSONObject jso = new JSONObject();
 		reCommand.setQnum(num);
 		reCommand.setRwriter(rwriter);
-		reCommand.setRpw(rpw);
 		reCommand.setRcontents(rcontents);
-		
-		return mav;
+		int x=commentDAO.insertC(reCommand);
+		jso.put("x", x);
+		return jso.toString();
 		
 	}
 	
