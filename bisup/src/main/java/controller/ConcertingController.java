@@ -16,7 +16,7 @@ import dao.consultingDAO;
 @Controller
 public class ConcertingController {
 	
- 
+  
 
 	public void setDao2(consultingDAO dao2) {
 		this.dao2 = dao2;
@@ -42,6 +42,8 @@ public class ConcertingController {
 		System.out.println("manualø‰√ª");
 		return "manual";
 	}
+	
+	
 	
 	@RequestMapping("/bisup_concerting/relation.do")
 	public String relationView(){

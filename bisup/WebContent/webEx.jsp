@@ -32,7 +32,7 @@ request.setCharacterEncoding("utf-8");
     //단지 그걸 볼 수 있는 user는 param안의 id와 쪽지의 sub가 일치하는 쪽지로 한정되어있습니다.
     function onMessage(event) {
     	var url="/bisup/mystore/Broadcasting/onMessage.do";
-        var param={id:${sessionScope.id},mcontents:event.data};
+        var param={id:'${sessionScope.id}',mcontents:event.data};
     	$.ajax({
     		type:"post"
     		,url:url
@@ -54,7 +54,8 @@ request.setCharacterEncoding("utf-8");
     //웹소켓이 실행(창이 열림)되는 순간 접속한 ID에게 온 쪽지를 보여줍니다(5일치).
     function onOpen(event) {
         var url="/bisup/mystore/Broadcasting/onOpen.do";
-        var param={id:${sessionScope.id}};
+
+        var param={id:'${sessionScope.id}'};
         $.ajax({
     		type:"post"
     		,url:url
@@ -89,7 +90,11 @@ request.setCharacterEncoding("utf-8");
     function send() {
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
+<<<<<<< HEAD
         var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:${sessionScope.id}};
+=======
+        var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'${sessionScope.id}'};
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
         $.ajax({
     		type:"post"
     		,url:url

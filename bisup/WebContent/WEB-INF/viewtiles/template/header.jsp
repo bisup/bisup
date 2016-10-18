@@ -57,7 +57,7 @@ color: blue;
         </li>
         
          <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">매출 현황<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">트렌드 보고서<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
             <li class="divider"></li>

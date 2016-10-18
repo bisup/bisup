@@ -2,7 +2,7 @@ package command;
  
 // 거래처 정보
 public class consultingCommand {
-	
+	 
 	private String division; // 구분
 	private String company; // 업체명
 	private String address; // 주소

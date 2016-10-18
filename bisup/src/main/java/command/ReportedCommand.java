@@ -3,12 +3,19 @@ package command;
 import java.sql.Timestamp;
 
 public class ReportedCommand {
-	
+	 
 	private int num; //
 	private String id;
 	private String title;
 	private Timestamp reg;
+	private String address;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public int getNum() {
 		return num;
 	}

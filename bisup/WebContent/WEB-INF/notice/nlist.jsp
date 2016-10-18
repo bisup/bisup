@@ -38,7 +38,6 @@ $(document).ready(function() {
             {
                 //hide rows
                 tableRowsClass.eq(i).hide();
-                
             }
             else
             {

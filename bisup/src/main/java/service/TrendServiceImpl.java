@@ -23,7 +23,7 @@ public class TrendServiceImpl implements TrendService{
 	
 	public List<GuCommand> listgu(){
 		List<GuCommand> list = null;
-		      
+		       
 		try{
 			list = trendDAO.getListgu();
 		}catch(Exception e){
@@ -76,20 +76,21 @@ public class TrendServiceImpl implements TrendService{
 		      
 		try{
 			list = trendDAO.selectReportList();
-			System.out.println("list.."+list);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}
 		return list;
 	}
 	
-	public void updatereport(int num){
-		int count = 0;
+	public int insertReport(ReportedCommand rc){
+		int check = 0;
 		try{
-			count = trendDAO.updatecount(num);
+			check = trendDAO.insertReport(rc);
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}
+		return check;
+		
 	}
 	
 	

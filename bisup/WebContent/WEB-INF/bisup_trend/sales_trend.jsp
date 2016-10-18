@@ -17,7 +17,7 @@
 .trend{
 	text-align: left;	
 }
-</style>
+</style> 
 <script>
 $(function(){
 		//구 테이블의 리스트 가져오기

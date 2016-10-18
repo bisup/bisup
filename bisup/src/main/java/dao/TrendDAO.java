@@ -15,7 +15,7 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		List<GuCommand> total= getSqlSession().selectList("trend.concerting");
 		return total;
 	}
-	
+	 
 	public List getListtotal(String gucode){
 		ArrayList total1 = (ArrayList) getSqlSession().selectList("trend.total", Integer.parseInt(gucode));
 		return total1;	
@@ -40,10 +40,15 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		List<ReportedCommand> list = getSqlSession().selectList("trend.selectReportList");
 		return list;
 	}
-	
-	public int updatecount(int num){
-		return getSqlSession().delete("trend.updatereport", num);
+
+	public int insertReport(ReportedCommand rc) {
+		int check1 = getSqlSession().insert("trend.insert", rc);
+		return check1;
 	}
+	
+	
+	
+	
 	
 	
 
