@@ -21,7 +21,51 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://sgisapi.kostat.go.kr/OpenAPI3/auth/javascriptAuth?consumer_key=bce731c194bf44debe25"></script>
+<style>
+#content {
+    clear: both;
+    width: 2200px;
+    min-height: 400px;
+    margin: auto;
+    padding: 55px 0 100px;
+    overflow: hidden;
+    padding-left:18%;
+}
+.tb_date{
+   
+    table-layout: fixed;
+    border: 0;
+    border-spacing: 0;
+    border-top: 3px solid #444;
+    background: #fff;
+    overflow: hidden;
+    
+}
+#th{
+    padding: 12px;
+    height: 24px;
+    border: 0;
+    border-left:  solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+    text-align: center;
+}
 
+.tb_date>tbody>tr>td{
+	padding: 12px;
+    height: 24px;
+    border-left: 0px solid #cbcbcb;
+    border-bottom: 2px solid #cbcbcb;
+    text-align: center;
+    table-layout: fixed;
+    border: 1;
+    border-spacing: 0;
+    border-top: 3px solid #444;
+    overflow: hidden;
+} 
+
+
+
+</style>
 </head>
 
 <body>
@@ -56,25 +100,11 @@
          <br>
          <br>
          <br>
-          
- <div id="main" style="margin-bottom: 500px; width: 1800px; margin-left:250px;">
+ <div id="content">         
+ <div id="main" style="margin-bottom: 500px; width: 2200px; ">
 <div id="left_main"style="float:left; width:660px;">
-<div id="map" style="width:650px;height:400px;"></div> <!-- 지도 구역 구간 -->
-
-
-<table  class="table1">
-  <thead>  
-  <tr>
-      <th>#</th>
-      <th>동이름</th>
-      <th>총인구 </th>
-      <th>남자인구 </th>
-      <th>여자인구 </th>
-         </tr>
-       </thead>
-       <tbody class="tbody1">
-    </tbody></table>
-</div>
+<div id="map" style="width:660px;height:400px;"></div> <!-- 지도 구역 구간 -->	
+			</div>
 
 
     
@@ -184,7 +214,7 @@
 				     							 value=target[0];
 				     							
 				     							
-				     		 $(".tbody1").append("<tr><td></td><td>"+value.adm_nm+"</td><td>"+value.total_ppl+"</td><td>"+value.f_ppl+"</td><td>"+value.m_ppl+"</td></tr>");  
+				     		 $(".tbody1").append("<tr><td>"+value.adm_nm+"</td><td>"+value.total_ppl+"</td><td>"+value.f_ppl+"</td><td>"+value.m_ppl+"</td></tr>");  
 				     							/* var chartlist1=[];
 				     					 		chartlist.push(value.total_ppl);
 				     					 		chartlist.push(value.f_ppl);
@@ -282,9 +312,27 @@
 		); /* 클릭펑션종료 */
       	});
 </script> 
-
+<div>
 <div id="right_main" style="float: left;">
-<div id="chartView" style="display: none;"></div>
+<div>
+<table class="tb_date" width="650">
+					<thead>
+						<tr>
+
+							<th id="th" style="border-left: 0">동이름</th>
+							<th id="th">총인구</th>
+							<th id="th">남자인구</th>
+							<th id="th">여자인구</th>
+						</tr>
+					</thead>
+					
+					<tbody class="tbody1" >
+						
+					</tbody>
+				</table>
+<div id="chartView" style="display: none;" ></div>
+</div>
+</div>
 </div>
 </div>
 </div>
