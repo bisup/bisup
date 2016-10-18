@@ -103,7 +103,8 @@ import dao.MypageDAO;
 		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
 		model.addAttribute("mem", membercommand);
 		model.addAttribute("gucode", membercommand.getGucode());
-		model.addAttribute("snum",membercommand.getSnum());
+		model.addAttribute("snum", membercommand.getSnum());
+		model.addAttribute("tel", membercommand.getTel());
 		System.out.println("gucode:::"+membercommand.getGucode());
 	
 		return "modifyForm";//
@@ -111,6 +112,11 @@ import dao.MypageDAO;
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
 	public String formPost(@ModelAttribute("member") MemberCommand membercommand){
+		/*, @RequestParam("snum1") int s, @RequestParam("tel1") String t
+		if(s != 0){
+			membercommand.setSnum(s);
+			membercommand.setTel(t);
+		}*/
 		
 		int gucode=membercommand.getGucode();
 		String id=membercommand.getId();

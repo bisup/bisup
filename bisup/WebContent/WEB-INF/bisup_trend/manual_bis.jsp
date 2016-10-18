@@ -31,20 +31,7 @@
 <title>Insert title here</title>
 </head>
 <script>
-/* $(document).ready(function(){
- 	$('#image1').hover(function a(){
-		document.getElementById('infochang').style.display = '';
-}); 
 
- 	$('#image1').mouseout(function b(){
- 		
-		document.getElementById('infochang').style.display = 'none';
-}); 
- 	
-
-
-
-}); */
 
 $(document).ready(function(){
     $('#image1').hover(function(){
