@@ -137,10 +137,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <hr>
                     <c:forEach items="${commantli}" var="comm">
                     <table  class="table table-condensed">
                      <tr id="r1" name="commentParentCode">
-                    <td colspan=2><strong>${comm.rwriter}</strong>&nbsp;&nbsp; ${comm.rreg } | <a style="cursor:pointer;" name="pDel" href="/bisup/bisup/question/rdelete.do?num="+num+"&rpw="+" >삭제</a><p>
+                    <td colspan=2><strong>${comm.rwriter}</strong>&nbsp;&nbsp; ${comm.rreg } | <a style="cursor:pointer;" name="pDel" onclick="rdel(${comm.rpw },${comm.qnum })">삭제</a><p>
                     ${comm.rcontents}</p></td></tr>
                    </table> </c:forEach>
                     <table id="commentTable" class="table table-condensed"></table>
@@ -151,12 +152,11 @@
                             <p>
                             <div class="form-group">
                            	 	<input type="text" id="commentParentName" name="rwriter"  class="form-control col-lg-2" placeholder="이름" value="${sessionScope.nick}" readonly="readonly">
-                            </div>
-                            <div class="form-group">
-                            	<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+                           		<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+                            <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4" name="rcontents" ></textarea>
                             </div>
                             </p>
-                            <textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4" name="rcontents" ></textarea>
+                            
                             </span>
                             </td>
                         </tr>
@@ -184,13 +184,10 @@
                     </table>
                     </form>
                     <script>
-   
-                        $(function(){
+    $(function(){
                                
-                            //제일 하단에 있는 depth1의 댓글을 다는 이벤트
-                            $("#commentParentSubmit").click(function( event ) {
-                                   
-                                //ajax로 저장하고 성공하면 저장한 데이터를 가져와 넣어야 하는데 여기서는 테스트라 그냥 입력값을 가져옴
+              $("#commentParentSubmit").click(function( event ) {
+                                    //ajax로 저장하고 성공하면 저장한 데이터를 가져와 넣어야 하는데 여기서는 테스트라 그냥 입력값을 가져옴
                                 var pName = $("#commentParentName");
                                 var pPassword = $("#commentParentPassword");//패스워드를 노출 시켰는데 저장하고 나서 저장한 날짜를 보여줄 예정
                                 var pText = $("#commentParentText");
@@ -224,12 +221,13 @@
 										}
 								}
                                 });  
+              });
                                    
-                                var commentParentText = '<tr id="r1" name="commentParentCode">'+
+                              /*   var commentParentText = '<tr id="r1" name="commentParentCode">'+
                                                             '<td colspan=2>'+
                                                                 '<strong>'+pName.val()+'</strong> '+sysdate+' <a style="cursor:pointer;" name="pAdd">답글</a> | <a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
                                                             '</td>'+
-                                                        '</tr>';
+                                                        '</tr>'; */
                                    
                                 //테이블의 tr자식이 있으면 tr 뒤에 붙인다. 없으면 테이블 안에 tr을 붙인다.
                                 if($('#commentTable').contents().size()==0){
@@ -245,7 +243,7 @@
                             });
                                
                             //댓글의 댓글을 다는 이벤트
-                            $(document).on("click","#commentChildSubmit", function(){
+                          /*   $(document).on("click","#commentChildSubmit", function(){
                                    
                                 var cName = $("#commentChildName");
                                 var cText = $("#commentChildText");
@@ -266,9 +264,9 @@
                                                                 '<strong>'+cName.val()+'</strong> | <a style="cursor:pointer;" name="cDel">삭제</a>'+
                                                                 '<p>'+cText.val().replace(/\n/g, "<br>")+'</p>'+
                                                             '</td>'+
-                                                        '</tr>';
+                                                        '</tr>'; */
                                                            
-                                //앞의 tr노드 찾기
+                         /*        //앞의 tr노드 찾기
                                 var prevTr = $(this).parent().parent().parent().parent().prev();
                                 //댓글 적는 에디터 삭제
                                 $("#commentEditor").remove();//여기에서 삭제를 해줘야 에디터tr을 안 찾는다.
@@ -298,35 +296,40 @@
                                 }
                                    
                             });
+                            } */
+                          function rdel(rpw,qnum){//동적으로 버튼이 생긴 경우 처리 방식
+                                
+                                if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+                                       
+                                    var delComment = $(this).parent().parent();
+                                    var nextTr = delComment.next();
+                                    var delTr;
+                            var url ="/bisup/bisup/question/rdelete.do?num="+qnum+"&rpw="+rpw; 
+                            $.ajax({
+                            	type:"get",
+                            	url:url,
+                            	dataType:"json",
+							success:function(data){
+								alert("##");
+								//var b=Number(1);
+								//var i=parseInt(args.x);
+							/* 	args.x.typeofValue */
+								if(data.x = 0 ){
+									alert("댓글 삭제");
+
+								}else{
+									alert("댓글 삭제 완료");
+									window.location.reload();
+									}
+							}
+                            });  
+                            }
+                                }
+                                 
                                
                             //답글링크를 눌렀을때 에디터 창을 뿌려주는 이벤트, 삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
-                            $(document).on("click","table#commentTable a", function(){//동적으로 버튼이 생긴 경우 처리 방식
-                                   
-                                if($(this).attr("name")=="pDel"){
-                                    if (confirm("답글을 삭제 하시면 밑에 답글도 모두 삭제 됩니다. 정말 삭제하시겠습니까?") == true){    //확인
-                                           
-                                        var delComment = $(this).parent().parent();
-                                        var nextTr = delComment.next();
-                                        var delTr;
-                                        //댓글(depth1)의 댓글(depth2_1)이 있는지 검사하여 삭제
-                                        while(nextTr.attr("name")=="commentCode"){
-                                            nextTr = nextTr.next();
-                                            delTr = nextTr.prev();//삭제하고 넘기면 삭제되서 없기 때문에 다음값을 가져오기 어려워 다시 앞으로 돌려서 찾은 다음 삭제
-                                            delTr.remove();
-                                        }
-                                           
-                                        delComment.remove();
-                                           
-                                    }else{   //취소
-                                        return;
-                                    }
-                                }else if($(this).attr("name")=="cDel"){
-                                    if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-                                        $(this).parent().parent().remove();
-                                    }else{   //취소
-                                        return;
-                                    }
-                                }else{
+                           
+                                /* else{
                                     //자기 부모의 tr을 알아낸다.
                                     var parentElement = $(this).parent().parent();
                                     //댓글달기 창을 없앤다.
@@ -365,8 +368,8 @@
                             });
                             $( "#write" ).click(function( event ) {
                                 location.href='/community/notice/edit';
-                            }); */
-                        });
+                            }); */ 
+                        
                     </script>
                 </div>
             </div>

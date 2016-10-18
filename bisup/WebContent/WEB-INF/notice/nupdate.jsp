@@ -28,10 +28,10 @@
 	  </div>
 	  <input type="hidden" name="cnt" value="${boardCommand.cnt }" disabled>
 	  <!-- @RequestParam 사용 -->
-	  <div class="form-group">
+	 <!--  <div class="form-group">
 	    <label for="exampleInputPassword1">업로드할 파일 선택</label>
 		<input type="file" name="filename" /> <br> 
-	  </div>
+	  </div> -->
 	  <br>
                                          
 	  <div align="right">

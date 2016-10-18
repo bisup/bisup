@@ -94,7 +94,12 @@ color: blue;
           <li class="dropdown"><!-- 창업컨설팅 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Q & A<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+          <c:if test="${sessionScope.sort==0}">
+            <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항</a></li>
+            </c:if>
+             <c:if test="${sessionScope.sort!=0}">
             <li><a href="/bisup/bisup/notice/nlist.do">공지사항</a></li>
+            </c:if>
             <li class="divider"></li>	
             <li><a href="/bisup/bisup/question/qlist.do">문의사항</a></li>
           </ul>

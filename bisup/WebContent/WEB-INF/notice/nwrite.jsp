@@ -26,10 +26,10 @@
 	    <textarea class="form-control" rows="5" id="comment" name="contents" placeholder="작성할 내용을 입력하세요." required></textarea>
 	  </div>
 	  
-	  <div class="form-group">
+	 <!--  <div class="form-group">
 	    <label for="exampleInputFile">파일</label>
 	    <input type="file" class="form-control">
-	  </div>
+	  </div> -->
 	  <br>
 	  
 	  <div align="right">

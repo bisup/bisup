@@ -28,7 +28,7 @@
     </select>
     
     <select id="selectGu" resultType="command.GuCommand">
-    	select * from gu
+    	select * from gu  order by gn
     </select>
     
     <!-- admcd테이블에 구명 -->
@@ -42,7 +42,7 @@
     </select>
     
     <select id="danger" parameterType="int" resultType="command.GuCommand">
-    select * from danger where gcode=#{gcode}
+    select * from danger where gcode=#{gcode} order by gn
     </select>
     
      <select id="dand" parameterType="int" resultType="command.GuCommand">

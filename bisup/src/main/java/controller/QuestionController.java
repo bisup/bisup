@@ -310,15 +310,19 @@ public class QuestionController {
 		return jso.toString();
 		
 	}
-	  @RequestMapping(value = "/question/rdelete.do", method = RequestMethod.GET)
-		public ModelAndView rdelete(@RequestParam("num") int num,@RequestParam("rpw") int rpw) throws Exception {
-			ModelAndView mav = new ModelAndView("qcontents");
+	  @RequestMapping(value = "/question/rdelete.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+		public String rdelete(@RequestParam("num") int num,@RequestParam("rpw") int rpw) throws Exception {
+			JSONObject jso = new JSONObject();
+			 System.out.println(num+" "+rpw);
 			CommantCommand rd = new CommantCommand();
 			rd.setQnum(num);
 			rd.setRpw(rpw);
 			int x=commentDAO.deleteCmt(rd);
+			
 			System.out.println("ªË¡¶:"+x);
-			return mav;
+			jso.put("x", x);
+			return jso.toString();
 		}
 	
 }

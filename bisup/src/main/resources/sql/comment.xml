@@ -7,7 +7,7 @@
         VALUES(#{qnum}, question_re_qnum.NEXTVAL,#{rwriter},#{rcontents},sysdate)
       </insert>
 <delete id="delete" parameterType="command.CommantCommand">
-from question_re where qnum = #{qnum} and rpw = #{rpw}
+delete from question_re where qnum =#{qnum} and rpw = #{rpw}
 </delete>
 <select id="select" parameterType="int" resultType="command.CommantCommand">
 select * from question_re where qnum =#{qnum}

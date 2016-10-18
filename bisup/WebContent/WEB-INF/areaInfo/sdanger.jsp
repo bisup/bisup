@@ -19,6 +19,7 @@ request.setCharacterEncoding("UTF-8");
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.gcode').click(function(){
+		
 		var gcode = $(this).val() ;
 		var url="<%=cp%>/my/areaInfo/return.do";
 		var params="gcode="+gcode;
@@ -28,11 +29,12 @@ $(document).ready(function(){
 			data:params,
 			dataType:"json",
 			success:function(args){
+				$(".img").remove();
 				$(".tbody").find("tr").remove(); 
 				$(".th").find("th").remove();
 				$(".bto").find("button").remove();
 				$(".th").append( "<th>#</th><th>구이름</th><th>동이름</th><th>위험지표</th><th>평균 폐업기간</th><th>점포증감률</th>"); 
-				$(".bto").append("<button type='submit' class='btn'>비교하기</button>");
+				$(".bto").append("<button type='submit' onclick='' class='btn'>비교하기</button>");
 				
 				for(idx=0 ; idx<args.list.length ; idx++){
 					//alert(args.list[idx].dn);
@@ -111,6 +113,10 @@ $(document).ready(function(){
     var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
     chart.draw(data, options);
   }
+  
+  function dimg(){
+	  $(".img").remove();
+  }
     </script>
 <title>위험지표</title>
 </head>
@@ -135,12 +141,8 @@ $(document).ready(function(){
 <table  class="table">
   <thead>
   <tr class="th">
-     <!--  <th>#</th>
-      <th>구이름</th>
-      <th>동이름</th>  
-      <th>위험지표</th>
-      <th>평균 폐업기간</th>
-      <th>점포증감률</th> -->
+     
+     
          </tr>
        </thead>
        <tbody class="tbody">

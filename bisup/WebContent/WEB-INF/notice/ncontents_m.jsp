@@ -160,7 +160,7 @@
                             <tr>
                                 <td>
                                     <span style='float:right'>
-                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nlist.do'">목록</button>
+                                        <button type="button"  class="btn btn-default" onclick="javascript:location='/bisup/bisup/notice/nlist_m.do'">목록</button>
                                         
                                         <input type="hidden" name="num" value="${boardCommand.num }"/>
                                         <input type="hidden" name="title" value="${boardCommand.title }"/>
