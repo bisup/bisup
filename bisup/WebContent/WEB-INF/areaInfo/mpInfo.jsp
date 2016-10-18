@@ -26,7 +26,10 @@
 
 <body>
 <!-- gu/dong선택 -->
+<div id="wrap" align="center">
 <div id="dongS">
+
+<div id="header">
 <h4>지역을 선택해주세요</h4>
 <table class="table" style="position: relative; width:150px; text-align:center;">
  
@@ -46,13 +49,17 @@
 	</c:forEach> 
 	</tr>  
  	</table>
+</div>
 
  <div id="dcode"></div>
          </div> <!-- gu/dong선택 종료 -->
          <br>
          <br>
          <br>
-<div id="map" style="width:650px;height:400px"></div> <!-- 지도 구역 구간 -->
+          
+ <div id="main" style="margin-bottom: 500px; width: 1800px; margin-left:250px;">
+<div id="left_main"style="float:left; width:660px;">
+<div id="map" style="width:650px;height:400px;"></div> <!-- 지도 구역 구간 -->
 
 
 <table  class="table1">
@@ -67,6 +74,9 @@
        </thead>
        <tbody class="tbody1">
     </tbody></table>
+</div>
+
+
     
   
 
@@ -272,11 +282,12 @@
 		); /* 클릭펑션종료 */
       	});
 </script> 
- 
 
+<div id="right_main" style="float: left;">
 <div id="chartView" style="display: none;"></div>
-
-
+</div>
+</div>
+</div>
 
 </body>
 </html>

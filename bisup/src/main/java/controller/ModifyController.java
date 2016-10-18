@@ -102,19 +102,29 @@ import dao.MypageDAO;
 		MemberCommand membercommand = mypageDAO.updateForm(id);
 		System.out.println(membercommand.getTel());
 		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
-	/*	model.addAttribute("mem", membercommand);
-		model.addAttribute("gucode", membercommand.getGucode());
-		model.addAttribute("snum",membercommand.getSnum());
-		System.out.println("gucode:::"+membercommand.getGucode());*/
+	
 		//System.out.println(membercommand.getSnum());
 		mav.addObject("mem",membercommand);
 		mav.addObject("snum",membercommand.getSnum());
 		mav.addObject("gucode", membercommand.getGucode());
 		mav.addObject("tel", membercommand.getTel());
 		return mav;//
+
 	}
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
+
+/*	public String formPost(@ModelAttribute("member") MemberCommand membercommand){
+		, @RequestParam("snum1") int s, @RequestParam("tel1") String t
+		if(s != 0){
+			membercommand.setSnum(s);
+			membercommand.setTel(t);
+		}
+		  
+		int gucode=membercommand.getGucode();
+		String id=membercommand.getId();
+
+=======*/
 	public String formPost(@RequestParam("name")String name,@RequestParam("pw")String pw,@RequestParam("nick")String nick,@RequestParam("phone")String phone,@RequestParam("tel")String tel ,@RequestParam("sort")int sort,@RequestParam("snum")int snum,@RequestParam("gucode")int gucode, HttpSession session) throws Exception{
 		System.out.println("들어옴");
 	/*	int gucode=membercommand.getGucode();
@@ -129,6 +139,7 @@ import dao.MypageDAO;
 		membercommand.setSort(sort);
 		membercommand.setGucode(gucode);
 		membercommand.setTel(tel);
+
 		System.out.println("id="+id);
 		//membercommand.setGucode(gucode);
 		/*System.out.println("파라미터로 받아온 gu::"+ membercommand.getGucode());
