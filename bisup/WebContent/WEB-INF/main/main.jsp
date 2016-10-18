@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="/css/mainSlider.css">
+<link rel="stylesheet" type="text/css" href="/bisup/css/mainSlider.css">
 
 <!-- 이미래 -->
 <html>
