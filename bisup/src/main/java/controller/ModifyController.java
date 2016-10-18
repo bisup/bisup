@@ -126,7 +126,7 @@ import net.sf.json.JSONObject;
 			jso.put("n",mc);
 			return jso.toString();
 	    
-		}	
+		}	  
 	  
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)

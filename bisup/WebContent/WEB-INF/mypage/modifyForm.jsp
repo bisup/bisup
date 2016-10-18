@@ -113,7 +113,7 @@
                 		
                			 $('.guSelect').html('<form:label path="gucode"><b>관심지역</b></form:label>');
                			
-        		 
+          		 
                 	}
                } 
                 </script> 

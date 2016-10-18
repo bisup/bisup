@@ -24,7 +24,7 @@ function passwordCheck() {
         return false;
     }
 }
-  
+    
 function pass(){
 	  var pw = document.getElementById("pw").value;
     // 길이
