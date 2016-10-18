@@ -13,7 +13,7 @@
 	<context:annotation-config/>
 	<bean class="controller.ConcertingController" p:dao2-ref="dao2"/> <!-- 창업컨설팅 -->
   
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:db2.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />

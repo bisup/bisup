@@ -41,7 +41,7 @@
 	</bean> -->
 	<!-- <bean id="fileDB" class="mybatis.FileDB"/>
 	<bean id="questionFileDAO" class="mybatis.QuestionFileDAO" p:sqlSessionFactory-ref="sqlSessionFactory"/>
-	 -->
+	 -->    
 	
 	<!-- db연결 -->
 	<context:property-placeholder location="classpath:db.properties" />

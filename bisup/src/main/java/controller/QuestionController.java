@@ -312,13 +312,12 @@ public class QuestionController {
 	}
 	  @RequestMapping(value = "/question/rdelete.do", method = RequestMethod.GET)
 		public ModelAndView rdelete(@RequestParam("num") int num,@RequestParam("rpw") int rpw) throws Exception {
-			ModelAndView mav = new ModelAndView("qdelete");
+			ModelAndView mav = new ModelAndView("qcontents");
 			CommantCommand rd = new CommantCommand();
 			rd.setQnum(num);
 			rd.setRpw(rpw);
 			int x=commentDAO.deleteCmt(rd);
-			System.out.println("삭제:"+num);
-			boardService.deleteBoard(num);
+			System.out.println("삭제:"+x);
 			return mav;
 		}
 	
