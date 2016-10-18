@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -134,6 +137,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <c:forEach items="${commantli}" var="comm">
+                    <table  class="table table-condensed">
+                     <tr id="r1" name="commentParentCode">
+                    <td colspan=2><strong>${comm.rwriter}</strong>&nbsp;&nbsp; ${comm.rreg } | <a style="cursor:pointer;" name="pDel" href="/bisup/bisup/question/rdelete.do?num="+num+"&rpw="+" >삭제</a><p>
+                    ${comm.rcontents}</p></td></tr>
+                   </table> </c:forEach>
                     <table id="commentTable" class="table table-condensed"></table>
                     <table class="table table-condensed">
                         <tr>
@@ -141,7 +150,7 @@
                             <span class="form-inline" role="form">
                             <p>
                             <div class="form-group">
-                           	 	<input type="text" id="commentParentName" name="rwriter"  class="form-control col-lg-2" data-rule-required="true" placeholder="이름" value="${sessionScope.nick}" readonly="readonly">
+                           	 	<input type="text" id="commentParentName" name="rwriter"  class="form-control col-lg-2" placeholder="이름" value="${sessionScope.nick}" readonly="readonly">
                             </div>
                             <div class="form-group">
                             	<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
@@ -210,14 +219,15 @@
 										alert("댓글 달기 실패");
 
 									}else{
-										alert("댓글 달기 완료");			
+										alert("댓글 달기 완료");
+										window.location.reload();
 										}
 								}
                                 });  
                                    
                                 var commentParentText = '<tr id="r1" name="commentParentCode">'+
                                                             '<td colspan=2>'+
-                                                                '<strong>'+pName.val()+'</strong> '+pPassword.val()+' <a style="cursor:pointer;" name="pAdd">답글</a> | <a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
+                                                                '<strong>'+pName.val()+'</strong> '+sysdate+' <a style="cursor:pointer;" name="pAdd">답글</a> | <a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
                                                             '</td>'+
                                                         '</tr>';
                                    
@@ -228,8 +238,8 @@
                                     $('#commentTable tr:last').after(commentParentText);
                                 }
                                    
-                                $("#commentParentName").val("");
-                                $("#commentParentPassword").val("");
+                                $("#commentParentName").val("${sessionScope.nick}");
+                               // $("#commentParentPassword").val("");
                                 $("#commentParentText").val("");
                                    
                             });
@@ -253,7 +263,7 @@
                                 var commentChildText = '<tr name="commentChildCode">'+
                                                             '<td style="width:1%"><span class="glyphicon glyphicon-arrow-right"></span></td>'+
                                                             '<td style="width:99%">'+
-                                                                '<strong>'+cName.val()+'</strong> '+cPassword.val()+' <a style="cursor:pointer;" name="cAdd">답글</a> | <a style="cursor:pointer;" name="cDel">삭제</a>'+
+                                                                '<strong>'+cName.val()+'</strong> | <a style="cursor:pointer;" name="cDel">삭제</a>'+
                                                                 '<p>'+cText.val().replace(/\n/g, "<br>")+'</p>'+
                                                             '</td>'+
                                                         '</tr>';
@@ -328,10 +338,7 @@
                                                                 '<span class="form-inline" role="form">'+
                                                                     '<p>'+
                                                                         '<div class="form-group">'+
-                                                                            '<input type="text" id="commentChildName" name="commentChildName" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">'+
-                                                                        '</div>'+
-                                                                        '<div class="form-group">'+
-                                                                            ' <input type="password" id="commentChildPassword" name="commentChildPassword" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">'+
+                                                                            '<input type="text" id="commentChildName" name="commentChildName" class="form-control col-lg-2"  value="${sessionScope.nick}">'+
                                                                         '</div>'+
                                                                         '<div class="form-group">'+
                                                                             '<button type="button" id="commentChildSubmit" class="btn btn-default">확인</button>'+

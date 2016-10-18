@@ -310,6 +310,16 @@ public class QuestionController {
 		return jso.toString();
 		
 	}
-	
+	  @RequestMapping(value = "/question/rdelete.do", method = RequestMethod.GET)
+		public ModelAndView rdelete(@RequestParam("num") int num,@RequestParam("rpw") int rpw) throws Exception {
+			ModelAndView mav = new ModelAndView("qdelete");
+			CommantCommand rd = new CommantCommand();
+			rd.setQnum(num);
+			rd.setRpw(rpw);
+			int x=commentDAO.deleteCmt(rd);
+			System.out.println("ªË¡¶:"+num);
+			boardService.deleteBoard(num);
+			return mav;
+		}
 	
 }

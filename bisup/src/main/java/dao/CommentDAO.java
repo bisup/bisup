@@ -17,8 +17,8 @@ public class CommentDAO extends SqlSessionDaoSupport {
     	return getSqlSession().insert("comment.insert", cc);
     }
 
-    public void deleteCmt(CommantCommand cc) {
-    	getSqlSession().delete("comment.delete", cc);
+    public int deleteCmt(CommantCommand cc) {
+    	return getSqlSession().delete("comment.delete", cc);
     }
 
 }

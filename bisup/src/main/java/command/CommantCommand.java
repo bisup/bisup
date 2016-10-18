@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class CommantCommand {
 	private int qnum;
-	private String rpw;
+	private int rpw;
 	private String rwriter;
 	private String rcontents;
 	private Timestamp rreg;
@@ -14,10 +14,10 @@ public class CommantCommand {
 	public void setQnum(int qnum) {
 		this.qnum = qnum;
 	}
-	public String getRpw() {
+	public int getRpw() {
 		return rpw;
 	}
-	public void setRpw(String rpw) {
+	public void setRpw(int rpw) {
 		this.rpw = rpw;
 	}
 	public String getRwriter() {
@@ -38,7 +38,7 @@ public class CommantCommand {
 	public void setRreg(Timestamp rreg) {
 		this.rreg = rreg;
 	}
-	public CommantCommand(int qnum, String rpw, String rwriter, String rcontents, Timestamp rreg) {
+	public CommantCommand(int qnum, int rpw, String rwriter, String rcontents, Timestamp rreg) {
 		super();
 		this.qnum = qnum;
 		this.rpw = rpw;
