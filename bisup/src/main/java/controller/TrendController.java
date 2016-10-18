@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,15 +105,17 @@ public class TrendController {
 	@RequestMapping(value = "/bisup_trend/business_write1.do", method = RequestMethod.POST)
 	public ModelAndView writer(
 			@RequestParam(value="title") String title,
-			@RequestParam(value="id") String id,
+			@RequestParam(value="nickname") String nickname,
 			@RequestParam(value="address") String address)throws Exception{
 		
+	
 		ModelAndView mav = new ModelAndView("writer1");
 		ReportedCommand rc = new ReportedCommand();
-		rc.setId(id);
+		rc.setNickname(nickname);
 		rc.setTitle(title);
 		rc.setAddress(address);
 		mav.addObject("check", trendService.insertReport(rc));
+		
 		return mav;
 	}
 	

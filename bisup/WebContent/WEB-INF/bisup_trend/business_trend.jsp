@@ -1,7 +1,8 @@
 <%@ page  contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import = "java.util.Date" %>
+<%@ page import = "java.util.*" %>
+
 <!DOCTYPE html >
 <html>
 <head> 
@@ -62,9 +63,9 @@ a .btn{
 	<br><br>
 	<form action="bisup/bisup/bisup_trend/business_write.do" method="post">
 	<br>
-	<%-- <c:if test="${sessionScope.sort==0 }"> --%>
+	<c:if test="${sessionScope.sort==0 }">
     <input type="button" class="btn" value="글쓰기" style="float: right;" onclick=document.location="/bisup/bisup_trend/writer.do">
-	
+	</c:if>
 	<br><br><br>
 	<div>
 		<table border="1" width="1200" class="tb_date">
@@ -83,9 +84,9 @@ a .btn{
 					<tr>
 						<td id="th" style="border-left: 0">${bis.num}</td>
 						<td id="th">${bis.title }</td>
-						<td id="th">${bis.id }</td>
+						<td id="th">${bis.nickname }</td>
 						<td id="th">${bis.reg}</td>
-						<td id="th"><a href="${bis.address }" class="btn">이동</a></td>	
+						<td id="th"><a href="${bis.address }" target="_blank" class="btn">이동</a></td>	
 						</tr>
 					</c:forEach>
 				</tbody>

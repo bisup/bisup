@@ -70,7 +70,8 @@ a .btn{
 	 	
 	 	<tr>
 	 		<td id="th">작성자</td>
-	 		<td id="th" align="left"><input type="text" name="id" size="50"></td>
+	 		<td id="th">
+	 		<input type="hidden" size="50" name="nickname" value="${sessionScope.nick }">${sessionScope.nick }</td>
 	 	</tr>
 	 	
 	 	<tr>
@@ -80,7 +81,7 @@ a .btn{
 	 </table>
 	 <br><br>
 	 <div align="right">
-	<input  type="button" value="목록"  class="btn" onclick="javascript:location='/bisup/bisup/bisup_trend/business_trend.do'"></button>
+	<input  type="button" value="목록"  class="btn" onclick="javascript:location='/bisup/bisup_trend/business_trend.do'"></button>
 	<input  type="submit" value="글작성"  class="btn" ></button>
 	</div>
 	</form>

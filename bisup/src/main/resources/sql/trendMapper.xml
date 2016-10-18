@@ -36,12 +36,12 @@
 
 <!-- 카페트렌드 보고서 리스트 -->
 <select id="selectReportList"  resultType="command.ReportedCommand">
-select num, id, title, REG, address from reported order by num desc
+select num, nickname, title, REG, address from reported order by num desc
 </select>
 
 <insert id="insert" parameterType="command.ReportedCommand">
-insert into reported(num, id, title, address, reg) 
-values(num_seq.NEXTVAL, #{id}, #{title}, #{address}, sysdate)
+insert into reported(num, nickname, title, address, reg) 
+values(num_seq.NEXTVAL, #{nickname}, #{title}, #{address}, sysdate)
 </insert>
   
 </mapper>

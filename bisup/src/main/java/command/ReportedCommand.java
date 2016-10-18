@@ -5,11 +5,19 @@ import java.sql.Timestamp;
 public class ReportedCommand {
 	 
 	private int num; //
-	private String id;
+	private String nickname;
 	private String title;
 	private Timestamp reg;
 	private String address;
 	
+	
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -21,12 +29,6 @@ public class ReportedCommand {
 	}
 	public void setNum(int num) {
 		this.num = num;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getTitle() {
 		return title;
