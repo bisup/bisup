@@ -24,6 +24,13 @@ h1{margin-left:50px;}
 tr{padding:15px;}
 
 </style>
+<script>
+function Check(){
+	var f=document.forms[0];
+		alert(document.others.rant.value);
+		return false;
+	}
+</script>
 </head>
 <body>
 <h1>부수 비용 등록</h1>
@@ -62,13 +69,16 @@ tr{padding:15px;}
  <br/>
  <br/>
  <br/>
- <fieldset>
+<fieldset>
  <legend>수정하기</legend>
- <form id="other" method="post" action="salesOtherPro.do">
- <input type="hidden" name="id" value="<c:out value="${id}"/>">
- <table class="table table-striped" style="width:80%">
+<form id="others" method="post" action="salesOtherPro.do">
+<input type="hidden" name="id" value="<c:out value="${id}"/>">
+<table style="width:80%">
+<tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
+</table>
+<table class="table table-striped" style="width:80%">
   <tr>
-    <th>년</th>
+  	<th>년</th>
     <th>월</th>
     <th>월세</th>
     <th>월급</th>
@@ -76,18 +86,20 @@ tr{padding:15px;}
     <th>세금</th>
     <th>홍보비</th>
   </tr>
-  <tr>
+ <tr>
  	<td>
-	<select id="year" name="year" class="form-control" required>
+	<select id="year" name="year" class="form-control">
 		<c:set var="today" value="<%=new java.util.Date()%>" />
 		<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
+		<option value="0">--년도--</option>
 		<c:forEach begin="0" end="15" var="idx2" step="1">
          <option value="<c:out value="${start + idx2}" />"><c:out value="${start + idx2}" /></option>
         </c:forEach>
 	</select>
 	</td>
 	<td>
- 	<select name="mon" class="form-control" required>
+ 	<select name="mon" class="form-control">
+ 	<option value="0">--월--</option>
 	<c:forEach begin="1" end="12" var="mon" step="1">
 	<c:if test="${mon < 10}"><c:set value="0${mon}" var="mon"/>﻿  
 	</c:if>
@@ -95,17 +107,17 @@ tr{padding:15px;}
 			 </c:forEach>
 	</select>
 	</td>	
-    <td><input type="text" id="rent" name="rent" class="form-control"></td>
-    <td><input type="text" id="sal" name="sal" class="form-control"></td>
-    <td><input type="text" id="mcost" name="mcost" class="form-control"></td>
-    <td><input type="text" id="duty" name="duty" class="form-control"></td>
-    <td><input type="text" id="prcost" name="prcost" class="form-control"></td>
+    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
   </tr>
-    <tr>
-  <td colspan="6"></td>
-<td style="text-align:right;"><input type="submit" value="수정하기" class="btn btn-default"></td>
-</tr>
- </table>
+  <tr>
+<td colspan="6"></td>
+<td style="text-align:right;"><input type="submit" value="수정" onclick="return Check();" class="btn btn-default"></td>
+  </tr>
+</table>
 </form>
 </fieldset>
 </div>

@@ -23,6 +23,33 @@ h1{margin-left:50px;}
 tr{padding:15px;}
 
 </style>
+<script>
+function Check(){
+	var f=document.forms[0];
+	
+	if(f.sdate.value=="0"){ 	
+		alert("날짜를 선택해주세요");
+		f.sdate.focus();
+		return false;
+	}
+}
+
+function Check2(){
+	var f=document.sales2;
+	
+	if(f.item.value=="0"){ 	
+		alert("메뉴를 선택해주세요");
+		f.item.focus();
+		return false;
+	}
+	
+	if(! f.ea.value){ 	
+		alert("수량을 입력해주세요");
+		f.ea.focus();
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <br>
@@ -37,6 +64,7 @@ tr{padding:15px;}
   <td>날짜 선택</td>
     <td>
 	<select name="sdate" class="form-control" required>
+	 	<option value="0">-- 날 짜  --</option>
 	<c:forEach var="sale" items="${sale}" varStatus="status">
 	<option value="<c:out value="${sale.sdate}"/>">
 	<c:if test="${result.sdate == sale.sdate}">selected="selected"</c:if><c:out value="${sale.sdate}"/>
@@ -44,7 +72,7 @@ tr{padding:15px;}
 			 </c:forEach>
 	</select>
 	</td>
-	<td><input type="submit" value="선택" class="btn btn-default"></td>
+	<td><input type="submit" value="선택" onclick="return Check();" class="btn btn-default"></td>
 	</tr>
 </table>
 </form>
@@ -73,7 +101,7 @@ tr{padding:15px;}
  </br>
  <fieldset>
   <legend>등록 수정하기</legend>
- <form id="sales" method="post" action="salesTablePro.do">
+ <form name="sales2" method="post" action="salesTablePro.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
@@ -82,18 +110,19 @@ tr{padding:15px;}
     <th>판매수량</th>
     <td></td>
   </tr>
-  <tr>
-    <td>
-	<select name="item" class="form-control" required>
-	<c:forEach var="menu" items="${menu2}" varStatus="status">
-	<option value="<c:out value="${menu.item}"/>">
-	<c:if test="${result.item == menu.item}">selected="selected"</c:if><c:out value="${menu.item}"/>
+   <tr>
+  <td>
+	<select name="item" class="form-control">
+	<option value="0">-- 메  뉴 --</option>
+	<c:forEach var="menu2" items="${menu2}" varStatus="status">
+	<option value="<c:out value="${menu2.item}"/>">
+	<c:if test="${result.item == menu2.item}">selected="selected"</c:if><c:out value="${menu2.item}"/>
 			</option>
 			 </c:forEach>
 	</select>
-	</td>
-    <td><input type="text" id="ea" name="ea" class="form-control" required></td>
-    <td><input type="submit" value="수정하기" class="btn btn-default"></td>   
+</td>
+    <td><input type="text" id="ea" name="ea" class="form-control"></td>
+    <td><input type="submit" value="수정하기" onclick="return Check2();" class="btn btn-default"></td>   
   </tr>
 </table>
 </form>

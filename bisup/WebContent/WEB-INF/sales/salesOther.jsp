@@ -24,6 +24,49 @@ h1{margin-left:50px;}
 tr{padding:15px;}
 
 </style>
+<script>
+function Check2(){
+	var f=document.forms[0];
+	
+	if(f.year.value=="0"){ 	
+		alert("년도를 선택해주세요");
+		f.year.focus();
+		return false;
+	}
+	
+	if(f.mon.value=="0"){ 	
+		alert("월을 선택해주세요");
+		f.mon.focus();
+		return false;
+	}
+	
+	if(! f.rent.value){ 	
+		alert("월세금이 없으시다면 0을 입력해주세요");
+		f.rent.focus();
+		return false;
+	}
+	if(! f.sal.value){ 	
+		alert("월급금이 없으시다면 0을 입력해주세요");
+		f.sal.focus();
+		return false;
+	}
+	if(! f.mcost.value){ 	
+		alert("관리비가 없으시다면 0을 입력해주세요");
+		f.mcost.focus();
+		return false;
+	}
+	if(! f.duty.value){ 	
+		alert("세금이 없으시다면 0을 입력해주세요");
+		f.duty.focus();
+		return false;
+	}
+	if(! f.prcost.value){ 	
+		alert("홍보비가 없으시다면 0을 입력해주세요");
+		f.prcost.focus();
+		return false;
+	}	
+}
+</script>
 </head>
 <body>
 <h1>부수 비용 등록</h1>
@@ -46,18 +89,20 @@ tr{padding:15px;}
     <th>세금</th>
     <th>홍보비</th>
   </tr>
-  <tr>
+ <tr>
  	<td>
-	<select id="year" name="year" class="form-control" required>
+	<select id="year" name="year" class="form-control">
 		<c:set var="today" value="<%=new java.util.Date()%>" />
 		<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
+		<option value="0">--년도--</option>
 		<c:forEach begin="0" end="15" var="idx2" step="1">
          <option value="<c:out value="${start + idx2}" />"><c:out value="${start + idx2}" /></option>
         </c:forEach>
 	</select>
 	</td>
 	<td>
- 	<select name="mon" class="form-control" required>
+ 	<select name="mon" class="form-control">
+ 	<option value="0">--월--</option>
 	<c:forEach begin="1" end="12" var="mon" step="1">
 	<c:if test="${mon < 10}"><c:set value="0${mon}" var="mon"/>﻿  
 	</c:if>
@@ -65,14 +110,15 @@ tr{padding:15px;}
 			 </c:forEach>
 	</select>
 	</td>	
-    <td><input type="text" id="rent" name="rent" class="form-control"></td>
-    <td><input type="text" id="sal" name="sal" class="form-control"></td>
-    <td><input type="text" id="mcost" name="mcost" class="form-control"></td>
-    <td><input type="text" id="duty" name="duty" class="form-control"></td>
-    <td><input type="text" id="prcost" name="prcost" class="form-control"></td>
+    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
   </tr>
   <tr>
-<td colspan="7" align="right"><input type="submit" value="등록" class="btn btn-default"></td>
+<td colspan="6"></td>
+<td style="text-align:right;"><input type="submit" value="등록" onclick="return Check2();" class="btn btn-default"></td>
   </tr>
 </table>
 </fieldset>

@@ -70,7 +70,6 @@ public class SocketHandler {
 		jsonObject.put("delivered", command);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
-		
 	}
 
 	//클라이언트들을 하나의 세션에 넣는 onOpen메소드입니다.
