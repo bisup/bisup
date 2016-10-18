@@ -127,7 +127,7 @@ import net.sf.json.JSONObject;
 			return jso.toString();
 	    
 		}	
-	
+	  
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
 	public String formPost(@ModelAttribute("mem") MemberCommand membercommand,HttpSession session,HttpServletRequest request){
