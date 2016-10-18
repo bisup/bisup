@@ -50,5 +50,6 @@ from (select num, writer, title, contents, cnt,reg, pw, rownum r from
 		from question 
 		where num = #{num}
 	</select>
+	
 
 </mapper>
