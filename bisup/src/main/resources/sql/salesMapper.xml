@@ -22,8 +22,12 @@ select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate} order by 
 update sale set ea=#{ea},total=(select price*#{ea} from menu where item=#{item}) where id=#{id} and item=#{item} and sdate=#{sdate}
 </update>
 
-<select id="sdateList" parameterType="String" resultType="command.SaleCommand">
-select distinct('20'||(to_char(to_date(sdate,'yy-mm-dd'),'YYMMDD')))as sdate from sale where id=#{id}
+<select id="sdateList" parameterType="map" resultType="command.SaleCommand">
+select distinct('20'||(to_char(to_date(sdate,'yy-mm-dd'),'YYMMDD')))as sdate from sale where id=#{id} order by sdate
+</select>
+
+<select id="checkSales" parameterType="map" resultType="int">
+select count(item) from sale where id=#{id} and sdate=#{sdate} and item=#{item}
 </select>
 
 <!-- 부수비용 부분 -->

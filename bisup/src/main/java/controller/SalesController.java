@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -45,26 +47,40 @@ public class SalesController {
 	}
 //	매출 등록 ,수정 부분
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.GET)
-	public String sales(@RequestParam("id") String id,HttpServletRequest request,Model model,HttpSession session){
-		session.setAttribute("id",id);
+	public String sales(HttpServletRequest request,Model model,HttpSession session){
+		String id=(String)session.getAttribute("id");
 		model.addAttribute("menu",salesDao.menuList(id));
+		System.out.println(id);
+		model.addAttribute("items",(String)session.getAttribute("item"));
 		System.out.println("saleInserting get");
+		System.out.println("items"+(String)session.getAttribute("item"));
 		return "salesInserting";
 	}
 	
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.POST)
-	public String insertSales(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session){
-		saleCommand.setId((String)session.getAttribute("id"));
-		System.out.println("post"+saleCommand.getId());
+	public String insertSales(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session, ServletResponse response,Model model) throws Exception{
+		String id=(String)session.getAttribute("id");
+		saleCommand.setId(id);
+		System.out.println("post"+id);
 		saleCommand.setSdate(request.getParameter("sdate"));
 		saleCommand.setItem(request.getParameter("item"));
 		saleCommand.setEa(Integer.parseInt(request.getParameter("ea")));
-		int x = salesDao.insertSales(saleCommand);
-		session.setAttribute("sdate",sdate);
-		System.out.println("saleInserting post");
-		return "redirect:/sales/salesInsertingPro.do";
-
-	}
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("id",(String)session.getAttribute("id"));
+		map.put("sdate",sdate);
+		map.put("item", request.getParameter("item"));
+		int a = salesDao.checkSales(map);
+		System.out.println("A"+a);
+		if(a==0)
+		{
+			int x = salesDao.insertSales(saleCommand);
+			session.setAttribute("sdate",sdate);
+			System.out.println("saleInserting post");
+			return "redirect:/sales/salesInsertingPro.do";}
+		else{
+			session.setAttribute("item",request.getParameter("item"));
+			return "salesInserting";}
+		}
 	
 	@RequestMapping(value="/salesInsertingPro.do", method=RequestMethod.GET)
 	public String salesList(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
@@ -84,139 +100,135 @@ public class SalesController {
 	
 	@RequestMapping(value="/salesInsertingPro.do",method=RequestMethod.POST)
 	public String updateSales(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
-		saleCommand.setId((String)session.getAttribute("id"));
-		saleCommand.setSdate((String)session.getAttribute("sdate"));
+		String id=(String)session.getAttribute("id");
+		String sdate=(String)session.getAttribute("sdate");
+		saleCommand.setId(id);
+		saleCommand.setSdate(sdate);
 		saleCommand.setEa(Integer.parseInt(request.getParameter("ea")));
 		saleCommand.setItem(request.getParameter("item"));
+		System.out.println("에러");
+		System.out.println(request.getParameter("item"));
+		System.out.println(saleCommand.getItem());
 		int x = salesDao.updateSales(saleCommand);
 		System.out.println("saleInsertingPro post");
 		return "redirect:/sales/salesInsertingPro.do";
 	}
+	
+	
 	//매출 등록 수정(다른 날짜 수정)
-//	매출 등록 ,수정 부분
-		@RequestMapping(value="/salesTablePage.do",method=RequestMethod.POST)
-	public String salesTablePage(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
-		saleCommand.setId((String)session.getAttribute("id"));
-		System.out.println("post"+saleCommand.getId());
-		return "redirect:/sales/salesTable.do";
+	@RequestMapping(value="/salesTablePage.do",method=RequestMethod.POST)
+public String salesTablePage(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
+		String id=(String)session.getAttribute("id");
+		saleCommand.setId(id);
+	System.out.println("post"+id);
+	return "redirect:/sales/salesTable.do";
 
-	}		
-		
-	@RequestMapping(value="/salesTable.do",method=RequestMethod.GET)
-	public String salesTable(HttpServletRequest request,Model model,HttpSession session){
-		String id=(String)session.getAttribute("id");
-		model.addAttribute("sale",salesDao.sdateList(id));
-		System.out.println("salesTable get");
-		return "salesTable";
-	}
+}		
 	
-	@RequestMapping(value="/salesTable.do",method=RequestMethod.POST)
-	public String insertDate(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session){
-		String id=(String)session.getAttribute("id");
-		saleCommand.setSdate(request.getParameter(sdate));
-		System.out.println("request"+request.getParameter(sdate));
-		session.setAttribute("sdate", sdate);
-		System.out.println("post"+saleCommand.getSdate());
-		System.out.println("salesTable post");
-		return "redirect:/sales/salesTablePro.do";
+@RequestMapping(value="/salesTable.do",method=RequestMethod.GET)
+public String salesTable(HttpServletRequest request,Model model,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	model.addAttribute("sale",salesDao.sdateList(id));
+	System.out.println("salesTable get");
+	return "salesTable";
+}
 
-	}
+@RequestMapping(value="/salesTable.do",method=RequestMethod.POST)
+public String insertDate(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	saleCommand.setSdate(request.getParameter(sdate));
+	System.out.println("request"+request.getParameter(sdate));
+	session.setAttribute("sdate", sdate);
+	System.out.println("post"+saleCommand.getSdate());
+	System.out.println("salesTable post");
+	return "redirect:/sales/salesTablePro.do";
+
+}
+
+@RequestMapping(value="salesTablePro.do", method=RequestMethod.GET)
+public String salesList2(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	String sdate=(String)session.getAttribute("sdate");
 	
-	@RequestMapping(value="salesTablePro.do", method=RequestMethod.GET)
-	public String salesList2(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
-		String id=(String)session.getAttribute("id");
-		String sdate=(String)session.getAttribute("sdate");
-		
-		Map<String, String> map=new HashMap<String, String>();
-		map.put("id",id);
-		map.put("sdate",sdate);	
-		
-		model.addAttribute("sales",salesDao.saleList(map));
-		model.addAttribute("sale",salesDao.sdateList(id));
-		System.out.println(sdate);
-//		model.addAttribute("menu",salesDao.menuList(id));
-		model.addAttribute("menu2",salesDao.menuList2(map));
-		System.out.println("salesTable2 get");
-		return "salesTable";
-	}
+	Map<String, String> map=new HashMap<String, String>();
+	map.put("id",id);
+	map.put("sdate",sdate);	
 	
+	model.addAttribute("sales",salesDao.saleList(map));
+	model.addAttribute("sale",salesDao.sdateList(id));
+	System.out.println(sdate);
+//	model.addAttribute("menu",salesDao.menuList(id));
+	model.addAttribute("menu2",salesDao.menuList2(map));
+	System.out.println("salesTable2 get");
+	return "salesTable";
+}
+
+
+@RequestMapping(value="/salesTablePro.do",method=RequestMethod.POST)
+public String updateSales2(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	String sdate=(String)session.getAttribute("sdate");
+	saleCommand.setId(id);
+	saleCommand.setSdate(sdate);
+	saleCommand.setEa(Integer.parseInt(request.getParameter("ea")));
+	saleCommand.setItem(request.getParameter("item"));
+	int x = salesDao.updateSales(saleCommand);
+	System.out.println("salesTable2 post");
+	return "redirect:/sales/salesTablePro.do";
+}
 	
-	@RequestMapping(value="/salesTablePro.do",method=RequestMethod.POST)
-	public String updateSales2(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
-		saleCommand.setId((String)session.getAttribute("id"));
-		saleCommand.setSdate((String)session.getAttribute("sdate"));
-		saleCommand.setEa(Integer.parseInt(request.getParameter("ea")));
-		saleCommand.setItem(request.getParameter("item"));
-		int x = salesDao.updateSales(saleCommand);
-		System.out.println("salesTable2 post");
-		return "redirect:/sales/salesTablePro.do";
-	}
+//부수비용 등록 수정 부분
+@RequestMapping(value="/salesOther.do",method=RequestMethod.GET)
+public String salesOther(HttpServletRequest request,Model model,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	System.out.println("salesOther get");
+	return "salesOther";
+}
+
+@RequestMapping(value="/salesOther.do",method=RequestMethod.POST)
+public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,String year,String mon,HttpServletRequest request,HttpSession session){		
+	String id=(String)session.getAttribute("id");
+	otherCommand.setId(id);
+	otherCommand.setYear(request.getParameter("year"));
+	otherCommand.setMon(request.getParameter("mon"));
+	otherCommand.setRent(Integer.parseInt(request.getParameter("rent")));
+	otherCommand.setSal(Integer.parseInt(request.getParameter("sal")));
+	otherCommand.setMcost(Integer.parseInt(request.getParameter("mcost")));
+	otherCommand.setDuty(Integer.parseInt(request.getParameter("duty")));
+	otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
 	
-	//부수비용 등록 수정 부분
-	@RequestMapping(value="/salesOther.do",method=RequestMethod.GET)
-	public String salesOther(@RequestParam("id") String id,HttpServletRequest request,Model model,HttpSession session){
-		session.setAttribute("id",id);
-		System.out.println("salesOther get");
-		return "salesOther";
-	}
+	int x = salesDao.insertOther(otherCommand);
+	session.setAttribute("year", year);
+	session.setAttribute("mon", mon);
+	System.out.println("salesOther post");
+	return "redirect:/sales/salesOtherPro.do";
+}
+
+@RequestMapping(value="/salesOtherPro.do", method=RequestMethod.GET)
+public String otherList(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,Model model,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	model.addAttribute("other",salesDao.otherList(id));
+	System.out.println("salesOtherPro get");
+	return "salesOtherPro";
+}
+
+
+@RequestMapping(value="/salesOtherPro.do",method=RequestMethod.POST)
+public String updateOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	otherCommand.setId(id);
+	otherCommand.setYear(request.getParameter("year"));
+	otherCommand.setMon(request.getParameter("mon"));
+	otherCommand.setRent(Integer.parseInt(request.getParameter("rent")));
+	otherCommand.setSal(Integer.parseInt(request.getParameter("sal")));
+	otherCommand.setMcost(Integer.parseInt(request.getParameter("mcost")));
+	otherCommand.setDuty(Integer.parseInt(request.getParameter("duty")));
+	otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
 	
-	@RequestMapping(value="/salesOther.do",method=RequestMethod.POST)
-	public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,String year,String mon,HttpServletRequest request,HttpSession session){		
-		otherCommand.setId((String)session.getAttribute("id"));
-		otherCommand.setYear(request.getParameter("year"));
-		otherCommand.setMon(request.getParameter("mon"));
-		otherCommand.setRent(Integer.parseInt(request.getParameter("rent")));
-		otherCommand.setSal(Integer.parseInt(request.getParameter("sal")));
-		otherCommand.setMcost(Integer.parseInt(request.getParameter("mcost")));
-		otherCommand.setDuty(Integer.parseInt(request.getParameter("duty")));
-		otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
-		
-		int x = salesDao.insertOther(otherCommand);
-		session.setAttribute("year", year);
-		session.setAttribute("mon", mon);
-		System.out.println("salesOther post");
-		return "redirect:/sales/salesOtherPro.do";
-	}
-	
-	@RequestMapping(value="/salesOtherPro.do", method=RequestMethod.GET)
-	public String otherList(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,Model model,HttpSession session){
-		String id=(String)session.getAttribute("id");
-		model.addAttribute("other",salesDao.otherList(id));
-		System.out.println("salesOtherPro get");
-		return "salesOtherPro";
-	}
-	
-	
-	@RequestMapping(value="/salesOtherPro.do",method=RequestMethod.POST)
-	public String updateOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,HttpSession session){
-		otherCommand.setId((String)session.getAttribute("id"));
-		otherCommand.setYear(request.getParameter("year"));
-		otherCommand.setMon(request.getParameter("mon"));
-		otherCommand.setRent(Integer.parseInt(request.getParameter("rent")));
-		otherCommand.setSal(Integer.parseInt(request.getParameter("sal")));
-		otherCommand.setMcost(Integer.parseInt(request.getParameter("mcost")));
-		otherCommand.setDuty(Integer.parseInt(request.getParameter("duty")));
-		otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
-		
-		int i = salesDao.updateOther(otherCommand);
-		System.out.println("salesOtherPro post");
-		return "redirect:/sales/salesOtherPro.do";
-	}
-	
-	
-	
-//	//순수익
-//	@RequestMapping(value="/salesTotal.do", method=RequestMethod.GET)
-//	public String total(@RequestParam("id") String id,@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
-//		session.setAttribute("id",id);
-//	
-//		model.addAttribute("sale",salesDao.salePerMon(id));
-//		model.addAttribute("other",salesDao.otherMon(id));
-//		
-//		System.out.println("saleInsertingPro get");
-//		return "salesTotal";
-//	}
-	
+	int i = salesDao.updateOther(otherCommand);
+	System.out.println("salesOtherPro post");
+	return "redirect:/sales/salesOtherPro.do";
+}
 //	---------------------월별 매출 차트----------------------------------
 	
 	@RequestMapping(value="/drawChart.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
@@ -238,8 +250,8 @@ public class SalesController {
 	}
 	
 	@RequestMapping("/drawMonChart.do")
-	public String saleMain(@RequestParam("id") String id,@RequestParam("sdate") String sdate,Model model, HttpSession session){
-		session.setAttribute("id",id);
+	public String saleMain(Model model, HttpSession session){
+		String id=(String)session.getAttribute("id");
 		model.addAttribute("sale",salesDao.salePerMon(id));
 		model.addAttribute("other",salesDao.otherMon(id));
 		return "drawChart";
