@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Controller;
@@ -47,7 +47,7 @@ package controller;
 	   }
 	   
 	   
-	/*   //파일 업로드
+	   //파일 업로드
 	   @RequestMapping(value = "/question/qwrite.do", method = RequestMethod.POST)
 	   public String submitReport1(@RequestParam("nnick") String studentNumber,
 	         @RequestParam("filename") MultipartFile filename) {
@@ -69,5 +69,5 @@ package controller;
 	      } catch(Exception e){
 	         e.printStackTrace();
 	      }
-	   }*/
-	}
+	   }
+	}*/
