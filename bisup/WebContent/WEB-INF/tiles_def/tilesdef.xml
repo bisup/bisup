@@ -274,6 +274,10 @@
 		<put-attribute name="title" value="매출등록" />
 		<put-attribute name="body" value="/WEB-INF/sales/salesInserting.jsp" />
 	</definition>
+	<definition name="salesInsertingPro" extends="base_layout">
+		<put-attribute name="title" value="매출등록" />
+		<put-attribute name="body" value="/WEB-INF/sales/salesInsertingPro.jsp" />
+	</definition>
 	<definition name="salesTable" extends="base_layout">
 		<put-attribute name="title" value="매출등록완료" />
 		<put-attribute name="body"

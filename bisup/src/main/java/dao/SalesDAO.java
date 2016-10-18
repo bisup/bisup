@@ -44,6 +44,13 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
+	public List<SaleCommand> sdateList(String id)
+	{
+		System.out.println("saleList"+id);
+	return getSqlSession().selectList("sales.sdateList",id);
+	
+	}
+	
 	public int checkSales(Map<String, String> map)
 	{
 		System.out.println("checkSales"+map);
@@ -57,18 +64,19 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
-	public List<SaleCommand> sdateList(String id)
-	{
-		System.out.println("saleList"+id);
-	return getSqlSession().selectList("sales.sdateList",id);
-	
-	}
 	
 	// 부수비용 부분
 	public int insertOther(OtherCommand otherCommand)
 	{
 		System.out.println("insertOther"+otherCommand);
 	return getSqlSession().insert("sales.insertOther",otherCommand);
+	
+	}
+	
+	public List<OtherCommand> yearmon(String id)
+	{
+		System.out.println("yearmon"+id);
+	return getSqlSession().selectList("sales.yearmon",id);
 	
 	}
 	

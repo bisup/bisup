@@ -22,10 +22,12 @@ h1{margin-left:50px;}
 
 tr{padding:15px;}
 </style>
+
 <script>
 function Check(){
-	var f=document.forms[0];
-	
+// 	var f=document.forms[0];
+	var f=document.sales;
+
 	if(! f.sdate.value){ 	
 		alert("날짜를 선택해주세요");
 		f.sdate.focus();
@@ -47,7 +49,6 @@ function Check(){
 }
 
 function Check2(){
-// 	var f=document.forms[0];
 	var f=document.sales2;
 	
 	if(f.item.value=="0"){ 	
@@ -63,17 +64,6 @@ function Check2(){
 	}
 }
 </script>
-<!-- <script> -->
-<!-- //  $(document).ready(function(){ -->
-<!-- // 	alert("00----"); -->
-<!-- // } -->
-<%-- // 	var item=${item}; --%>
-<!-- // 	if (item != null){ -->
-<!-- // 	  alert(item+"은 등록된 메뉴 입니다."); -->
-<!-- // 	} -->
-<!-- // } -->
-
-<!-- </script> -->
 </head>
 <body>
 <br>
@@ -81,10 +71,10 @@ function Check2(){
 <div align="center">
 <fieldset>
 <legend>매출 등록하기</legend>
-<form id="sales" method="post" action="salesInserting.do">
+<form name="sales" id="sales" method="post" action="salesInserting.do">
 <table align="left">
 <tr>
-<td width="100"><label>날짜 ${sdate}</label></td>
+<td width="200"><label>날짜 선택</label></td>
 <td><input type="date" name="sdate" class="form-control" width="250"></td></tr>
 </table>
 <br>

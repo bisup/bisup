@@ -5,7 +5,7 @@ public class OtherCommand {
 	private String id; //아이디
 	private String year;//년
 	private String mon;//월
-	private String sdate;
+	private String sdate;//년월
 	private int rent;//월세
 	private int sal;//월급
 	private int mcost;//관리비

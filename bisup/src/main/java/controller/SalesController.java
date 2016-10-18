@@ -45,18 +45,16 @@ public class SalesController {
 	public void setSaleChartAction(SaleChartAction saleChartAction) {
 		this.saleChartAction = saleChartAction;
 	}
-//	매출 등록 ,수정 부분
+//	매출 등록 ,수정 부분	
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.GET)
 	public String sales(HttpServletRequest request,Model model,HttpSession session){
+//		session.setAttribute("id", "java");
 		String id=(String)session.getAttribute("id");
 		model.addAttribute("menu",salesDao.menuList(id));
-		System.out.println(id);
-		model.addAttribute("items",(String)session.getAttribute("item"));
 		System.out.println("saleInserting get");
-		System.out.println("items"+(String)session.getAttribute("item"));
 		return "salesInserting";
 	}
-	
+
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.POST)
 	public String insertSales(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session, ServletResponse response,Model model) throws Exception{
 		String id=(String)session.getAttribute("id");
@@ -78,23 +76,43 @@ public class SalesController {
 			System.out.println("saleInserting post");
 			return "redirect:/sales/salesInsertingPro.do";}
 		else{
+			session.setAttribute("sdate",sdate);
 			session.setAttribute("item",request.getParameter("item"));
-			return "salesInserting";}
+			return "redirect:/sales/salesInsertingCopy.do";}
 		}
 	
 	@RequestMapping(value="/salesInsertingPro.do", method=RequestMethod.GET)
 	public String salesList(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
 		String id=(String)session.getAttribute("id");
 		String sdate=(String)session.getAttribute("sdate");
-		
+
 		Map<String, String> map=new HashMap<String, String>();
 		map.put("id",id);
 		map.put("sdate",sdate);		
 		model.addAttribute("sale",salesDao.saleList(map));
 		model.addAttribute("menu",salesDao.menuList(id));
 		model.addAttribute("menu2",salesDao.menuList2(map));
+
 		System.out.println("saleInsertingPro get");
 		return "salesInserting";
+	}
+	
+	@RequestMapping(value="/salesInsertingCopy.do", method=RequestMethod.GET)
+	public String salesListCopy(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,Model model,HttpSession session){
+		String id=(String)session.getAttribute("id");
+		String sdate=(String)session.getAttribute("sdate");
+		String item=(String)session.getAttribute("item");
+
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("id",id);
+		map.put("sdate",sdate);		
+		model.addAttribute(item);
+		model.addAttribute("sale",salesDao.saleList(map));
+		model.addAttribute("menu",salesDao.menuList(id));
+		model.addAttribute("menu2",salesDao.menuList2(map));
+
+		System.out.println("saleInsertingCopy get");
+		return "salesInsertingPro";
 	}
 	
 	
@@ -118,6 +136,7 @@ public class SalesController {
 	//매출 등록 수정(다른 날짜 수정)
 	@RequestMapping(value="/salesTablePage.do",method=RequestMethod.POST)
 public String salesTablePage(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
+//		session.setAttribute("id", "java");
 		String id=(String)session.getAttribute("id");
 		saleCommand.setId(id);
 	System.out.println("post"+id);
@@ -180,6 +199,7 @@ public String updateSales2(@ModelAttribute("saleCommand") SaleCommand saleComman
 //부수비용 등록 수정 부분
 @RequestMapping(value="/salesOther.do",method=RequestMethod.GET)
 public String salesOther(HttpServletRequest request,Model model,HttpSession session){
+//	session.setAttribute("id", "java");
 	String id=(String)session.getAttribute("id");
 	System.out.println("salesOther get");
 	return "salesOther";
@@ -198,8 +218,6 @@ public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherComm
 	otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
 	
 	int x = salesDao.insertOther(otherCommand);
-	session.setAttribute("year", year);
-	session.setAttribute("mon", mon);
 	System.out.println("salesOther post");
 	return "redirect:/sales/salesOtherPro.do";
 }
@@ -208,17 +226,17 @@ public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherComm
 public String otherList(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,Model model,HttpSession session){
 	String id=(String)session.getAttribute("id");
 	model.addAttribute("other",salesDao.otherList(id));
+	model.addAttribute("yearmon",salesDao.yearmon(id));
+	System.out.println(id);
 	System.out.println("salesOtherPro get");
 	return "salesOtherPro";
 }
-
 
 @RequestMapping(value="/salesOtherPro.do",method=RequestMethod.POST)
 public String updateOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,HttpSession session){
 	String id=(String)session.getAttribute("id");
 	otherCommand.setId(id);
-	otherCommand.setYear(request.getParameter("year"));
-	otherCommand.setMon(request.getParameter("mon"));
+	otherCommand.setYear(request.getParameter("sdate"));
 	otherCommand.setRent(Integer.parseInt(request.getParameter("rent")));
 	otherCommand.setSal(Integer.parseInt(request.getParameter("sal")));
 	otherCommand.setMcost(Integer.parseInt(request.getParameter("mcost")));

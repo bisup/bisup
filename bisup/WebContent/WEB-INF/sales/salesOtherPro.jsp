@@ -1,125 +1,235 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
 <style>
+
 div {
+
 margin-left: 50px;
+
 }
+
+
 
 table {
+
     border-spacing: 15px;
+
     cells-pacing: 15px;
+
 }
+
+
 
 td, th{
+
 text-align: center;
+
 }
 
+
+
 h1{margin-left:50px;}
+
+
 
 tr{padding:15px;}
 
 </style>
 <script>
 function Check(){
-	var f=document.forms[0];
-		alert(document.others.rant.value);
+// 	var f=document.forms[0];
+	var f=document.others;
+	if(f.sdate.value=="0"){ 	
+		alert("년월을 선택해주세요");
+		f.sdate.focus();
 		return false;
 	}
+	
+	if(! f.rent.value){ 	
+		alert("월세금이 없으시다면 0을 입력해주세요");
+		f.rent.focus();
+		return false;
+	}
+	if(! f.sal.value){ 	
+		alert("월급금이 없으시다면 0을 입력해주세요");
+		f.sal.focus();
+		return false;
+	}
+	if(! f.mcost.value){ 	
+		alert("관리비가 없으시다면 0을 입력해주세요");
+		f.mcost.focus();
+		return false;
+	}
+	if(! f.duty.value){ 	
+		alert("세금이 없으시다면 0을 입력해주세요");
+		f.duty.focus();
+		return false;
+	}
+	if(! f.prcost.value){ 	
+		alert("홍보비가 없으시다면 0을 입력해주세요");
+		f.prcost.focus();
+		return false;
+	}	
+}
 </script>
 </head>
+
 <body>
+
 <h1>부수 비용 등록</h1>
+
 <br>
+
 <div align="center">
+
 <fieldset>
+
 <legend>총 부수비용 내역</legend>
+
 <form id="other" method="get" action="salesOtherPro.do">
+
 <table style="width:80%">
+
 <tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
+
 </table>
+
 <table class="table table-striped" style="width:80%">
+
   <tr>
-    <th>월</th>
+
+    <th>년월</th>
+
     <th>월세</th>
+
     <th>월급</th>
+
     <th>관리비</th>
+
     <th>세금</th>
+
     <th>홍보비</th>
+
     <th>총부수비용</th>
+
   </tr>
+
   <c:forEach var="other" items="${other}" varStatus="status">
+
   	<tr>
+
   	<td>${other.sdate}</td> 
+
     <td>${other.rent}</td>
+
     <td>${other.sal}</td>
+
     <td>${other.mcost}</td>
+
     <td>${other.duty}</td>
+
     <td>${other.prcost}</td>
+
     <td>${other.etcco}</td>
+
   </tr>
+
   </c:forEach>
+
  </table>
+
  </form>
+
  </fieldset>
+
  <br/>
+
  <br/>
+
  <br/>
+
 <fieldset>
+
  <legend>수정하기</legend>
-<form id="others" method="post" action="salesOtherPro.do">
+
+<form name="others" id="others" method="post" action="salesOtherPro.do">
+
 <input type="hidden" name="id" value="<c:out value="${id}"/>">
+
 <table style="width:80%">
+
 <tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
+
 </table>
+
 <table class="table table-striped" style="width:80%">
+
   <tr>
-  	<th>년</th>
-    <th>월</th>
+  
+    <th>년월</th>
+
     <th>월세</th>
+
     <th>월급</th>
+
     <th>관리비</th>
+
     <th>세금</th>
+
     <th>홍보비</th>
+
   </tr>
- <tr>
- 	<td>
-	<select id="year" name="year" class="form-control">
-		<c:set var="today" value="<%=new java.util.Date()%>" />
-		<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
-		<option value="0">--년도--</option>
-		<c:forEach begin="0" end="15" var="idx2" step="1">
-         <option value="<c:out value="${start + idx2}" />"><c:out value="${start + idx2}" /></option>
-        </c:forEach>
-	</select>
-	</td>
-	<td>
- 	<select name="mon" class="form-control">
- 	<option value="0">--월--</option>
-	<c:forEach begin="1" end="12" var="mon" step="1">
-	<c:if test="${mon < 10}"><c:set value="0${mon}" var="mon"/>﻿  
-	</c:if>
-	<option value="${mon}">${mon}</option>﻿
+  <tr>
+  <td>
+	<select name="sdate" class="form-control">
+	<option value="0">-- 년 월  --</option>
+	<c:forEach var="yearmon" items="${yearmon}" varStatus="status">
+	<option value="<c:out value="${yearmon.sdate}"/>">
+	<c:if test="${result.sdate == yearmon.sdate}">selected="selected"</c:if><c:out value="${yearmon.sdate}"/>
+			</option>
 			 </c:forEach>
 	</select>
-	</td>	
+</td>
     <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+
     <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+
     <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+
     <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+
     <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+
   </tr>
+
   <tr>
+
 <td colspan="6"></td>
+
 <td style="text-align:right;"><input type="submit" value="수정" onclick="return Check();" class="btn btn-default"></td>
+
   </tr>
+
 </table>
+
 </form>
+
 </fieldset>
+
 </div>
+
 </body>
+
 </html>
