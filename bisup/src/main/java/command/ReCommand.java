@@ -1,4 +1,4 @@
-package command;
+/*package command;
 
 import java.sql.Timestamp;
 
@@ -54,4 +54,4 @@ public class ReCommand {
 		this.rreg = rreg;
 	}
 
-}
+}*/

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import command.BoardCommand;
 import command.CommantCommand;
-import command.ReCommand;
+
 import dao.CommentDAO;
 import dao.QuestionDAO;
 import net.sf.json.JSONObject;
