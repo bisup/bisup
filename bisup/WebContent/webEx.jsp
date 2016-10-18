@@ -13,7 +13,7 @@ request.setCharacterEncoding("utf-8");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	//웹소켓 객체를 만듭니다. 이 객체에 정해준 주소값에 있는 세션에서 데이터를 주고받습니다. 포트번호와 아이피를 통일해주세요.
-    var webSocket = new WebSocket('ws://192.168.20.10:8088/bisup/Broadcasting');
+    var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
     //웹소켓에서 에러 발생시 실행할 function을 정의합니다.
 	webSocket.onerror = function(event) {
       onError(event)
@@ -32,7 +32,7 @@ request.setCharacterEncoding("utf-8");
     //단지 그걸 볼 수 있는 user는 param안의 id와 쪽지의 sub가 일치하는 쪽지로 한정되어있습니다.
     function onMessage(event) {
     	var url="/bisup/mystore/Broadcasting/onMessage.do";
-        var param={id:'java1',mcontents:event.data};
+        var param={id:${sessionScope.id},mcontents:event.data};
     	$.ajax({
     		type:"post"
     		,url:url
@@ -54,7 +54,7 @@ request.setCharacterEncoding("utf-8");
     //웹소켓이 실행(창이 열림)되는 순간 접속한 ID에게 온 쪽지를 보여줍니다(5일치).
     function onOpen(event) {
         var url="/bisup/mystore/Broadcasting/onOpen.do";
-        var param={id:'java1'};
+        var param={id:${sessionScope.id}};
         $.ajax({
     		type:"post"
     		,url:url
@@ -89,7 +89,7 @@ request.setCharacterEncoding("utf-8");
     function send() {
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
-        var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'java1'};
+        var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:${sessionScope.id}};
         $.ajax({
     		type:"post"
     		,url:url

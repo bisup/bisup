@@ -7,9 +7,11 @@
 <head>
 
  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+	<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>	 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <title>Insert title here</title>
 </head>
@@ -63,7 +65,7 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
   </h4>
   <br>  
   
-  <form:form commandName="mem" class="signup">
+  <form:form commandName="member" class="signup" >
   
   <!-- 수정완료창뜨고 마이페이지 맨앞으로 -->
            	  <%--  <form:errors element="div"/> --%>
@@ -108,14 +110,12 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                   <div class="business" id=bisness>
 
                   <div class="form-group">
-                  <form:label path="snum">사업자번호</form:label>
-                    <form:input path="snum" class="form-control" value="${snum}"  readonly="true"/>
-                   <form:errors path="snum"/>
+                  <label>사업자번호</label>
+                    <input id="snum" name="snum" type="text" class="form-control" value="${snum}"  readonly="readonly"/>
                   </div>
                   <div class="form-group">
-                  <form:label path="tel">상호 전화번호</form:label>
-                    <form:input path="tel" class="form-control" value="${mem.tel}"/>
-                     <form:errors path="tel"/>
+                  <label>상호 전화번호</label>
+                    <input type="text" id="tel" name ="tel"class="form-control" value="${tel}"/>
 				<input type="hidden" name="sort" value="2" class="sort" id="sort"/>
                   </div>
                   </div>
@@ -125,7 +125,7 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                  <c:if test="${mem.sort==1}">
                  
                 <div class="form-group" id="readyBis">            
-                      <input type="checkbox" id="sortC" name="sortC" class="changeChk" value="1" onchange="change()">
+                      <input type="checkbox" id="sortC" class="changeChk" value="1" onchange="change()">
                       <label>BISUP을 통해 창업에 성공하여 상호 정보를 추가하고 싶습니다.</label>                
                 </div>
                 <p class="sortSel">
@@ -136,13 +136,13 @@ $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></f
                  <div id="changeBis" style="display:none">
                  
                 <div class="form-group">
-                <form:label path="snum">사업자번호</form:label>
-                <form:input path="snum" class="form-control" placeholder="사업자번호를 입력해주세요" required=""/>
+                <label >사업자번호</label>
+                <input id="snum" name="snum"  type="text" class="form-control" placeholder="사업자번호를 입력해주세요"/>
                 </div>
       
                 <div class="form-group">
-                <form:label path="tel">상호 전화번호</form:label>
-                <form:input path="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/>
+                <label>상호 전화번호</label>
+                <input type="text" id="tel" name="tel" class="form-control" placeholder="가게전화번호를 입력해주세요"/>
                 </div>
                  <!-- checkbox 선택시 (창업예정자에서 창업자로 변경할 경우)보여질 구역 -->
           
