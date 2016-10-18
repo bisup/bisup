@@ -2,11 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
 
+<insert id="changId" parameterType="String">
+insert into chang(id) values(#{id})
+</insert>
+
 <update id="updatePro" parameterType="command.MemberCommand">
 update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},snum=#{snum},phone=#{phone},tel=#{tel},email=#{email},gucode=#{gucode} where id=#{id}
 </update>
 <update id="updatePro1" parameterType="command.MemberCommand">
-update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},phone=#{phone},email=#{email},gucode=#{gucode} where id=#{id}
+update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},phone=#{phone},email=#{email},gucode=#{gucode} where id=#{id}
 </update>
 
  <delete id="deleteMember" parameterType="String">

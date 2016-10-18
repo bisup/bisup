@@ -13,7 +13,81 @@
 
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+function passwordCheck() {
+    var pw = document.getElementById("pw").value;
+    var pw_c = document.getElementById("pw_c").value;
+    
+    // 재입력 일치 여부
+    if (pw != pw_c) {
+        alert("입력한 두 개의 비밀번호가 서로  일치하지 않습니다.");
+        myform.pw1.empty();
+        myform.pw1.focus();
+        return false;
+    }
+}
+    
+function pass(){
+	  var pw = document.getElementById("pw").value;
+    // 길이
+    if(!/^[a-zA-Z0-9!@#$%^&*()?_~]{6,15}$/.test(pw))
+    { 
+        alert("비밀번호는 숫자, 영문, 특수문자 조합으로 6~15자리를 사용해야 합니다."); 
+        myform.pw.empty();
+        myform.pw.focus();
+	   	return ;
+    }
+}
 
+$(function(){
+	 var nick = document.getElementById("nick").value;
+	 $('#nick').blur(function nickHH(){
+	  $.ajax({
+			type:'get',
+			url:'checknick.do',
+			data:{
+				"nick":$('#nick').val()
+			},
+			dataType:"json",
+			success:function(data){
+				//var b=Number(1);
+				//var i=parseInt(args.x);
+			/* 	args.x.typeofValue */
+				if(data.n > 0){
+					alert("닉네임 중복입니다.");
+					$('#nick').val('');	
+				}else{
+					alert("닉네임사용가능합니다.");			
+					}
+			}
+		});
+	 });
+	 
+	 $('#snum1').blur(function snum(){
+		  $.ajax({
+				type:'get',
+				url:'checksnum.do',
+				data:{
+					"snum":$('#snum1').val()
+				},
+				dataType:"json",
+				success:function(data){
+					//var b=Number(1);
+					//var i=parseInt(args.x);
+				/* 	args.x.typeofValue */
+					if(data.mc > 0 ){
+						alert("사업자번호 중복입니다.");
+						$('#snum').val('');	
+					}else{
+						alert("사업자번호 사용가능합니다.");			
+						}
+				}
+			});
+		 });
+	 
+
+});
+</script>
 <body>
 <div class="container">
 <div class="col-sm-6 mobile-pull">
@@ -41,11 +115,11 @@
                   
                    <div class="form-group">
                    <form:label path="pw">비밀번호</form:label>
-                   <form:password path="pw" showPassword="false" class="form-control" value="${mem.pw}" required="필수입력창입니다"/>
+                   <form:password path="pw" showPassword="false" class="form-control" value="${mem.pw}" required="필수입력창입니다" onblur="pass()"/>
                   </div>
                   <div class="form-group">
                   <form:label path="pw">비밀번호 확인</form:label>
-                   <input type="password" value="${mem.pw}" class="form-control">
+                   <input type="password" id="pw_c" value="${mem.pw}" class="form-control" onblur="passwordCheck()">
                   </div>
                   
                   <div class="form-group">
@@ -127,6 +201,7 @@
                   <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
                   </form:select>
                 </div> 
+   		       <input type="hidden" name="ch" value="1">
    		       
                 <div class="form-group">
                   <input type="submit" class="btn btn-success btn-block"  value="정보 수정">

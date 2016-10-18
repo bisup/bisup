@@ -130,7 +130,7 @@ $(function(){
 				<input type="hidden" name="sort" value="2" class="sort" id="sort"/>
                   
                   </div>
-        		
+        		<input type="hidden" name="ch" value="2">
           		
                 <div class="form-group">
 					<form:label path="gucode"><b>카페 위치 행정구</b></form:label>

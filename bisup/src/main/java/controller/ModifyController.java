@@ -126,7 +126,19 @@ import net.sf.json.JSONObject;
 			jso.put("n",mc);
 			return jso.toString();
 	    
-		}	  
+		}	
+	
+	 @RequestMapping(value="/checksnum.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String checkS(@RequestParam("snum")String snum,HttpServletResponse resp) throws Exception{
+		resp.setContentType("text/html; charset=UTF-8");
+		System.out.println(snum);
+		JSONObject jso = new JSONObject();
+		int mc=joinDAO.selectsnum(Integer.parseInt(snum));
+			jso.put("mc",mc);
+			return jso.toString();
+	    
+		}	
 	  
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
@@ -134,7 +146,8 @@ import net.sf.json.JSONObject;
 		
 		String snum1 = request.getParameter("snum1");
 		String tel1 = request.getParameter("tel1");
-		
+		String ch=request.getParameter("ch");
+		System.out.println("ch="+ch);
 		System.out.println("snum+"+membercommand.getSnum());
 		if(snum1!=""){
 			int s=Integer.parseInt(request.getParameter("snum1"));
@@ -157,7 +170,7 @@ import net.sf.json.JSONObject;
 		}
 		else{
 			//창업예정자에서 창업자가 되거나 창업자 회원정보 수정
-			x = mypageDAO.updatePro(membercommand);
+			x = mypageDAO.updatePro(membercommand,ch);
 		}
 		
 		if(x==1){
