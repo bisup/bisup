@@ -15,7 +15,7 @@
     padding: 55px 0 100px;
     overflow: hidden;
 }
- 
+
 #th{
     padding: 12px;
     height: 24px;
@@ -58,9 +58,15 @@ a .btn{
 </head>
 <body>
 	<div id="content">
-	<h3 align="left">★2016년 카페 창업에 대한 트렌드 소식을 만나십시오★</h3>
+	<h3 align="left">★카페 창업에 대한 트렌드 소식을 만나십시오★</h3>
 	<br><br>
-	<form action="/bisup_trend/business_trend.do" method="post">
+	<form action="bisup/bisup/bisup_trend/business_write.do" method="post">
+	<br>
+	<%-- <c:if test="${sessionScope.sort==0 }"> --%>
+    <input type="button" class="btn" value="글쓰기" style="float: right;" onclick=document.location="/bisup/bisup_trend/writer.do">
+	
+	<br><br><br>
+	<div>
 		<table border="1" width="1200" class="tb_date">
 			<thead>
 			<tr>
@@ -79,49 +85,13 @@ a .btn{
 						<td id="th">${bis.title }</td>
 						<td id="th">${bis.id }</td>
 						<td id="th">${bis.reg}</td>
-						
-						<c:if test="${bis.num == 1 }">
-						<td id="th">
-						<a href="http://weeklytrade.co.kr/news/view.html?section=1&category=8&item=&no=23314"
-									target="_blank" class="btn" align="center">이동</a></td>
-						</c:if>
-						
-						<c:if test="${bis.num == 2 }">
-						<td id="th">
-						<a href="http://news.heraldcorp.com/view.php?ud=20160816000618"
-									target="_blank" class="btn" align="center">이동</a>
-						</td>
-						</c:if>	
-						
-						<c:if test="${bis.num == 3}">
-						<td id="th">
-						<a href="http://kr.aving.net/news/view.php?articleId=1372500&Branch_ID=kr&rssid=naver&mn_name=news"
-									target="_blank" class="btn" align="center">이동</a>
-						</td>
-						</c:if>
-						
-						<c:if test="${bis.num == 4}">
-						<td id="th">
-						<a href="http://sports.chosun.com/news/ntype.htm?id=201610150100119430008534&servicedate=20161014"
-									target="_blank" class="btn" align="center">이동</a>
-						</td>
-						</c:if>
-						
-						<c:if test="${bis.num == 5}">
-						<td id="th">
-						<a href="http://news.mk.co.kr/newsRead.php?no=698639&year=2016"
-									target="_blank" class="btn" align="center">이동</a>
-						</td>
-						</c:if>		
-					
-					</tr>
-				</c:forEach>
-						
-					
-				
+						<td id="th"><a href="${bis.address }" class="btn">이동</a></td>	
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-			</form>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

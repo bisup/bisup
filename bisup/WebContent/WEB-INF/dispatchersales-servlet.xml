@@ -8,7 +8,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
+  
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<!-- @ResponseBody로 String 처리할 때 한글처리 -->
@@ -46,7 +46,7 @@
 	
 	
 <!--  프로퍼티스 파일 읽어오기 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="classpath:db2.properties" />
 <!--	커넥션풀연결 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />

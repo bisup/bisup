@@ -59,8 +59,8 @@ $(document).ready(function() {
 <body>
 <div class="container">
 <br><br>
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
-  	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">공지사항</h2>
+  	<p style="display: block;">관리자 공지사항입니다</p>
         <div style="width: 300px; float: right;">
             <form action="#" method="get">
                 <div>

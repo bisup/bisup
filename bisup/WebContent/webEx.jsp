@@ -54,6 +54,7 @@ request.setCharacterEncoding("utf-8");
     //웹소켓이 실행(창이 열림)되는 순간 접속한 ID에게 온 쪽지를 보여줍니다(5일치).
     function onOpen(event) {
         var url="/bisup/mystore/Broadcasting/onOpen.do";
+
         var param={id:'${sessionScope.id}'};
         $.ajax({
     		type:"post"
@@ -89,7 +90,11 @@ request.setCharacterEncoding("utf-8");
     function send() {
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
+<<<<<<< HEAD
+        var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:${sessionScope.id}};
+=======
         var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'${sessionScope.id}'};
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
         $.ajax({
     		type:"post"
     		,url:url

@@ -108,8 +108,8 @@
     <body>
         <div class="container">
         <br><br>
- <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">궁금합니다</h2>
-  	<p style="display: block;">궁금한 사항을 남기시면 인터넷으로 상담(답변)해 드립니다.</p>  <br><br>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">공지사항</h2>
+  	<p style="display: block;">bisup 공지사항입니다.</p>  <br><br>
             <div class="row">
                 <div class="col-md-10">
                     <form action="nupdate.do" method="post">
