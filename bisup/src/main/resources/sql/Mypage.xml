@@ -5,6 +5,9 @@
 <update id="updatePro" parameterType="command.MemberCommand">
 update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},snum=#{snum},phone=#{phone},tel=#{tel},email=#{email},gucode=#{gucode} where id=#{id}
 </update>
+<update id="updatePro1" parameterType="command.MemberCommand">
+update member set id=#{id}, name=#{name},pw=#{pw},nick=#{nick},sort=#{sort},phone=#{phone},email=#{email},gucode=#{gucode} where id=#{id}
+</update>
 
  <delete id="deleteMember" parameterType="String">
         delete from member where id = #{id}

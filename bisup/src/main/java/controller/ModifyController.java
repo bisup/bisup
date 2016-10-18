@@ -1,24 +1,27 @@
 package controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import command.GuCommand;
 import command.MemberCommand;
 import dao.JoinDAO;
 import dao.MypageDAO;
+import net.sf.json.JSONObject;
 
 
 	@Controller
@@ -36,17 +39,15 @@ import dao.MypageDAO;
 		this.joinDAO = joinDAO;
 	}
 
-	@ModelAttribute("member")
+	@ModelAttribute("mem")
 	public MemberCommand formBacking(){
 		return new MemberCommand();
 	}
 
 	public void guModel(Model model){
+		//구 목록 가져오기
 		List<GuCommand> list = joinDAO.gu();
-		for(GuCommand li:list){
-			System.out.println(li.getGcode()+li.getGn());
-	
-		}
+		
 		model.addAttribute("guSel", list);
 	}
 	
@@ -70,7 +71,6 @@ import dao.MypageDAO;
 	public ModelAndView check(@ModelAttribute("member") MemberCommand membercommand, @RequestParam("buttonValue") String state,@RequestParam("inputpw") String ipw,HttpSession session){
 		
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
-		System.out.println("session에 저장되어있는 id="+id);
 		
 		int x=-1;
 		ModelAndView mav =new ModelAndView();
@@ -97,13 +97,17 @@ import dao.MypageDAO;
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.GET)
 	public ModelAndView formGet(Model model,HttpSession session){
-		ModelAndView mav =new ModelAndView("modifyForm");
+		int sort = (int)session.getAttribute("sort");
+		ModelAndView mav = new ModelAndView();
+		if(sort==2){//창업예정자
+			mav.setViewName("modifyForm2");
+		}
+		else{
+			mav.setViewName("modifyForm");
+		}
 		String id=(String)session.getAttribute("id");//session에 저장되어있는 id값
-		MemberCommand membercommand = mypageDAO.updateForm(id);
-		System.out.println(membercommand.getTel());
+		MemberCommand membercommand = mypageDAO.updateForm(id); //member테이블 불러오기
 		guModel(model); //gu테이블에 gcode/gn list로 불러온값 모델에 저장
-	
-		//System.out.println(membercommand.getSnum());
 		mav.addObject("mem",membercommand);
 		mav.addObject("snum",membercommand.getSnum());
 		mav.addObject("gucode", membercommand.getGucode());
@@ -112,43 +116,54 @@ import dao.MypageDAO;
 
 	}
 	
+	@RequestMapping(value="/checknick.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String checkN(@RequestParam("nick")String nick,HttpServletResponse resp) throws Exception{
+		resp.setContentType("text/html; charset=UTF-8");
+		System.out.println(nick);
+		JSONObject jso = new JSONObject();
+		int mc=joinDAO.selectnick(nick);
+			jso.put("n",mc);
+			return jso.toString();
+	    
+		}	
+	
+	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
-
-/*	public String formPost(@ModelAttribute("member") MemberCommand membercommand){
-		, @RequestParam("snum1") int s, @RequestParam("tel1") String t
-		if(s != 0){
+	public String formPost(@ModelAttribute("mem") MemberCommand membercommand,HttpSession session,HttpServletRequest request){
+		
+		String snum1 = request.getParameter("snum1");
+		String tel1 = request.getParameter("tel1");
+		
+		System.out.println("snum+"+membercommand.getSnum());
+		if(snum1!=""){
+			int s=Integer.parseInt(request.getParameter("snum1"));
+			System.out.println(s);
 			membercommand.setSnum(s);
+		}
+		if(tel1!=""){
+			String t=request.getParameter("tel1");
+			System.out.println(t);
 			membercommand.setTel(t);
 		}
-		  
-		int gucode=membercommand.getGucode();
-		String id=membercommand.getId();
-
-=======*/
-	public String formPost(@RequestParam("name")String name,@RequestParam("pw")String pw,@RequestParam("nick")String nick,@RequestParam("phone")String phone,@RequestParam("tel")String tel ,@RequestParam("sort")int sort,@RequestParam("snum")int snum,@RequestParam("gucode")int gucode, HttpSession session) throws Exception{
-		System.out.println("들어옴");
-	/*	int gucode=membercommand.getGucode();
-		String id=membercommand.getId();*/
-		String id=session.getId();
-		MemberCommand membercommand =new MemberCommand();
-		membercommand.setId(id);
-		membercommand.setName(name);
-		membercommand.setPw(pw);
-		membercommand.setNick(nick);
-		membercommand.setPhone(phone);
-		membercommand.setSort(sort);
-		membercommand.setGucode(gucode);
-		membercommand.setTel(tel);
-
-		System.out.println("id="+id);
-		//membercommand.setGucode(gucode);
-		/*System.out.println("파라미터로 받아온 gu::"+ membercommand.getGucode());
-		System.out.println("파라미터sort::"+membercommand.getSort());*/
-		int x = mypageDAO.updatePro(membercommand);
+		
+		System.out.println("조건 후 s="+membercommand.getSnum()+"t="+membercommand.getTel());
+		
+		int sort=membercommand.getSort();		
+		
+		int x=0;
+		if(sort==1){
+			x=mypageDAO.updatePro1(membercommand);
+		}
+		else{
+			//창업예정자에서 창업자가 되거나 창업자 회원정보 수정
+			x = mypageDAO.updatePro(membercommand);
+		}
+		
 		if(x==1){
 			System.out.println("update성공");
-			System.out.println("업데이트 후 gu::"+ membercommand.getGucode());
-			System.out.println("업데이트 후 sort::"+membercommand.getSort());
+			session.setAttribute("sort", membercommand.getSort());
+			
 			return "modSuc";//
 		}
 		
@@ -171,7 +186,6 @@ import dao.MypageDAO;
 		
 		return "modifyCheck";
 	}
-	
 	
 	
 }

@@ -44,7 +44,7 @@
 	 -->
 	
 	<!-- db연결 -->
-	<context:property-placeholder location="classpath:db2.properties" />
+	<context:property-placeholder location="classpath:db.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />

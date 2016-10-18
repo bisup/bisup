@@ -26,6 +26,13 @@ public class MypageDAO extends SqlSessionDaoSupport{
 		return x;  
 	}
 	
+	public int updatePro1(MemberCommand membercommand){
+		//modifyPro
+		int x = getSqlSession().update("mypage.updatePro1",membercommand);
+		System.out.println("dao¿¡¼­ x="+x);
+		return x;  
+	}
+	
 	public int deleteMem(String id){
 		int x = getSqlSession().delete("mypage.deleteMember", id);
 		System.out.println("x="+x);

@@ -204,6 +204,7 @@ public class MemberController {
 			return jso.toString();
 	    
 		}	
+	  
 	  @RequestMapping(value="/checksn.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody
 	public String checkS(@RequestParam("snum")String snum,HttpServletResponse resp) throws Exception{
