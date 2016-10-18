@@ -213,7 +213,7 @@
 										alert("댓글 달기 완료");			
 										}
 								}
-                                });
+                                });  
                                    
                                 var commentParentText = '<tr id="r1" name="commentParentCode">'+
                                                             '<td colspan=2>'+
