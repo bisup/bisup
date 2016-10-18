@@ -20,7 +20,7 @@
 	    <label for="exampleInputEmail1">작성자</label>
 	    <input type="text" class="form-control"  name="writer" value="${boardCommand.writer}">
 	  </div>
-	  
+	          
 	  <div class="form-group">
 	    <label for="exampleInputPassword1">글 내용</label>
 	    <textarea class="form-control" rows="5" id="comment" name="contents" required>${boardCommand.contents }</textarea>
