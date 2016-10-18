@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,8 @@ public class MyStoreController {
   
 	//메뉴등록 컨트롤러메소드
 	@RequestMapping("/menuMain.do")
-	public ModelAndView main(@RequestParam("id") String id){
+	public ModelAndView main(HttpSession session){
+		String id = (String)session.getAttribute("id");
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList menuList = myStoreAction.selectMenu(id);
 		
@@ -56,9 +58,10 @@ public class MyStoreController {
 	}
 	
 	@RequestMapping(value="/selectOneMenu.do",method=RequestMethod.POST,produces = "text/plain;charset=UTF-8")
-	public void selectOneMenu(@RequestParam("id") String id, @RequestParam("item") String item, 
+	public void selectOneMenu(@RequestParam("item") String item, HttpSession session,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
+		String id = (String)session.getAttribute("id");
 		System.out.println("컨트롤러-메뉴등록/수정정보 생성, id는 "+id+", item은 "+item);
 		Map menu = new HashMap(); menu.put("id", id); menu.put("item", item);
 		JSONObject jsonObject = new JSONObject();
@@ -71,9 +74,10 @@ public class MyStoreController {
 	
 	
 	@RequestMapping(value="/menuInsertOrUpdate.do",method=RequestMethod.POST,produces = "text/plain;charset=UTF-8")
-	public void menuInsertOrUpdate(@RequestParam("id") String id,@RequestParam("item") String item,
+	public void menuInsertOrUpdate(@RequestParam("item") String item,HttpSession session,
 			@RequestParam("price") String price,HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
+		String id = (String)session.getAttribute("id");
 		MenuCommand command = new MenuCommand();
 		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", item은 "+item+", price는 "+price);
 		int check=0;
@@ -95,8 +99,9 @@ public class MyStoreController {
 	}
 	
 	@RequestMapping(value="/menuSearch.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
-	public String menuSearch(@RequestParam("id") String id,Model model,
+	public String menuSearch(Model model,HttpSession session,
 			@RequestParam("searchtype") String searchtype,@RequestParam("searchkeyword") String searchkeyword){
+		String id = (String)session.getAttribute("id");
 		System.out.println("컨트롤러-메뉴찾기, id는 "+id+", searchtype은 "+searchtype+", searchkeyword는 "+Integer.parseInt(searchkeyword));
 		List result = new ArrayList();
 		if(searchtype.equals("item")){
@@ -108,9 +113,10 @@ public class MyStoreController {
 		return "menuInserting";
 	}
 	@RequestMapping(value="/deleteMenu.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
-	public void deleteMenu(@RequestParam("id") String id,@RequestParam("item") String item,
+	public void deleteMenu(@RequestParam("item") String item,HttpSession session,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
+		String id = (String)session.getAttribute("id");
 		System.out.println("컨트롤러-메뉴등록/메뉴입력이나수정, id는 "+id+", item은 "+item);
 		int check = 0;
 		JSONObject jsonObject = new JSONObject();
@@ -130,7 +136,8 @@ public class MyStoreController {
 	//매출추이 컨트롤러메소드
 	@RequestMapping(value="/drawDayChart.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	public void drawDayChart(HttpServletResponse response, 
-			@RequestParam("id") String id,Locale locale) throws Exception{
+			HttpSession session,Locale locale) throws Exception{
+		String id = (String)session.getAttribute("id");
 		System.out.println("drawDayChart메소드 도착, id는 "+id);
 		response.setCharacterEncoding("UTF-8");
 		ArrayList fiveSales = saleProgressAction.salePerDay(id);
@@ -143,7 +150,8 @@ public class MyStoreController {
 	}
 	
 	@RequestMapping("/saleProgressMain.do")
-	public String saleMain(@RequestParam("id") String id, Model model){
+	public String saleMain(HttpSession session, Model model){
+		String id = (String)session.getAttribute("id");
 		model.addAttribute("id",id);
 		return "salesManaging";
 	}
