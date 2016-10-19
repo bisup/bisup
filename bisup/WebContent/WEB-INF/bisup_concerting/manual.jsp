@@ -22,7 +22,6 @@
 .box > .icon > .info > .more a { font-family: "Quicksand",sans-serif !important; color: #ffffff; line-height: 12px; text-transform: uppercase; text-decoration: none; }
 .box > .icon:hover > .info > .more > a { color: #ffffff; padding: 6px 8px; background-color: #63B76C; }
 .box .space { height: 2px; background-color: #6CB4C4;}
-
 /* 박싱 */
 
 .row{
@@ -41,23 +40,25 @@ margin-right: auto;
 padding-top: 50px;
 }
 #upper_main_info{
-width:1350px; 
+width:500px; 
 height:200px;
-padding-left: 0px;
-padding: auto;
+margin-left: auto; 
+margin-right: auto;
+
 }
 #lower_main{
 width:1350px; 
-height:200px; 
+height:160px; 
 margin-left: auto; 
 margin-right: auto;
 padding-left: 60px;
 }
 #lower_main_info{
-width:1350px; 
+width:700px; 
 height:200px;
 padding-left: 60px;
-float: left;
+margin-left: auto; 
+margin-right: auto;
 }
 </style>
 <title>Insert title here</title>
@@ -114,7 +115,7 @@ $(document).ready(function(){
 
 
 	<div class="row" align="center">
-       
+      
 		<!-- upper_main -->
 		
         <!-- Boxes de Acoes -->
@@ -150,8 +151,8 @@ $(document).ready(function(){
 		<!-- upper_main_info -->
 		
 		<div id="upper_main_info">
-			<div id="infochang1" style="width: 500px; z-index:4; margin-left: 0px;">
-				<div class="info">
+			<div id="infochang1" style="display: none;">
+				<div class="info" style="position: absolute;">
 					<h3 class="title" style="color: #ffffff;">창업예비분석</h3>
 					<p style="color: #ffffff;">
 							창업희망자는 먼저 자신의 자질 및 적성 등을 파악하여 창업이<br/>
@@ -161,8 +162,8 @@ $(document).ready(function(){
 				</div>
 				<div class="space"></div>
 			</div>
-			<div id="infochang2" style="width: 500px; z-index: 3; margin-left: 0px;">
-				<div class="info">
+			<div id="infochang2" style="display: none;">
+				<div class="info" style="top:463px; position: absolute;">
 					<h3 class="title" style="color: #ffffff;">사업목적의 정의</h3>
 					<p style="color: #ffffff;">
 							창업의 기본적 이유와 사업 운영방향에 대해 명확히 해 두어야 한다.<br/>
@@ -173,8 +174,8 @@ $(document).ready(function(){
 				</div>
 				<div class="space"></div>
 			</div>
-			<div id="infochang3" style="width: 500px; z-index: 2; margin-left: 0px;">
-					<div class="info">
+			<div id="infochang3" style="display: none;">
+					<div class="info" style="top:463px; position: absolute;">
 						<h3 class="title" style="color: #ffffff;">사업분야의 결정 아이디어 모색</h3>
 						<p style="color: #ffffff;">
 							창업한 사업이 성공적으로 운영되는가의 여부는 사업 아이템이 얼마나<br/>
@@ -205,7 +206,7 @@ $(document).ready(function(){
 			<div class="icon" id="image5" style="width:15%;">
 				<div class="image" id="image5">
 				<h2 style="color: #ffffff; font-size: large;"> STEP 5 </h2>
-				<h3 style="color: #ffffff; font-size: large;">인적 물적자원 조달/구성</h3>
+				<h3 style="color: #ffffff; font-size: large;">인적 물적자원<br/>조달/구성</h3>
 				</div>
 			</div> 
 		</div>	
@@ -226,12 +227,11 @@ $(document).ready(function(){
 			</div> 
 		</div>
 		</div>
-		<br/>
 		<!-- lower_main_info -->
 		
 		<div id="lower_main_info">	
-			<div class="info" style="width:500px;">		
-				<div id="infochang4" style="margin-left: 0px;">
+			<div class="info">		
+				<div id="infochang4" style="position: absolute; display: none;">
 					<h3 class="title" style="color: #ffffff;">사업성 분석</h3>
 					<p style="color: #ffffff;">
 						모든 사업은 시행하기 전에 어떤 형태로든지 사업을 통하여 발생될 손해와 이익에 관한 <br/>
@@ -244,9 +244,9 @@ $(document).ready(function(){
 				</div>
 				<div class="space"></div>
 			</div>
-			<div class="info" style="width:500px;">
-				<div id="infochang5" style="margin-left: 0px;">
-					<h3 class="title" style="color: #ffffff;">인적 물절 자원 조달과 구성</h3>
+			<div class="info">
+				<div id="infochang5" style="position: absolute; display: none;">
+					<h3 class="title" style="color: #ffffff;">인적 물적 자원 조달과 구성</h3>
 					<p style="color: #ffffff;">
 						사업성 분석에서 자신의 사업 아이디어가 유망한 것으로 판단되면 이를 실행하기 위한<br/>
 						인적 · 물적 자원을 조달하여야 한다. 우선, 인적 자원의 조달은 창업팀을 만드는데서<br/>
@@ -258,8 +258,8 @@ $(document).ready(function(){
 				</div>	
 				<div class="space"></div>
 			</div>
-			<div class="info" style="width:500px;">
-			<div id="infochang6" style="margin-left: 0px;">
+			<div class="info">
+				<div id="infochang6" style="position: absolute; display: none;">
 					<h3 class="title" style="color: #ffffff;">사업계획성의 작성과 조직 구조의 설정</h3>
 					<p style="color: #ffffff;">
 						인적 · 물적 자원의 조달이 이루어지면 구체적으로 수행하게 될 사업 실행계획을 수립해야 한다.<br/>
