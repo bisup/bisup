@@ -150,7 +150,7 @@
 			sopArea = undefined;
 			oriArea = undefined;
 					}  
-		
+		  
 	  		
         var year = "2013";
      	var adm_cd =$(this).val();
