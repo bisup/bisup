@@ -25,13 +25,13 @@ position: relative;
 </style>
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script type="text/javascript">
 function menuClick(param){
 	deleteTarget();
-	var obj = {id:'${id}',item:param};
+	var obj = {id:"${sessionScope.id}",item:param};
 	var url="/bisup/mystore/selectOneMenu.do";
 	$.ajax({
 		type:"post"
@@ -53,7 +53,7 @@ function menuClick(param){
 }
 function insertOrUpdate(){
 	var url="/bisup/mystore/menuInsertOrUpdate.do";
-	var params={id:'${id}',item:$("#selecteditem").val(),price:$("#selectedprice").val()};
+	var params={id:"${sessionScope.id}",item:$("#selecteditem").val(),price:$("#selectedprice").val()};
 	$.ajax({
 		type:"post"
 		,url:url
@@ -70,7 +70,7 @@ function insertOrUpdate(){
 }
 function deleteMenu(){
 	var url="/bisup/mystore/deleteMenu.do";
-	var params={id:'${id}',item:$("#printedItem").val()};
+	var params={id:"${sessionScope.id}",item:$("#printedItem").val()};
 	$.ajax({
 		type:"post"
 		,url:url
@@ -95,20 +95,17 @@ function deleteTarget(){
 </script>
 <style>
 #menuList{
-position:relative;
-width:400px;
-right:100px;
+width:500px;
 bottom:50px;
-border-right:1px dotted #000000;
-padding-right: 20px;
+margin-left: auto;
+margin-right: auto;
 }
 #target{
-position:relative;
 width:600px;
 height:300px;
 bottom:460px;
-left:400px;
-padding-left:20px;
+margin-left: auto;
+margin-right: auto;
 }
 </style>
 </head>  
@@ -116,8 +113,8 @@ padding-left:20px;
  <h2 style="font-weight: 700; font-size: 36px; margin: 0; padding: 0;">메뉴등록</h2>
   	<p style="display: block;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
 
-<div id="container" align="center">
-<div id="menuList" align="center">
+<div id="container">
+<div id="menuList">
 <div align="center"><h3>메뉴목록</h3><hr width="350px"/></div>
 <table class="table table-condensed">
 	<thead><tr>
@@ -137,7 +134,8 @@ padding-left:20px;
 	</tbody>
 </table>
 </div>
-<div id="target" align='center'><div id="oneMenuPrint" align="center"/><h3>선택하신 메뉴</h3><hr width="400px"/></div>
+<div id="target" align='center'>
+<div id="oneMenuPrint" align="center"/><h3>선택하신 메뉴</h3><hr width="400px"/></div>
 </div>
 </body>
 </html>
