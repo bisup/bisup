@@ -40,7 +40,7 @@ color: blue;
 <br><br><br>
 <!-- <nav class="navbar navbar-default"> -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav nav-pills nav-justified">
+      <ul class="nav nav-pills nav-justified" style="width:1200px; margin-left: auto; margin-right: auto;">
         <!-- <li ><a href="#">Link <span class="sr-only">(current)</span></a></li> 활성화 class="active"
         <li><a href="#">Link</a></li> 드롭다운 아닌 그냥 메뉴-->
         
