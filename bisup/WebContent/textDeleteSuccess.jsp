@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Insert title here</title>
-<meta http-equiv="refresh" content="0;url=webEx.jsp">
+<meta http-equiv="refresh" content="0;url=/bisup/webEx.jsp">
 </head>
 <body>
 
