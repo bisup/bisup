@@ -93,6 +93,16 @@ public class TrendServiceImpl implements TrendService{
 		
 	}
 	
+	public String listOne(String gucode){
+		String one = null;
+		try{
+			one = trendDAO.listOne(gucode);
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		return one;
+	}
+	
 	
 	
 

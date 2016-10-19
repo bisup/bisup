@@ -36,6 +36,11 @@ public class TrendDAO extends SqlSessionDaoSupport{
 		return total4;	
 	} 
 	
+	public String listOne(String gucode){
+		String one = getSqlSession().selectOne("trend.one", Integer.parseInt(gucode));
+		return one;
+	}
+	
 	public List<ReportedCommand> selectReportList(){
 		List<ReportedCommand> list = getSqlSession().selectList("trend.selectReportList");
 		return list;

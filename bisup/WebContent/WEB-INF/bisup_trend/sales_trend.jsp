@@ -140,6 +140,10 @@ if(${gucode}!=null){
 			<c:if test="${gucode == null }">
 			<h3 style="color:red">원하시는 구를 선택하시면 데이터를 보실 수 있습니다.</h3>
 			</c:if>
+			<c:if test="${gn10 != null }">
+			
+			<h3>${gn10}의 데이터를 보실수 있습니다.</h3>
+			</c:if>
 			
 	<div id="chart_div" style="width:900px; height: 500px;" ></div>
 	<div id="piechart" style="width: 900px; height: 500px;"></div>

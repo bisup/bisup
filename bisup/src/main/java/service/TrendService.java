@@ -22,5 +22,7 @@ public interface TrendService {
 	public List<ReportedCommand> selectReportList();
 	// 글 쓰기
 	public int insertReport(ReportedCommand rc);
+	// 구 가져오기
+	public String listOne(String gucode);
 }
   

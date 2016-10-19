@@ -70,6 +70,8 @@ public class TrendController {
 	// 매출 트렌드 6/7/8/9 월 차트 로직 
 	@RequestMapping(value="/bisup_trend/sales_trend1.do", method=RequestMethod.POST)
 	public String sales_trend1(@RequestParam("gn") String gucode, Model model)throws Exception{
+		String gn = null;
+		gn = trendService.listOne(gucode);
 		ArrayList gn6 = (ArrayList) trendService.listtotal(gucode);
 		ArrayList gn7 = (ArrayList) trendService.listtotal1(gucode);
 		ArrayList gn8 = (ArrayList) trendService.listtotal2(gucode);
@@ -78,9 +80,9 @@ public class TrendController {
 		model.addAttribute("gn7", gn7);
 		model.addAttribute("gn8", gn8);
 		model.addAttribute("gn9", gn9);
-		
+		model.addAttribute("gn10", gn);
 		model.addAttribute("gucode", gucode);
-		System.out.println(gucode);
+		System.out.println(gn);
 		return "sales_trend";
 	}
 	
