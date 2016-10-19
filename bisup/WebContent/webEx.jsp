@@ -32,7 +32,7 @@ request.setCharacterEncoding("utf-8");
     //단지 그걸 볼 수 있는 user는 param안의 id와 쪽지의 sub가 일치하는 쪽지로 한정되어있습니다.
     function onMessage(event) {
     	var url="/bisup/mystore/Broadcasting/onMessage.do";
-        var param={id:'${sessionScope.id}',mcontents:event.data};
+        var param={id:"${sessionScope.id}",mcontents:event.data};
     	$.ajax({
     		type:"post"
     		,url:url
@@ -55,7 +55,7 @@ request.setCharacterEncoding("utf-8");
     function onOpen(event) {
         var url="/bisup/mystore/Broadcasting/onOpen.do";
 
-        var param={id:'${sessionScope.id}'};
+        var param={id:"${sessionScope.id}"};
         $.ajax({
     		type:"post"
     		,url:url
@@ -70,7 +70,7 @@ request.setCharacterEncoding("utf-8");
     				
     			}
     			
-    			for(var num=1; num<args.count; num++){
+    			for(var num=1; num<=args.count; num++){
     				$("#textPages").append("<a href='javascript:selectPageNum("+num+")'>"+num+"</a>")
     			}
     		}
@@ -116,7 +116,7 @@ request.setCharacterEncoding("utf-8");
 	
 	function selectPageNum(num){
 		var url="/bisup/mystore/Broadcasting/selectPageNum.do";
-		var pageNum={pageNum:num};
+		var pageNum={pageNum:num,id:'${sessionScope.id}'};
 		$.ajax({
 	    	type:"post"
 	    	,url:url

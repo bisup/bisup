@@ -182,9 +182,9 @@ $(document).ready(function(){
      						sopArea.eachLayer(function (layer) {
      							key = layer.feature.properties.adm_cd;
      							value = conComplite[key];
-     							strToolTip = "<p>지역(구)명 : " + value.adm_nm + "</p>";
-     							strToolTip += "<p>지역코드 : " + value.adm_cd + "</p>";
+     							strToolTip = "<p>지역명 : " + value.adm_nm + "</p>";
      							strToolTip += "<p>카폐수(개) : " + value.corp_cnt + "</p>";
+     							strToolTip += "<p>정보제공 : 정보 제공 SGIS </p>";
      	
      							layer.bindToolTip(strToolTip);
      							

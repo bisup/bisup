@@ -97,11 +97,11 @@ $(document).ready(function () {
 </script>
 <body>
 <div align="center">
-<img alt="로고" src="/bisup/resources/img/logo.png" width="200px">
+<a href="/bisup/bisup_login/main.do"><img alt="로고" src="/bisup/resources/img/logo.png" width="200px"></a>
 <h1 align="center">회원가입</h1><br><br>
 <div class="agree">
 <div class="containerTop">
-<div class="mStep1" align="left">
+<div class="mStep1" align="center">
 					<img src="../../resources/img/step1.PNG">
 						</div>
 <hr>
@@ -286,9 +286,9 @@ $(document).ready(function () {
 </div>
 <br>	
 <hr>
- <div class="containerBottom" align="center">
+ <div class="containerBottom">
   <h2>개인정보 수집 및 이용안내</h2><br><br>
-<div align="center"> <ul class="nav nav-pills" style="">
+<div align="center" style="margin-left: auto; margin-right: auto; width: 770px;"> <ul class="nav nav-pills" style="">
     <li class="active" align="center"><a href="#first" data-toggle="tab">개인정보수집 및 이용목적</a></li>
     <li><a href="#second" data-toggle="tab">수집하는 개인정보의 항목</a></li>
     <li align="center"><a href="#third" data-toggle="tab">개인정보보유 및 이용기간</a></li>

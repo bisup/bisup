@@ -48,6 +48,11 @@ tr{padding:15px;}
 
 </style>
 <script>
+$(document).ready(function(){
+	 alert("${year}${mon} 은/는 이미 등록된 날짜 입니다.");
+});
+</script>
+<script>
 function Check(){
 // 	var f=document.forms[0];
 	var f=document.others;

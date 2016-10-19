@@ -61,11 +61,11 @@ public class SocketHandler {
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
-		String id = (String)session.getAttribute("id");
-		System.out.println("onMessagePro메소드 진입, sub="+id+", mcontents"+mcontents);
+		String sub = (String)session.getAttribute("id");
+		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents);
 		MemoCommand command = new MemoCommand();
 		Map idMcontents = new HashMap();
-		idMcontents.put("sub", id); idMcontents.put("mcontents", mcontents);
+		idMcontents.put("sub", sub); idMcontents.put("mcontents", mcontents);
 		command=socketDAO.selectDelivered(idMcontents);
 		System.out.println("onMessage 결과command확인 ::: "+command.getMcontents()+", "+command.getSub());
 		JSONObject jsonObject = new JSONObject();
@@ -90,7 +90,7 @@ public class SocketHandler {
 		String id = (String) session.getAttribute("id");
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
-		int count=socketDAO.countText();
+		int count=socketDAO.countText(id);
 		if(count<=10){
 			count=1;
 		}else if(count>10){
@@ -131,10 +131,10 @@ public class SocketHandler {
 			HttpSession session,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
-		String id = (String) session.getAttribute("send");
-		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+id);
+		String send = (String) session.getAttribute("id");
+		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+send);
 		MemoCommand command = new MemoCommand();
-		command.setSub(sub); command.setMcontents(mcontents); command.setSend(id);
+		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
 		socketDAO.insertText(command);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
@@ -160,7 +160,7 @@ public class SocketHandler {
 	//체크박스로 선택한 쪽지를 지우는 메소드입니다.
 	//여러개 선택될 경우를 생각하여 파라미터를 String배열로 설정했습니다.
 	@RequestMapping("/Broadcasting/deleteText.do")
-	public void deleteText(String[] mcontents,
+	public String deleteText(String[] mcontents,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
 		System.out.println(mcontents);
@@ -168,6 +168,7 @@ public class SocketHandler {
 			socketDAO.deleteText(contents);
 		}
 		//다시 처음 창으로 돌아가야 되는데 안됩니다.....
+		return "textDeleteSuccess";
 	}
 
 	//쪽지를 연 상태에서 답장쓰기 버튼을 누를 시 웹소켓 내에서 제공하는 function send()를 이용하여 답장을 보냅니다.
@@ -177,10 +178,10 @@ public class SocketHandler {
 			HttpSession session,@RequestParam("sub")String sub,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
-		String id = (String) session.getAttribute("send");
+		String send = (String) session.getAttribute("id");
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
-		command.setMcontents(mcontents); command.setSend(id); command.setSub(sub);
+		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
 		socketDAO.insertText(command);
 	}
 	
@@ -188,12 +189,22 @@ public class SocketHandler {
 	//처음 쪽지창을 열 때엔 1-10까지의 쪽지만 나오게 됩니다.
 	@RequestMapping("/Broadcasting/selectPageNum.do")
 	public void selectPageNum(@RequestParam("pageNum")String pageNum,
+			HttpSession session,
 			HttpServletResponse response) throws Exception{
-		System.out.println("selectPageNum진입");
+		String sub = (String)session.getAttribute("id");
 		response.setCharacterEncoding("UTF-8");
 		Map startandend = new HashMap();
 		ArrayList pagedList = new ArrayList();
-		startandend.put("startNum", (Integer.parseInt(pageNum)*10)+1);startandend.put("endNum", (Integer.parseInt(pageNum)+2)*10);
+		if(pageNum.equals("1")){
+			startandend.put("startNum", 1);
+			startandend.put("endNum", 10);
+		}else{
+			startandend.put("startNum", (Integer.parseInt(pageNum)*10)+1);
+			startandend.put("endNum", (Integer.parseInt(pageNum)+1)*10);
+		}
+		startandend.put("sub", sub);
+		
+		System.out.println("selectPageNum진입 sub:::"+sub+", startNum:::"+(Integer.parseInt(pageNum)*10+1)+", endNum:::"+((Integer.parseInt(pageNum)+2)*10));
 		pagedList=socketDAO.getPagedText(startandend,pagedList);
 		JSONObject jsonObject = new JSONObject();
 		System.out.println("pageListNull?:::"+pagedList.isEmpty());

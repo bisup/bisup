@@ -212,6 +212,10 @@
 		<put-attribute name="title" value="구별 회원현황"/>
 		<put-attribute name="body" value="/WEB-INF/admin/GuMember.jsp"/>
 	</definition>
+	<definition name="textDeleteSuccess" extends="base_layout">
+		<put-attribute name="title" value="쪽지 삭제 완료"/>
+		<put-attribute name="body" value="/textDeleteSuccess.jsp"/>
+	</definition>
 	
 	<!-- 창업매뉴얼 -->
 	<definition name="manual_bis" extends="base_layout">
@@ -291,6 +295,11 @@
 	<definition name="salesOtherPro" extends="base_layout">
 		<put-attribute name="title" value="부수비용 등록완료" />
 		<put-attribute name="body"	value="/WEB-INF/sales/salesOtherPro.jsp" />
+	</definition>
+	
+	<definition name="salesOtherPage" extends="base_layout">
+		<put-attribute name="title" value="부수비용 등록완료" />
+		<put-attribute name="body"	value="/WEB-INF/sales/salesOtherPage.jsp" />
 	</definition>
 	
 	<definition name="salesTotal" extends="base_layout">

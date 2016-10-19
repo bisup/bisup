@@ -46,10 +46,10 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		return pagedList;
 	}
 
-	public int countText() {
+	public int countText(String id) {
 		// TODO Auto-generated method stub
 		int count=0;
-		count=getSqlSession().selectOne("text.textCount");
+		count=getSqlSession().selectOne("text.textCount",id);
 		return count;
 	}
 

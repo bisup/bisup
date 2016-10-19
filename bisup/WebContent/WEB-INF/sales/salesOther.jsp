@@ -45,26 +45,60 @@ function Check2(){
 		f.rent.focus();
 		return false;
 	}
+	
+	if(f.rent.value.length > "5"){
+		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
+		f.rent.focus();
+		return false;
+	}
+	
 	if(! f.sal.value){ 	
 		alert("월급금이 없으시다면 0을 입력해주세요");
 		f.sal.focus();
 		return false;
 	}
+	
+	if(f.sal.value.length > "5"){
+		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
+		f.sal.focus();
+		return false;
+	}
+	
 	if(! f.mcost.value){ 	
 		alert("관리비가 없으시다면 0을 입력해주세요");
 		f.mcost.focus();
 		return false;
 	}
+	
+	if(f.mcost.value.length > "5"){
+		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
+		f.mcost.focus();
+		return false;
+	}
+	
 	if(! f.duty.value){ 	
 		alert("세금이 없으시다면 0을 입력해주세요");
 		f.duty.focus();
 		return false;
 	}
+	
+	if(f.duty.value.length > "5"){
+		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
+		f.duty.focus();
+		return false;
+	}
+	
 	if(! f.prcost.value){ 	
 		alert("홍보비가 없으시다면 0을 입력해주세요");
 		f.prcost.focus();
 		return false;
 	}	
+	
+	if(f.prcost.value.length > "5"){
+		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
+		f.prcost.focus();
+		return false;
+	}
 }
 </script>
 </head>
@@ -73,9 +107,9 @@ function Check2(){
 <br>
 <br>
 <div align="center">
+<fieldset >
 <form id="other" method="post" action="salesOther.do">
 <input type="hidden" name="id" value="<c:out value="${id}"/>">
-<fieldset >
 <table style="width:80%">
 <tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
 </table>
@@ -121,8 +155,12 @@ function Check2(){
 <td style="text-align:right;"><input type="submit" value="등록" onclick="return Check2();" class="btn btn-default"></td>
   </tr>
 </table>
-</fieldset>
 </form>
+<form id="sales2" method="post" action="salesOtherPage.do">
+ <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
+ <button>이전 부수비용 등록 확인/수정 하기</button>
+</form>
+</fieldset>
 </div>
 </body>
 </html>

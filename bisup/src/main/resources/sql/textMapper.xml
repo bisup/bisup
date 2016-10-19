@@ -14,10 +14,10 @@
 		delete from memo where mcontents=#{mcontents}
 	</delete>
 	<select id="pagedText" parameterType="Map" resultType="command.MemoCommand">
-		select r,send,sub,mcontents,mreg from (select rownum r,send,sub,mcontents,mreg from memo order by rownum desc) where #{endNum}>=r and r>=#{startNum}
+		select r,send,sub,mcontents,mreg from (select rownum r,send,sub,mcontents,mreg from memo where sub=#{sub} order by rownum desc) where #{endNum}>=r and r>=#{startNum}
 	</select>
-	<select id="textCount" resultType="int">
-		select count(*) from memo
+	<select id="textCount" resultType="int" parameterType="String">
+		select count(*) from memo where sub=#{id}
 	</select>
 	<select id="selectDelivered" parameterType="Map" resultType="command.MemoCommand">
 		select * from memo where sub=#{sub} and mcontents=#{mcontents}
