@@ -87,6 +87,12 @@ public class SalesDAO extends SqlSessionDaoSupport{
 	
 	}
 	
+	public int checkOther(Map<String, String> map)
+	{
+		System.out.println("checkOther"+map);
+		return getSqlSession().selectOne("sales.checkOther",map);
+	}
+	
 	public int updateOther(OtherCommand otherCommand)
 	{
 		System.out.println("updateOther"+otherCommand);

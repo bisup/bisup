@@ -47,6 +47,10 @@ select distinct sdate from other where id=#{id} order by sdate
 update other set rent=TO_CHAR(#{rent}||'0000'),sal=TO_CHAR(#{sal}||'0000'),mcost=TO_CHAR(#{mcost}||'0000'),duty=TO_CHAR(#{duty}||'0000'),prcost=TO_CHAR(#{prcost}||'0000'),etcco=(TO_CHAR(#{rent}||'0000') + TO_CHAR(#{sal}||'0000') +TO_CHAR(#{mcost}||'0000') + TO_CHAR(#{duty}||'0000') + TO_CHAR(#{prcost}||'0000')) where id=#{id} and sdate=#{sdate}
 </update>
 
+<select id="checkOther" parameterType="map" resultType="int">
+select count(sdate) from other where id=#{id} and sdate=#{year}||#{mon}
+</select>
+
 <!-- 순수익,월별매출 차트 -->
 <select id="salePerMon" parameterType="String" resultType="command.SaleCommand">
 select (sum(total))as tot from sale where id=#{id} group by ('20'||(to_char(to_date(sdate,'yyyy-mm-dd'),'YYMM'))) order by ('20'||(to_char(to_date(sdate,'yyyy-mm-dd'),'YYMM')))

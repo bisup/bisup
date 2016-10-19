@@ -197,6 +197,14 @@ public String updateSales2(@ModelAttribute("saleCommand") SaleCommand saleComman
 }
 	
 //부수비용 등록 수정 부분
+@RequestMapping(value="/salesOtherPage.do",method=RequestMethod.POST)
+public String salesOtherPage(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	otherCommand.setId(id);
+System.out.println("post"+id);
+return "redirect:/sales/salesOtherPro.do";
+}	
+
 @RequestMapping(value="/salesOther.do",method=RequestMethod.GET)
 public String salesOther(HttpServletRequest request,Model model,HttpSession session){
 //	session.setAttribute("id", "java");
@@ -206,7 +214,7 @@ public String salesOther(HttpServletRequest request,Model model,HttpSession sess
 }
 
 @RequestMapping(value="/salesOther.do",method=RequestMethod.POST)
-public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,String year,String mon,HttpServletRequest request,HttpSession session){		
+public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,HttpSession session){		
 	String id=(String)session.getAttribute("id");
 	otherCommand.setId(id);
 	otherCommand.setYear(request.getParameter("year"));
@@ -217,9 +225,37 @@ public String insertOther(@ModelAttribute("otherCommand") OtherCommand otherComm
 	otherCommand.setDuty(Integer.parseInt(request.getParameter("duty")));
 	otherCommand.setPrcost(Integer.parseInt(request.getParameter("prcost")));
 	
-	int x = salesDao.insertOther(otherCommand);
-	System.out.println("salesOther post");
-	return "redirect:/sales/salesOtherPro.do";
+	Map<String, String> map=new HashMap<String, String>();
+	map.put("id",(String)session.getAttribute("id"));
+	map.put("year",request.getParameter("year"));
+	map.put("mon", request.getParameter("mon"));
+	
+	int a = salesDao.checkOther(map);
+	
+	if(a==0)
+	{
+		int x = salesDao.insertOther(otherCommand);
+		System.out.println("salesOther post");
+		return "redirect:/sales/salesOtherPro.do";}
+	else{
+		session.setAttribute("year",request.getParameter("year"));
+		session.setAttribute("mon",request.getParameter("mon"));
+		return "redirect:/sales/salesOtherPage.do";}
+	}
+
+
+@RequestMapping(value="/salesOtherPage.do", method=RequestMethod.GET)
+public String salesOtherPage(@ModelAttribute("otherCommand") OtherCommand otherCommand,HttpServletRequest request,Model model,HttpSession session){
+	String id=(String)session.getAttribute("id");
+	String year=(String)session.getAttribute("year");
+	String mon=(String)session.getAttribute("mon");
+	model.addAttribute("other",salesDao.otherList(id));
+	model.addAttribute("yearmon",salesDao.yearmon(id));
+	model.addAttribute(year);
+	model.addAttribute(mon);
+
+	System.out.println("saleInsertingCopy get");
+	return "salesOtherPage";
 }
 
 @RequestMapping(value="/salesOtherPro.do", method=RequestMethod.GET)

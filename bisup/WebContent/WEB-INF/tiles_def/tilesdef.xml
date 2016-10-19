@@ -297,6 +297,11 @@
 		<put-attribute name="body"	value="/WEB-INF/sales/salesOtherPro.jsp" />
 	</definition>
 	
+	<definition name="salesOtherPage" extends="base_layout">
+		<put-attribute name="title" value="부수비용 등록완료" />
+		<put-attribute name="body"	value="/WEB-INF/sales/salesOtherPage.jsp" />
+	</definition>
+	
 	<definition name="salesTotal" extends="base_layout">
 		<put-attribute name="title" value="순수익" />
 		<put-attribute name="body" value="/WEB-INF/sales/salesTotal.jsp" />
