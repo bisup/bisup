@@ -57,21 +57,21 @@ color: blue;
         </li>
         
          <li class="dropdown"><!-- 매출트렌드 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">트렌드 보고서<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">트렌드 현황<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/bisup/bisup_trend/sales_trend.do">매출 트렌트 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/sales_trend.do">지역별 매출 현황</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/bisup_trend/business_trend.do">업종 트렌드 보고서</a></li>
+            <li><a href="/bisup/bisup_trend/business_trend.do">카페 트렌드 현황</a></li>
           </ul>
         </li>
         
          <li class="dropdown"><!-- 창업컨설팅 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업 컨설팅<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">창업 서비스<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+         	<li><a href="/bisup/bisup_concerting/manual.do">창업 메뉴얼</a></li>
+            <li class="divider"></li>
             <li><a href="/bisup/bisup_concerting/info_customer.do">거래처 정보</a></li>
             <li class="divider"></li>	
-            <li><a href="/bisup/bisup_concerting/manual.do">창업 메뉴얼</a></li>
-            <li class="divider"></li>
             <li><a href="/bisup/bisup_concerting/relation.do">연관 사이트</a></li>
           </ul>
         </li>
@@ -80,13 +80,13 @@ color: blue;
         <li class="dropdown"><!-- 매출관리 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내 점포 매출관리<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/bisup/mystore/menuMain.do">메뉴등록</a></li>
+            <li><a href="/bisup/mystore/menuMain.do">메뉴 등록</a></li>
             <li class="divider"></li>
             <li><a href="/bisup/sales/salesInserting.do">매출 등록</a></li>
             <li class="divider"></li>
             <li><a href="/bisup/sales/salesOther.do">부수비용 등록</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/sales/drawMonChart.do">차트</a></li>
+            <li><a href="/bisup/sales/drawMonChart.do">매출 현황</a></li>
           </ul>
         </li>
         </c:if>
@@ -114,8 +114,8 @@ color: blue;
           <ul class="dropdown-menu" role="menu">
             <li><a href="/bisup/admin/main.do">회원 관리</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/admin/store.do">점포 관리</a></li>
-            <li class="divider"></li>
+           <!--  <li><a href="/bisup/admin/store.do">점포 관리</a></li>
+            <li class="divider"></li> -->
             <li><a href="/bisup/admin/guMemMain.do">지역구별 회원현황</a></li>
           </ul>
         </li>

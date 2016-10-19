@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 });
 </script>
-<script>
+<script> 
 /* post방식으로 보낼때*/
   
   function sub(action){
