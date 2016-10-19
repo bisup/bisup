@@ -90,11 +90,7 @@ request.setCharacterEncoding("utf-8");
     function send() {
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
-<<<<<<< HEAD
-        var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:${sessionScope.id}};
-=======
         var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'${sessionScope.id}'};
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
         $.ajax({
     		type:"post"
     		,url:url
