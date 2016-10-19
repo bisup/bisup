@@ -9,7 +9,7 @@
 		<![CDATA[
 		select num, writer, title, contents, cnt, reg, r
 from (select num, writer, title, contents, cnt,reg, rownum r from
-(select num, writer, title, contents, cnt,reg from notice order by num ) 
+(select num, writer, title, contents, cnt,reg from notice order by num desc) 
 )where r >= #{startRow} and r <= #{endRow}
 		]]>
 	</select>

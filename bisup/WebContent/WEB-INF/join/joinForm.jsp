@@ -70,7 +70,6 @@ article[role="login"] h3 {
 
 article[role="login"] p {
   font-size: 16px;
-  padding: 5px 15px;
 }
 
 .nav-tab-holder {
@@ -287,7 +286,7 @@ $(function(){
 </head>
 <body>
 <div align="center">
-<img alt="로고" src="/bisup/resources/img/logo.png" width="250px">
+   <a href="/bisup/bisup_login/main.do"><img alt="로고" src="/bisup/resources/img/logo.png" width="250px"></a>
 <!-- <h1 align="center">회원가입</h1> --><br><br>
 	<div class="container">
 	<div class="mStep1">
@@ -295,8 +294,8 @@ $(function(){
 						</div>
 						<br>
     <div class="login-signup">
-      <div class="row">
-        <div class="col-sm-6 nav-tab-holder">
+      <div class="row" style="width: 455px;">
+        <div class="col-sm-6 nav-tab-holder" style="width: 455px;">
         <ul class="nav nav-tabs row" role="tablist">
           <li role="presentation" class="active col-sm-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">창업 예정자</a></li>
           <li role="presentation" class="col-sm-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">자영업자</a></li>
@@ -305,12 +304,12 @@ $(function(){
       </div>
 
 
-      <div class="tab-content">
+      <div class="tab-content" style="width: 515px;">
       
-        <div role="tabpanel" class="tab-pane active" id="home">
-          <div class="row">
+        <div role="tabpanel" class="tab-pane active" id="home" style="width: 515px;">
+          <div class="row" style="width: 515px;">
 
-            <div class="col-sm-6 mobile-pull">
+            <div class="col-sm-6 mobile-pull" style="width: 515px;">
               <article role="login">
                 <h3 class="text-center"><i class="fa fa-lock"></i>창업 예정자 회원가입</h3>
                 
@@ -360,11 +359,6 @@ $(function(){
                 </div> 
                 
                   <div class="form-group">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Please accept the terms and conditions to proceed with your request.
-                      </label>
-                    </div>
                   </div>
                   <div class="form-group">
                   <input type="hidden" name="sort" value="1"/>
@@ -376,11 +370,9 @@ $(function(){
                 <footer role="signup" class="text-center">
                   <ul>
                     <li>
-                      <a href="#">Terms of Use</a>
+                      <a href="/bisup/bisup_login/main.do">돌아가기</a>
                     </li>
-                    <li>
-                      <a href="#">Privacy Statement</a>
-                    </li>
+                  
                   </ul>
                 </footer>
 
