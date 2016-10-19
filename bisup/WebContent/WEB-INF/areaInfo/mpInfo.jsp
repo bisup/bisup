@@ -29,7 +29,7 @@
     margin: auto;
     padding: 55px 0 100px;
     overflow: hidden;
-    padding-left:18%;
+    padding-left:15%;
 }
 .tb_date{
    
@@ -142,14 +142,16 @@
 		});
 
 
-	/* 지도에 경계띄우기 : 구버튼클릭했을때 동경계보여주기*/
+	
 	$('.gcode').click(function addArea() {
-		/* 다른거 클릭하면 없어지는지 확인 */
+		
 	  	if (sopArea) {
 			sopArea.remove();
 			sopArea = undefined;
 			oriArea = undefined;
 					}  
+		
+	  		
         var year = "2013";
      	var adm_cd =$(this).val();
 		var gcode=$(this).val();
@@ -164,21 +166,44 @@
                 oriArea = res;
 				sopArea = sop.geoJson(res).addTo(map);
 				map.fitBounds(sopArea.getBounds());
-				/*  logger("경계조회 결과");
-				logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>");  */
+			
 				
-				//*******구 경계나눴을때 동이름 띄우기!!
+				      $.ajax({                     
+     		            url : 'https://sgisapi.kostat.go.kr/OpenAPI3/stats/company.json' +
+     		          	'?accessToken='+accessToken+'&year='+year+'&area_type='+0+'&theme_cd='+5010+'&adm_cd='+adm_cd+'&low_search='+1,
+     		            type : 'get',
+     		            datatype:'json',
+     					success: function (res,status) { 
+     						
+     						target = res.result;
+     					 
+     		     			for (idx = 0, len = target.length; idx < len; idx ++) {
+     							conComplite[target[idx].adm_cd] = target[idx];
+     							 value=conComplite[target[idx].adm_cd];
+     							key =target[idx].adm_cd;	
+    
+     						} 
+     					
+     						sopArea.eachLayer(function (layer) {
+     							key = layer.feature.properties.adm_cd;
+     							value = conComplite[key];
+     							strToolTip = "<p>해당 위치는 " + value.adm_nm + "입니다.</p>";
+     				
+     							layer.bindToolTip(strToolTip);
+     							
+     						});
+     					}
+                     });
 				
 				var g=gcode;
 				var url="/bisup/my/areaInfo/mpInfo.do";
 				var params ="gcode="+g;
 	
 				$("#dcode button").each(function(){
-				//id가 city 이며 option인 요소를
+				
 				$("#dcode button:eq(0)").remove();
-				//city option의 1번째를 계속 삭제(0번째만 남기고 모두 지우게 된다. )
-				//eq : 지정된 index번째의 엘리먼트 선택
-				});
+				//기존에 있던 동버튼 모두 삭제,eq : 지정된 index번째의 엘리먼트 선택
+							});
 				
 				$.ajax({
 					type:"post" // 포스트방식
@@ -189,10 +214,7 @@
 			
 					for(var idx=0; idx<args.data.length; idx++){
 				
-					$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id=dong>"+args.data[idx].dn+"</button>");
-					//alert(args.data1[idx].dn);
-					
-					
+					$("#dcode").append("<button value='"+args.data[idx].dcode+"' class='dcode' id=dong>"+args.data[idx].dn+"</button>");		
 				
 				}
 				
@@ -210,30 +232,12 @@
 								
 								 target = res.result;
 				     						$(".tbody1").find("tr").remove(); 
-				     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
+				     		     			
 				     							 value=target[0];
 				     							
 				     							
 				     		 $(".tbody1").append("<tr><td>"+value.adm_nm+"</td><td>"+value.total_ppl+"</td><td>"+value.f_ppl+"</td><td>"+value.m_ppl+"</td></tr>");  
-				     							/* var chartlist1=[];
-				     					 		chartlist.push(value.total_ppl);
-				     					 		chartlist.push(value.f_ppl);
-				     					 		chartlist.push(value.m_ppl);
-				     					 		chartlist.push(value.adm_nm);
-				     					 		
-				     					 		$.ajaxSettings.traditional = true;
-				     							$.ajax({
-				     						          type: 'get',
-				     								  url: '/bisup/my/areaInfo/chartBar.do',
-				     								  dataType : 'html',
-				     								  data : {'chartlist1' : chartlist1},
-				     								  success: 
-				     										function(data) {
-				     								     	$("#chartBar").html(data);
-				     								       	$("#chartBar").css("display","block");
-				     								    	}
-				     							});		  */
-				     		  
+				   
 							}
 							});
 						}); //dong버튼클릭
@@ -250,40 +254,28 @@
 										// 맵형태로 변환 한다.
 									
 										 target = res.result;
-						     						
-						     		     			//for (idx = 0, len = target.length; idx < len; idx ++) {
-						     							
-						     							 value=target[0];
-						     							
-						     							
-						     					/*  $(".tbody2").append("<tr><td><td>"+conComplite[key].adm_nm+
-						     									 "</td><td>"+conComplite[key].teenage_less_than_per+
-						     									 "</td><td>"+conComplite[key].teenage_per+"</td><td>"
-						     									 +conComplite[key].twenty_per+"</td><td>"+
-						     									 conComplite[key].thirty_per+"</td><td>"+conComplite[key].forty_per+
-						     									 "</td><td>"+conComplite[key].fifty_per+"</td><td>"+
-						     									 conComplite[key].sixty_per+"</td><td>"+
-						     									 conComplite[key].seventy_more_than_per+"</td></tr>");   */
-						     					 		var chartlist=[];
-						     					 		chartlist.push( value.teenage_less_than_per);
-						     					 		chartlist.push( value.teenage_per);
-						     					 		chartlist.push( value.twenty_per);
-						     					 		chartlist.push( value.thirty_per);
-						     					 		chartlist.push( value.forty_per);
-						     					 		chartlist.push( value.fifty_per);
-						     					 		chartlist.push( value.sixty_per);
-						     					 		chartlist.push( value.seventy_more_than_per);
+						     			 value=target[0];
+						     				
+						     			var chartlist=[];
+						     			chartlist.push( value.teenage_less_than_per);
+						     			chartlist.push( value.teenage_per);
+								 		chartlist.push( value.twenty_per);
+								 		chartlist.push( value.thirty_per);
+			 					 		chartlist.push( value.forty_per);
+						     			chartlist.push( value.fifty_per);
+						     			chartlist.push( value.sixty_per);
+						     			chartlist.push( value.seventy_more_than_per);
 						     					 		
-						     					 		$.ajaxSettings.traditional = true;
-						     							$.ajax({
-						     						          type: 'get',
-						     								  url: '/bisup/my/areaInfo/chartview.do',
-						     								  dataType : 'html',
-						     								  data : {'chartlist' : chartlist},
-						     								  success: 
-						     										function(data) {
-						     								     	$("#chartView").html(data);
-						     								       	$("#chartView").css("display","block");
+						     			$.ajaxSettings.traditional = true;
+						     			$.ajax({
+						     					  type: 'get',
+						     					 url: '/bisup/my/areaInfo/chartview.do',
+						     					 dataType : 'html',
+						     					  data : {'chartlist' : chartlist},
+						     						 success: 
+						     						function(data) {
+						     						$("#chartView").html(data);
+						     						$("#chartView").css("display","block");
 						     								    	}
 						     							});
 						     								    

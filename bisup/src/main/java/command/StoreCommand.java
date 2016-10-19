@@ -8,6 +8,7 @@ public class StoreCommand {
 	private String dong; //행정동
 	private int x; //위도
 	private int y; //경도
+	
 	public int getSnum() {
 		return snum;
 	}
