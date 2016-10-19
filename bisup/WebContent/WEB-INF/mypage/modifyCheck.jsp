@@ -16,7 +16,7 @@
 </head>
 <script>
 
-
+  
 /* 비밀번호 일치여부 확인후 정보수정폼이나 탈퇴로  */
 $(document).ready(function() {
 	
