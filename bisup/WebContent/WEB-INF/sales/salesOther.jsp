@@ -115,13 +115,13 @@ function Check2(){
 </table>
 <table class="table table-striped" style="width:80%">
   <tr>
-  	<th>년</th>
-    <th>월</th>
-    <th>월세</th>
-    <th>월급</th>
-    <th>관리비</th>
-    <th>세금</th>
-    <th>홍보비</th>
+  	<th class="success">년</th>
+    <th class="success">월</th>
+    <th class="success">월세</th>
+    <th class="success">월급</th>
+    <th class="success">관리비</th>
+    <th class="success">세금</th>
+    <th class="success">홍보비</th>
   </tr>
  <tr>
  	<td>
@@ -156,9 +156,9 @@ function Check2(){
   </tr>
 </table>
 </form>
-<form id="sales2" method="post" action="salesOtherPage.do">
+<form id="sales2" style=width:80%; align="right" method="post" action="salesOtherPage.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
- <button>이전 부수비용 등록 확인/수정 하기</button>
+<button class="btn btn-primary btn-lg">이전 부수비용 등록 확인/수정 하기</button>
 </form>
 </fieldset>
 </div>

@@ -68,9 +68,10 @@ function Check2(){
 <body>
 <br>
 <br>
+
 <div align="center">
 <fieldset>
-<legend>매출 등록하기</legend>
+<legend><h2>매출 등록하기</h2></legend>
 <form name="sales" id="sales" method="post" action="salesInserting.do">
 <table align="left">
 <tr>
@@ -81,11 +82,11 @@ function Check2(){
 <br>
 <br>
 <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:80%" >
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <td></td>
+    <th class="info">메뉴이름</th>
+    <th class="info">판매수량</th>
+    <th class="info"></th>
   </tr>
   <tr>
   <td>
@@ -105,15 +106,17 @@ function Check2(){
 </form>
 </fieldset>
 <br>
+<br>
+<br>
 <fieldset>
-<legend>총 매출 내역</legend>
+<legend><h2>총 매출 내역</h2></legend>
 <form id="sales" method="get" action="salesInsertingPro.do">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <th>총매출</th>
+    <th class="danger">메뉴이름</th>
+    <th class="danger">판매수량</th>
+    <th class="danger">총매출</th>
   </tr>
   <c:forEach var="sale" items="${sale}" varStatus="status">
   <tr>
@@ -126,16 +129,18 @@ function Check2(){
  </form>
  </fieldset>
  <br>
+<br>
+<br>
  <fieldset>
-  <legend>등록 수정하기</legend>
+  <legend><h2>등록 수정하기</h2></legend>
  <form name="sales2" method="post" action="salesInsertingPro.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <td></td>
+    <th class="info">메뉴이름</th>
+    <th class="info">판매수량</th>
+    <td class="info"></td>
   </tr>
    <tr>
   <td>
@@ -153,12 +158,13 @@ function Check2(){
   </tr>
 </table>
 </form>
-<form id="sales" method="post" action="salesTablePage.do">
+<br>
+<br>
+<br>
+<form style=width:80%; align="right" id="sales" method="post" action="salesTablePage.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
- <button>이전 매출 등록 확인/수정 하기</button>
+ <button class="btn btn-primary btn-lg">이전 매출 등록 확인/수정 하기</button>
 </form>
 </fieldset>
 </div>
- <br/>
-</body>
 </html>

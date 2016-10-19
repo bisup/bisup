@@ -70,13 +70,13 @@ tr{padding:15px;}
 
   <tr>
 
-    <th>년월</th>
+    <th class="warning">년월</th>
 
-    <th>총매출</th>
+    <th class="warning">총매출</th>
 
-    <th>부수비용</th>
+    <th class="warning">부수비용</th>
 
-    <th>순수익</th>
+    <th class="warning">순수익</th>
 
   </tr>
 

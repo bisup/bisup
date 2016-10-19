@@ -86,7 +86,7 @@ color: blue;
             <li class="divider"></li>
             <li><a href="/bisup/sales/salesOther.do">부수비용 등록</a></li>
             <li class="divider"></li>
-            <li><a href="/bisup/sales/drawMonChart.do">차트</a></li>
+            <li><a href="/bisup/sales/drawMonChart.do">매출 현황</a></li>
           </ul>
         </li>
         </c:if>

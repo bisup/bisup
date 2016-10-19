@@ -56,7 +56,7 @@ function Check2(){
 <br>
 <div align="center">
 <fieldset>
-<legend>매출 내역 확인 및 수정</legend>
+<legend><h2>매출 내역 확인 및 수정</h2></legend>
 <form id="sales" method="post" action="salesTable.do">
 <div align="left">
 <table>
@@ -79,14 +79,14 @@ function Check2(){
 </fieldset>
 </br>
 <fieldset>
-<legend>총 매출 내역</legend>
+<legend><h2>총 매출 내역</h2></legend>
 <form id="sales" method="get" action="salesTablePro.do">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <th>총매출</th>
+    <th class="danger">메뉴이름</th>
+    <th class="danger">판매수량</th>
+    <th class="danger">총매출</th>
   </tr>
   <c:forEach var="sales" items="${sales}" varStatus="status">
   <tr>
@@ -100,15 +100,15 @@ function Check2(){
  </fieldset>
  </br>
  <fieldset>
-  <legend>등록 수정하기</legend>
+  <legend><h2>등록 수정하기</h2></legend>
  <form name="sales2" method="post" action="salesTablePro.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
 <div align="left"><label>날짜 ${sdate}</label></div>
 <table class="table table-striped" style="width:80%">
   <tr>
-    <th>메뉴이름</th>
-    <th>판매수량</th>
-    <td></td>
+    <th class="info">메뉴이름</th>
+    <th class="info">판매수량</th>
+    <td class="info"></td>
   </tr>
    <tr>
   <td>
