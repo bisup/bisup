@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -55,15 +56,16 @@ public class SocketHandler {
 	
 	//메시지를 받았을 때 자신의 아이디와 내용을 통해 자신의 쪽지인지 유추합니다.
 	@RequestMapping("/Broadcasting/onMessage.do")
-	private void onMessagePro(@RequestParam("id")String sub,
+	private void onMessagePro(HttpSession session,
 			@RequestParam("mcontents")String mcontents,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents);
+		String id = (String)session.getAttribute("id");
+		System.out.println("onMessagePro메소드 진입, sub="+id+", mcontents"+mcontents);
 		MemoCommand command = new MemoCommand();
 		Map idMcontents = new HashMap();
-		idMcontents.put("sub", sub); idMcontents.put("mcontents", mcontents);
+		idMcontents.put("sub", id); idMcontents.put("mcontents", mcontents);
 		command=socketDAO.selectDelivered(idMcontents);
 		System.out.println("onMessage 결과command확인 ::: "+command.getMcontents()+", "+command.getSub());
 		JSONObject jsonObject = new JSONObject();
@@ -82,9 +84,10 @@ public class SocketHandler {
 	
 	//onOpen시 페이징 된 쪽지 내역을 보여주는 메소드입니다.
 	@RequestMapping("/Broadcasting/onOpen.do")
-	private void onOpenPro(@RequestParam("id")String id,HttpServletResponse response) throws Exception {
+	private void onOpenPro(HttpSession session, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
+		String id = (String) session.getAttribute("id");
 		System.out.println("onOpenPro메소드 진입");
 		ArrayList textList=socketDAO.selectText(id);
 		int count=socketDAO.countText();
@@ -125,12 +128,13 @@ public class SocketHandler {
 	@ResponseBody
 	public void send(@RequestParam("sub")String sub,
 			@RequestParam("mcontents")String mcontents,
-			@RequestParam("send")String send,
+			HttpSession session,
 			HttpServletResponse response) throws Exception{
-		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+send);
 		response.setCharacterEncoding("UTF-8");
+		String id = (String) session.getAttribute("send");
+		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+id);
 		MemoCommand command = new MemoCommand();
-		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
+		command.setSub(sub); command.setMcontents(mcontents); command.setSend(id);
 		socketDAO.insertText(command);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
@@ -156,7 +160,7 @@ public class SocketHandler {
 	//체크박스로 선택한 쪽지를 지우는 메소드입니다.
 	//여러개 선택될 경우를 생각하여 파라미터를 String배열로 설정했습니다.
 	@RequestMapping("/Broadcasting/deleteText.do")
-	public String deleteText(String[] mcontents,
+	public void deleteText(String[] mcontents,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
 		System.out.println(mcontents);
@@ -164,19 +168,19 @@ public class SocketHandler {
 			socketDAO.deleteText(contents);
 		}
 		//다시 처음 창으로 돌아가야 되는데 안됩니다.....
-		return "textDeleteSuccess";
 	}
 
 	//쪽지를 연 상태에서 답장쓰기 버튼을 누를 시 웹소켓 내에서 제공하는 function send()를 이용하여 답장을 보냅니다.
 	//위의 send메소드와 비슷한 로직입니다.
 	@RequestMapping("/Broadcasting/replyText.do")
 	public void replyText(@RequestParam("contents")String mcontents,
-			@RequestParam("send")String send,@RequestParam("sub")String sub,
+			HttpSession session,@RequestParam("sub")String sub,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
+		String id = (String) session.getAttribute("send");
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
-		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
+		command.setMcontents(mcontents); command.setSend(id); command.setSub(sub);
 		socketDAO.insertText(command);
 	}
 	
