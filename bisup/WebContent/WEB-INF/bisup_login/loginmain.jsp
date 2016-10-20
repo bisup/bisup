@@ -51,7 +51,7 @@
                 <h1 class="cursive">Bisup,  Business Consultant</h1>
                 <h4>클릭하세요</h4>
                 <hr>
-                <a href="#LoginModal" id="sign" data-toggle="collapse" class="btn btn-primary btn-xl">Sign in</a> &nbsp; <a href="#one" class="btn btn-primary btn-xl page-scroll">Introduce Business</a>
+                 <a href="#one" class="btn btn-primary btn-xl page-scroll">Introduce Business</a>
             </div>
         </div>
         <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
@@ -77,7 +77,7 @@
  
 창업 준비자 및 자영업자를 도와주는 사이트 비즈업
                     </p>
-                    <a href="#two" class="btn btn-default btn-xl page-scroll">Learn More</a>
+                    <a href="#two" class="btn btn-default btn-xl page-scroll" style="color:red">Learn More</a>
                 </div>
             </div>
         </div>
@@ -104,14 +104,14 @@
                     <div class="feature">
                         <img src="/bisup/resources/img/grap.png" width="120px">
                         <h3>매출 트렌드 제공</h3>
-                        <p class="text-muted">상권매출을 기본으로 한 분석을 통한 트렌트정보 제공</p>
+                        <p class="text-muted">지역별 매출을 기본으로 분석을 통한 정보 제공</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 text-center">
                     <div class="feature">
                            <img src="/bisup/resources/img/view.png" width="120px">
-                        <h3>창업컨설팅/점포관리</h3>
-                        <p class="text-muted">상권분석과 매출분석을 통한 창업컨설팅 및 점포관리 기능 제공</p>
+                        <h3>점포관리</h3>
+                        <p class="text-muted">기존의 점포 위생 매출 서비스 등의 종합점검 및 점포관리</p>
                     </div>
                 </div>
             </div>
