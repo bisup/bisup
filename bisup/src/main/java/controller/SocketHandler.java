@@ -61,10 +61,11 @@ public class SocketHandler {
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
-		String sub = (String)session.getAttribute("id");
-		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents);
+		String id = (String)session.getAttribute("id");
+		System.out.println("onMessagePro메소드 진입, sub="+id+", mcontents"+mcontents);
 		MemoCommand command = new MemoCommand();
 		Map idMcontents = new HashMap();
+		String sub = socketDAO.getNick(id);
 		idMcontents.put("sub", sub); idMcontents.put("mcontents", mcontents);
 		command=socketDAO.selectDelivered(idMcontents);
 		System.out.println("onMessage 결과command확인 ::: "+command.getMcontents()+", "+command.getSub());
@@ -89,8 +90,9 @@ public class SocketHandler {
 		response.setCharacterEncoding("UTF-8");
 		String id = (String) session.getAttribute("id");
 		System.out.println("onOpenPro메소드 진입");
-		ArrayList textList=socketDAO.selectText(id);
-		int count=socketDAO.countText(id);
+		String nick = socketDAO.getNick(id);
+		ArrayList textList=socketDAO.selectText(nick);
+		int count=socketDAO.countText(nick);
 		if(count<=10){
 			count=1;
 		}else if(count>10){
@@ -99,7 +101,6 @@ public class SocketHandler {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", textList);
 		jsonObject.put("count", count);
-		System.out.println(textList);
 		toString(textList);
 		System.out.println("count:::"+count);
 		PrintWriter printWriter = response.getWriter();
@@ -131,10 +132,11 @@ public class SocketHandler {
 			HttpSession session,
 			HttpServletResponse response) throws Exception{
 		response.setCharacterEncoding("UTF-8");
-		String send = (String) session.getAttribute("id");
-		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+send);
+		String id = (String) session.getAttribute("id");
+		String nick = socketDAO.getNick(id);
+		System.out.println("send 진입, sub="+sub+", mcontents="+mcontents+", send="+nick);
 		MemoCommand command = new MemoCommand();
-		command.setSub(sub); command.setMcontents(mcontents); command.setSend(send);
+		command.setSub(sub); command.setMcontents(mcontents); command.setSend(nick);
 		socketDAO.insertText(command);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", sub);
@@ -178,10 +180,11 @@ public class SocketHandler {
 			HttpSession session,@RequestParam("sub")String sub,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
-		String send = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
+		String nick = socketDAO.getNick(id);
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
-		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
+		command.setMcontents(mcontents); command.setSend(nick); command.setSub(sub);
 		socketDAO.insertText(command);
 	}
 	
@@ -191,7 +194,8 @@ public class SocketHandler {
 	public void selectPageNum(@RequestParam("pageNum")String pageNum,
 			HttpSession session,
 			HttpServletResponse response) throws Exception{
-		String sub = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id");
+		String nick = socketDAO.getNick(id);
 		response.setCharacterEncoding("UTF-8");
 		Map startandend = new HashMap();
 		ArrayList pagedList = new ArrayList();
@@ -202,9 +206,9 @@ public class SocketHandler {
 			startandend.put("startNum", (Integer.parseInt(pageNum)*10)+1);
 			startandend.put("endNum", (Integer.parseInt(pageNum)+1)*10);
 		}
-		startandend.put("sub", sub);
+		startandend.put("sub", nick);
 		
-		System.out.println("selectPageNum진입 sub:::"+sub+", startNum:::"+(Integer.parseInt(pageNum)*10+1)+", endNum:::"+((Integer.parseInt(pageNum)+2)*10));
+		System.out.println("selectPageNum진입 sub:::"+nick+", startNum:::"+(Integer.parseInt(pageNum)*10+1)+", endNum:::"+((Integer.parseInt(pageNum)+2)*10));
 		pagedList=socketDAO.getPagedText(startandend,pagedList);
 		JSONObject jsonObject = new JSONObject();
 		System.out.println("pageListNull?:::"+pagedList.isEmpty());

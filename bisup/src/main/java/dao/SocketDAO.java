@@ -12,9 +12,9 @@ import command.MenuCommand;
 
 public class SocketDAO extends SqlSessionDaoSupport {
 
-	public ArrayList selectText(String id){
+	public ArrayList selectText(String nick){
 		ArrayList textList = new ArrayList();
-		textList=(ArrayList) getSqlSession().selectList("text.selectText", id);
+		textList=(ArrayList) getSqlSession().selectList("text.selectText", nick);
 		return textList;
 	}
 	
@@ -46,10 +46,10 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		return pagedList;
 	}
 
-	public int countText(String id) {
+	public int countText(String nick) {
 		// TODO Auto-generated method stub
 		int count=0;
-		count=getSqlSession().selectOne("text.textCount",id);
+		count=getSqlSession().selectOne("text.textCount",nick);
 		return count;
 	}
 
@@ -58,5 +58,11 @@ public class SocketDAO extends SqlSessionDaoSupport {
 		MemoCommand command = new MemoCommand();
 		command = getSqlSession().selectOne("text.selectDelivered", idMcontents);
 		return command;
+	}
+
+	public String getNick(String id) {
+		String nick="";
+		nick=getSqlSession().selectOne("text.getNick",id);
+		return nick;
 	}
 }
