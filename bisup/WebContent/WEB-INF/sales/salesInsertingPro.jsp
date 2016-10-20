@@ -52,6 +52,11 @@ function Check(){
 		f.ea.focus();
 		return false;
 	}
+	if(isNaN(f.ea.value)){
+		alert("숫자로 입력해주세요");
+		f.ea.focus();
+		return false;
+	}
 }
 
 function Check2(){
@@ -65,6 +70,11 @@ function Check2(){
 	
 	if(! f.ea.value){ 	
 		alert("수량을 입력해주세요");
+		f.ea.focus();
+		return false;
+	}
+	if(isNaN(f.ea.value)){
+		alert("숫자로 입력해주세요");
 		f.ea.focus();
 		return false;
 	}

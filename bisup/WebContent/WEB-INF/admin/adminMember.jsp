@@ -32,7 +32,7 @@
 							var sort = (args.data[idx].sort == 1) ? one : two
 							$("#allMember").append(
 									"<tr><td><div class='menubar'><nav id='contentMenu'><ul><li class='contentMenuLi'><a class='conmenuLink'>" + args.data[idx].id+"</a>"
-									+"<ul class='contentMenusub'><li class='pop-up'><a href='/bisup/webEx.jsp?id='"+args.data[idx].id+"' class='consubmenuLink longLink'>쪽지보내기</a></li>"
+									+"<ul class='contentMenusub'><li class='pop-up'><a href='/bisup/webEx.jsp?selectedId="+args.data[idx].id+"' class=consubmenuLink longLink>쪽지보내기</a></li>"
 									+"</ul></li></ul></nav></div></td>"
 										+ "</td><td>" + args.data[idx].name
 											+ "</td><td>" + args.data[idx].nick

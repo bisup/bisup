@@ -48,6 +48,11 @@ function Check2(){
 		f.ea.focus();
 		return false;
 	}
+	if(isNaN(f.ea.value)){
+		alert("숫자로 입력해주세요");
+		f.ea.focus();
+		return false;
+	}
 }
 </script>
 </head>

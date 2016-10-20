@@ -4,7 +4,7 @@
 </head>
 <body>
 	<div class="container">
-		글 수정 완료<br> <a href="/bisup/bisup/notice/nlist.do">글 목록 보기</a>
+		글 수정 완료<br> <a href="/bisup/bisup/notice/nlist_m.do">글 목록 보기</a>
 	</div>
 </body>
 </html>
