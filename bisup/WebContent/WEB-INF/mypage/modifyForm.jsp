@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <title>Insert title here</title>
+<style>
+#table_b{
+	float: left;
+	padding-left:20%; 
+	margin: auto;
+	width: 1000;
+}
+ 
+</style>
 </head>
 <script type="text/javascript">
 function passwordCheck() {
@@ -93,8 +102,10 @@ $(function(){
 });
 </script>
 <body>
-<div class="container">
-<div class="col-sm-6 mobile-pull">
+<div class="container" >
+<div id="table_b">
+<div class="col-sm-6 mobile-pull" >
+</div>
 <h4 style="border-bottom: 1px solid #c5c5c5;">
     <i class="glyphicon glyphicon-user">
     </i>
@@ -106,8 +117,8 @@ $(function(){
   
    <form:form commandName="mem" class="signup" name="myForm">
 
-  
-           	  <div class="form-group">
+ 			
+           	  <div class="form-group" >
            	  <form:label path="id">본인 ID</form:label>
            	 <form:input path="id" class="form-control" readonly="true" value="${mem.id}" />
 			</div> 	       
@@ -166,7 +177,8 @@ $(function(){
                 </div> 
                 </div>
                 
-                </div> 
+                </div>
+                
   <script>
        function change(){
 
@@ -218,8 +230,8 @@ $(function(){
   
   
  
-            
+            </div>
               </div>
-              </div>
+              
 </body>
 </html> 

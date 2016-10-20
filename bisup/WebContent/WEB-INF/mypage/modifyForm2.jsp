@@ -6,6 +6,16 @@
 <html>
 <head>
 <title>Insert title here</title>
+<style>
+#table_b{
+	float: left;
+	padding-left:20%; 
+	margin: auto;
+	width: 1000;
+
+} 
+
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -66,7 +76,9 @@ $(function(){
 </script>
 <body>
 <div class="container">
+<div id="table_b">
 <div class="col-sm-6 mobile-pull">
+</div>
 <h4 style="border-bottom: 1px solid #c5c5c5;">
     <i class="glyphicon glyphicon-user">
     </i>
