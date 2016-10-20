@@ -221,6 +221,7 @@ function pass(){
 	   	return ;
     }
 }
+
 $(function(){
 	 var nick = document.getElementById("nick").value;
 	 $('#nick').blur(function nickHH(){
@@ -343,6 +344,43 @@ $('#email1').blur(function emails(){
 	 });
 });
 </script>
+<script type="text/javascript">
+function pho(){
+	  var phone = document.getElementById("phone").value;
+// 길이
+if(!/^[0-9]+$/.test(phone))
+{ 
+    alert("숫자로 입력하세요"); 
+    myform.phone.empty();
+    myform.phone.focus();
+	   	return ;
+ }
+}
+
+function telt(){
+	  var tel = document.getElementById("tel").value;	  
+//길이
+if(!/^[0-9]+$/.test(tel))
+{ 
+  alert("숫자로 입력하세요"); 
+  myform.tel.empty();
+  myform.tel.focus();
+	   	return ;
+}
+}
+
+function pho1(){
+	  var phone = document.getElementById("phone1").value;
+//길이
+if(!/^[0-9]+$/.test(phone))
+{ 
+  alert("숫자로 입력하세요"); 
+  myform.phone.empty();
+  myform.phone.focus();
+	   	return ;
+}
+}
+</script>
 </head>
 <body>
 <div align="center">
@@ -405,7 +443,7 @@ $('#email1').blur(function emails(){
         </div>
                 
                   <div class="form-group">
-                    <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="연락처를 입력해주세요" onblur="pho()"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                 
@@ -483,7 +521,7 @@ $('#email1').blur(function emails(){
           <input class="form-control" placeholder="Email" name="email" class="email" type="email" id="email1" required=""/>
         </div>
                   <div class="form-group">
-                    <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>
+                    <input type="text" id="phone1" name="phone" class="form-control" placeholder="연락처를 입력해주세요" onblur="pho1()"/>
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                   <div class="form-group">
@@ -491,7 +529,7 @@ $('#email1').blur(function emails(){
                   <%--  <form:errors path="snum"/> --%>
                   </div>
                   <div class="form-group">
-                    <form:input path="tel" class="form-control" placeholder="카페 연락처를 입력해주세요"/>
+                    <input type="text" id="tel" name="tel" class="form-control" placeholder="카페 연락처를 입력해주세요" onblur="telt()"/>
                     <%--  <form:errors path="tel"/> --%>
                   </div>
                   <div class="form-group" align="left">

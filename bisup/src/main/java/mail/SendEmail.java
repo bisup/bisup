@@ -26,7 +26,7 @@ public class SendEmail {
         // 메일 내용
         String recipient = address;
         if (state == 1) {
-	        subject = "비즈업 가입을 죽하합니다."; /*이메일의 제목*/
+	        subject = "비즈업에 가입하신 것을 죽하합니다."; /*이메일의 제목*/
 	        code = "http://localhost:8088/bisup/bisup_login/certifyKey.do?key=" + key; /*키값을 키 파라메터에 입력*/
 	        content = "위 주소를 클릭하시면 회원가입이 완료됩니다."; /*전송할 메세지*/
     	}
@@ -66,7 +66,7 @@ public class SendEmail {
         Session session = Session.getDefaultInstance(props);
         MimeMessage msg = new MimeMessage(session); /*전송할 내용을 담을 MimeMessage타입 변수 생성*/
         // 메일 관련
-        msg.setSubject("비즈업 가입하신 비밀번호와 아이디 입니다"); /*이메일 제목 세팅*/
+        msg.setSubject("비즈업에 가입하신 비밀번호와 아이디 입니다"); /*이메일 제목 세팅*/
         msg.setText(content); /*이메일 내용 세팅 :: 아이디 비번 메세지 새팅*/
         msg.setFrom(new InternetAddress(user)); /*보낸사람 이메일 주소 세팅*/
         msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); /*받는사람 주소를 추가*/

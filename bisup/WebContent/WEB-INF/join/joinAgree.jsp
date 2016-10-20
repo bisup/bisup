@@ -98,7 +98,7 @@ $(document).ready(function () {
 <body>
 <div align="center">
 <a href="/bisup/bisup_login/main.do"><img alt="로고" src="/bisup/resources/img/logo.png" width="200px"></a>
-<h1 align="center">회원가입</h1><br><br>
+<!-- <h1 align="center">회원가입</h1><br><br> -->
 <div class="agree">
 <div class="containerTop">
 <div class="mStep1" align="center">
