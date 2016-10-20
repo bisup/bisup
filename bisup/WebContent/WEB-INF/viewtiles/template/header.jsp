@@ -76,7 +76,7 @@ color: blue;
           </ul>
         </li>
         
-        <c:if test="${sessionScope.sort!=1}">
+        <c:if test="${sessionScope.sort==2}">
         <li class="dropdown"><!-- 매출관리 -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내 점포 매출관리<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
