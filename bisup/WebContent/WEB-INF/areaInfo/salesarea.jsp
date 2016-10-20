@@ -97,7 +97,7 @@
          </tbody></table>
 
 <h5 style="font: italic;color:red; ">행정구 선택후 지도위에 행정 지역의 카페의 정보를 확인 하실 수 있습니다.</h5>
->>>>>>> branch 'master' of https://github.com/bisup/bisup.git
+
 <div id="map" style="width:650px;height:400px"></div>
 <br><br>
 <table  class="table">
