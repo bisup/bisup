@@ -111,10 +111,7 @@ $(document).ready(function() {
 			<br>
 		</div>   	
 	</div>
-        <p class="help-block">
-          <a class="text-muted" href="#" id="acceso"><small>#MAIN</small></a>
-        <!--   로그인 후 메인화면으로 -->
-        </p>
+        
       </fieldset>
     </form>
   </div>
