@@ -33,7 +33,7 @@ $(document).ready(function(){
 				$(".tbody").find("tr").remove(); 
 				$(".th").find("th").remove();
 				$(".bto").find("button").remove();
-				$(".th").append( "<th>#</th><th>구이름</th><th>동이름</th><th>위험지표</th><th>평균 폐업기간</th><th>점포증감률</th>"); 
+				$(".th").append( "<th>#</th><th>구이름</th><th>동이름</th><th>위험지표</th><th>평균 폐업기간(년)</th><th>점포증가율</th>"); 
 				$(".bto").append("<button type='submit' onclick='' class='btn'>비교하기</button>");
 				
 				for(idx=0 ; idx<args.list.length ; idx++){
@@ -91,7 +91,7 @@ $(document).ready(function(){
 	  var dname2='${li.dn}'; 
 	  </c:forEach>
     var data = google.visualization.arrayToDataTable([
-          ['ID', '신규_창업_위험_지수_값', '점포증감률'],
+          ['ID', '신규_창업_위험_지수_값', '점포증가율'],
       	<c:forEach var="li" items="${li}"  >      	
           [dname,   ${li.jumpol},  ${li.arg}],
       </c:forEach>
@@ -106,7 +106,7 @@ $(document).ready(function(){
     var options = {
             title: dname+','+dname1+','+dname2+' '+'별 위험지수 비교 ',
             hAxis: {title: '신규_창업_위험_지수_값'},
-            vAxis: {title: '점포증감률'},
+            vAxis: {title: '점포증가율'},
             bubble: {textStyle: {fontSize: 11}}
           };
 

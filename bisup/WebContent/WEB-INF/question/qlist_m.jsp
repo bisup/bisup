@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>title</title>
-<link rel="stylesheet" href="../../css/stylea.css" type="text/css"/>
+<!-- <link rel="stylesheet" href="../../css/stylea.css" type="text/css"/> -->
 <style type="text/css">
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
 </style>
@@ -101,7 +101,8 @@ $(document).ready(function() {
                     		<c:forEach items="${list}" var="list">
                     			<tr>
                     				<td>${list.NUM}</td>
-                    	<td><div class="menubar">
+                    				<td>${list.WRITER}</td>
+              <%--       	<td><div class="menubar">
 						<nav id="contentMenu">
 							<ul>
 								<li class="contentMenuLi"><a class="conmenuLink">${list.WRITER}</a>
@@ -112,7 +113,7 @@ $(document).ready(function() {
 							</ul>
 						</nav>
 						</div>
-                    	</td>			
+                    	</td>		 --%>	
                     				<td><a href="/bisup/bisup/question/qcontents.do?num=${list.NUM}">${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
                     				<td>${list.REG}</td>

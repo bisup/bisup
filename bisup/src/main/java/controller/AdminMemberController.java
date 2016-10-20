@@ -113,8 +113,11 @@ public class AdminMemberController {
 		this.adminMemberService = adminMemberService;
 	}
 	
+	
+	
 	@RequestMapping("/guMemMain.do")
 	public ModelAndView getGuMem(HttpServletResponse response) throws Exception{
+		
 		response.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView("GuMember");
 		ArrayList gu = new ArrayList();

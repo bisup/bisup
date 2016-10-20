@@ -61,6 +61,7 @@ import net.sf.json.JSONObject;
 	@RequestMapping(value="/mypage/modifyCheck.do",method=RequestMethod.GET)
 	public ModelAndView check(){
 		int x=0;
+		System.out.println("modifyCheck GET ¹æ½Ä");
 		ModelAndView mav =new ModelAndView();	
 		mav.setViewName("modifyCheck");
 		mav.addObject("x",new Integer(x));

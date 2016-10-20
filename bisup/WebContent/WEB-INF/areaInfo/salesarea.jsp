@@ -71,7 +71,7 @@
 <body>
 <div align="center" class="container">
 <br>
-<h2>상권정보검색</h2><br><br>
+<h2>지역별 상권 정보</h2><br><br>
 <table class="table" style="position: relative; width:150px; text-align:center;   ">
   <thead>
   <tr align="center">
@@ -95,9 +95,9 @@
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr> 
          </tbody></table>
-         
-<h5 style="font: italic;color:red; ">구 선택후 지도위에 마우스를 놓으시면 현재 카폐의 갯수가 나옵니다</h5>
-<div class="h1"></div>
+
+<h5 style="font: italic;color:red; ">행정구 선택후 지도위에 행정 지역의 카페의 정보를 확인 하실 수 있습니다.</h5>
+>>>>>>> branch 'master' of https://github.com/bisup/bisup.git
 <div id="map" style="width:650px;height:400px"></div>
 <br><br>
 <table  class="table">
@@ -187,7 +187,7 @@ $(document).ready(function(){
      							value = conComplite[key];
      							strToolTip = "<p>지역명 : " + value.adm_nm + "</p>";
      							strToolTip += "<p>카폐수(개) : " + value.corp_cnt + "</p>";
-     							strToolTip += "<p>정보제공 : 정보 제공 SGIS </p>";
+     							strToolTip += "<p>정보제공 : SGIS </p>";
      	
      							layer.bindToolTip(strToolTip);
      							

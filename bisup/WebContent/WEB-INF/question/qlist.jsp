@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>title</title>
+<!-- <link rel="stylesheet" href="../../css/stylea.css" type="text/css"/> -->
 <style type="text/css">
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
 </style>
@@ -100,6 +101,18 @@ $(document).ready(function() {
                     			<tr>
                     				<td>${list.NUM}</td>
                     				<td>${list.WRITER}</td>
+         		<%--            			<td><div class="menubar">
+				<nav id="contentMenu">
+							<ul>
+								<li class="contentMenuLi"><a class="conmenuLink">${list.WRITER}</a>
+									<ul class="contentMenusub">
+										<li class="pop-up"><a href="/bisup/webEx.jsp?id='${sessionScope.id}'" class="consubmenuLink longLink">쪽지보내기</a></li>    
+									</ul>
+								</li>
+							</ul>
+						</nav>
+						</div>
+                    	</td> --%>
                     				<td><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><c:if test="${sessionScope.sort == 0}"><a href="/bisup/bisup/question/qcontents.do?num=${list.NUM}"></c:if><c:if test="${sessionScope.sort != 0}"><a href="/bisup/bisup/question/qpw.do?num=${list.NUM}"></c:if>${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
                     				<td>${list.REG}</td>

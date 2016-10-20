@@ -61,41 +61,6 @@ $(document).ready(function() {
 } 
  
  
- /* $(document).ready(function() {
-	   $('#modButton').click(function(e) {
-	    e.preventDefault();
-	    if(document.getElementById("pw")=='${SessionScope.pw}'){
-	    	document.location.href="/bisup/bisupjoin/join/form.do";
-	    }
-	    else{
-	    	var x = document.getElementById("col-md-9");
-	    	alert(x.innerHTML)
-	    	$('.alert-normal-info').show();
-	    }
-	  }); */
-	  /*  $('#acceso').click(function(e) {
-	    e.preventDefault();
-	   //  $('div#form-olvidado').toggle('500'); 
-	   
-	  });  
-	}); */
-	
- /* $(document).ready(function () {
-		
-		$('#normal-btn-info').click(function() {
-			if($("#agreeRadio").is(':checked') == false ){
-			$('.alert-normal-info').show();
-			}
-			else{
-				document.location.href="/bisup/bisupjoin/join/form.do";
-			}
-			});
-		
-		$(document).on('click', '.close', function () {
-			$(this).parent().hide();
- 	});	
-		
-}); */
 </script>
 <body>
 
