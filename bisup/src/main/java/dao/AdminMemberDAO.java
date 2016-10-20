@@ -49,4 +49,13 @@ public class AdminMemberDAO extends SqlSessionDaoSupport {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("admin.getGuMem",command.getGcode());
 	}
+	
+	public int getB(){
+		
+		return getSqlSession().selectOne("admin.getBis");
+	}
+	
+	public int getC(){
+		return getSqlSession().selectOne("admin.getChang");
+	}
 }

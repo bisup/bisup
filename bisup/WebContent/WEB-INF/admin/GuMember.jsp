@@ -10,29 +10,18 @@
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-    	  var list1 = ${list[0]}; //10대미만
-    	  var list2 = ${list[1]}; //10대
-    	  var list3 = ${list[2]}; //20대
-    	  var list4 = ${list[3]}; //30대
-    	  var list5 = ${list[4]}; //40대
-    	  var list6 = ${list[5]}; //50대
-    	  var list7 = ${list[6]}; //60대
-    	  var list8 = ${list[7]}; //70대이상
-    	 
+    	  var s = ${s}; //기존의 2인사람
+    	  var c = ${c}; //변경된사람
+   	
+    	
         var data = google.visualization.arrayToDataTable([
           ['Task', 'age per age'],
-          ['10대미만',    list1],
-          ['10대',      list2],
-          ['20대',  list3],
-          ['30대', list4],
-          ['40대',    list5],
-          ['50대',    list6],
-          ['60대',    list7],
-          ['70대',    list8]
+          ['기존 자영업자',    s],
+          ['bisup을 통해 자영업자가 된 회원',      c]
         ]);
 
         var options = {
-          title: '연령별 비율',
+          title: 'bisup 이용정도',
           pieHole: 0.4,
         };
 
@@ -45,8 +34,10 @@
 
 </head>
 <body>
-<div id="donutchart" style="width: 900px; height: 500px;"></div>
+<br>
 <div align="center">
+	<h3> bisup을 통해 창업자가 된 회원비율을 확인 하실 수 있습니다. </h3>
+	
 	<div id="donutchart" style="width: 900px; height: 500px;"></div>
 </div>
 </body>

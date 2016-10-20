@@ -132,6 +132,15 @@ public class AdminMemberController {
 	@RequestMapping("/chang.do")
 	public ModelAndView getChang() throws Exception{
 		ModelAndView mav = new ModelAndView("GuMember");
+		int s2=adminMemberDao.getB();
+		System.out.println("sort가 2인 회원="+s2);
+		int c=adminMemberDao.getC();
+		System.out.println("sort가 1에서 2인 회원="+c);
+		int s=s2-c;
+		System.out.println("기존의 회원이 2인 사람="+s);
+		mav.addObject("s",s);
+		mav.addObject("c", c);
+		
 		
 		return mav;
 	}

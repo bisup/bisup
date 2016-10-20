@@ -11,7 +11,7 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //새 쪽지창입니다. 같은 세션에서 활동하기 위해서는 다시 한번 웹소켓 객체를 열어줘야 합니다.
-var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
+var webSocket = new WebSocket('ws://192.168.10.81:8088/bisup/Broadcasting');
 webSocket.onerror = function(event) {
     onError(event)
   };
