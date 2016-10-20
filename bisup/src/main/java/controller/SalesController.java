@@ -144,13 +144,14 @@ public String salesTablePage(@ModelAttribute("saleCommand") SaleCommand saleComm
 
 }		
 	
-@RequestMapping(value="/salesTable.do",method=RequestMethod.GET)
-public String salesTable(HttpServletRequest request,Model model,HttpSession session){
-	String id=(String)session.getAttribute("id");
-	model.addAttribute("sale",salesDao.sdateList(id));
-	System.out.println("salesTable get");
-	return "salesTable";
-}
+	@RequestMapping(value="/salesTable.do",method=RequestMethod.GET)
+	public String salesTable(HttpServletRequest request,Model model,HttpSession session){
+		String id=(String)session.getAttribute("id");
+		model.addAttribute("sale",salesDao.sdateList(id));
+		session.setAttribute("sdate", "");
+		System.out.println("salesTable get");
+		return "salesTable";
+	}
 
 @RequestMapping(value="/salesTable.do",method=RequestMethod.POST)
 public String insertDate(@ModelAttribute("saleCommand") SaleCommand saleCommand,String sdate,HttpServletRequest request,HttpSession session){
