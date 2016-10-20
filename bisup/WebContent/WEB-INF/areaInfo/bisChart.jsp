@@ -35,6 +35,7 @@
           title: '연령별 비율',
           pieHole: 0.4,
         };
+ 
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
