@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "-//mybatis.org//DTD Mapper 3.0//EN">
 <mapper namespace="text">
 	<select id="selectText" parameterType="String" resultType="command.MemoCommand">
-		select send,sub,mcontents,mreg from (select rownum,send,sub,mcontents,mreg from memo) where 10>=rownum and rownum>=1 and sub=#{nick}
+		select send,sub,mcontents,mreg from (select rownum,send,sub,mcontents,mreg from memo) where 10>=rownum and rownum>=1 and sub=#{id}
 	</select>
 	<insert id="insertText" parameterType="command.MemoCommand">
 		insert into memo values(#{send},#{sub},#{mcontents},sysdate)
@@ -17,12 +17,9 @@
 		select r,send,sub,mcontents,mreg from (select rownum r,send,sub,mcontents,mreg from memo where sub=#{sub} order by rownum desc) where #{endNum}>=r and r>=#{startNum}
 	</select>
 	<select id="textCount" resultType="int" parameterType="String">
-		select count(*) from memo where sub=#{nick}
+		select count(*) from memo where sub=#{id}
 	</select>
 	<select id="selectDelivered" parameterType="Map" resultType="command.MemoCommand">
 		select * from memo where sub=#{sub} and mcontents=#{mcontents}
-	</select>
-	<select id="getNick" parameterType="String" resultType="String">
-		select nick from member where id=#{id}
 	</select>
 </mapper>

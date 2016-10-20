@@ -11,7 +11,7 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //새 쪽지창입니다. 같은 세션에서 활동하기 위해서는 다시 한번 웹소켓 객체를 열어줘야 합니다.
-var webSocket = new WebSocket('ws://192.168.20.53:8088/bisup/Broadcasting');
+var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
 webSocket.onerror = function(event) {
     onError(event)
   };
@@ -55,9 +55,9 @@ function send(event){
 //쪽지내용, 보낸사람, 받는사람을 이용해 답장 쪽지를 DB에 저장합니다.
 function replyText(){
 	webSocket.send(document.getElementById("replyContents"));
-	var url="/bisup/mystore/Broadcasting/send.do";
-	params={contents:document.getElementById("replyContents"),send:document.getElementById("send"),sub:document.getElementById("sub")};
-	alert("contents:"+document.getElementById("replyContents")+", send:"+document.getElementById("sub")+", sub:"+document.getElementById("send"));
+	var url="/bisup/mystore/Broadcasting/replyText.do";
+	params={mcontents:document.getElementById("replyContents"),send:document.getElementById("send"),sub:document.getElementById("sub")};
+	alert("mcontents:"+document.getElementById("replyContents")+", send:"+document.getElementById("send")+", sub:"+document.getElementById("sub"));
 	$.ajax({
 		type:"post"
 		,url:url
