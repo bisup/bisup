@@ -9,7 +9,7 @@ public class MypageDAO extends SqlSessionDaoSupport{
 	
 	public String Checkpw(String id){
 		//로그인되어있는 상태에서 회원정보수정을 위한 비밀번호 확인 dao
-		String cpw=getSqlSession().selectOne("mypage.checkpw", id);
+		String cpw=getSqlSession().selectOne("mypage.checkpw", id);  
 		System.out.println("DAO에서 cpw="+cpw);
 		return cpw;
 	}

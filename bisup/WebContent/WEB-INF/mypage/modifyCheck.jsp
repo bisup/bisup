@@ -45,13 +45,13 @@ $(document).ready(function() {
   
   function sub(action){
 	//submit버튼 2개 
-	if(action===1){
+	if(action==1){
 		//회원정보수정
 		 $('#buttonValue').val('update');
 		//input.value="update";
 	}
 
-	else if(action===2){
+	else if(action==2){
 				$('#buttonValue').val('delete');	
 		}
 		
