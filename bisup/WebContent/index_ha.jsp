@@ -21,7 +21,7 @@
 <a href="<c:url value='/my/mypage/modifyForm.do'/>">modifyForm</a>
 
 <br>
-
+<a href="/bisup/admin/chang.do">chang</a>
 <br>
 
 <a href="<c:url value='/my/areaInfo/mpInfo.do'/>">MPInfo</a>

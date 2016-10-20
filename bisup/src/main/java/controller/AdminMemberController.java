@@ -128,4 +128,11 @@ public class AdminMemberController {
 		mav.addObject("gu", gu);
 		return mav;
 	}
+	
+	@RequestMapping("/chang.do")
+	public ModelAndView getChang() throws Exception{
+		ModelAndView mav = new ModelAndView("GuMember");
+		
+		return mav;
+	}
 }

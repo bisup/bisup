@@ -116,7 +116,7 @@ color: blue;
             <li class="divider"></li>
            <!--  <li><a href="/bisup/admin/store.do">점포 관리</a></li>
             <li class="divider"></li> -->
-            <li><a href="/bisup/admin/guMemMain.do">지역구별 회원현황</a></li>
+            <li><a href="/bisup/admin/chang.do"></a></li>
           </ul>
         </li>
         </c:if>
