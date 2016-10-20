@@ -116,11 +116,10 @@ import net.sf.json.JSONObject;
 
 	}
 	
-	@RequestMapping(value="/checknick.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value="/mypage/checknick.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody
 	public String checkN(@RequestParam("nick")String nick,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
-		System.out.println(nick);
 		JSONObject jso = new JSONObject();
 		int mc=joinDAO.selectnick(nick);
 			jso.put("n",mc);
@@ -128,16 +127,20 @@ import net.sf.json.JSONObject;
 	    
 		}	
 	
-	 @RequestMapping(value="/checksnum.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	 @RequestMapping(value="/mypage/checksnum.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody
 	public String checkS(@RequestParam("snum")String snum,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
 		System.out.println(snum);
 		JSONObject jso = new JSONObject();
+		int isNumber=0;
+		if(snum=="^\\d$"){
+			isNumber=1;
+		}
 		int mc=joinDAO.selectsnum(Integer.parseInt(snum));
 			jso.put("mc",mc);
+			jso.put("isNumber", isNumber);
 			return jso.toString();
-	    
 		}	
 	  
 	

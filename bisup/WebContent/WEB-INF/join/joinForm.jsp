@@ -386,10 +386,10 @@ $(function(){
         <!-- end of home -->
 
 
-      <div role="tabpanel" class="tab-pane" id="profile">
+      <div role="tabpanel" class="tab-pane" id="profile" style="width: 515px;">
         <div class="row">
 
-          <div class="col-sm-6 mobile-pull">
+          <div class="col-sm-6 mobile-pull" style="width: 515px;">
             <article role="login">
               <h3 class="text-center"><i class="fa fa-lock"></i> 자영업자 회원가입</h3>
            <!-- class="signup" class="form-control"-->

@@ -40,8 +40,8 @@ function pass(){
 }
 
 $(function(){
-	 var nick = document.getElementById("nick").value;
-	 $('#nick').blur(function nickHH(){
+	 var nick = document.getElementById("nick1").value;
+	 $('#nick1').blur(function nickHH(){
 	  $.ajax({
 			type:'get',
 			url:'checknick.do',
@@ -58,7 +58,7 @@ $(function(){
 					$('#nick').val('');	
 				}else{
 					alert("닉네임사용가능합니다.");			
-					}
+				}
 			}
 		});
 	 });
@@ -75,6 +75,10 @@ $(function(){
 					//var b=Number(1);
 					//var i=parseInt(args.x);
 				/* 	args.x.typeofValue */
+					if(data.isNumber==0){
+						alert("사업자 번호는 숫자로 입력해주세요!!!");
+						$('#snum').val('');
+					}
 					if(data.mc > 0 ){
 						alert("사업자번호 중복입니다.");
 						$('#snum').val('');	
@@ -124,7 +128,7 @@ $(function(){
                   
                   <div class="form-group">
                   <form:label path="nick">닉네임</form:label>
-                    <form:input path="nick" class="form-control" value="${mem.nick}" required="필수입력창입니다"/>
+                    <form:input path="nick" class="form-control" id="nick" value="${mem.nick}" required="필수입력창입니다"/>
                   </div>
                   
                    <div class="form-group">
@@ -174,8 +178,8 @@ $(function(){
                 		$('.sortSel').html('<input type="hidden" name="sort" value="2" class="sort"/>');
                			
                 		 $('.guSelect').html('<form:label path="gucode"><b>카페 위치 행정구</b></form:label>');
-                		 $('.snumm').html(' <label>상호 전화번호</label><input type="text" name="snum1"  class="form-control" value="" placeholder="사업자번호를 입력해주세요" required="필수입력창입니다"/>');
-               			 $('.tell').html('<label >사업자번호</label><input type="text" name="tel1"  class="form-control" value="" placeholder="전화번호를 입력해주세요" required="필수입력창입니다"/>');
+                		 $('.snumm').html(' <label>사업자번호</label><input type="text" name="snum1" id=snum1 class="form-control" value="" placeholder="사업자번호를 입력해주세요" required="필수입력창입니다"/>');
+               			 $('.tell').html('<label >상호 전화번호</label><input type="text" name="tel1"  class="form-control" value="" placeholder="전화번호를 입력해주세요" required="필수입력창입니다"/>');
                 		
                 		
                 		
