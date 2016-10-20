@@ -95,7 +95,9 @@
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr> 
          </tbody></table>
+         
 <h5 style="font: italic;color:red; ">구 선택후 지도위에 마우스를 놓으시면 현재 카폐의 갯수가 나옵니다</h5>
+<div class="h1"></div>
 <div id="map" style="width:650px;height:400px"></div>
 <br><br>
 <table  class="table">
@@ -168,6 +170,7 @@ $(document).ready(function(){
      					success: function (res,status) { 
      						//var idx, len, target, conComplite = {}, key, value, strToolTip;
      						target = res.result;
+     						//$(".h1").remove();
      						$(".tbody").find("tr").remove(); 
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
      							conComplite[target[idx].adm_cd] = target[idx];

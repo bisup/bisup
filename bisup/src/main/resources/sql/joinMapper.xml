@@ -62,6 +62,9 @@
     select count(*) from member <where>email=#{email}</where> 
     </select>
     
+    <insert id="inmenu" parameterType="command.SaleCommand">
+    insert into menu values(#{id},#{item},#{price})
+    </insert>
     
     
 </mapper>

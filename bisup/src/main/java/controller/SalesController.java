@@ -310,4 +310,13 @@ public String updateOther(@ModelAttribute("otherCommand") OtherCommand otherComm
 		model.addAttribute("other",salesDao.otherMon(id));
 		return "drawChart";
 	}
+	
+	//메뉴 등록
+	@RequestMapping(value="/inmenu.do", method=RequestMethod.POST)
+	public String inmenu(@ModelAttribute("salesCommand")SaleCommand saleCommand ,HttpSession session){
+		String id=(String)session.getAttribute("id");
+		salesDao.inmenu(saleCommand);
+		return "menuInserting";
+		
+	}
 }

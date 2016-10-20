@@ -113,4 +113,8 @@ public class SalesDAO extends SqlSessionDaoSupport{
 		return otherMon;
 	}
 	
+	public void inmenu(SaleCommand saleCommand) {
+		getSqlSession().insert("sales.inmenu", saleCommand);
+	}
+	
 }
