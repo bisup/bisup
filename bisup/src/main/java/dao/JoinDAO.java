@@ -62,4 +62,11 @@ public class JoinDAO extends SqlSessionDaoSupport{
 	 return mc;
 	 
  } 
+ public int countid(MemberCommand command){ //닉네임 중복
+	 
+	 int idc = getSqlSession().selectOne("JoinDAO.count", command); 
+	 //System.out.println("mc="+mc);
+	 return idc;
+	 
+ } 
 }

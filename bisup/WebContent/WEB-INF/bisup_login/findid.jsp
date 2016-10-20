@@ -8,12 +8,15 @@
 <title>아이디 /비번 찾기</title>
 <script type="text/javascript">
 		function search(){
-			if((pwsearch.name.value!=null)&&(pwsearch.email.value!=null)){
-				pwsearch.submit();
-			}else if(pwsearch.name.value==null) {
-				alert("이름을 입력하세요.")
-			}else if(pwsearch.email.value==null) {
-				alert("이메일주소를 입력하세요.")
+			alert("aa");
+			if((searchId.name.value !=null)&&(searchId.email.value!=null)){
+				return true;
+			}else if(searchId.name.value == null) {
+				alert("이름을 입력하세요.");
+				return false;
+			}else if(searchId.email.value == null) {
+				alert("이메일주소를 입력하세요.");
+				return false;
 			}
 		
 		}function showMsg(m){
@@ -29,7 +32,7 @@
 		}
 	
 	</script>
-	<style>
+	<!-- <style>
 /* .login-signup {
   padding: 0 0 25px;
 } */
@@ -120,15 +123,15 @@ article[role="login"] p {
 #tab-content{
 	align:middle;
 }
-</style>
+</style> -->
+ <link rel="stylesheet" href="/bisup/css/styles.css" />
 </head>
 <body onload="showMsg(${msg})">
     
 <div class="tab-content">
-<form:form class="form-signin" commandName="member" name="pwsearch"><!--커멘드 객체로 보냄  -->
+<form:form class="form-signin" commandName="member" name="searchId"><!--커멘드 객체로 보냄  -->
 		<h1 class="form-signin-heading text-muted">아이디 /패스워드 찾기</h1>
 	   <span class="input-group-addon">
-            @
           </span>
           <input class="form-control" placeholder="Email" name="email" type="email" required=""/>
 		 <div class="form-group">
@@ -136,13 +139,10 @@ article[role="login"] p {
                   <%--  <form:errors path="name"/> --%>
                   </div>
 		<br>	
-		<button class="btn btn-lg btn-primary2 btn-block" type="submit" onclick="search()">
-			아이디 비번 찾기
-		</button><br>
-		<p align="center">이페이지를 닫으려면 <a href="javascript:self.close()">닫기</a>를 클릭하세요.</p>
+		<div style="width: 280px;  " align="center"><button class="btn btn-lg btn-primary2 btn-block" type="submit" style="width:60px; height:40px; color:white;  "  onclick="return search()">
+			확인
+		</button></div><br>
+		<p align="center">이 페이지를 닫으려면 <a href="javascript:self.close()">닫기</a>를 클릭하세요.</p>
 	</form:form>
 </div>
- </div>
- </div>
- </div>
 </html>

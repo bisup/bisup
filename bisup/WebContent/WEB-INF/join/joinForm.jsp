@@ -159,6 +159,8 @@ $(function(){
 				if(data.x == 1){
 					alert("아이디 중복입니다.");
 					$('#id').val('');	
+				}else if(data.x == -1){
+					alert("아이디 입력하세요.");
 				}else{
 					alert("아이디사용가능합니다.");			
 					}
@@ -183,6 +185,9 @@ $(function(){
 				if(data.x == 1){
 					alert("아이디 중복입니다.");
 					$('#id').val('');	
+				}else if(data.x == -1){
+					alert("아이디 입력하세요.");
+					
 				}else{
 					alert("아이디사용가능합니다.");			
 					}
@@ -317,12 +322,12 @@ $(function(){
            	  <%--  <form:errors element="div"/> --%>
            	  <div class="form-group">
 
-           	 <input type="text" name="id" id="id" class="form-control" value="" placeholder="아이디를 입력해주세요" required="필수입력창입니다"/>
+           	 <input type="text" name="id" id="id" class="form-control" value="" placeholder="아이디를 입력해주세요" required/>
 
 				<%--  <form:errors path="id"/> --%>
 			</div> 	            
               <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요"required="필수입력창입니다"/>
+                    <input type="text" name="name" class="form-control" placeholder="이름을 입력해주세요" required="필수입력창입니다"/>
                   <%--  <form:errors path="name"/> --%>
                   </div>
                    <div class="form-group">
@@ -349,13 +354,13 @@ $(function(){
                   <%--  <form:errors path="phone"/> --%>
                   </div>
                 
-                 <div class="form-group">
+                 <div class="form-group" align="left">
 
-					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
-                  <form:select path="gucode">
+					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label>
+                  <form:select path="gucode" style="height:30px;">
                
                   <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
-                  </form:select>
+                  </form:select></p>
                 </div> 
                 
                   <div class="form-group">
@@ -370,7 +375,7 @@ $(function(){
                 <footer role="signup" class="text-center">
                   <ul>
                     <li>
-                      <a href="/bisup/bisup_login/main.do">돌아가기</a>
+                      <a href="/bisup/bisup_login/main.do">메인으로</a>
                     </li>
                   
                   </ul>
@@ -434,20 +439,19 @@ $(function(){
                     <form:input path="tel" class="form-control" placeholder="카페 연락처를 입력해주세요"/>
                     <%--  <form:errors path="tel"/> --%>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" align="left">
 
-					<p class="guSelect"><form:label path="gucode"><b>관심지역</b></form:label></p>
-                  <form:select path="gucode">
-               
-                  <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
-                  </form:select>
+					<p class="guSelect"><form:label path="gucode" ><b>관심지역</b></form:label>
+                  <form:select path="gucode" style="height:30px;">
+               <form:options items="${guSel}" itemLabel="gn" itemValue="gcode"/>
+                  </form:select></p>
                 </div> 
                 <div class="form-group">
-                  <div class="checkbox">
+                  <!-- <div class="checkbox">
                     <label>
                       <input type="checkbox"> Please accept the terms and conditions to proceed with your request.
                     </label>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-group">
                   <input type="hidden" name="sort" value="2"/>
@@ -456,14 +460,10 @@ $(function(){
               </form:form>
               
               <footer role="signup" class="text-center">
-                <ul>
-                  <li>
-                    <a href="#">Terms of Use</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Statement</a>
-                  </li>
-                </ul>
+                  <ul>
+                    <li>
+                      <a href="/bisup/bisup_login/main.do">메인으로</a>
+                    </li>
               </footer>
 
             </article>

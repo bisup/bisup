@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import command.GuCommand;
 import command.MemberCommand;
 import dao.JoinDAO;
@@ -150,13 +148,19 @@ public class MemberController {
     	return "bisup_login/findid";
     }
     @RequestMapping(value="/searchpw.do", method=RequestMethod.POST)
-    public String searchidpw(@ModelAttribute("member") MemberCommand membercommand,
+    public ModelAndView searchidpw(@ModelAttribute("member") MemberCommand membercommand,
     		HttpSession session) throws Exception{
     	String content="";
-    	MemberCommand find=joinDao.selectId(membercommand);    
-    	content= " 회원님의 아이디는: "+find.getId()+" 비밀번호는: "+find.getPw();
-    	sendEmail.sendId(membercommand.getEmail(),content);
-    	return "bisup_login/secid";
+    	ModelAndView mav =new ModelAndView("bisup_login/secid");
+    	int count=joinDao.countid(membercommand);
+    	if(count > 0){
+    	MemberCommand find=joinDao.selectId(membercommand);
+    	System.out.println("member"+membercommand.toString());
+    	//System.out.println("find= "+find.toString());
+    	}
+    	 System.out.println(count);
+    	 mav.addObject("x", count);
+    	return mav;
     }
     
     @RequestMapping("/logout.do")
@@ -183,15 +187,23 @@ public class MemberController {
 		resp.setContentType("text/html; charset=UTF-8");
 		int x=0;
 		JSONObject jso = new JSONObject();
-		int mc=joinDao.selectall(id);
-		if(mc>0){
+		if(!(id==null) && !(id.trim()=="")){
+			int mc=joinDao.selectall(id);
+			if(mc>0){
 			x=1;
 			jso.put("x",x);
-			return jso.toString();
+
+			}else{
+				jso.put("x",x);
+				
+			}   
 		}else{
+			x= -1;
 			jso.put("x",x);
-			return jso.toString();
-		}         
+			
+		}
+		
+		return jso.toString();
 		}	
 	  @RequestMapping(value="/checkn.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody

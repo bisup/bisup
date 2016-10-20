@@ -19,6 +19,14 @@ public class MemberCommand {
 	private int cd; //구코드별 갯수
 	
 	
+	@Override
+	public String toString() {
+		return "MemberCommand [id=" + id + ", name=" + name + ", pw=" + pw + ", nick=" + nick + ", sort=" + sort + ", snum=" + snum
+				+ ", phone=" + phone + ", tel=" + tel + ", reg=" + reg + ", email=" + email + ", cer=" + cer + ", gucode=" + gucode
+				+ ", gcode=" + gcode + ", gn=" + gn + ", cd=" + cd + "]";
+	}
+
+
 	public MemberCommand(){}
 	
 	

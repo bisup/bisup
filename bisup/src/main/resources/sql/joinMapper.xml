@@ -20,7 +20,7 @@
     </update>
     
     <select id="find" parameterType="command.MemberCommand" resultType="command.MemberCommand">
-    select id,pw from member <where>name=#{name} and email=#{email}</where> 
+    select id,pw from member <where> name=#{name} and email=#{email}</where> 
     </select>
     
      <select id="selectid" parameterType="String" resultType="int">
@@ -54,6 +54,9 @@
     </select>
      <select id="ss" parameterType="int" resultType="int">
     select count(*) from member where snum=#{snum}
+    </select>
+    <select id="count" parameterType="command.MemberCommand" resultType="int">
+    select count(*) from member <where> name=#{name} and email=#{email}</where> 
     </select>
     
 </mapper>
