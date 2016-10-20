@@ -55,7 +55,7 @@ public class SocketHandler {
 	}
 	
 	//메시지를 받았을 때 자신의 아이디와 내용을 통해 자신의 쪽지인지 유추합니다.
-	@RequestMapping("/Broadcasting/onMessage.do")
+	@RequestMapping("/onMessage.do")
 	private void onMessagePro(HttpSession session,
 			@RequestParam("mcontents")String mcontents,
 			HttpServletResponse response) throws Exception {
@@ -176,15 +176,13 @@ public class SocketHandler {
 	//쪽지를 연 상태에서 답장쓰기 버튼을 누를 시 웹소켓 내에서 제공하는 function send()를 이용하여 답장을 보냅니다.
 	//위의 send메소드와 비슷한 로직입니다.
 	@RequestMapping("/Broadcasting/replyText.do")
-	public void replyText(@RequestParam("contents")String mcontents,
-			HttpSession session,@RequestParam("sub")String sub,
+	public void replyText(@RequestParam("mcontents")String mcontents,
+			@RequestParam("send")String send,@RequestParam("sub")String sub,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
-		String id = (String) session.getAttribute("id");
-		String nick = socketDAO.getNick(id);
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
-		command.setMcontents(mcontents); command.setSend(nick); command.setSub(sub);
+		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
 		socketDAO.insertText(command);
 	}
 	
