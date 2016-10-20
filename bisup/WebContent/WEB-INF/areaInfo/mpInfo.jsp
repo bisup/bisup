@@ -73,6 +73,8 @@
 <div id="dongS">
 
 <div id="header">
+<br>
+<br>
 <h4>지역을 선택해주세요</h4>
 <table class="table" style="position: relative; width:150px; text-align:center;">
  
