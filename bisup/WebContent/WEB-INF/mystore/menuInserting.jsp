@@ -134,11 +134,16 @@ margin-right: auto;
 	</c:forEach>
 	</tbody>
 </table>
-<form:form commandName="salesCommand"  action="bisup/mystore/inmenu.do">
-<div align="center">메뉴 등록&nbsp;&nbsp;&nbsp;<input type="text" id="item"  placeholder="메뉴를 입력해주세요">&nbsp;<input type="text" id="price"  placeholder="가격를 입력해주세요">&nbsp;&nbsp;<button type="submit">등록</button></div>
-</form:form>
+			<form action="/bisup/mystore/inmenu.do" method="post">
+				<div align="center">메뉴 등록&nbsp;&nbsp;&nbsp; 
+				<input type="hidden" name="id" value="${sessionScope.id}"> 
+				<input type="text" name="item" placeholder="메뉴를 입력해주세요">&nbsp; 
+				<input type="text" name="price" placeholder="가격를 입력해주세요">&nbsp;&nbsp;
+					<button type="submit" value="등록">등록</button>
+				</div>
+			</form>
 
-</div>
+		</div>
 <div id="target" align='center'>
 <div id="oneMenuPrint" align="center"/><h3>선택하신 메뉴</h3><hr width="400px"/></div>
 </div>

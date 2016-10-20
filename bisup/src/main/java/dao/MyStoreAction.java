@@ -8,6 +8,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import command.MenuCommand;
+import command.SaleCommand;
 
 public class MyStoreAction extends SqlSessionDaoSupport {
 
@@ -68,5 +69,11 @@ public class MyStoreAction extends SqlSessionDaoSupport {
 		// TODO Auto-generated method stub
 		updatedUsers=getSqlSession().selectOne("mystore.getUpdatedUsers");
 		return updatedUsers;
+	}
+	
+	public int inmenu(MenuCommand mc) {
+		int check = 0;
+		check = getSqlSession().insert("JoinDAO.inmenu", mc);
+		return check;
 	}
 }

@@ -199,4 +199,25 @@ public class MyStoreController {
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print(jsonObject.toString());
 	}
-}
+	
+	//메뉴 등록
+	@RequestMapping(value="/inmenu.do", method=RequestMethod.POST)
+		public String menu(
+				@RequestParam(value="id") String id,
+				@RequestParam(value="item") String item,
+				@RequestParam(value="price") int price)throws Exception{
+			
+			
+			MenuCommand mc = new MenuCommand();
+			mc.setId(id);
+			mc.setItem(item);
+			mc.setPrice(price);
+			myStoreAction.inmenu(mc);
+		
+			return "redirect:/mystore/menuMain.do";
+		}
+	}
+				
+				
+	
+
