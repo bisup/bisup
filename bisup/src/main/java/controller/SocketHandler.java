@@ -62,12 +62,11 @@ public class SocketHandler {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		String sub = (String)session.getAttribute("id");
-		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents);
+		System.out.println("onMessagePro메소드 진입, sub="+sub+", mcontents"+mcontents.toString());
 		MemoCommand command = new MemoCommand();
 		Map idMcontents = new HashMap();
 		idMcontents.put("sub", sub); idMcontents.put("mcontents", mcontents);
 		command=socketDAO.selectDelivered(idMcontents);
-		System.out.println("onMessage 결과command확인 ::: "+command.getMcontents()+", "+command.getSub());
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("delivered", command);
 		PrintWriter printWriter = response.getWriter();
@@ -174,15 +173,18 @@ public class SocketHandler {
 	//쪽지를 연 상태에서 답장쓰기 버튼을 누를 시 웹소켓 내에서 제공하는 function send()를 이용하여 답장을 보냅니다.
 	//위의 send메소드와 비슷한 로직입니다.
 	@RequestMapping("/Broadcasting/replyText.do")
+	@ResponseBody
 	public void replyText(@RequestParam("mcontents")String mcontents,
-			HttpSession session,@RequestParam("sub")String sub,
+			@RequestParam("send") String sub,@RequestParam("sub")String send,
 			HttpServletResponse response) throws Exception{
 		System.out.println("replyText진입, mcontents="+mcontents);
-		String send = (String) session.getAttribute("id");
 		response.setCharacterEncoding("UTF-8");
 		MemoCommand command = new MemoCommand();
 		command.setMcontents(mcontents); command.setSend(send); command.setSub(sub);
-		socketDAO.insertText(command);
+		int i = socketDAO.insertText(command);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("check", i);
+		jsonObject.toString();
 	}
 	
 	//페이지 번호를 눌렀을 때 페이지 정보를 가지고 새로운 쪽지 내역을 출력합니다.

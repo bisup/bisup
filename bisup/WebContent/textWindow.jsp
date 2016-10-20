@@ -11,7 +11,7 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //새 쪽지창입니다. 같은 세션에서 활동하기 위해서는 다시 한번 웹소켓 객체를 열어줘야 합니다.
-var webSocket = new WebSocket('ws://localhost:8088/bisup/Broadcasting');
+var webSocket = new WebSocket('ws://192.168.10.81:8088/bisup/Broadcasting');
 webSocket.onerror = function(event) {
     onError(event)
   };
@@ -33,10 +33,9 @@ function onOpen(event){
 		,data:param
 		,dataType:"json"
 		,success:function(args){
-			$("#mtitle").append(args.data.mtitle);
-			$("#send").append(args.data.send);	
-			$("#sub").append(args.data.sub);	
-			$("#mcontents").append(args.data.mcontents);
+			$("#send").append(args.data.send+"<input type=hidden value="+args.data.send+" id=sendvalue>");	
+			$("#sub").append(args.data.sub+"<input type=hidden value="+args.data.sub+" id=subvalue>");	
+			$("#mcontents").append(args.data.mcontents+"<input type=hidden value="+args.data.mcontents+" id=mcontentsvalue>");
 		}
 		,errors:function(args,request,status,error){
 		 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -48,24 +47,28 @@ function onError(event){
 }
 
 //답장쓰기 버튼을 누를 시 데이터를 이용해서 replyText를 호출하게 합니다.
-function send(event){
+function send(){
+	webSocket.send(document.getElementById("replyContents").value);
 	replyText();
 }
 
 //쪽지내용, 보낸사람, 받는사람을 이용해 답장 쪽지를 DB에 저장합니다.
 function replyText(){
-	webSocket.send(document.getElementById("replyContents"));
+	alert(document.getElementById("replyContents").value);
 	var url="/bisup/mystore/Broadcasting/replyText.do";
-	params={mcontents:document.getElementById("replyContents"),send:document.getElementById("send"),sub:document.getElementById("sub")};
-	alert("mcontents:"+document.getElementById("replyContents")+", send:"+document.getElementById("send")+", sub:"+document.getElementById("sub"));
+	params={mcontents:document.getElementById("replyContents").value,sub:document.getElementById("subvalue").value,send:document.getElementById("sendvalue").value};
+	alert("mcontents:"+document.getElementById("replyContents").value+", sub:"+document.getElementById("subvalue").value);
 	$.ajax({
 		type:"post"
 		,url:url
 		,data:params
 		,dataType:"json"
 		,success:function(args){
-			alert("답장을 보냈습니다!!");
-			window.refresh();
+			if(args.check.equals('1')){
+				alert("답장을 보냈습니다!!");
+				window.refresh();
+			}
+			
 		}
 		,errors:function(args,request,status,error){
 		 	alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -86,9 +89,6 @@ text-align:center;}
 <body>
 <div id="container">
 	<table class="table table-hover">
-		<thead class="thead">
-			<tr><td id="mtitle" style="font: bold italic large Palatino, serif">글 제목 : </td></tr>
-		</thead>
 		<tbody class="tbody">
 			<tr><td style="font-size:150%; text-align:center;">보내신분 : <div id="send"></div></td>
 				<td style="font-size:150%; text-align:center;">받는분 : <div id="sub"></div></td></tr>
