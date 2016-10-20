@@ -11,7 +11,7 @@ select id,item from sale where id=#{id} and sdate=#{sdate}
 </select>
 
 <insert id="insertSales" parameterType="command.SaleCommand">
-insert into sale(id,sdate,item,ea,total) values (#{id}, #{sdate}, #{item}, #{ea}, (select price*#{ea} from menu where item=#{item}))
+insert into sale(id,sdate,item,ea,total) values (#{id}, #{sdate}, #{item}, #{ea}, (select distinct price*#{ea} from menu where item=#{item}))
 </insert>
 
 <select id="saleList" parameterType="map" resultType="command.SaleCommand">

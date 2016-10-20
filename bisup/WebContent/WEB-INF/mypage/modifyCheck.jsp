@@ -16,7 +16,7 @@
 </head>
 <script>
 
-
+  
 /* 비밀번호 일치여부 확인후 정보수정폼이나 탈퇴로  */
 $(document).ready(function() {
 	
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 });
 </script>
-<script>
+<script> 
 /* post방식으로 보낼때*/
   
   function sub(action){

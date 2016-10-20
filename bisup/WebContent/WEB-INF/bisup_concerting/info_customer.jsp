@@ -29,9 +29,9 @@ width: 350px;
 
 #map{
    position: absolute;
-   top: 27%;
+   top: 35%;
    bottom: 25%;
-   left:47%;
+   left:52%;
    width: 35%;
    height: 40%;
    text-align: right;
@@ -71,7 +71,7 @@ width: 350px;
 
 				<label>항목 검색</label> 
 				<select name="division">
-					<option value="">선택</option>
+					<h3><option value="">선택</option></h3>
 					<option value="인테리어">인테리어</option>
 					<option value="장비대여">장비대여</option>
 					<option value="인력(아르바이트)">인력(아르바이트)</option>
