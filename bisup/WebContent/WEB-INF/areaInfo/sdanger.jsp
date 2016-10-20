@@ -119,6 +119,30 @@ $(document).ready(function(){
   }
     </script>
 <title>위험지표</title>
+<style>
+#table_a{
+width:50%;
+margin-bottom:20px;
+border-color: grey;
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal normal;
+        border-spacing: 0;
+    border-collapse: collapse;
+
+}
+.tbody_a{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+</style>
 </head>
 <body>
 <h1 align="center">지역별 위험지표</h1><br><br>
@@ -138,15 +162,18 @@ $(document).ready(function(){
 </c:forEach> </tr>   
          </tbody></table>
          <form:form method="post" action="/bisup/my/areaInfo/sel.do" name="myform">
-<table  class="table">
+<div id="table_a">
+<table  class="table"><!-- id="table_a" -->
   <thead>
   <tr class="th">
      
      
          </tr>
        </thead>
-       <tbody class="tbody">
-     </tbody></table>
+       <tbody class="tbody"/>
+       
+     </table>
+     </div>
      <br>
      <br>   
      <div align="center" class="bto"></div></form:form>
