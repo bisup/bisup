@@ -4,7 +4,7 @@
 <!-- 이미래 공지사항 리스트-->
 <html>
 <head>
-<link rel="stylesheet" href="../../css/styles.css" type="text/css"/>
+<link rel="stylesheet" href="../../css/stylea.css" type="text/css"/>
 <title>title</title>
 <style type="text/css">
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
