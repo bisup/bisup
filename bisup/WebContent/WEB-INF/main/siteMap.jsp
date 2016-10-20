@@ -18,7 +18,7 @@
 <h1 align="center">사이트 맵</h1>
 <table align="center" class="tables">
 <tr>
-<td><h2>메인메뉴</h2><hr>
+<td><h2>Q & A</h2><hr>
                    <ul>  
                   <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
@@ -26,17 +26,17 @@
                   </ul> 
                   </td>
                   
-<td class="tables"><h2>창업 컨설팅</h2><hr>
+<td class="tables"><h2>창업 서비스</h2><hr>
                     <ul>  
-                  <li>   <a href='/bisup/bisup_concerting/info_customer.do'>거래처 정보</a>  </li>
                     <li> <a href='/bisup/bisup_concerting/manual.do'>창업 메뉴얼</a>  </li>
-                   <li>  <a href='/bisup/bisup_concerting/relation.do'>연관 사이트</a>   </li>
+                    <li> <a href='/bisup/bisup_concerting/info_customer.do'>거래처 정보</a>  </li>
+                    <li> <a href='/bisup/bisup_concerting/relation.do'>연관 사이트</a>   </li>
                   </ul> 
                   </td>  
-<td class="tables"><h2>매출트렌드</h2><hr>
+<td class="tables"><h2>트렌드 현황</h2><hr>
                   <ul >  
-                      <li> <a href='/bisup/bisup_trend/sales_trend.do'>매출 트랜드 보고서</a></li>
-                     <li> <a href='/bisup/bisup_trend/business_trend.do'>업종 트랜드보고서</a></li>  
+                      <li> <a href='/bisup/bisup_trend/sales_trend.do'>지역별 매출 현황</a></li>
+                     <li> <a href='/bisup/bisup_trend/business_trend.do'>카페 트렌드 현황</a></li>  
                   </ul> 
             </td></tr>
 <tr>
@@ -53,7 +53,7 @@
                   <h2>관리자 페이지 </h2><hr>
                   <ul >  
                       <li> <a href='/bisup/admin/main.do'>회원 관리</a></li>
-                       <li><a href="/bisup/admin/store.do">점포 관리</a></li> 
+                       <li><a href="/bisup/admin/guMemMain.do">지역구별 회원현황</a></li> 
                   </ul> 
                
 </td>
@@ -72,7 +72,7 @@
                   </ul> 
                
 </td>
-<td class="tables"><h2>메인메뉴</h2><hr>
+<td class="tables"><h2>Q & A</h2><hr>
                     <ul>  
                   <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
@@ -80,7 +80,7 @@
                   </ul> 
                   </td>
                   
-<td class="tables"><h2>창업 컨설팅</h2><hr>
+<td class="tables"><h2>창업 서비스</h2><hr>
                     <ul>  
                   <li>   <a href='/bisup/bisup_concerting/info_customer.do'>거래처 정보</a>  </li>
                     <li> <a href='/bisup/bisup_concerting/manual.do'>창업 메뉴얼</a>  </li>
@@ -89,10 +89,10 @@
                   </td>  
 <td class="tables">
  
-                  <h2>매출트렌드</h2><hr>
+                  <h2>트렌드 현황</h2><hr>
                   <ul >  
-                      <li> <a href='/bisup/bisup_trend/sales_trend.do'>매출 트랜드 보고서</a></li>
-                     <li> <a href='/bisup/bisup_trend/business_trend.do'>업종 트랜드보고서</a></li>  
+                      <li> <a href='/bisup/bisup_trend/sales_trend.do'>지역별 매출 현황</a></li>
+                     <li> <a href='/bisup/bisup_trend/business_trend.do'>카페 트렌드 현황</a></li>  
                   </ul> 
                
 </td></tr>
@@ -121,7 +121,7 @@
   <div id="contents" >
 <h1 align="center">사이트 맵</h1>
     <table align="center" class="tables">
-<td class="tables"><h2>메인메뉴</h2><hr>
+<td class="tables"><h2>Q & A</h2><hr>
                     <ul>  
                          <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
@@ -129,7 +129,7 @@
                   </ul> 
                   </td>
                   
-<td class="tables"><h2>창업 컨설팅</h2><hr>
+<td class="tables"><h2>창업 서비스</h2><hr>
                     <ul>  
                   <li>   <a href='/bisup/bisup_concerting/info_customer.do'>거래처 정보</a>  </li>
                     <li> <a href='/bisup/bisup_concerting/manual.do'>창업 메뉴얼</a>  </li>
@@ -158,9 +158,19 @@
                   </td>                  
 <td class="tables">
  
-                  <h2>메인페이지 </h2><hr>
+                  <h2>마이 페이지 </h2><hr>
                   <ul >  
-                      <li> <a href='/bisup/bisup_login/main.do'>메인페이지로</a></li>
+                      <li> <a href='/bisup/bisup/mypage/modifyCheck.do'>마이페이지</a></li>
+                       
+                  </ul> 
+               
+</td>
+<td class="tables">
+ 
+                  <h2>트렌드 현황 </h2><hr>
+                  <ul >  
+                      <li> <a href='/bisup/bisup_trend/sales_trend.do'>지역별 매출 현황</a></li>
+                     <li> <a href='/bisup/bisup_trend/business_trend.do'>카페 트렌드 현황</a></li>  
                        
                   </ul> 
                
