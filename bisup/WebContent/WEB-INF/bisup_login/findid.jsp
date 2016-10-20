@@ -8,7 +8,7 @@
 <title>아이디 /비번 찾기</title>
 <script type="text/javascript">
 		function search(){
-			alert("aa");
+			
 			if((searchId.name.value !=null)&&(searchId.email.value!=null)){
 				return true;
 			}else if(searchId.name.value == null) {
