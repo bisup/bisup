@@ -26,4 +26,12 @@
 	<select id="getGuMem" parameterType="int" resultType="int">
 		select count(*) from member where gucode=#{gcode}
 	</select>
+	
+	<select id="getBis" resultType="int">
+		select count(*) from member where sort='2'
+	</select>
+	
+	<select id="getChang" resultType="int">
+		select count(*) from chang
+	</select>
 </mapper>

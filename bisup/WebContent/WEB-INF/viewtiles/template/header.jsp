@@ -92,7 +92,7 @@ color: blue;
         </c:if>
         
           <li class="dropdown"><!-- 창업컨설팅 -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Q & A<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">게시판<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
           <c:if test="${sessionScope.sort==0}">
             <li><a href="/bisup/bisup/notice/nlist_m.do">공지사항</a></li>
@@ -116,7 +116,7 @@ color: blue;
             <li class="divider"></li>
            <!--  <li><a href="/bisup/admin/store.do">점포 관리</a></li>
             <li class="divider"></li> -->
-            <li><a href="/bisup/admin/guMemMain.do">지역구별 회원현황</a></li>
+            <li><a href="/bisup/admin/chang.do">이용 정도</a></li>
           </ul>
         </li>
         </c:if>
