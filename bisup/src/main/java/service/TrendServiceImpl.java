@@ -10,7 +10,7 @@ import command.ReportedCommand;
 import dao.TrendDAO;
 
 public class TrendServiceImpl implements TrendService{
-	
+	 
 	@Resource(name="trendDAO")
 	private TrendDAO trendDAO;
 	

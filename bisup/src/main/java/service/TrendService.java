@@ -9,7 +9,7 @@ import command.ReportedCommand;
 
 @Service
 public interface TrendService {
-	
+	 
 	//지역별 구 검색
 	public List<GuCommand> listgu();
 	//각 월별 총매출 + 평균매출 각...: 6/7/8/9월

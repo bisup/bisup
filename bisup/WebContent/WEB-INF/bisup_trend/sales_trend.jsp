@@ -5,7 +5,7 @@
 <%
     String list = request.getContextPath(); //첫번째 경로를 가져온다
 	request.setCharacterEncoding("UTF-8");
-%>
+%> 
 <!DOCTYPE html >
 <html>
 <head>
