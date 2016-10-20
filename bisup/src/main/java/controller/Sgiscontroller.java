@@ -57,7 +57,7 @@ public class Sgiscontroller {
 			  List<GuCommand> list1 =sgisdao.getd(dc);
 			  mav.addObject("li1", list1); 
 		  }
-		  if(!dcode[2].isEmpty()){
+		  if(!dcode[2].isEmpty()){   
 		  int dc2=Integer.parseInt(dcode[2]);
 		  List<GuCommand> list2 =sgisdao.getd(dc2);
 		  mav.addObject("li2", list2);

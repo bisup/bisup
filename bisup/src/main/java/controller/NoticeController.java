@@ -235,11 +235,11 @@ public class NoticeController {
 				boardCommand.setTitle(title);
 				boardCommand.setContents(contents);
 				boardCommand.setWriter(writer);
-				boardCommand.setCnt(cnt);
+				 boardCommand.setCnt(cnt);
 				boardService2.updateBoard(boardCommand);
 				mav.setViewName("successUp");
 				return mav;
-			}
+			}    
 			
 			// 글 내용 보기
 			@RequestMapping(value = "/notice/ncontents_m.do", method = RequestMethod.GET)

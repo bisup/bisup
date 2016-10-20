@@ -150,7 +150,7 @@ $(function(){
                   <div class="form-group">
                   <form:label path="phone">연락처</form:label>
                     <form:input path="phone" class="form-control" value="${mem.phone}"/>
-                  </div>
+                  </div> 
    
                 <div class="form-group" id="readyBis">            
                       <input type="checkbox" id="sortC" class="changeChk" onchange="change()">

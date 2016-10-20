@@ -94,7 +94,7 @@
   <c:forEach items="${list }" var="list" begin="20" end="24">
      <td><button value="${list.gcode}" class="gcode" >${list.gn}</button></td>
 </c:forEach> </tr> 
-         </tbody></table>
+         </tbody></table> 
 
 <h5 style="font: italic;color:red; ">행정구 선택후 지도위에 행정 지역의 카페의 정보를 확인 하실 수 있습니다.</h5>
 

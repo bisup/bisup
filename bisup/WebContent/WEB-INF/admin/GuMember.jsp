@@ -12,7 +12,7 @@
       function drawChart() {
     	  var s = ${s}; //기존의 2인사람
     	  var c = ${c}; //변경된사람
-   	
+   	 
     	
         var data = google.visualization.arrayToDataTable([
           ['Task', 'age per age'],

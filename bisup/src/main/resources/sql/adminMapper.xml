@@ -21,7 +21,7 @@
 	
 	<select id="getGu" resultType="command.AdmcdCommand">
 		select distinct gcode, gn from admcd order by gcode
-	</select>
+	</select> 
 	
 	<select id="getGuMem" parameterType="int" resultType="int">
 		select count(*) from member where gucode=#{gcode}

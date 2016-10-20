@@ -183,7 +183,7 @@ import net.sf.json.JSONObject;
 			request.setAttribute("y", y);
 			return "modSuc";//
 		}
-		
+		 
 			System.out.println("update½ÇÆÐ");
 			return "modifyForm";
 		

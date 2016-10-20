@@ -251,8 +251,8 @@ public String salesOtherPage(@ModelAttribute("otherCommand") OtherCommand otherC
 	model.addAttribute("other",salesDao.otherList(id));
 	model.addAttribute("yearmon",salesDao.yearmon(id));
 	model.addAttribute(year);
-	model.addAttribute(mon);
-
+	model.addAttribute(mon);  
+ 
 	System.out.println("saleInsertingCopy get");
 	return "salesOtherPage";
 }

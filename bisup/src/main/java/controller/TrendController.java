@@ -98,7 +98,7 @@ public class TrendController {
 	public ReportedCommand command() {
 		return new ReportedCommand();
 	}
-	
+	  
 	@RequestMapping(value = "/bisup_trend/writer.do", method = RequestMethod.GET)
 	public String writerForm(){
 		System.out.println("writer get방식 요청");

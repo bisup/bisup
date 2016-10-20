@@ -287,7 +287,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("good");
 		CommantCommand reCommand = new CommantCommand();
 		JSONObject jso = new JSONObject();
-		reCommand.setQnum(num);
+		reCommand.setQnum(num);     
 		reCommand.setRwriter(rwriter);
 		reCommand.setRcontents(rcontents);
 		int x=commentDAO.insertC(reCommand);
