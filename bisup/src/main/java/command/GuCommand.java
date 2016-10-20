@@ -8,7 +8,7 @@ public class GuCommand {
 	private int dcode; //동코드
 	private String dn; //행코드
 	private String newstore; //위험지표	
-	private int penf;  //3년 간 개업 대비 폐업신고율	
+	private int openf;  //3년 간 개업 대비 폐업신고율	
 	private int arg; 	//평균 폐업기간
 	private int jumpol; 	 //점포증감률
 	private int dang_num; //신규_창업_위험_지수_값
@@ -20,11 +20,11 @@ public class GuCommand {
 	public void setNewstore(String newstore) {
 		this.newstore = newstore;
 	}
-	public int getPenf() {
-		return penf;
+	public int getOpenf() {
+		return openf;
 	}
-	public void setPenf(int penf) {
-		this.penf = penf;
+	public void setOPenf(int openf) {
+		this.openf = openf;
 	}
 	public int getArg() {
 		return arg;

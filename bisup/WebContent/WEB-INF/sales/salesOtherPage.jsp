@@ -135,7 +135,7 @@ function Check(){
 
 <fieldset>
 
-<legend>총 부수비용 내역</legend>
+<legend><h2>총 부수비용 내역</h2></legend>
 
 <form id="other" method="get" action="salesOtherPro.do">
 
@@ -149,19 +149,19 @@ function Check(){
 
   <tr>
 
-    <th>년월</th>
+    <th class="info">년월</th>
 
-    <th>월세</th>
+    <th class="info">월세</th>
 
-    <th>월급</th>
+    <th class="info">월급</th>
 
-    <th>관리비</th>
+    <th class="info">관리비</th>
 
-    <th>세금</th>
+    <th class="info">세금</th>
 
-    <th>홍보비</th>
+    <th class="info">홍보비</th>
 
-    <th>총부수비용</th>
+    <th class="info">총부수비용</th>
 
   </tr>
 
@@ -201,7 +201,7 @@ function Check(){
 
 <fieldset>
 
- <legend>수정하기</legend>
+ <legend><h2>수정하기</h2></legend>
 
 <form name="others" id="others" method="post" action="salesOtherPro.do">
 
@@ -217,17 +217,17 @@ function Check(){
 
   <tr>
   
-    <th>년월</th>
+    <th class="success">년월</th>
 
-    <th>월세</th>
+    <th class="success">월세</th>
 
-    <th>월급</th>
+    <th class="success">월급</th>
 
-    <th>관리비</th>
+    <th class="success">관리비</th>
 
-    <th>세금</th>
+    <th class="success">세금</th>
 
-    <th>홍보비</th>
+    <th class="success">홍보비</th>
 
   </tr>
   <tr>

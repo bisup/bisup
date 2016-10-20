@@ -13,7 +13,6 @@
 	google.charts.setOnLoadCallback(drawChart);
 	var url="/bisup/mystore/drawChart.do";
 	function drawChart() {
-		
 		$.ajax({
 		type:"post"
 			,url:url

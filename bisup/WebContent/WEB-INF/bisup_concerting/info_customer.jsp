@@ -19,7 +19,7 @@
     margin: auto;
     padding: 55px 0 100px;
     overflow: hidden;
-    left:15%;
+    left:15%; 
    
 } 
 #f1{
@@ -29,9 +29,9 @@ width: 350px;
 
 #map{
    position: absolute;
-   top: 27%;
+   top: 35%;
    bottom: 25%;
-   left:47%;
+   left:52%;
    width: 35%;
    height: 40%;
    text-align: right;
@@ -71,12 +71,14 @@ width: 350px;
 
 				<label>항목 검색</label> 
 				<select name="division">
+
 					<option value="">선택</option>
 					<option value="인테리어" >인테리어</option>
 					<option value="장비대여" >장비대여</option>
 					<option value="인력(아르바이트)" >인력(아르바이트)</option>
 					<option value="홍보업체" >홍보업체</option>
 				</select> <input type="submit" value="검색하기" >
+
 			</fieldset>
 				<br>
 				
@@ -135,7 +137,7 @@ width: 350px;
                   position: mposition, // 마커의 좌표
                    image : markerImage, // 마커의 이미지
                    map: map, // 마커를 표시할 지도 객체
-                  
+                   
 
                });
             marker.setMap(map);		 

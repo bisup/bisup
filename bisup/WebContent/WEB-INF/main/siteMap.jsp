@@ -141,10 +141,9 @@
                   <h2>내 점포 매출관리</h2><hr>
                   <ul >  
             	<li><a href="/bisup/mystore/menuMain.do">메뉴등록</a></li>
-           		<li><a href="/bisupsales/salesInserting.do">매출등록</a></li> 
-          		<li><a href="/bisup/mystore/saleProgressMain.do">매출 추이 조회</a></li>
+           		<li><a href="/bisup/sales/salesInserting.do">매출등록</a></li> 
             	<li><a href="/bisup/sales/salesOther.do">부수 비용 관리</a></li>
-            	<li><a href="/bisup/sales/drawMonChart.do">월별 매출 차트</a></li>
+            	<li><a href="/bisup/sales/drawMonChart.do">매출 현황</a></li>
                   </ul> 
                
 </td>

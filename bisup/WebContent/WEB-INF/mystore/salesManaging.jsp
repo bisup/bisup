@@ -28,7 +28,7 @@ position:absolute;
       // draws it.
       function drawChart() {
 		var chartData;
-    	var param={id:'${id}'};
+    	var param={id:"${sessionScope.id}"};
     	var url='/bisup/mystore/drawDayChart.do';
     	$.ajax({
     		type:"post"
