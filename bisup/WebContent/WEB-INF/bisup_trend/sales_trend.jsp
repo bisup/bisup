@@ -49,7 +49,7 @@ $(function(){
 if(${gucode}!=null){
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization);
-	
+	 
 	
 	function drawVisualization(){
 			var data = google.visualization.arrayToDataTable([

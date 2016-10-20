@@ -27,7 +27,7 @@ public class SendEmail {
         String recipient = address;
         if (state == 1) {
 	        subject = "비즈업에 가입하신 것을 죽하합니다."; /*이메일의 제목*/
-	        code = "http://localhost:8088/bisup/bisup_login/certifyKey.do?key=" + key; /*키값을 키 파라메터에 입력*/
+	        code = "http://192.168.10.99:8088/bisup/bisup_login/certifyKey.do?key=" + key; /*키값을 키 파라메터에 입력*/
 	        content = "위 주소를 클릭하시면 회원가입이 완료됩니다."; /*전송할 메세지*/
     	}
         
