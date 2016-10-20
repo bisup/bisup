@@ -159,7 +159,8 @@ public class NoticeController {
 					@RequestParam(value = "contents") String contents, 
 					@RequestParam(value = "writer") String writer)
 					throws Exception {
-
+				
+				int a = 1;
 				ModelAndView mav = new ModelAndView();
 				BoardCommand boardCommand = new BoardCommand();
 				boardCommand.setCnt(0);
@@ -168,6 +169,7 @@ public class NoticeController {
 				boardCommand.setWriter(writer);
 				boardService2.insertBoard(boardCommand);
 				mav.setViewName("success");
+				mav.addObject("a", a);
 				return mav;
 			}
 

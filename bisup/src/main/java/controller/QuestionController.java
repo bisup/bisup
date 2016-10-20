@@ -169,7 +169,8 @@ public class QuestionController {
 			@RequestParam(value = "contents") String contents, 
 			@RequestParam(value = "pw") String pw,
 			@RequestParam(value = "writer") String writer) throws Exception {
-
+		
+		int a = 1;
 		ModelAndView mav = new ModelAndView("good");
 		BoardCommand boardCommand = new BoardCommand();
 		boardCommand.setCnt(0);
@@ -178,6 +179,7 @@ public class QuestionController {
 		boardCommand.setTitle(title);
 		boardCommand.setWriter(writer);
 		boardService.insertBoard(boardCommand);
+		mav.addObject("a", a);
 		return mav;
 	}
 

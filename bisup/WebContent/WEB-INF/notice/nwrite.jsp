@@ -18,7 +18,7 @@
 	  
 	  <div class="form-group">
 	    <label for="exampleInputWriter">작성자</label>
-	    <input type="text" class="form-control" name="writer" value="관리자" required>
+	    <input type="text" class="form-control" name="writer" value="관리자" required readonly="readonly">
 	  </div>
 	  
 	  <div class="form-group">
