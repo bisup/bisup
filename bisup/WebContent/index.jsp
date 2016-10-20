@@ -14,7 +14,7 @@
 <<<<<<< HEAD
  --%>
 
-<%--   <a href="<c:url value='bisup_login/main.do'/>">지형정보</a>  --%>
+<%--   <a href="<c:url value='bisup_login/main.do'r/>">지형정보</a>  --%>
 
 
 </html>   
