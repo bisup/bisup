@@ -45,15 +45,26 @@ function Check2(){
 		f.rent.focus();
 		return false;
 	}
+	if(isNaN(f.rent.value)){
+		alert("숫자로 입력해주세요");
+		f.rent.focus();
+		return false;
+	}
 	
 	if(f.rent.value.length > "5"){
 		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
 		f.rent.focus();
 		return false;
 	}
+
 	
 	if(! f.sal.value){ 	
 		alert("월급금이 없으시다면 0을 입력해주세요");
+		f.sal.focus();
+		return false;
+	}
+	if(isNaN(f.sal.value)){
+		alert("숫자로 입력해주세요");
 		f.sal.focus();
 		return false;
 	}
@@ -69,6 +80,11 @@ function Check2(){
 		f.mcost.focus();
 		return false;
 	}
+	if(isNaN(f.mcost.value)){
+		alert("숫자로 입력해주세요");
+		f.mcost.focus();
+		return false;
+	}
 	
 	if(f.mcost.value.length > "5"){
 		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
@@ -78,6 +94,11 @@ function Check2(){
 	
 	if(! f.duty.value){ 	
 		alert("세금이 없으시다면 0을 입력해주세요");
+		f.duty.focus();
+		return false;
+	}
+	if(isNaN(f.duty.value)){
+		alert("숫자로 입력해주세요");
 		f.duty.focus();
 		return false;
 	}
@@ -93,6 +114,12 @@ function Check2(){
 		f.prcost.focus();
 		return false;
 	}	
+	
+	if(isNaN(f.prcost.value)){
+		alert("숫자로 입력해주세요");
+		f.prcost.focus();
+		return false;
+	}
 	
 	if(f.prcost.value.length > "5"){
 		alert("너무 큰 값을 입력하셨습니다. 기본 값은 '만원' 입니다. \n\n 예)10,000 => 1 입력 \n\n 예)100,000 => 10 입력 ");
