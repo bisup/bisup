@@ -18,11 +18,11 @@
 <h1 align="center">사이트 맵</h1>
 <table align="center" class="tables">
 <tr>
-<td><h2>Q & A</h2><hr>
+<td><h2>게시판</h2><hr>
                    <ul>  
                   <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
-                    <li>   <a href=#>쪽지함</a>  </li>
+                    <li>   <a href="/bisup/webEx.jsp?id='${sessionScope.id}'">쪽지함</a>  </li>
                   </ul> 
                   </td>
                   
@@ -72,7 +72,7 @@
                   </ul> 
                
 </td>
-<td class="tables"><h2>Q & A</h2><hr>
+<td class="tables"><h2>게시판</h2><hr>
                     <ul>  
                   <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
@@ -121,7 +121,7 @@
   <div id="contents" >
 <h1 align="center">사이트 맵</h1>
     <table align="center" class="tables">
-<td class="tables"><h2>Q & A</h2><hr>
+<td class="tables"><h2>게시판</h2><hr>
                     <ul>  
                          <li>   <a href='/bisup/bisup/notice/nlist.do'>공지사항</a>  </li>
                    <li>   <a href='/bisup/bisup/question/qlist.do'>문의사항</a>  </li>
