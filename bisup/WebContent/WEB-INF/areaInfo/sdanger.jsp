@@ -37,7 +37,7 @@ $(document).ready(function(){
 				$(".bto").append("<button type='submit' onclick='' class='btn'>비교하기</button>");
 				
 				for(idx=0 ; idx<args.list.length ; idx++){
-					//alert(args.list[idx].dn);
+					
 					var i=idx+1;
 					if(args.list[idx].newstore =="의심"){
 					 $(".tbody").append("<tr><td><input type='checkbox'  name='dcode'  value='"+args.list[idx].dcode+"'></td><td>"+args.list[idx].gn+"</td><td><a href='javascript:dn("+args.list[idx].dn+","+args.list[idx].dang_num+")' class='dn'>"+args.list[idx].dn+"</a></td><td><img src='/bisup/resources/img/g.jpg' style='width: 10px'>&nbsp"+args.list[idx].newstore+"</td><td>"+args.list[idx].arg+"</td><td>"+args.list[idx].jumpol+"</td></tr>");
@@ -55,26 +55,12 @@ $(document).ready(function(){
 			}
 		});
 	});
-	<%-- $('.dn').click(function(){
-		var dn = $(this).val() ;
-		var url="<%=cp%>/my/areaInfo/data.do";
-		var params="dn="+dn;
-	}); --%>
+	
 	
 });
 
 </script>
- <script type="text/javascript">
-/* $(document).ready(function(){
-	$('.btn').click(function seldcode(){
-		var para=new Array();
-		$("input[name='dcode']:checked").each(function(i){para.push($(this).val()); });
-		var data ={"dcodeA":para};
-		document.myform.submit();
-	});	
-	}); */
-
-</script> 
+  
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});

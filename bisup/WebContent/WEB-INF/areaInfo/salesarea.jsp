@@ -168,9 +168,9 @@ $(document).ready(function(){
      		            type : 'get',
      		            datatype:'json',
      					success: function (res,status) { 
-     						//var idx, len, target, conComplite = {}, key, value, strToolTip;
+     						
      						target = res.result;
-     						//$(".h1").remove();
+     						
      						$(".tbody").find("tr").remove(); 
      		     			for (idx = 0, len = target.length; idx < len; idx ++) {
      							conComplite[target[idx].adm_cd] = target[idx];
@@ -180,8 +180,7 @@ $(document).ready(function(){
      							
     
      						}
-     					/* 	logger("----------- [ 산업체 조회 조회 성공 ] -----------");
-     						logger("<pre>" + JSON.stringify(res, null, 2) + "</pre>"); */
+     					
      						sopArea.eachLayer(function (layer) {
      							key = layer.feature.properties.adm_cd;
      							value = conComplite[key];
@@ -213,12 +212,12 @@ function divLogger() {
 			divConsole.innerHTML =  str;
 		}
 		divConsole.innerHTML += "<br>";
-//		console.log(divConsole);
+
 		divConsole.scrollTop = divConsole.scrollHeight;
-//		divConsole.scrollHeight = 999999;
+
 	};
 }
-//<td>"+args.list[idx].dang_num+"</td>
+
 
 
 

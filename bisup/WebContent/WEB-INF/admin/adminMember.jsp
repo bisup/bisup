@@ -60,13 +60,7 @@
 						$("#paging").append(" >");
 						
 						
-						/* for(var idx=1; args.data2>=idx; idx++){
-							if(args.data2>idx){
-								$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>&#124;");
-							}else{
-								$("#paging").append("<a href=selectPageNum("+idx+")"+idx+"<a>");
-							}
-						} *///페이지 번호를 위한 for문
+					
 						return false;
 					},
 					error : function(e) {
