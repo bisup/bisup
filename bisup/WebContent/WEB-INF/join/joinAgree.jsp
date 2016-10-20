@@ -11,7 +11,7 @@
 <style>
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
-
+  
 .input-group-addon.beautiful input[type="radio"] {
     display: none;
 }
