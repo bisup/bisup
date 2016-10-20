@@ -400,10 +400,10 @@ $(document).ready(function () {
   </div>
 </div>
 <hr>
- <div id="agreeCheck">
+ <div id="agreeCheck" style="width:1250px;">
         <div class="row">
             
-            <div class="col-lg-6">
+            <div class="col-lg-6"  >
                 <div class="input-group">
                     <span class="input-group-addon beautiful">
                         <input type="radio" id="agreeRadio"checked="checked">
@@ -415,7 +415,7 @@ $(document).ready(function () {
   
     <br>
     <div class="col-md-9">
-		<div class="alert alert-info alert-normal-info" hidden="hidden">
+		<div class="alert alert-info alert-normal-info" hidden="hidden" >
   				    <button type="button" class="close">×</button>
   					이용약관 및 개인정보취급방침에 동의하여 주세요.
 			<br>

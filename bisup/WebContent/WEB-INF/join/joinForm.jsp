@@ -238,6 +238,9 @@ $(function(){
 				if(data.n > 0){
 					alert("닉네임 중복입니다.");
 					$('#nick').val('');	
+				}else if(data.n == -1){
+					alert("닉네임 입력하세요.");
+					
 				}else{
 					alert("닉네임사용가능합니다.");			
 					}
@@ -259,6 +262,9 @@ $(function(){
 					if(data.n > 0){
 						alert("닉네임 중복입니다.");
 						$('#nick1').val('');	
+					}else if(data.n == -1){
+						alert("닉네임 입력하세요.");
+						
 					}else{
 						alert("닉네임사용가능합니다.");			
 						}
@@ -280,12 +286,61 @@ $(function(){
 					if(data.mc > 0 ){
 						alert("사업자번호 중복입니다.");
 						$('#snum').val('');	
+					}else if(data.mc == -1){
+						alert("사업자번호를 입력하세요.");
+						
 					}else{
 						alert("사업자번호 사용가능합니다.");			
 						}
 				}
 			});
 		 });
+	 $('#email').blur(function emails(){
+		  $.ajax({
+				type:'get',
+				url:'checke.do',
+				data:{
+					"email":$('#email').val()
+				},
+				dataType:"json",
+				success:function(data){
+					//var b=Number(1);
+					//var i=parseInt(args.x);
+				/* 	args.x.typeofValue */
+					if(data.mc > 0 ){
+						alert("이메일 중복입니다.");
+						$('#email').val('');	
+					}else if(data.mc ==-1){
+						alert("이메일을 입력하세요.");
+					}else{
+						alert("사용가능합니다.");			
+						}
+				}
+			});
+		 }); 
+$('#email1').blur(function emails(){
+	  $.ajax({
+			type:'get',
+			url:'checke.do',
+			data:{
+				"email":$('#email1').val()
+			},
+			dataType:"json",
+			success:function(data){
+				//var b=Number(1);
+				//var i=parseInt(args.x);
+			/* 	args.x.typeofValue */
+				if(data.mc > 0 ){
+					alert("이메일 중복입니다.");
+					$('#email1').val('');	
+				}else if(data.mc ==-1){
+					alert("이메일을 입력하세요.");
+				}else{
+					alert("사용가능합니다.");			
+					}
+			}
+		});
+	 });
 });
 </script>
 </head>
@@ -346,7 +401,7 @@ $(function(){
           <span class="input-group-addon">
             @
           </span>
-          <input class="form-control" placeholder="Email" name="email" type="email" required="필수입력창입니다"/>
+          <input class="form-control" placeholder="Email" class="email" id="email" name="email" type="email" required="필수입력창입니다"/>
         </div>
                 
                   <div class="form-group">
@@ -425,7 +480,7 @@ $(function(){
           <span class="input-group-addon">
             @
           </span>
-          <input class="form-control" placeholder="Email" name="email" type="email" required=""/>
+          <input class="form-control" placeholder="Email" name="email" class="email" type="email" id="email1" required=""/>
         </div>
                   <div class="form-group">
                     <form:input path="phone" class="form-control" placeholder="연락처를 입력해주세요"/>

@@ -55,18 +55,26 @@ public class JoinDAO extends SqlSessionDaoSupport{
 		 return mc;
 		 
 	 } 
- public int selectsnum(int snum){ //닉네임 중복
+ public int selectsnum(int snum){ //사업자번호 중복
 	 
 	 int mc = getSqlSession().selectOne("JoinDAO.ss", snum); 
 	 //System.out.println("mc="+mc);
 	 return mc;
 	 
  } 
- public int countid(MemberCommand command){ //닉네임 중복
+ public int countid(MemberCommand command){ //이메일 이름 존재
 	 
 	 int idc = getSqlSession().selectOne("JoinDAO.count", command); 
 	 //System.out.println("mc="+mc);
 	 return idc;
 	 
  } 
+ public int selectE(String email){ //이메일 중복
+	 
+	 int idc = getSqlSession().selectOne("JoinDAO.cemail", email); 
+	 //System.out.println("mc="+mc);
+	 return idc;
+	 
+ } 
+
 }
