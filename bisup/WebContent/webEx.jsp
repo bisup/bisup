@@ -39,8 +39,9 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    				$("#onMessageWindow").append("<div align='right' class=row><a href=# onclick=goWindow("+args.delivered.mcontents+")> 쪽지가 왔습니다! "
-    		    			+args.delivered.mcontents.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+args.delivered.mcontents+"'/></div><hr/>");
+    			var mcontents="args.delivered.mcontents";
+    			$("#onMessageWindow").append("<div align='right' class=row><a href=# onclick=goWindow("+mcontents.to_char+")> 쪽지가 왔습니다! "
+    		    		+args.delivered.mcontents.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+mcontents+"'/></div><hr/>");
     		}
     		,errors:function(){
 			 alert();
@@ -91,6 +92,7 @@ request.setCharacterEncoding("utf-8");
         webSocket.send($('#mcontents').val());
         var url="/bisup/mystore/Broadcasting/send.do";
         var param={sub:$('#sub').val(),mcontents:$('#mcontents').val(),send:'${sessionScope.id}'};
+		alert($('#sub').val()+"님에게 쪽지를 보냈습니다.");
         $.ajax({
     		type:"post"
     		,url:url
@@ -176,7 +178,12 @@ request.setCharacterEncoding("utf-8");
     <form onsubmit="deleteText()" action="/bisup/mystore/Broadcasting/deleteText.do">
         <div id="textWindows"></div>
         <div id="textButtons">
-        <input type="text" placeholder="받으실분" id="sub">
+        <c:if test="${param.selectedId!=null }" >
+        	<input type="text" id="sub" value="${param.selectedId }">
+        </c:if>
+        <c:if test="${param.selectedId==null }" >
+        	<input type="text" placeholder="받으실분" id="sub">
+        </c:if>
         <input type="text" placeholder="내용" id="mcontents">
         <input type="button" value="send" onclick="send()">
         <input type="submit" value="삭제"	>

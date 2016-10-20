@@ -101,7 +101,7 @@ text-align:center;}
 <br/>
 <div style="font: bold large Palatino, serif"><ins>답장쓰기</ins></div>
 <br/>
-	<textarea id="replyContents" cols="40" rows="10">
+	<textarea id="replyContents" cols="40" rows="10" autofocus="autofocus">
 	</textarea>
 	<br/><input type="button" value="답장쓰기" onclick="send()">
 	</div>
