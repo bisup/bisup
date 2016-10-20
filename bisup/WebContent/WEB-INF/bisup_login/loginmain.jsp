@@ -86,7 +86,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="margin-top-0 text-primary">Bisup Image</h2>
+                    <h2 class="margin-top-0 text-primary">Bisup Information</h2>
                     <hr class="primary">
                 </div>
             </div>

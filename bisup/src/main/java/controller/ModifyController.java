@@ -146,7 +146,7 @@ import net.sf.json.JSONObject;
 	
 	@RequestMapping(value="/mypage/modifyForm.do",method=RequestMethod.POST)
 	public String formPost(@ModelAttribute("mem") MemberCommand membercommand,HttpSession session,HttpServletRequest request){
-		
+		int y = 1;
 		String snum1 = request.getParameter("snum1");
 		String tel1 = request.getParameter("tel1");
 		String ch=request.getParameter("ch");
@@ -179,7 +179,7 @@ import net.sf.json.JSONObject;
 		if(x==1){
 			System.out.println("update¼º°ø");
 			session.setAttribute("sort", membercommand.getSort());
-			
+			request.setAttribute("y", y);
 			return "modSuc";//
 		}
 		
