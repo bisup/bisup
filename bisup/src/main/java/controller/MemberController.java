@@ -143,6 +143,7 @@ public class MemberController {
 			mvc.addObject(hp);
 			return mvc;
 			}
+	
     @RequestMapping(value="/searchpw.do", method=RequestMethod.GET)
     public String searchpw(){
     	return "bisup_login/findid";
@@ -156,9 +157,8 @@ public class MemberController {
     	if(count > 0){
     	MemberCommand find=joinDao.selectId(membercommand);
     	System.out.println("member"+membercommand.toString());
-    	//System.out.println("find= "+find.toString());
+    	
     	}
-    	 System.out.println(count);
     	 mav.addObject("x", count);
     	return mav;
     }
@@ -205,11 +205,12 @@ public class MemberController {
 		
 		return jso.toString();
 		}	
+	  
 	  @RequestMapping(value="/checkn.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	  @ResponseBody
 	public String checkN(@RequestParam("nick")String nick,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
-		//System.out.println(nick);
+		
 		int mc =0;
 		JSONObject jso = new JSONObject();
 		if(!(nick==null) && !(nick.trim()=="")){
@@ -226,7 +227,7 @@ public class MemberController {
 	  @ResponseBody
 	public String checkS(@RequestParam("snum")String snum,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
-		//System.out.println(snum);
+		
 		int mc=0;
 		JSONObject jso = new JSONObject();
 		if(!(snum==null) && !(snum.trim()=="")){

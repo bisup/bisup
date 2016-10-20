@@ -59,7 +59,7 @@ public class NoticeController {
 		map.put("endRow", endRow);
 
 		int cnt = boardService2.allCnt(); // 전체 글 갯수
-		// cnt(전체 글 갯수가)가 0이면 저장된 글 없음
+		
 		if (cnt > 0) {
 			list = boardService2.selectBoardList(map);
 		}
@@ -117,7 +117,7 @@ public class NoticeController {
 					map.put("endRow", endRow);
 
 					int cnt = boardService2.allCnt(); // 전체 글 갯수
-					// cnt(전체 글 갯수가)가 0이면 저장된 글 없음
+					
 					if (cnt > 0) {
 						list = boardService2.selectBoardList(map);
 					}

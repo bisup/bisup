@@ -86,7 +86,6 @@ public class AdminMemberController {
 			System.out.println("코드::"+i.getGucode());
 		}
 		List<MemberCommand> list = adminMemberDao.getStore();
-		System.out.println(list.toString());
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", list);
 		PrintWriter printWriter = response.getWriter();
@@ -129,19 +128,14 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/chang.do")
+	@RequestMapping("/chang.do") //창업예정자에서 창업자로 변경된 회원현황
 	public ModelAndView getChang() throws Exception{
 		ModelAndView mav = new ModelAndView("GuMember");
 		int s2=adminMemberDao.getB();
-		System.out.println("sort가 2인 회원="+s2);
 		int c=adminMemberDao.getC();
-		System.out.println("sort가 1에서 2인 회원="+c);
 		int s=s2-c;
-		System.out.println("기존의 회원이 2인 사람="+s);
 		mav.addObject("s",s);
 		mav.addObject("c", c);
-		
-		
 		return mav;
 	}
 }
