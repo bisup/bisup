@@ -58,5 +58,10 @@
     <select id="count" parameterType="command.MemberCommand" resultType="int">
     select count(*) from member <where> name=#{name} and email=#{email}</where> 
     </select>
+    <select id="cemail" parameterType="String" resultType="int">
+    select count(*) from member <where>email=#{email}</where> 
+    </select>
+    
+    
     
 </mapper>

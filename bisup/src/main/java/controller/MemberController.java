@@ -209,9 +209,14 @@ public class MemberController {
 	  @ResponseBody
 	public String checkN(@RequestParam("nick")String nick,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
-		System.out.println(nick);
+		//System.out.println(nick);
+		int mc =0;
 		JSONObject jso = new JSONObject();
-		int mc=joinDao.selectnick(nick);
+		if(!(nick==null) && !(nick.trim()=="")){
+		 mc=joinDao.selectnick(nick);
+		}else{
+		mc= -1;	
+		}
 			jso.put("n",mc);
 			return jso.toString();
 	    
@@ -221,13 +226,35 @@ public class MemberController {
 	  @ResponseBody
 	public String checkS(@RequestParam("snum")String snum,HttpServletResponse resp) throws Exception{
 		resp.setContentType("text/html; charset=UTF-8");
-		System.out.println(snum);
+		//System.out.println(snum);
+		int mc=0;
 		JSONObject jso = new JSONObject();
-		int mc=joinDao.selectsnum(Integer.parseInt(snum));
+		if(!(snum==null) && !(snum.trim()=="")){
+		mc=joinDao.selectsnum(Integer.parseInt(snum));	
+		}else{
+			mc= -1;	
+		}
+		jso.put("mc",mc);
+			return jso.toString();
+		}	
+	  
+	  @RequestMapping(value="/checke.do",method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	  @ResponseBody
+	public String checke(@RequestParam("email")String email,HttpServletResponse resp) throws Exception{
+		resp.setContentType("text/html; charset=UTF-8");
+		System.out.println(email);
+		int mc=0;
+		JSONObject jso = new JSONObject();
+		if(!(email==null) && !(email.trim()=="")){
+		 mc=joinDao.selectE(email);
+		}else{
+			mc=-1;
+		}
 			jso.put("mc",mc);
 			return jso.toString();
 	    
 		}	
+	  
 }
 
  
