@@ -153,7 +153,7 @@
                        <li> <a href='/bisup/my/areaInfo/salesarea.do'>지역별 상권 정보</a></li>
                      <li> <a href='/bisup/my/areaInfo/sdanger.do'>상권위험지표</a></li>  
                        <li><a href="/bisup/my/areaInfo/mpInfo.do">지역별 인구 현황</a></li>
-                  </ul> 
+                  </ul>  
               
                   </td>                  
 <td class="tables">

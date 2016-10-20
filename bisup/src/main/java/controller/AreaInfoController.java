@@ -1,5 +1,5 @@
 package controller;
-
+ 
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -61,22 +61,9 @@ public class AreaInfoController {
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.print(jso.toString());
-		//out.print 내용을 ajax의 dataType이 json에게 데이터 쏴줌
-		//response에 추가시킬때는 String으로
+		
 	}
 	
-	
-	@RequestMapping("/areaInfo/test.do")
-	public String test(){
-		System.out.println("testGet요청");
-		return "test"; 
-	}
-	
-	@RequestMapping("/areaInfo/test2.do")
-	public String test1(){
-		System.out.println("testGet요청");
-		return "layout22"; 
-	}
 	
 	@RequestMapping("/manual.do")
 	public String cal(){

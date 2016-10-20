@@ -35,7 +35,7 @@ request.setCharacterEncoding("utf-8");
         var param={id:"${sessionScope.id}",mcontents:event.data};
     	$.ajax({
     		type:"post"
-    		,url:url
+    		,url:url 
     		,data:param
     		,dataType:"json"
     		,success:function(args){

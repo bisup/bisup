@@ -112,6 +112,7 @@ public class MyStoreController {
 		model.addAttribute("menuList", result);
 		return "menuInserting";
 	}
+	
 	@RequestMapping(value="/deleteMenu.do",method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	public void deleteMenu(@RequestParam("item") String item,HttpSession session,
 			HttpServletResponse response) throws Exception{

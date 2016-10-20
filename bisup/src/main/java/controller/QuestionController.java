@@ -81,11 +81,11 @@ public class QuestionController {
 		map.put("endRow", endRow);
 
 		int cnt = boardService.allCnt(); // 전체 글 갯수
-		// cnt(전체 글 갯수가)가 0이면 저장된 글 없음
+		
 		if (cnt > 0) {
 			list = boardService.selectBoardList(map);
 		}
-		// int number = cnt - (pageNum -1) * pagesize;
+		
 
 		/**** 페이지 수 연산 ****/
 		int pageCount = cnt / pagesize + (cnt % pagesize == 0 ? 0 : 1);
@@ -123,12 +123,12 @@ public class QuestionController {
 			map.put("endRow", endRow);
 
 			int cnt = boardService.allCnt(); // 전체 글 갯수
-			// cnt(전체 글 갯수가)가 0이면 저장된 글 없음
+			
 			if (cnt > 0) {
 				list = boardService.selectBoardList(map);
 				System.out.println(list.toString());
 			}
-			// int number = cnt - (pageNum -1) * pagesize;
+			
 
 			/**** 페이지 수 연산 ****/
 			int pageCount = cnt / pagesize + (cnt % pagesize == 0 ? 0 : 1);
@@ -273,23 +273,6 @@ public class QuestionController {
 	public void updateCnt(int num) {
 		boardService.updateCnt(num);
 	}
-	/*
-	 * // 파일 업로드
-	 * 
-	 * @RequestMapping(value = "/question/qwrite.do", method =
-	 * RequestMethod.POST) public String submitReport1(@RequestParam("nwrite")
-	 * String studentNumber,
-	 * 
-	 * @RequestParam("filename") MultipartFile filename) { upload(filename);
-	 * return "qlist"; } // 파일 업로드 public void upload(MultipartFile report) {
-	 * String name = report.getOriginalFilename(); long now =
-	 * System.currentTimeMillis(); String o_name = now + name; File new_file =
-	 * new File("e:\\upload\\" + o_name); try { report.transferTo(new_file);
-	 * FileDB fileDB = new FileDB(name, new_file.getPath(), report.getSize());
-	 * dao.insert(fileDB); // 같은 이름의 파일이 존재하면 삭제한뒤 저장 } catch (Exception e) {
-	 * e.printStackTrace(); } }
-	 */
-	
 	
 	//댓글
 	
@@ -304,7 +287,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("good");
 		CommantCommand reCommand = new CommantCommand();
 		JSONObject jso = new JSONObject();
-		reCommand.setQnum(num);
+		reCommand.setQnum(num);     
 		reCommand.setRwriter(rwriter);
 		reCommand.setRcontents(rcontents);
 		int x=commentDAO.insertC(reCommand);

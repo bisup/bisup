@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<html>
+<html> 
 <head>
 <title></title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -35,6 +35,7 @@
           title: '연령별 비율',
           pieHole: 0.4,
         };
+ 
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);

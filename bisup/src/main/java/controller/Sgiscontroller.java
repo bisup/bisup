@@ -41,9 +41,6 @@ public class Sgiscontroller {
          List<GuCommand> list =sgisdao.getdan(gcode);
          JSONObject jso = new JSONObject();
          jso.put("list", list);
-         for(GuCommand li:list){
-           // System.out.println(li.getDn());
-         }
          resp.setContentType("text/html;charset=utf-8");
          PrintWriter out = resp.getWriter();
          out.print(jso.toString());
@@ -60,7 +57,7 @@ public class Sgiscontroller {
 			  List<GuCommand> list1 =sgisdao.getd(dc);
 			  mav.addObject("li1", list1); 
 		  }
-		  if(!dcode[2].isEmpty()){
+		  if(!dcode[2].isEmpty()){   
 		  int dc2=Integer.parseInt(dcode[2]);
 		  List<GuCommand> list2 =sgisdao.getd(dc2);
 		  mav.addObject("li2", list2);
@@ -72,7 +69,7 @@ public class Sgiscontroller {
 	   List<GuCommand> list0 =sgisdao.getd(dc);
 	   mav.addObject("list", list);
 	   mav.addObject("li", list0);
-	  // mav.addObject("li1", list1);
+	 
 	
 	   return mav;   
    }
@@ -81,9 +78,7 @@ public class Sgiscontroller {
    public ModelAndView form(){
       ModelAndView mav=new ModelAndView("sdanger");
       List<GuCommand> list=sgisdao.guselect();
-      for(GuCommand gd:list){
-      System.out.println(gd.getGn()+"::"+gd.getGcode());
-      }      
+           
       mav.addObject("list", list);
       return mav; 
    }

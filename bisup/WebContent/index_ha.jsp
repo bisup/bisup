@@ -16,7 +16,7 @@
 
 <a href="<c:url value='/my/mypage/modifyCheck.do'/>">modifyCheck</a>
 
-<br>
+<br> 
 
 <a href="<c:url value='/my/mypage/modifyForm.do'/>">modifyForm</a>
 

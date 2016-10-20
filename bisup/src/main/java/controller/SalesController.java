@@ -48,7 +48,7 @@ public class SalesController {
 //	매출 등록 ,수정 부분	
 	@RequestMapping(value="/salesInserting.do",method=RequestMethod.GET)
 	public String sales(HttpServletRequest request,Model model,HttpSession session){
-//		session.setAttribute("id", "java");
+
 		String id=(String)session.getAttribute("id");
 		model.addAttribute("menu",salesDao.menuList(id));
 		System.out.println("saleInserting get");
@@ -136,7 +136,7 @@ public class SalesController {
 	//매출 등록 수정(다른 날짜 수정)
 	@RequestMapping(value="/salesTablePage.do",method=RequestMethod.POST)
 public String salesTablePage(@ModelAttribute("saleCommand") SaleCommand saleCommand,HttpServletRequest request,HttpSession session){
-//		session.setAttribute("id", "java");
+
 		String id=(String)session.getAttribute("id");
 		saleCommand.setId(id);
 	System.out.println("post"+id);
@@ -160,7 +160,6 @@ public String insertDate(@ModelAttribute("saleCommand") SaleCommand saleCommand,
 	System.out.println("request"+request.getParameter(sdate));
 	session.setAttribute("sdate", sdate);
 	System.out.println("post"+saleCommand.getSdate());
-	System.out.println("salesTable post");
 	return "redirect:/sales/salesTablePro.do";
 
 }
@@ -177,7 +176,6 @@ public String salesList2(@ModelAttribute("saleCommand") SaleCommand saleCommand,
 	model.addAttribute("sales",salesDao.saleList(map));
 	model.addAttribute("sale",salesDao.sdateList(id));
 	System.out.println(sdate);
-//	model.addAttribute("menu",salesDao.menuList(id));
 	model.addAttribute("menu2",salesDao.menuList2(map));
 	System.out.println("salesTable2 get");
 	return "salesTable";
@@ -208,7 +206,7 @@ return "redirect:/sales/salesOtherPro.do";
 
 @RequestMapping(value="/salesOther.do",method=RequestMethod.GET)
 public String salesOther(HttpServletRequest request,Model model,HttpSession session){
-//	session.setAttribute("id", "java");
+
 	String id=(String)session.getAttribute("id");
 	System.out.println("salesOther get");
 	return "salesOther";
@@ -253,8 +251,8 @@ public String salesOtherPage(@ModelAttribute("otherCommand") OtherCommand otherC
 	model.addAttribute("other",salesDao.otherList(id));
 	model.addAttribute("yearmon",salesDao.yearmon(id));
 	model.addAttribute(year);
-	model.addAttribute(mon);
-
+	model.addAttribute(mon);  
+ 
 	System.out.println("saleInsertingCopy get");
 	return "salesOtherPage";
 }
@@ -265,7 +263,6 @@ public String otherList(@ModelAttribute("otherCommand") OtherCommand otherComman
 	model.addAttribute("other",salesDao.otherList(id));
 	model.addAttribute("yearmon",salesDao.yearmon(id));
 	System.out.println(id);
-	System.out.println("salesOtherPro get");
 	return "salesOtherPro";
 }
 

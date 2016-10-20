@@ -191,7 +191,7 @@ public class SocketHandler {
 	//처음 쪽지창을 열 때엔 1-10까지의 쪽지만 나오게 됩니다.
 	@RequestMapping("/Broadcasting/selectPageNum.do")
 	public void selectPageNum(@RequestParam("pageNum")String pageNum,
-			HttpSession session,
+		 	HttpSession session,
 			HttpServletResponse response) throws Exception{
 		String sub = (String)session.getAttribute("id");
 		response.setCharacterEncoding("UTF-8");

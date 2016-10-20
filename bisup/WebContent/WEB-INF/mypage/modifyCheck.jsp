@@ -110,7 +110,7 @@ $(document).ready(function() {
   					비밀번호를 확인해주세요.
 			<br>
 		</div>   	
-	</div>
+	</div> 
         
       </fieldset>
     </form>

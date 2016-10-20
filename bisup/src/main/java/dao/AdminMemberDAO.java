@@ -43,7 +43,7 @@ public class AdminMemberDAO extends SqlSessionDaoSupport {
 	public ArrayList getGu() {
 		// TODO Auto-generated method stub
 		return (ArrayList) getSqlSession().selectList("admin.getGu");
-	}
+	} 
 
 	public int getGuMem(AdmcdCommand command) {
 		// TODO Auto-generated method stub

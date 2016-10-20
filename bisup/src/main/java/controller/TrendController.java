@@ -67,6 +67,7 @@ public class TrendController {
 		PrintWriter out = resp.getWriter();
 		out.print(jso.toString()); //out.print 내용을 ajax의 dataType이 jason에게 데이터 쏴줌
 	}
+	
 	// 매출 트렌드 6/7/8/9 월 차트 로직 
 	@RequestMapping(value="/bisup_trend/sales_trend1.do", method=RequestMethod.POST)
 	public String sales_trend1(@RequestParam("gn") String gucode, Model model)throws Exception{
@@ -97,7 +98,7 @@ public class TrendController {
 	public ReportedCommand command() {
 		return new ReportedCommand();
 	}
-	
+	  
 	@RequestMapping(value = "/bisup_trend/writer.do", method = RequestMethod.GET)
 	public String writerForm(){
 		System.out.println("writer get방식 요청");
@@ -121,22 +122,4 @@ public class TrendController {
 		return mav;
 	}
 	
-
-	
-
-	/*//개인 인데스 적용
-	@RequestMapping("sales_trend.do")
-	public String sales_trend(@RequestParam("item")String item, Model model){
-		int a = 0;
-		a = dao.list(item);
-		model.addAttribute("am", a);
-		return "bisup_trend/sales_trend";//
-	}
-	
-	@RequestMapping("business_trend.do")
-	public String business_trend(){
-		System.out.println("trend요청");
-		return "bisup_trend/business_trend";//
-
-	}*/
 }
