@@ -171,7 +171,7 @@
                   <ul >  
                       <li> <a href='/bisup/bisup_trend/sales_trend.do'>지역별 매출 현황</a></li>
                      <li> <a href='/bisup/bisup_trend/business_trend.do'>카페 트렌드 현황</a></li>  
-                       
+                         
                   </ul> 
                
 </td>
