@@ -7,7 +7,7 @@
 <select id="concerting"  resultType="command.GuCommand">
 	select * from gu order by gn asc
 </select>
-
+  
 <!--각 월별 매출  -->
 <select id="total" parameterType="int" resultType="command.SaleCommand">
 	select avg(total) as avg, sum(total) as tot from sale 
