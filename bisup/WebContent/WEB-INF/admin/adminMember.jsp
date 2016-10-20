@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="/bisup/css/stylea.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -30,8 +31,10 @@
 							var two = "창업자"
 							var sort = (args.data[idx].sort == 1) ? one : two
 							$("#allMember").append(
-									"<tr><td>" + args.data[idx].id
-											+ "</td><td>" + args.data[idx].name
+									"<tr><td><div class='menubar'><nav id='contentMenu'><ul><li class='contentMenuLi'><a class='conmenuLink'>" + args.data[idx].id+"</a>"
+									+"<ul class='contentMenusub'><li class='pop-up'><a href='/bisup/webEx.jsp?id='"+args.data[idx].id+"' class='consubmenuLink longLink'>쪽지보내기</a></li>"
+									+"</ul></li></ul></nav></div></td>"
+										+ "</td><td>" + args.data[idx].name
 											+ "</td><td>" + args.data[idx].nick
 											+ "</td><td>" + sort
 											+ "</td><td>" + args.data[idx].snum
@@ -43,6 +46,9 @@
 											+ "</td><td>")
 							
 						}
+
+		
+						
 						$("#paging").append("< ");
 						for (var idx = 1; idx <= args.count; idx++){
 							if(idx==args.count){

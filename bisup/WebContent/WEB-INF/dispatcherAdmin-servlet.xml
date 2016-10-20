@@ -71,5 +71,6 @@
 	<bean class="service.AdminMemberServiceImpl" id="adminMemberService">
 		<property name="adminMemberDAO" ref="adminMemberDAO"/>
 	</bean>
+
 </beans>
 

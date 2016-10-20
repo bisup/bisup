@@ -92,6 +92,6 @@
 	<!-- 컨트롤러 빈 등록 -->
 	<bean id="main" class="controller.MainController"/>
 	<bean class="controller.ModifyController"/>
-	<mvc:resources location="/css/**" mapping="/css/**"></mvc:resources> 
-	<mvc:annotation-driven/>
+<!-- 	<mvc:resources location="/css/**" mapping="/css/**"></mvc:resources> 
+	<mvc:annotation-driven/> -->
 </beans>

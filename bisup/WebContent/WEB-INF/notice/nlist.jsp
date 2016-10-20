@@ -4,7 +4,7 @@
 <!-- 이미래 공지사항 리스트-->
 <html>
 <head>
-<link rel="stylesheet" href="../../css/stylea.css" type="text/css"/>
+<!-- <link rel="stylesheet" href="../../css/stylea.css" type="text/css"/> -->
 <title>title</title>
 <style type="text/css">
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
@@ -99,7 +99,8 @@ $(document).ready(function() {
                     		<c:forEach items="${list}" var="list">
                     			<tr>
                     				<td>${list.NUM}</td>
-                    				<td>
+                    				<td>${list.WRITER}</td>
+                    	<%-- 			<td>
                     	<div class="menubar">
 						<nav id="contentMenu">
 							<ul>
@@ -110,21 +111,9 @@ $(document).ready(function() {
 								</li>
 							</ul>
 						</nav>
-						</div>
+						</div> --%>
 									
-                    				<%-- <div class="menubar">
-						<nav id="contentMenu">
-							<ul>
-								<li class="contentMenuLi"><a class="conmenuLink">${article.writer}</a>
-									<ul class="contentMenusub">
-										<li class="pop-up"><a onclick="writeMessage('${article.id}','${article.writer}')"
-															class="consubmenuLink longLink">쪽지보내기</a></li>
-									    <li class="pop-up"><a onclick="writeReport('${sessionScope.id}','${article.writer}','${article.id}','자유게시판 글')" class="consubmenuLink longLink">신고하기</a></li>
-													</ul></li>
-											</ul>
-										</nav>
-									</div> --%>
-                    				</td>
+                    	
                     				
                     				<td><a href="/bisup/bisup/notice/ncontents.do?num=${list.NUM}">${list.TITLE}</a></td>
                     				<td>${list.CNT}</td>
