@@ -29,13 +29,13 @@ width: 350px;
 
 #map{
    position: absolute;
-   top: 35%;
-   bottom: 25%;
-   left:52%;
-   width: 35%;
+   top: 40%;
+   bottom: 20%;
+   left:57%;
+   width: 20%;
    height: 40%;
    text-align: right;
-   padding-left: 50;
+   padding-left:40%;
    
 }
 

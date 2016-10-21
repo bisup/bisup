@@ -111,8 +111,8 @@ margin-right: auto;
 </style>
 </head>  
 <body>
- <h2 style="font-weight: 700; font-size: 36px; margin: 30px; padding: 30px;">메뉴등록</h2>
-  	<p style="display: block;margin: 30px; padding: 30px;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
+ <h2 style="font-weight: 700; font-size: 36px; margin: 30px; padding: 30px; padding-left: 400px;">메뉴등록</h2>
+  	<p style="display: block;margin: 30px; padding: 30px; padding-left: 400px;">메뉴명을 클릭하신 뒤 가격만 변경하시면 메뉴의 가격이 변경되고, 메뉴명을 바꾸시면 새로운 메뉴로 등록됩니다.</p>
 
 <div id="container">
 <div id="menuList">

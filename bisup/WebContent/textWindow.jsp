@@ -11,7 +11,7 @@ String mcontents = request.getParameter("mcontents");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //새 쪽지창입니다. 같은 세션에서 활동하기 위해서는 다시 한번 웹소켓 객체를 열어줘야 합니다.
-var webSocket = new WebSocket('ws://192.168.10.81:8088/bisup/Broadcasting');
+var webSocket = new WebSocket('ws://192.168.20.39:8088/bisup/Broadcasting');
 webSocket.onerror = function(event) {
     onError(event)
   };
@@ -37,13 +37,9 @@ function onOpen(event){
 			$("#sub").append(args.data.sub+"<input type=hidden value="+args.data.sub+" id=subvalue>");	
 			$("#mcontents").append(args.data.mcontents+"<input type=hidden value="+args.data.mcontents+" id=mcontentsvalue>");
 		}
-		,errors:function(args,request,status,error){
-		 alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
 	});
 }
 function onError(event){
-	alert("에러입니다!! ㅠㅠ")
 }
 
 //답장쓰기 버튼을 누를 시 데이터를 이용해서 replyText를 호출하게 합니다.
@@ -54,10 +50,8 @@ function send(){
 
 //쪽지내용, 보낸사람, 받는사람을 이용해 답장 쪽지를 DB에 저장합니다.
 function replyText(){
-	alert(document.getElementById("replyContents").value);
 	var url="/bisup/mystore/Broadcasting/replyText.do";
 	params={mcontents:document.getElementById("replyContents").value,sub:document.getElementById("subvalue").value,send:document.getElementById("sendvalue").value};
-	alert("mcontents:"+document.getElementById("replyContents").value+", sub:"+document.getElementById("subvalue").value);
 	$.ajax({
 		type:"post"
 		,url:url
@@ -69,9 +63,6 @@ function replyText(){
 				window.refresh();
 			}
 			
-		}
-		,errors:function(args,request,status,error){
-		 	alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
 }

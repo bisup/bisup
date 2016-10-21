@@ -13,7 +13,7 @@ request.setCharacterEncoding("utf-8");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	//웹소켓 객체를 만듭니다. 이 객체에 정해준 주소값에 있는 세션에서 데이터를 주고받습니다. 포트번호와 아이피를 통일해주세요.
-    var webSocket = new WebSocket('ws://192.168.10.81:8088/bisup/Broadcasting');
+    var webSocket = new WebSocket('ws://192.168.20.39:8088/bisup/Broadcasting');
     //웹소켓에서 에러 발생시 실행할 function을 정의합니다.
 	webSocket.onerror = function(event) {
       onError(event)
@@ -39,13 +39,10 @@ request.setCharacterEncoding("utf-8");
     		,data:param
     		,dataType:"json"
     		,success:function(args){
-    			var mcontents="args.delivered.mcontents";
-    			$("#onMessageWindow").append("<div align='right' class=row><a href=# onclick=goWindow("+mcontents.to_char+")> 쪽지가 왔습니다! "
-    		    		+args.delivered.mcontents.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+mcontents+"'/></div><hr/>");
+    			var mc=args.delivered.mcontents;
+    			$("#onMessageWindow").append("<div align='right' class=row><a href=# onclick=goWindow("+mc+")> 쪽지가 왔습니다! "
+    		    		+mc+".......</a><input type=checkbox name='mcontents' value='"+mc+"'/></div><hr/>");
     		}
-    		,errors:function(){
-			 alert();
-			}
     	});
     	/* $("#onMessageWindow").append("<div align='right' class=row><a href='#' onclick=goWindow('"+event.data+"')> 쪽지가 왔습니다! "
     			+event.data.substring(0,4)+".......</a><input type=checkbox name='mcontents' value='"+event.data+"'/></div><hr/>"); */
@@ -75,9 +72,6 @@ request.setCharacterEncoding("utf-8");
     				$("#textPages").append("<a href='javascript:selectPageNum("+num+")'>"+num+"</a>")
     			}
     		}
-    		,errors:function(){
-			 alert();
-			}
     	});
     }
     
@@ -105,9 +99,6 @@ request.setCharacterEncoding("utf-8");
     					args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
     			}
     		}
-    		,errors:function(args,request,status,error){
-				alert(args.result+"code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
     	});
         $("#mcontents").val("");
     }
@@ -134,9 +125,6 @@ request.setCharacterEncoding("utf-8");
 	    			$("#textWindows").append("<div class=row control-group><input type=checkbox name='mcontents' value='"+args.pagedList[idx].mcontents+"'/><a href=# class=form-check-input onclick=goWindow(\'"+mc+"\')>"+
 	       			args.pagedList[idx].send+"님으로부터 "+args.pagedList[idx].mcontents.substring(0,4)+".......</a></div><hr/>");
 	   			}
-	    	}
-	    	,errors:function(args,request,status,error){
-				alert("failed");
 	    	}
 	   	});
 	}

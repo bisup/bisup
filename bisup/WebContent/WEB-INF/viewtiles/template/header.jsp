@@ -116,7 +116,7 @@ color: blue;
             <li class="divider"></li>
            <!--  <li><a href="/bisup/admin/store.do">점포 관리</a></li>
             <li class="divider"></li> -->
-            <li><a href="/bisup/admin/chang.do">이용 정도</a></li>
+            <li><a href="/bisup/admin/chang.do">회원 창업률</a></li>
           </ul>
         </li>
         </c:if>
