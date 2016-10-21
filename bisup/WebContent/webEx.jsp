@@ -78,7 +78,7 @@ request.setCharacterEncoding("utf-8");
     //에러가 나면 알럿창을 보여줍니다.
     function onError(event) {
       alert(event.data);
-    }
+    } 
     
     //웹소켓에 메시지를 보냅니다(webSocket.send). 
     //ajax는 메시지를 DB에 저장하고 view에 출력하는 역할입니다.
