@@ -92,7 +92,7 @@ function Check2(){
 <br>
 <br>
 <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
-<table class="table table-striped" style="width:80%" >
+<table class="table table-striped" style="width:90%" >
   <tr>
     <th class="info">메뉴이름</th>
     <th class="info">판매수량</th>
