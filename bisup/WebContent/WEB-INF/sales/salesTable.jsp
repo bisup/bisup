@@ -87,7 +87,7 @@ function Check2(){
 <legend><h2>총 매출 내역</h2></legend>
 <form id="sales" method="get" action="salesTablePro.do">
 <div align="left"><label>날짜 ${sdate}</label></div>
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:90%">
   <tr>
     <th class="danger">메뉴이름</th>
     <th class="danger">판매수량</th>
@@ -109,7 +109,7 @@ function Check2(){
  <form name="sales2" method="post" action="salesTablePro.do">
  <input type="hidden" name="id" readonly value="<c:out value="${id}"/>">
 <div align="left"><label>날짜 ${sdate}</label></div>
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:90%">
   <tr>
     <th class="info">메뉴이름</th>
     <th class="info">판매수량</th>

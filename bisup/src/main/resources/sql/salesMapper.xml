@@ -11,7 +11,7 @@ select id,item from sale where id=#{id} and sdate=#{sdate}
 </select>
 
 <insert id="insertSales" parameterType="command.SaleCommand">
-insert into sale(id,sdate,item,ea,total) values (#{id}, #{sdate}, #{item}, #{ea}, (select distinct price*#{ea} from menu where item=#{item}))
+insert into sale(id,sdate,item,ea,total) values (#{id}, #{sdate}, #{item}, #{ea}, (select distinct price*#{ea} from menu where item=#{item} and id=#{id}))
 </insert>
 
 <select id="saleList" parameterType="map" resultType="command.SaleCommand">
@@ -19,7 +19,7 @@ select sdate,item,ea,total from sale where id=#{id} and sdate=#{sdate} order by 
 </select>
 
 <update id="updateSales" parameterType="command.SaleCommand">
-update sale set ea=#{ea},total=(select price*#{ea} from menu where item=#{item}) where id=#{id} and item=#{item} and sdate=#{sdate}
+update sale set ea=#{ea},total=(select distinct price*#{ea} from menu where item=#{item} and id=#{id}) where id=#{id} and item=#{item} and sdate=#{sdate}
 </update>
 
 <select id="sdateList" parameterType="String" resultType="command.SaleCommand">

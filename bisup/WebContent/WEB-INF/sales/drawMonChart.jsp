@@ -62,6 +62,6 @@ request.setCharacterEncoding("utf-8");
   </script>
 </head>
 <body>
-  <div id="chart_div" style="width: 800px; height: 500px;"></div>
+  <div id="chart_div" style="width: 700px; height: 500px;"></div>
 </body>
 </html>

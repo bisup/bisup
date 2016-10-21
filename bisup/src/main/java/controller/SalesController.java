@@ -51,6 +51,7 @@ public class SalesController {
 
 		String id=(String)session.getAttribute("id");
 		model.addAttribute("menu",salesDao.menuList(id));
+		session.setAttribute("sdate", "");
 		System.out.println("saleInserting get");
 		return "salesInserting";
 	}

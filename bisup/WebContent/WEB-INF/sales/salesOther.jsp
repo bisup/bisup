@@ -137,10 +137,10 @@ function Check2(){
 <fieldset >
 <form id="other" method="post" action="salesOther.do">
 <input type="hidden" name="id" value="<c:out value="${id}"/>">
-<table style="width:80%">
+<table style="width:90%">
 <tr><td><p align="right"><b>(금액 단위 : 만원)</b></p></td></tr>
 </table>
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:90%">
   <tr>
   	<th class="success">년</th>
     <th class="success">월</th>
@@ -155,7 +155,7 @@ function Check2(){
 	<select id="year" name="year" class="form-control">
 		<c:set var="today" value="<%=new java.util.Date()%>" />
 		<fmt:formatDate value="${today}" pattern="yyyy" var="start"/>
-		<option value="0">--년도--</option>
+		<option value="0">년도</option>
 		<c:forEach begin="0" end="15" var="idx2" step="1">
          <option value="<c:out value="${start + idx2}" />"><c:out value="${start + idx2}" /></option>
         </c:forEach>
@@ -163,7 +163,7 @@ function Check2(){
 	</td>
 	<td>
  	<select name="mon" class="form-control">
- 	<option value="0">--월--</option>
+ 	<option value="0">월</option>
 	<c:forEach begin="1" end="12" var="mon" step="1">
 	<c:if test="${mon < 10}"><c:set value="0${mon}" var="mon"/>﻿  
 	</c:if>
@@ -171,11 +171,11 @@ function Check2(){
 			 </c:forEach>
 	</select>
 	</td>	
-    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
-    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
-    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
-    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
-    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
+    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
+    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
+    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
+    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
   </tr>
   <tr>
 <td colspan="6"></td>

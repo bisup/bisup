@@ -54,7 +54,7 @@ position:absolute;
                          role: "annotation" },
                        1]);
     	        var options = {
-    	                       'width':800,
+    	                       'width':700,
     	                       'height':500};
     	        
     	        // Instantiate and draw our chart, passing in some options.

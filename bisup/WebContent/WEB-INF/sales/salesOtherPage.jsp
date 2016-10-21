@@ -172,7 +172,7 @@ function Check(){
 
 </table>
 
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:90%">
 
   <tr>
 
@@ -240,7 +240,7 @@ function Check(){
 
 </table>
 
-<table class="table table-striped" style="width:80%">
+<table class="table table-striped" style="width:90%">
 
   <tr>
   
@@ -260,7 +260,7 @@ function Check(){
   <tr>
   <td>
 	<select name="sdate" class="form-control">
-	<option value="0">-- 년 월  --</option>
+	<option value="0">년 월</option>
 	<c:forEach var="yearmon" items="${yearmon}" varStatus="status">
 	<option value="<c:out value="${yearmon.sdate}"/>">
 	<c:if test="${result.sdate == yearmon.sdate}">selected="selected"</c:if><c:out value="${yearmon.sdate}"/>
@@ -268,15 +268,15 @@ function Check(){
 			 </c:forEach>
 	</select>
 </td>
-    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="rent" name="rent" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
 
-    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="sal" name="sal" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
 
-    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="mcost" name="mcost" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
 
-    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="duty" name="duty" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
 
-    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값 없을 시  0 입력"></td>
+    <td><input type="text" id="prcost" name="prcost" class="form-control" placeholder="입력 값이 없을 시  0 입력"></td>
 
   </tr>
 
